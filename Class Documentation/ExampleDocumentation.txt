@@ -77,7 +77,8 @@ Method Description:
 
 	bool	has_overlapping_area()
 
-		Determines whether any part of the circle is overlapped by any other 			shape. Returns true if there is an overlapping shape. Returns false
+		Determines whether any part of the circle is overlapped by any other
+		shape. Returns true if there is an overlapping shape. Returns false
 		otherwise.
 
 	2DShape[] get_overlapping_area(2DShape shape)
