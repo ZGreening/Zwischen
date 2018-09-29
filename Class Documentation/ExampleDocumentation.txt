@@ -1,0 +1,97 @@
+
+////////Example Class Documentation////////
+
+
+Class: Circle
+
+Inherits:	2DShape<Shape<CanvasItem
+Inherited By:	N/A
+
+
+Brief Description:
+	A class for a circle.
+
+
+//list type and name//
+Members:
+	Point	center
+	double	radius
+	bool	filled
+	int	color 
+
+//list enumeration values and/or constants//
+Enumerations:
+	enum COLOR:
+		RED=0
+		GREEN=1
+		BLUE=2
+
+
+//Don't list plain set gets here//
+//list return type, name, and parameters//
+Public Methods:
+	double	get_circumference()
+	double	get_area()
+	bool	has_overlapping_area()
+	2DShape[] get_overlapping_area(2DShape shape)
+	void	example_of_useless_method_with_optional_param(int value=0)
+
+
+Description:
+	This is an example class for showing an easy way to document classes.
+	This class could be used to create a circular shape that can detect
+	overlapping areas.
+
+
+//list the setgets here//
+Property Description:
+	Point center
+		set_center(Point point)
+		set_center(int x, int y)
+		get_center()
+
+	double radius
+		set_radius(double radius)
+		get_radius()
+
+	bool filled
+		set_filled(bool value)
+		is_filled()
+
+	int color
+		set_color(enum flag)
+		get_color()
+	
+		returns a constant flag. See Enumerations for color
+
+
+//list all other methods here//
+Method Description:
+	double	get_circumference()
+	
+		Calculate and return the circumference of the circle
+
+	double	get_area()
+
+		Calculate and return the area of the circle
+
+	bool	has_overlapping_area()
+
+		Determines whether any part of the circle is overlapped by any other
+		shape. Returns true if there is an overlapping shape. Returns false
+		otherwise.
+
+	2DShape[] get_overlapping_area(2DShape shape)
+
+		Returns an array of all overlapping shapes. If there are no overlapping
+		shapes, returns null.
+
+	void	example_of_useless_method_with_optional_param(int value=0)
+		
+		Does nothing. Returns Nothing.
+
+
+
+
+
+	
