@@ -1,0 +1,10 @@
+October 4th meeting. Start: 2:45    End:  5:45
+    
+Completed 20 shall statements.
+
+Responsible for Windows:
+Tyler Marlow – Login Screen, view/edit Account, create account
+Brandon Davis -  notifications window, ride schedule window
+Zack – main window
+Gage – friends list, messeges window
+Chuck – view request ride and view available ride
