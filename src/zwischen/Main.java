@@ -5,10 +5,10 @@
 // Group:       3
 // Date:        September 29, 2018
 // Description: Driver Class for the program Zwischen
-//
 ///////////////////////////////////////////////////////////////////////////////
 
 package zwischen;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class Main extends Application {
   public void start(Stage stage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("main_screen/MainScreen.fxml"));
 
-    Scene mainScene = new Scene(root,1024,768);
+    Scene mainScene = new Scene(root);
 
     stage.setTitle("Zwischen");
 
