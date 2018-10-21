@@ -9,7 +9,6 @@
 
 package zwischen;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +19,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("main_screen/MainScreen.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("mainscreen/MainScreen.fxml"));
 
     Scene mainScene = new Scene(root);
 
