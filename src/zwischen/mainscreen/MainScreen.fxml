@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zwischen.main_screen.MainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zwischen.mainscreen.MainScreenController">
    <children>
       <GridPane layoutX="169.0" layoutY="126.0" style="-fx-background-color: salmon; -fx-border-width: 0 1 1 1; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -45,7 +45,7 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#OnEditAccountPressed" prefHeight="4.0" prefWidth="100.0" text="Edit Account" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button mnemonicParsing="false" onAction="#onEditAccountPressed" prefHeight="4.0" prefWidth="100.0" text="Edit Account" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font size="12.0" />
                                  </font>
@@ -54,7 +54,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnLogoutPressed" prefHeight="6.0" prefWidth="100.0" text="Logout" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#onLogoutPressed" prefHeight="6.0" prefWidth="100.0" text="Logout" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font size="12.0" />
                                  </font>
@@ -63,7 +63,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#OnNotificationsPressed" prefHeight="10.0" prefWidth="106.0" text="Notifications" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button mnemonicParsing="false" onAction="#onNotificationsPressed" prefHeight="10.0" prefWidth="106.0" text="Notifications" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font size="12.0" />
                                  </font>
@@ -115,7 +115,7 @@
                <children>
                   <AnchorPane prefHeight="80.0" prefWidth="108.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#OnDisplayAvailableRidesPressed" prefHeight="66.0" prefWidth="83.0" text="Display Available Rides" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <Button mnemonicParsing="false" onAction="#onDisplayAvailableRidesPressed" prefHeight="66.0" prefWidth="83.0" text="Display Available Rides" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -124,7 +124,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <CheckBox alignment="CENTER" layoutX="-9.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnDriverAvailabilityChanged" text="Driver Availability" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <CheckBox alignment="CENTER" layoutX="-9.0" layoutY="31.0" mnemonicParsing="false" onAction="#onDriverAvailabilityChanged" text="Driver Availability" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -172,7 +172,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#OnRideRequested" text="Request Ride" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#onRideRequested" text="Request Ride" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -211,17 +211,17 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
                            <children>
-                              <TextArea onMouseClicked="#OnViewMessageWindowClicked" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                              <TextArea onMouseClicked="#onViewMessageWindowClicked" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                            <children>
-                              <Button layoutX="43.0" layoutY="1.0" mnemonicParsing="false" onAction="#OnViewDriversPressed" text="View Drivers" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <Button layoutX="43.0" layoutY="1.0" mnemonicParsing="false" onAction="#onViewDriversPressed" text="View Drivers" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#OnViewHistoryPressed" text="View History" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <Button mnemonicParsing="false" onAction="#onViewHistoryPressed" text="View History" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                            </children>
                         </AnchorPane>
                      </children>
