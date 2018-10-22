@@ -61,15 +61,15 @@ public class MainScreenController {
 
     Scene mainScene = new Scene(root);
 
-    Stage stage=new Stage();
+    Stage stage = new Stage();
 
     stage.setTitle("Notifications");
 
     stage.setScene(mainScene);
 
-    stage.setX(stage.getX()-50);
+    stage.setX(stage.getX() - 50);
 
-    stage.setY(stage.getY()-50);
+    stage.setY(stage.getY() - 50);
 
     stage.show();
   }
