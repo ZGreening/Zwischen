@@ -1,3 +1,12 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project:     Zwischen
+// File:        ScheduleController.java
+// By:          Brandon Davis
+// Group:       3
+// Date:        October 22, 2018
+// Description: Controller Class for the notification window
+///////////////////////////////////////////////////////////////////////////////
+
 package zwischen.RideSchedule;
 
 import java.net.URL;
