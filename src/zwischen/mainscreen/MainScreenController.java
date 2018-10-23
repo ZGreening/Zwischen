@@ -9,12 +9,13 @@
 
 package zwischen.mainscreen;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class MainScreenController {
 
@@ -51,7 +52,7 @@ public class MainScreenController {
   }
 
   @FXML
-  void onNotificationsPressed(ActionEvent event) throws Exception {
+  void onNotificationsPressed(ActionEvent event) {
 
   }
 

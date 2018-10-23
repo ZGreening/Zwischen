@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zwischen.rideschedule.ScheduleController">
+   <children>
+      <AnchorPane prefHeight="682.0" prefWidth="224.0" style="-fx-background-color: #31c5d8;">
+         <children>
+            <Button layoutX="63.0" layoutY="169.0" mnemonicParsing="false" onAction="#pressMainMenu" text="Main Menu" />
+            <Button layoutX="63.0" layoutY="225.0" mnemonicParsing="false" onAction="#pressProfile" text="Profile" />
+            <Button layoutX="63.0" layoutY="285.0" mnemonicParsing="false" onAction="#pressFriend" text="Friend's List" />
+            <Button layoutX="63.0" layoutY="341.0" mnemonicParsing="false" onAction="#pressNotification" text="Notifications" />
+            <DatePicker layoutX="25.0" layoutY="44.0" onAction="#selectDate" promptText="MM/DD/YYYY" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="14.0" prefHeight="17.0" prefWidth="142.0" text="Select a date">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="183.0" prefHeight="682.0" prefWidth="739.0">
+         <children>
+            <GridPane gridLinesVisible="true" layoutX="43.0" prefHeight="682.0" prefWidth="739.0" style="-fx-background-color: #31c5d8;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="163.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="86.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="148.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="151.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="151.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="139.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="125.0" minHeight="0.0" prefHeight="89.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="576.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="149.0" prefWidth="146.0" style="-fx-background-color: #31e034;" text="Driver">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="149.0" prefWidth="146.0" style="-fx-background-color: #31e034;" text="Time &#10; of &#10;Day" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="149.0" prefWidth="146.0" style="-fx-background-color: #31e034;" text="Pickup &#10;Vicinity" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="149.0" prefWidth="146.0" style="-fx-background-color: #31e034;" text="Destination" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="149.0" prefWidth="146.0" style="-fx-background-color: #31e034;" text="Available &#10;Seats" GridPane.columnIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="149.0" prefWidth="146.0" style="-fx-background-color: #31e034;" text="Select" GridPane.columnIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="158.0" prefWidth="146.0" text="name" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="84.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@face.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="TOP_CENTER" prefHeight="158.0" prefWidth="146.0" text="name" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="158.0" prefWidth="146.0" text="name" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" prefHeight="158.0" prefWidth="146.0" text="name" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="84.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@face.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="84.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@face.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="84.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@face.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="152.0" prefWidth="69.0" text="10:45 am" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="152.0" prefWidth="69.0" text="12:00 pm" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="152.0" prefWidth="69.0" text="1:30 pm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="152.0" prefWidth="69.0" text="4:15 pm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="Address" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="#" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="#" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="#" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="165.0" prefWidth="148.0" text="#" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#pressRequestRide" text="Request Ride" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#pressRequestRide" text="Request Ride" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#pressRequestRide" text="Request Ride" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#pressRequestRide" text="Request Ride" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#pressMsg" text="Message" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="3.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#pressMsg" text="Message" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="3.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#pressMsg" text="Message" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="3.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#pressMsg" text="Message" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="3.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <AnchorPane layoutX="41.0" prefHeight="682.0" prefWidth="5.0" style="-fx-background-color: #000000;" />
+            <ScrollBar layoutX="27.0" orientation="VERTICAL" prefHeight="682.0" prefWidth="14.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
