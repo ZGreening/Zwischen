@@ -7,7 +7,7 @@
 // Description: Controller Class for the notification window
 ///////////////////////////////////////////////////////////////////////////////
 
-package zwischen.RideSchedule;
+package zwischen.rideschedule;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +28,12 @@ public class ScheduleController {
   }
 
   @FXML
-  void pressMM(ActionEvent event) {
+  void pressMainMenu(ActionEvent event) {
+
+  }
+
+  @FXML
+  void pressMsg(ActionEvent event) {
 
   }
 
