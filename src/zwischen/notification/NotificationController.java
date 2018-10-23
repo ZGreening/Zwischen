@@ -25,41 +25,36 @@ public class NotificationController {
 
   @FXML
   void pressAccept(MouseEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressDecline(MouseEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressDelete(MouseEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressDeletedButton(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressNewButton(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressRead(MouseEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressReadButton(ActionEvent event) {
-
-  }
-
-  @FXML
-  void initialize() {
-
+    System.out.println("TODO implement functionality");
   }
 }

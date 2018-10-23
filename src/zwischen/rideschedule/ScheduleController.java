@@ -24,41 +24,36 @@ public class ScheduleController {
 
   @FXML
   void pressFriend(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressMainMenu(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressMsg(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressNotification(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressProfile(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void pressRequestRide(ActionEvent event) {
-
+    System.out.println("TODO implement functionality");
   }
 
   @FXML
   void selectDate(ActionEvent event) {
-
-  }
-
-  @FXML
-  void initialize() {
-
+    System.out.println("TODO implement functionality");
   }
 }
