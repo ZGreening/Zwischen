@@ -19,7 +19,7 @@ public class messageScreenController {
   }
 
   @FXML
-  void newMessage(ActionEvent event) {
+  void createNewMessage(ActionEvent event) {
 
   }
 
