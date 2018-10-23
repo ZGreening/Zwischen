@@ -50,6 +50,8 @@ public class MainScreenController {
 
     stage.setScene(mainScene);
 
+    stage.setX(stage.getX() - 150);
+
     stage.show();
   }
 
