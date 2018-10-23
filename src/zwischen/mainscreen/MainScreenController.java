@@ -102,6 +102,42 @@ public class MainScreenController {
   }
 
   @FXML
+  void onViewMessagesPressed(ActionEvent event) throws Exception {
+    Parent root = FXMLLoader.load(
+        getClass().getClassLoader().getResource("zwischen/messagescreen/messageScreen.fxml"));
+
+    Scene mainScene = new Scene(root);
+
+    Stage stage = new Stage();
+
+    stage.setTitle("Messages");
+
+    stage.setScene(mainScene);
+
+    stage.setX(stage.getX() - 150);
+
+    stage.show();
+  }
+
+  @FXML
+  void onViewFriendsListPressed(ActionEvent event) throws Exception {
+    Parent root = FXMLLoader.load(
+        getClass().getClassLoader().getResource("zwischen/friendslist/friendslist.fxml"));
+
+    Scene mainScene = new Scene(root);
+
+    Stage stage = new Stage();
+
+    stage.setTitle("Friends List");
+
+    stage.setScene(mainScene);
+
+    stage.setX(stage.getX() - 150);
+
+    stage.show();
+  }
+
+  @FXML
   void initialize() {
     assert destinationAddress
         != null : "fx:id=\"DestinationAddress\" "

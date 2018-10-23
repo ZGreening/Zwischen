@@ -295,7 +295,7 @@
           <Insets left="70.0" />
         </GridPane.margin>
       </Button>
-      <Line endX="275.29290771484375" endY="1.2928931713104248" startX="-100.0" style="-fx-blend-mode: #ff4d4d#ff4d4d;" GridPane.rowIndex="1" />
+      <Line endX="275.29290771484375" endY="1.2928931713104248" startX="-100.0" GridPane.rowIndex="1" />
       <Line endX="275.29290771484375" endY="1.0563361644744873" startX="-100.0" GridPane.rowIndex="3" />
     </children>
   </GridPane>
