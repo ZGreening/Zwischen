@@ -147,7 +147,6 @@ public class MainScreenController {
     assert pickUpAddress
         != null : "fx:id=\"PickUpAddress\" "
         + "was not injected: check your FXML file 'MainScreen.fxml'.";
-
   }
 }
 
