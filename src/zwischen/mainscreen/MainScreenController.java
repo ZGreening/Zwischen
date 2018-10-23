@@ -11,8 +11,12 @@ package zwischen.mainscreen;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,8 +36,23 @@ public class MainScreenController {
   private TextField pickUpAddress;
 
   @FXML
-  void onDisplayAvailableRidesPressed(ActionEvent event) {
+  void onDisplayAvailableRidesPressed(ActionEvent event) throws Exception {
+      Parent root = FXMLLoader.load(
+          getClass().getClassLoader().getResource("zwischen/rideschedule/RideScheduleWindow.fxml"));
 
+      Scene mainScene = new Scene(root);
+
+      Stage stage = new Stage();
+
+      stage.setTitle("Notifications");
+
+      stage.setScene(mainScene);
+
+      stage.setX(stage.getX() - 50);
+
+      stage.setY(stage.getY() - 50);
+
+      stage.show();
   }
 
   @FXML
@@ -53,7 +72,22 @@ public class MainScreenController {
 
   @FXML
   void onNotificationsPressed(ActionEvent event) throws Exception {
+      Parent root = FXMLLoader.load(
+          getClass().getClassLoader().getResource("zwischen/notification/NotificationWindow.fxml"));
 
+      Scene mainScene = new Scene(root);
+
+      Stage stage = new Stage();
+
+      stage.setTitle("Notifications");
+
+      stage.setScene(mainScene);
+
+      stage.setX(stage.getX() - 50);
+
+      stage.setY(stage.getY() - 50);
+
+      stage.show();
   }
 
   @FXML
