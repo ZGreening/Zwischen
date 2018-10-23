@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="308.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane maxHeight="-Infinity" maxWidth="308.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zwischen.friendsList.friendsListController">
   <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="376.0" style="-fx-background-color: #e3e8e5#e3e8e5;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" />
@@ -35,7 +35,7 @@
       <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-      <Button mnemonicParsing="false" text="Driver" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button mnemonicParsing="false" onAction="#becomeDriver" text="Driver" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label text="Driver" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <Label text="Driver" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <Label text="Driver" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -94,7 +94,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Me (Gage Kettering)" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/if_matureman1_628284.png" />
+                  <Image url="@avatars/if_matureman1_628284.png" />
                 </image>
               </ImageView>
             </children>
@@ -115,7 +115,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Brandon Davis" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/if_12_avatar_2754577.png" />
+                  <Image url="@avatars/if_12_avatar_2754577.png" />
                 </image>
               </ImageView>
             </children>
@@ -136,7 +136,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Zachary Greening" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/if_1_avatar_2754574.png" />
+                  <Image url="@avatars/if_1_avatar_2754574.png" />
                 </image>
               </ImageView>
             </children>
@@ -157,7 +157,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Tyler Marlow" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/if_8_avatar_2754583.png" />
+                  <Image url="@avatars/if_8_avatar_2754583.png" />
                 </image>
               </ImageView>
             </children>
@@ -178,7 +178,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Charles Taylor" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/if_boy_403024.png" />
+                  <Image url="@avatars/if_boy_403024.png" />
                 </image>
               </ImageView>
             </children>
@@ -199,7 +199,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Professor Koufakou" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/if_4_avatar_2754580.png" />
+                  <Image url="@avatars/if_4_avatar_2754580.png" />
                 </image>
               </ImageView>
             </children>
@@ -220,7 +220,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Chelsea Atkins" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/if_11_avatar_2754576.png" />
+                  <Image url="@avatars/if_11_avatar_2754576.png" />
                 </image>
               </ImageView>
             </children>
@@ -241,7 +241,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Creed Bratton" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/creed-bratton.jpg" />
+                  <Image url="@avatars/creed-bratton.jpg" />
                 </image>
               </ImageView>
             </children>
@@ -262,7 +262,7 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Michael Scott" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/michael.png" />
+                  <Image url="@avatars/michael.png" />
                 </image>
               </ImageView>
             </children>
@@ -283,14 +283,14 @@
               <Label prefHeight="87.0" prefWidth="228.0" text="Dwight Schrute" GridPane.columnIndex="1" />
               <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@Avatars/Dwight_Schrute.jpg" />
+                  <Image url="@avatars/Dwight_Schrute.jpg" />
                 </image>
               </ImageView>
             </children>
           </GridPane>
         </children>
       </AnchorPane>
-      <Button layoutX="318.0" layoutY="119.0" mnemonicParsing="false" text="Rider" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Button layoutX="318.0" layoutY="119.0" mnemonicParsing="false" onAction="#becomeRider" text="Rider" GridPane.columnIndex="1" GridPane.rowIndex="4">
         <GridPane.margin>
           <Insets left="70.0" />
         </GridPane.margin>
