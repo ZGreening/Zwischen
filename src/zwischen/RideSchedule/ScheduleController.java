@@ -4,56 +4,48 @@
 // By:          Brandon Davis
 // Group:       3
 // Date:        October 22, 2018
-// Description: Controller Class for the notification window
+// Description: Controller Class for the schedule window
 ///////////////////////////////////////////////////////////////////////////////
 
-package zwischen.RideSchedule;
+package zwischen.rideschedule;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class ScheduleController {
 
-  @FXML
-  private ResourceBundle resources;
+    @FXML private ResourceBundle resources;
 
-  @FXML
-  private URL location;
+    @FXML private URL location;
 
-  @FXML
-  void pressFriend(ActionEvent event) {
+    @FXML void pressFriend(ActionEvent event) {
 
-  }
+    }
 
-  @FXML
-  void pressMM(ActionEvent event) {
+    @FXML void pressMainMenu(ActionEvent event) {
 
-  }
+    }
 
-  @FXML
-  void pressNotification(ActionEvent event) {
+    @FXML void pressNotification(ActionEvent event) {
 
-  }
+    }
 
-  @FXML
-  void pressProfile(ActionEvent event) {
+    @FXML void pressProfile(ActionEvent event) {
 
-  }
+    }
 
-  @FXML
-  void pressRequestRide(ActionEvent event) {
+    @FXML void pressRequestRide(ActionEvent event) {
 
-  }
+    }
 
-  @FXML
-  void selectDate(ActionEvent event) {
+    @FXML void selectDate(ActionEvent event) {
 
-  }
+    }
 
-  @FXML
-  void initialize() {
+    @FXML void initialize() {
 
-  }
+    }
 }
