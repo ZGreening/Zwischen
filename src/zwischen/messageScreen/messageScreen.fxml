@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="407.0" prefWidth="553.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="zwischen.messageScreen.messageScreenController">
+<AnchorPane prefHeight="407.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zwischen.messageScreen.messageScreenController">
   <children>
     <GridPane prefHeight="407.0" prefWidth="553.0" AnchorPane.rightAnchor="0.0">
       <columnConstraints>
@@ -45,7 +45,7 @@
         </AnchorPane>
         <AnchorPane prefHeight="42.0" prefWidth="129.0" style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" GridPane.columnIndex="2">
           <children>
-            <Button mnemonicParsing="false" onAction="#newMessage" prefHeight="51.0" prefWidth="117.0" style="-fx-background-color: #13f469#13f469 #13f469#13f469;" text="New Message" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Button mnemonicParsing="false" onAction="#createNewMessage" prefHeight="51.0" prefWidth="117.0" style="-fx-background-color: #13f469#13f469 #13f469#13f469;" text="New Message" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
           </children>
         </AnchorPane>
         <AnchorPane prefHeight="76.0" prefWidth="52.0" style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" />
