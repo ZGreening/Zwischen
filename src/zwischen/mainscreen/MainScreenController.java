@@ -16,8 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class MainScreenController {
@@ -33,6 +33,9 @@ public class MainScreenController {
 
   @FXML
   private TextField pickUpAddress;
+
+  @FXML
+  private Label output;
 
   @FXML
   void onDisplayAvailableRidesPressed(ActionEvent event) throws Exception {
@@ -52,17 +55,17 @@ public class MainScreenController {
 
   @FXML
   void onDriverAvailabilityChanged(ActionEvent event) {
-    System.out.println("TODO implement functionality");
+    output.setText(output.getText() + "\nDriverAvailabilityToggled (Todo Add Functionality)");
   }
 
   @FXML
   void onEditAccountPressed(ActionEvent event) {
-    System.out.println("TODO implement functionality");
+    output.setText(output.getText() + "\nEditAccountPressed (Todo Add Functionality)");
   }
 
   @FXML
   void onLogoutPressed(ActionEvent event) {
-    System.out.println("TODO implement functionality");
+    output.setText(output.getText() + "\nLogoutPressed (Todo Add Functionality)");
   }
 
   @FXML
@@ -85,22 +88,17 @@ public class MainScreenController {
 
   @FXML
   void onRideRequested(ActionEvent event) {
-    System.out.println("TODO implement functionality");
+    output.setText(output.getText() + "\nRideRequested (Todo Add Functionality)");
   }
 
   @FXML
   void onViewDriversPressed(ActionEvent event) {
-    System.out.println("TODO implement functionality");
+    output.setText(output.getText() + "\nViewDriversPressed (Todo Add Functionality)");
   }
 
   @FXML
   void onViewHistoryPressed(ActionEvent event) {
-    System.out.println("TODO implement functionality");
-  }
-
-  @FXML
-  void onViewMessageWindowClicked(MouseEvent event) {
-    System.out.println("TODO implement functionality");
+    output.setText(output.getText() + "\nViewHistoryPressed (Todo Add Functionality)");
   }
 
   @FXML
