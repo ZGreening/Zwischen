@@ -50,7 +50,7 @@ public class MainScreenController {
 
     Stage stage = new Stage();
 
-    stage.setTitle("Notifications");
+    stage.setTitle("Zwischen");
 
     stage.setScene(scene);
 
@@ -62,11 +62,27 @@ public class MainScreenController {
   @FXML
   void onDriverAvailabilityChanged(ActionEvent event) {
     output.setText(output.getText() + "\nDriverAvailabilityToggled (Todo Add Functionality)");
+    //Todo Add Driver Availabilty changed code
   }
 
   @FXML
-  void onEditAccountPressed(ActionEvent event) {
-    output.setText(output.getText() + "\nEditAccountPressed (Todo Add Functionality)");
+  void onEditAccountPressed(ActionEvent event) throws Exception {
+    Stage stage=(Stage)mainmenu.getScene().getWindow();
+
+    stage.close();
+
+    Parent root = FXMLLoader.load(
+        getClass().getClassLoader().getResource("zwischen/editaccount/EditAccountWindow.fxml"));
+
+    Scene scene = new Scene(root);
+
+    stage=new Stage();
+
+    stage.setTitle("Zwischen");
+
+    stage.setScene(scene);
+
+    stage.show();
   }
 
   @FXML
@@ -82,7 +98,7 @@ public class MainScreenController {
 
     stage=new Stage();
 
-    stage.setTitle("Login");
+    stage.setTitle("Zwischen");
 
     stage.setScene(scene);
 
@@ -98,7 +114,7 @@ public class MainScreenController {
 
     Stage stage = new Stage();
 
-    stage.setTitle("Notifications");
+    stage.setTitle("Zwischen");
 
     stage.setScene(scene);
 
@@ -110,16 +126,19 @@ public class MainScreenController {
   @FXML
   void onRideRequested(ActionEvent event) {
     output.setText(output.getText() + "\nRideRequested (Todo Add Functionality)");
+    //Todo Add ride requested code
   }
 
   @FXML
   void onViewDriversPressed(ActionEvent event) {
     output.setText(output.getText() + "\nViewDriversPressed (Todo Add Functionality)");
+    //todo add view Driver screen
   }
 
   @FXML
   void onViewHistoryPressed(ActionEvent event) {
     output.setText(output.getText() + "\nViewHistoryPressed (Todo Add Functionality)");
+    //todo add view history screen
   }
 
   @FXML
@@ -131,7 +150,7 @@ public class MainScreenController {
 
     Stage stage = new Stage();
 
-    stage.setTitle("Messages");
+    stage.setTitle("Zwischen");
 
     stage.setScene(scene);
 
@@ -149,7 +168,7 @@ public class MainScreenController {
 
     Stage stage = new Stage();
 
-    stage.setTitle("Friends List");
+    stage.setTitle("Zwischen");
 
     stage.setScene(scene);
 

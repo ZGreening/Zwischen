@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="592.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zwischen.createaccount.createAccountController">
+<AnchorPane fx:id="createAccount" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="592.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zwischen.createaccount.CreateAccountController">
    <children>
       <Label layoutX="23.0" layoutY="100" prefHeight="26.0" prefWidth="152.0" text="UserName:">
          <font>
@@ -39,10 +39,10 @@
             <Font name="System Bold" size="14.0" />
          </font></Label>
       <TextField fx:id="PhoneNumber" layoutX="175.0" layoutY="310.0" prefHeight="26.0" prefWidth="201.0" />
-      <Button fx:id="createAccount" layoutX="175.0" layoutY="369.0" mnemonicParsing="false" onAction="#initializeAccountInfo" text="Create Your Account" />
+      <Button layoutX="175.0" layoutY="369.0" mnemonicParsing="false" onAction="#onCreateYourAccountPressed" text="Create Your Account" />
       <ToolBar prefHeight="45.0" prefWidth="592.0">
         <items>
-          <Button fx:id="backToHomePage" mnemonicParsing="false" onAction="#goToHomePage" text="back to homepage" />
+          <Button mnemonicParsing="false" onAction="#onBackToHomepagePressed" text="back to homepage" />
         </items>
       </ToolBar>
    </children>

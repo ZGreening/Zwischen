@@ -4,9 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class EditAccountController {
 
@@ -15,15 +19,6 @@ public class EditAccountController {
 
     @FXML
     private URL location;
-
-    @FXML
-    private Button gotohomepage;
-
-    @FXML
-    private Button viewDrivers;
-
-    @FXML
-    private Button mapspage;
 
     @FXML
     private TextField firstName;
@@ -41,39 +36,50 @@ public class EditAccountController {
     private PasswordField password;
 
     @FXML
-    private Button updateAccount;
+    private AnchorPane editAccount;
 
     @FXML
-    void goToMapsPage(ActionEvent event) {
+    void onReturnToHomepagePressed(ActionEvent event) throws Exception {
+        Stage stage = (Stage) editAccount.getScene().getWindow();
+
+        stage.close();
+
+        Parent root = FXMLLoader.load(
+            getClass().getClassLoader().getResource("zwischen/mainscreen/MainScreen.fxml"));
+
+        Scene scene = new Scene(root);
+
+        stage = new Stage();
+
+        stage.setTitle("Zwischen");
+
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    @FXML
+    void onUpdateAccountPressed(ActionEvent event) {
 
     }
 
     @FXML
-    void goToViewDrivers(ActionEvent event) {
+    void onViewDriversRidersPressed(ActionEvent event) {
 
     }
 
     @FXML
-    void returnToHomepage(ActionEvent event) {
-
-    }
-
-    @FXML
-    void updateAccountInfo(ActionEvent event) {
+    void onViewMapsPressed(ActionEvent event) {
 
     }
 
     @FXML
     void initialize() {
-        assert gotohomepage != null : "fx:id=\"gotohomepage\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert viewDrivers != null : "fx:id=\"viewDrivers\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert mapspage != null : "fx:id=\"mapspage\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert firstName != null : "fx:id=\"firstName\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert lastName != null : "fx:id=\"lastName\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert phoneNumber != null : "fx:id=\"phoneNumber\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert email != null : "fx:id=\"email\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
-        assert updateAccount != null : "fx:id=\"updateAccount\" was not injected: check your FXML file 'editAccountWindow.fxml'.";
+        assert firstName != null : "fx:id=\"firstName\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+        assert lastName != null : "fx:id=\"lastName\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+        assert phoneNumber != null : "fx:id=\"phoneNumber\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+        assert email != null : "fx:id=\"email\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+        assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
 
     }
 }
