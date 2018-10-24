@@ -17,7 +17,7 @@ import javafx.scene.control.CheckBox;
 public class AvailableDriversController {
 
   @FXML
-  private Button Checkallboxes;
+  private Button checkAllBoxes;
 
   @FXML
   private Button uncheckAllBoxes;
@@ -58,7 +58,7 @@ public class AvailableDriversController {
   }
 
   @FXML
-  void uncheckALL(ActionEvent event) {
+  void uncheckAll(ActionEvent event) {
 
   }
 

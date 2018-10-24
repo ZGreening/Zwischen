@@ -16,24 +16,19 @@ import javafx.scene.control.Button;
 public class RideHistoryScreenController {
 
   @FXML
-  private Button Messege1;
+  private Button message1;
 
   @FXML
   private Button messege2;
 
   @FXML
-  private Button Messege3;
+  private Button message3;
 
   @FXML
-  private Button MainReturn;
+  private Button mainReturn;
 
   @FXML
-  void MessegeUser(ActionEvent event) {
-
-  }
-
-  @FXML
-  void messegeUser(ActionEvent event) {
+  void messageUser(ActionEvent event) {
 
   }
 

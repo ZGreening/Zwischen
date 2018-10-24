@@ -46,7 +46,8 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                            <children>
-                              <Button fx:id="Messege1" layoutX="26.0" layoutY="3.0" mnemonicParsing="false" onAction="#messegeUser" text="Messege" />
+                              <Button layoutX="26.0" layoutY="3.0" mnemonicParsing="false"
+                                onAction="#messegeUser" text="Messege" fx:id="message1"/>
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -56,7 +57,8 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
-                              <Button fx:id="Messege3" layoutX="26.0" layoutY="2.0" mnemonicParsing="false" onAction="#MessegeUser" text="Messege" />
+                              <Button layoutX="26.0" layoutY="2.0" mnemonicParsing="false"
+                                onAction="#messageUser" text="Messege" fx:id="message3"/>
                            </children>
                         </AnchorPane>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Example Date" GridPane.columnIndex="1" />
@@ -68,6 +70,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button fx:id="MainReturn" layoutX="432.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnToMainScreen" text="Main Screen" />
+      <Button layoutX="432.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnToMainScreen"
+        text="Main Screen" fx:id="mainReturn"/>
    </children>
 </AnchorPane>
