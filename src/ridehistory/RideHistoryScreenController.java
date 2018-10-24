@@ -9,6 +9,8 @@
 
 package ridehistory;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,20 +18,31 @@ import javafx.scene.control.Button;
 public class RideHistoryScreenController {
 
   @FXML
-  private Button message1;
+  private ResourceBundle resources;
 
   @FXML
-  private Button messege2;
-
-  @FXML
-  private Button message3;
+  private URL location;
 
   @FXML
   private Button mainReturn;
 
   @FXML
-  void messageUser(ActionEvent event) {
+  void messageUser1(ActionEvent event) {
+    //todo These really should be one function
+    //since we will want to dynamically resize the number of drivers
+    //that can be seen in the window
+    //You will just want one function that gets the name of the current driver
+    //and other relevant information.
+  }
 
+  @FXML
+  void messageUser2(ActionEvent event) {
+    //todo These really should be one function
+  }
+
+  @FXML
+  void messageUser3(ActionEvent event) {
+    //todo These really should be one function
   }
 
   @FXML
@@ -37,4 +50,10 @@ public class RideHistoryScreenController {
 
   }
 
+  @FXML
+  void initialize() {
+    assert mainReturn
+        != null : "fx:id=\"mainReturn\" was not injected: check your FXML file 'RideHistoryScreen.fxml'.";
+
+  }
 }

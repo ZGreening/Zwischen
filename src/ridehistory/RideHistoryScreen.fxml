@@ -46,19 +46,20 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                            <children>
-                              <Button layoutX="26.0" layoutY="3.0" mnemonicParsing="false"
-                                onAction="#messegeUser" text="Messege" fx:id="message1"/>
+                             <Button layoutX="26.0" layoutY="3.0" mnemonicParsing="false"
+                               onAction="#messageUser1" text="Messege"/>
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
-                              <Button fx:id="messege2" layoutX="26.0" layoutY="1.0" mnemonicParsing="false" onAction="#messegeUser" text="Messege" />
+                             <Button layoutX="26.0" layoutY="1.0" mnemonicParsing="false"
+                               onAction="#messageUser2" text="Messege"/>
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
-                              <Button layoutX="26.0" layoutY="2.0" mnemonicParsing="false"
-                                onAction="#messageUser" text="Messege" fx:id="message3"/>
+                             <Button layoutX="26.0" layoutY="2.0" mnemonicParsing="false"
+                               onAction="#messageUser3" text="Messege"/>
                            </children>
                         </AnchorPane>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Example Date" GridPane.columnIndex="1" />
@@ -70,7 +71,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button layoutX="432.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnToMainScreen"
-        text="Main Screen" fx:id="mainReturn"/>
+     <Button layoutX="432.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnToMainScreen"
+       text="Main Screen" fx:id="mainReturn"/>
    </children>
 </AnchorPane>
