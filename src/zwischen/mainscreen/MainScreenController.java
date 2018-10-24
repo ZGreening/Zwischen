@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainScreenController {
@@ -38,17 +39,20 @@ public class MainScreenController {
   private Label output;
 
   @FXML
+  private AnchorPane mainmenu;
+
+  @FXML
   void onDisplayAvailableRidesPressed(ActionEvent event) throws Exception {
     Parent root = FXMLLoader.load(
         getClass().getClassLoader().getResource("zwischen/rideschedule/RideScheduleWindow.fxml"));
 
-    Scene mainScene = new Scene(root);
+    Scene scene = new Scene(root);
 
     Stage stage = new Stage();
 
     stage.setTitle("Notifications");
 
-    stage.setScene(mainScene);
+    stage.setScene(scene);
 
     stage.setX(stage.getX() - 150);
 
@@ -66,8 +70,23 @@ public class MainScreenController {
   }
 
   @FXML
-  void onLogoutPressed(ActionEvent event) {
-    output.setText(output.getText() + "\nLogoutPressed (Todo Add Functionality)");
+  void onLogoutPressed(ActionEvent event) throws Exception {
+    Stage stage=(Stage)mainmenu.getScene().getWindow();
+
+    stage.close();
+
+    Parent root = FXMLLoader.load(
+        getClass().getClassLoader().getResource("zwischen/loginpage/LoginPage.fxml"));
+
+    Scene scene = new Scene(root);
+
+    stage=new Stage();
+
+    stage.setTitle("Login");
+
+    stage.setScene(scene);
+
+    stage.show();
   }
 
   @FXML
@@ -75,13 +94,13 @@ public class MainScreenController {
     Parent root = FXMLLoader.load(
         getClass().getClassLoader().getResource("zwischen/notification/NotificationWindow.fxml"));
 
-    Scene mainScene = new Scene(root);
+    Scene scene = new Scene(root);
 
     Stage stage = new Stage();
 
     stage.setTitle("Notifications");
 
-    stage.setScene(mainScene);
+    stage.setScene(scene);
 
     stage.setX(stage.getX() - 150);
 
@@ -108,13 +127,13 @@ public class MainScreenController {
     Parent root = FXMLLoader.load(
         getClass().getClassLoader().getResource("zwischen/messagescreen/messageScreen.fxml"));
 
-    Scene mainScene = new Scene(root);
+    Scene scene = new Scene(root);
 
     Stage stage = new Stage();
 
     stage.setTitle("Messages");
 
-    stage.setScene(mainScene);
+    stage.setScene(scene);
 
     stage.setX(stage.getX() - 150);
 
@@ -126,13 +145,13 @@ public class MainScreenController {
     Parent root = FXMLLoader.load(
         getClass().getClassLoader().getResource("zwischen/friendslist/friendslist.fxml"));
 
-    Scene mainScene = new Scene(root);
+    Scene scene = new Scene(root);
 
     Stage stage = new Stage();
 
     stage.setTitle("Friends List");
 
-    stage.setScene(mainScene);
+    stage.setScene(scene);
 
     stage.setX(stage.getX() - 150);
 
