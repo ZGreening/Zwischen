@@ -130,15 +130,35 @@ public class MainScreenController {
   }
 
   @FXML
-  void onViewDriversPressed(ActionEvent event) {
-    output.setText(output.getText() + "\nViewDriversPressed (Todo Add Functionality)");
-    //todo add view Driver screen
+  void onViewDriversPressed(ActionEvent event) throws Exception {
+    Parent root = FXMLLoader.load(
+        getClass().getClassLoader().getResource("availabledrivers/AvailableDrivers.fxml"));
+
+    Scene scene = new Scene(root);
+
+    Stage stage = new Stage();
+
+    stage.setTitle("Zwischen");
+
+    stage.setScene(scene);
+
+    stage.show();
   }
 
   @FXML
-  void onViewHistoryPressed(ActionEvent event) {
-    output.setText(output.getText() + "\nViewHistoryPressed (Todo Add Functionality)");
-    //todo add view history screen
+  void onViewHistoryPressed(ActionEvent event) throws Exception {
+    Parent root = FXMLLoader.load(
+        getClass().getClassLoader().getResource("ridehistory/RideHistoryScreen.fxml"));
+
+    Scene scene = new Scene(root);
+
+    Stage stage = new Stage();
+
+    stage.setTitle("Zwischen");
+
+    stage.setScene(scene);
+
+    stage.show();
   }
 
   @FXML
