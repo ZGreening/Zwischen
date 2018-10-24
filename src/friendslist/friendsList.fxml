@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="308.0"
+  xmlns="http://javafx.com/javafx/8.0.171" fx:controller="friendslist.FriendsListController">
+  <GridPane xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #e3e8e5#e3e8e5;"
+    maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0"
+    prefWidth="376.0" xmlns="http://javafx.com/javafx/10.0.1">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0"/>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="43.0"
+        prefWidth="58.0"/>
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="71.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="138.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="178.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="159.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES"/>
+      <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+      <Button GridPane.columnIndex="1" GridPane.rowIndex="4" mnemonicParsing="false"
+        onAction="#becomeDriver" text="Driver"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="5" text="Driver"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="6" text="Driver"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="7" text="Driver"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="8" text="Rider" textFill="#070707"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="9" text="Driver"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="13" text="Driver"/>
+      <GridPane style="-fx-background-color: #80ccff#80ccff;" GridPane.rowIndex="2"
+        prefHeight="186.0"
+        prefWidth="250.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <children>
+          <Label text="Friends">
+            <font>
+              <Font name="System Bold" size="18.0"/>
+            </font>
+            <GridPane.margin>
+              <Insets/>
+            </GridPane.margin>
+            <padding>
+              <Insets left="40.0"/>
+            </padding>
+          </Label>
+        </children>
+      </GridPane>
+      <Label style="-fx-background-color: #80ccff#80ccff;" GridPane.columnIndex="1"
+        GridPane.rowIndex="2"
+        prefHeight="27.0" prefWidth="136.0" text="Type">
+        <font>
+          <Font name="System Bold" size="18.0"/>
+        </font>
+      </Label>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="10" layoutX="260.0" layoutY="204.0"
+        text="Rider" textFill="#101011"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="11" layoutX="260.0" layoutY="276.0"
+        text="Rider" textFill="#030303"/>
+      <Label GridPane.columnIndex="1" GridPane.rowIndex="12" layoutX="260.0" layoutY="312.0"
+        text="Rider" textFill="#1a1a1b"/>
+      <Label style="-fx-background-color: #80ccff#80ccff;" alignment="CENTER" prefHeight="104.0"
+        prefWidth="250.0" text="Friends List" textAlignment="CENTER">
+        <font>
+          <Font name="System Bold" size="24.0"/>
+        </font>
+        <padding>
+          <Insets left="116.0"/>
+        </padding>
+      </Label>
+      <Label style="-fx-background-color: #80ccff#80ccff;" GridPane.columnIndex="1"
+        prefHeight="63.0"
+        prefWidth="130.0"/>
+      <AnchorPane GridPane.rowIndex="4" prefHeight="200.0" prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Me (Gage Kettering)"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/if_matureman1_628284.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="5" layoutX="10.0" layoutY="102.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Brandon Davis"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/if_12_avatar_2754577.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="6" layoutX="10.0" layoutY="102.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Zachary Greening"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/if_1_avatar_2754574.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="7" layoutX="10.0" layoutY="102.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Tyler Marlow"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/if_8_avatar_2754583.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="8" layoutX="10.0" layoutY="206.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Charles Taylor"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/if_boy_403024.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="9" layoutX="10.0" layoutY="157.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Professor Koufakou"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/if_4_avatar_2754580.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="10" layoutX="10.0" layoutY="102.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Chelsea Atkins"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/if_11_avatar_2754576.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="11" layoutX="10.0" layoutY="252.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Creed Bratton"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/creed-bratton.jpg"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="12" layoutX="10.0" layoutY="252.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Michael Scott"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/michael.png"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <AnchorPane GridPane.rowIndex="13" layoutX="10.0" layoutY="499.0" prefHeight="200.0"
+        prefWidth="200.0">
+        <children>
+          <GridPane layoutX="1.0" prefHeight="62.0" prefWidth="250.0">
+            <columnConstraints>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0"
+                prefWidth="37.0"/>
+              <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0"
+                prefWidth="213.0"/>
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+              <Label GridPane.columnIndex="1" prefHeight="87.0" prefWidth="228.0"
+                text="Dwight Schrute"/>
+              <ImageView fitHeight="56.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@avatars/Dwight_Schrute.jpg"/>
+                </image>
+              </ImageView>
+            </children>
+          </GridPane>
+        </children>
+      </AnchorPane>
+      <Button GridPane.columnIndex="1" GridPane.rowIndex="4" layoutX="318.0" layoutY="119.0"
+        mnemonicParsing="false" onAction="#becomeRider" text="Rider">
+        <GridPane.margin>
+          <Insets left="70.0"/>
+        </GridPane.margin>
+      </Button>
+      <Line GridPane.rowIndex="1" endX="275.29290771484375" endY="1.2928931713104248"
+        startX="-100.0"/>
+      <Line GridPane.rowIndex="3" endX="275.29290771484375" endY="1.0563361644744873"
+        startX="-100.0"/>
+    </children>
+  </GridPane>
+</AnchorPane>

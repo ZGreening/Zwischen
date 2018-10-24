@@ -7,8 +7,6 @@
 // Description: Driver Class for the program Zwischen
 ///////////////////////////////////////////////////////////////////////////////
 
-package zwischen;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,9 +15,13 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+  public static void main(String[] args) {
+    launch(args);
+  }
+
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("mainscreen/MainScreen.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("loginpage/LoginPage.fxml"));
 
     Scene mainScene = new Scene(root);
 
@@ -28,10 +30,5 @@ public class Main extends Application {
     stage.setScene(mainScene);
 
     stage.show();
-  }
-
-
-  public static void main(String[] args) {
-    launch(args);
   }
 }
