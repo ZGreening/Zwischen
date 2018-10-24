@@ -1,11 +1,20 @@
-package availablerides;
+///////////////////////////////////////////////////////////////////////////////
+// Project:     Zwischen
+// File:        AvailableDriversController.java
+// By:          Charles Taylor
+// Group:       3
+// Date:        October 24, 2018
+// Description: Controller class for available drivers screen
+///////////////////////////////////////////////////////////////////////////////
+
+package availabledrivers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
-public class AvailableRidesController {
+public class AvailableDriversController {
 
   @FXML
   private Button Checkallboxes;
