@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 
-public class messageScreenController {
+public class MessageScreenController {
 
   @FXML
   private ResourceBundle resources;

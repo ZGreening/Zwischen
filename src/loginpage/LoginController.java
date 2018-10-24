@@ -21,17 +21,17 @@ public class LoginController {
   private URL location;
 
   @FXML
-  private PasswordField Password;
+  private PasswordField password;
 
   @FXML
-  private TextField Username;
+  private TextField username;
 
   @FXML
   private AnchorPane loginWindow;
 
   @FXML
   void onCreateAccountPressed(ActionEvent event) throws Exception {
-    Stage stage=(Stage)loginWindow.getScene().getWindow();
+    Stage stage = (Stage) loginWindow.getScene().getWindow();
 
     stage.close();
 
@@ -40,7 +40,7 @@ public class LoginController {
 
     Scene scene = new Scene(root);
 
-    stage=new Stage();
+    stage = new Stage();
 
     stage.setTitle("Zwischen");
 
@@ -52,9 +52,10 @@ public class LoginController {
 
   @FXML
   void onLoginPressed(ActionEvent event) throws Exception {
-    if (Username.getText().isEmpty() || Password.getText().isEmpty())
-      //Todo give user feedback on why it didn't login
+    //Todo give user feedback on why it didn't login
+    if (username.getText().isEmpty() || password.getText().isEmpty()) {
       return;
+    }
 
     Stage stage = (Stage) loginWindow.getScene().getWindow();
 
@@ -76,10 +77,10 @@ public class LoginController {
 
   @FXML
   void initialize() {
-    assert Password
-        != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginPage.fxml'.";
-    assert Username
-        != null : "fx:id=\"Username\" was not injected: check your FXML file 'LoginPage.fxml'.";
+    assert password
+        != null : "fx:id=\"password\" was not injected: check your FXML file 'LoginPage.fxml'.";
+    assert username
+        != null : "fx:id=\"username\" was not injected: check your FXML file 'LoginPage.fxml'.";
 
   }
 }

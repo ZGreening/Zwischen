@@ -21,19 +21,19 @@ public class CreateAccountController {
   private URL location;
 
   @FXML
-  private PasswordField Password;
+  private PasswordField password;
 
   @FXML
-  private TextField UserName;
+  private TextField username;
 
   @FXML
-  private PasswordField ConfirmPassword;
+  private PasswordField confirmPassword;
 
   @FXML
-  private TextField Email;
+  private TextField email;
 
   @FXML
-  private TextField PhoneNumber;
+  private TextField phoneNumber;
 
   @FXML
   private AnchorPane createAccount;
@@ -82,16 +82,18 @@ public class CreateAccountController {
 
   @FXML
   void initialize() {
-    assert Password
-        != null : "fx:id=\"Password\" was not injected: check your FXML file 'CreateAccount.fxml'.";
-    assert UserName
-        != null : "fx:id=\"UserName\" was not injected: check your FXML file 'CreateAccount.fxml'.";
-    assert ConfirmPassword
-        != null : "fx:id=\"ConfirmPassword\" was not injected: check your FXML file 'CreateAccount.fxml'.";
-    assert Email
-        != null : "fx:id=\"Email\" was not injected: check your FXML file 'CreateAccount.fxml'.";
-    assert PhoneNumber
-        != null : "fx:id=\"PhoneNumber\" was not injected: check your FXML file 'CreateAccount.fxml'.";
+    assert password
+        != null : "fx:id=\"password\" was not injected: check your FXML file 'CreateAccount.fxml'.";
+    assert username
+        != null : "fx:id=\"username\" was not injected: check your FXML file 'CreateAccount.fxml'.";
+    assert confirmPassword
+        != null : "fx:id=\"confirmPassword\" "
+        + "was not injected: check your FXML file 'CreateAccount.fxml'.";
+    assert email
+        != null : "fx:id=\"email\" was not injected: check your FXML file 'CreateAccount.fxml'.";
+    assert phoneNumber
+        != null : "fx:id=\"phoneNumber\" "
+        + "was not injected: check your FXML file 'CreateAccount.fxml'.";
 
   }
 }

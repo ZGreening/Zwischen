@@ -67,7 +67,7 @@ public class MainScreenController {
 
   @FXML
   void onEditAccountPressed(ActionEvent event) throws Exception {
-    Stage stage=(Stage)mainmenu.getScene().getWindow();
+    Stage stage = (Stage) mainmenu.getScene().getWindow();
 
     stage.close();
 
@@ -76,7 +76,7 @@ public class MainScreenController {
 
     Scene scene = new Scene(root);
 
-    stage=new Stage();
+    stage = new Stage();
 
     stage.setTitle("Zwischen");
 
@@ -87,7 +87,7 @@ public class MainScreenController {
 
   @FXML
   void onLogoutPressed(ActionEvent event) throws Exception {
-    Stage stage=(Stage)mainmenu.getScene().getWindow();
+    Stage stage = (Stage) mainmenu.getScene().getWindow();
 
     stage.close();
 
@@ -96,7 +96,7 @@ public class MainScreenController {
 
     Scene scene = new Scene(root);
 
-    stage=new Stage();
+    stage = new Stage();
 
     stage.setTitle("Zwischen");
 

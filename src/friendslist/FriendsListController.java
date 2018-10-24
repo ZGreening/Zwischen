@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 
-public class friendsListController {
+public class FriendsListController {
 
   @FXML
   private ResourceBundle resources;
@@ -16,12 +16,12 @@ public class friendsListController {
 
   @FXML
   void becomeDriver(ActionEvent event) {
-
+    //todo rename function in fxml and here to remove abiguity
   }
 
   @FXML
   void becomeRider(ActionEvent event) {
-
+    //todo rename function in fxml and here to remove abiguity
   }
 
   @FXML

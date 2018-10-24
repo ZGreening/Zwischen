@@ -14,72 +14,82 @@ import javafx.stage.Stage;
 
 public class EditAccountController {
 
-    @FXML
-    private ResourceBundle resources;
+  @FXML
+  private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+  @FXML
+  private URL location;
 
-    @FXML
-    private TextField firstName;
+  @FXML
+  private TextField firstName;
 
-    @FXML
-    private TextField lastName;
+  @FXML
+  private TextField lastName;
 
-    @FXML
-    private TextField phoneNumber;
+  @FXML
+  private TextField phoneNumber;
 
-    @FXML
-    private TextField email;
+  @FXML
+  private TextField email;
 
-    @FXML
-    private PasswordField password;
+  @FXML
+  private PasswordField password;
 
-    @FXML
-    private AnchorPane editAccount;
+  @FXML
+  private AnchorPane editAccount;
 
-    @FXML
-    void onReturnToHomepagePressed(ActionEvent event) throws Exception {
-        Stage stage = (Stage) editAccount.getScene().getWindow();
+  @FXML
+  void onReturnToHomepagePressed(ActionEvent event) throws Exception {
+    Stage stage = (Stage) editAccount.getScene().getWindow();
 
-        stage.close();
+    stage.close();
 
-        Parent root = FXMLLoader.load(
-            getClass().getClassLoader().getResource("mainscreen/MainScreen.fxml"));
+    Parent root = FXMLLoader.load(
+        getClass().getClassLoader().getResource("mainscreen/MainScreen.fxml"));
 
-        Scene scene = new Scene(root);
+    Scene scene = new Scene(root);
 
-        stage = new Stage();
+    stage = new Stage();
 
-        stage.setTitle("Zwischen");
+    stage.setTitle("Zwischen");
 
-        stage.setScene(scene);
+    stage.setScene(scene);
 
-        stage.show();
-    }
+    stage.show();
+  }
 
-    @FXML
-    void onUpdateAccountPressed(ActionEvent event) {
+  @FXML
+  void onUpdateAccountPressed(ActionEvent event) {
 
-    }
+  }
 
-    @FXML
-    void onViewDriversRidersPressed(ActionEvent event) {
+  @FXML
+  void onViewDriversRidersPressed(ActionEvent event) {
 
-    }
+  }
 
-    @FXML
-    void onViewMapsPressed(ActionEvent event) {
+  @FXML
+  void onViewMapsPressed(ActionEvent event) {
 
-    }
+  }
 
-    @FXML
-    void initialize() {
-        assert firstName != null : "fx:id=\"firstName\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
-        assert lastName != null : "fx:id=\"lastName\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
-        assert phoneNumber != null : "fx:id=\"phoneNumber\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
-        assert email != null : "fx:id=\"email\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
-        assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+  @FXML
+  void initialize() {
+    assert firstName
+        != null : "fx:id=\"firstName\" "
+        + "was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+    assert lastName
+        != null : "fx:id=\"lastName\" "
+        + "was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+    assert phoneNumber
+        != null : "fx:id=\"phoneNumber\" "
+        + "was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+    assert email
+        != null : "fx:id=\"email\" "
+        + "was not injected: check your FXML file 'EditAccountWindow.fxml'.";
+    assert password
+        != null : "fx:id=\"password\" "
+        + "was not injected: check your FXML file 'EditAccountWindow.fxml'.";
 
-    }
+  }
 }
