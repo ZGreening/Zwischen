@@ -1,4 +1,4 @@
-package AvailableRides;
+package availablerides;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

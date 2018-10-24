@@ -1,4 +1,4 @@
-package RideHistory;
+package ridehistory;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
