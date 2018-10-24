@@ -4,7 +4,7 @@
 // By:          Brandon Davis
 // Group:       3
 // Date:        October 22, 2018
-// Description: Controller Class for the notification window
+// Description: Controller Class for the ride schedule window
 ///////////////////////////////////////////////////////////////////////////////
 
 package rideschedule;

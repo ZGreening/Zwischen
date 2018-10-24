@@ -1,3 +1,12 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project:     Zwischen
+// File:        LoginController.java
+// By:          Tyler Marlow
+// Group:       3
+// Date:        October 24, 2018
+// Description: Controller class for login window
+///////////////////////////////////////////////////////////////////////////////
+
 package loginpage;
 
 import java.net.URL;

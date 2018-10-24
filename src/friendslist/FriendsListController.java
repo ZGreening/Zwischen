@@ -1,3 +1,12 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project:     Zwischen
+// File:        FriendsList.java
+// By:          Gage Kettering
+// Group:       3
+// Date:        October 24, 2018
+// Description: Controller class for friends list
+///////////////////////////////////////////////////////////////////////////////
+
 package friendslist;
 
 import java.net.URL;
