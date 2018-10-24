@@ -1,4 +1,4 @@
-package zwischen.messagescreen;
+package messagescreen;
 
 import java.net.URL;
 import java.util.ResourceBundle;

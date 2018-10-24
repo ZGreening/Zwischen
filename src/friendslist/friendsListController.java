@@ -1,4 +1,4 @@
-package zwischen.friendslist;
+package friendslist;
 
 import java.net.URL;
 import java.util.ResourceBundle;

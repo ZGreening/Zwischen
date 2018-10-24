@@ -7,7 +7,7 @@
 // Description: Controller Class for the main screen
 ///////////////////////////////////////////////////////////////////////////////
 
-package zwischen.mainscreen;
+package mainscreen;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +44,7 @@ public class MainScreenController {
   @FXML
   void onDisplayAvailableRidesPressed(ActionEvent event) throws Exception {
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/rideschedule/RideScheduleWindow.fxml"));
+        getClass().getClassLoader().getResource("rideschedule/RideScheduleWindow.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -72,7 +72,7 @@ public class MainScreenController {
     stage.close();
 
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/editaccount/EditAccountWindow.fxml"));
+        getClass().getClassLoader().getResource("editaccount/EditAccountWindow.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -92,7 +92,7 @@ public class MainScreenController {
     stage.close();
 
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/loginpage/LoginPage.fxml"));
+        getClass().getClassLoader().getResource("loginpage/LoginPage.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -108,7 +108,7 @@ public class MainScreenController {
   @FXML
   void onNotificationsPressed(ActionEvent event) throws Exception {
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/notification/NotificationWindow.fxml"));
+        getClass().getClassLoader().getResource("notification/NotificationWindow.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -144,7 +144,7 @@ public class MainScreenController {
   @FXML
   void onViewMessagesPressed(ActionEvent event) throws Exception {
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/messagescreen/messageScreen.fxml"));
+        getClass().getClassLoader().getResource("messagescreen/messageScreen.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -162,7 +162,7 @@ public class MainScreenController {
   @FXML
   void onViewFriendsListPressed(ActionEvent event) throws Exception {
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/friendslist/friendslist.fxml"));
+        getClass().getClassLoader().getResource("friendslist/friendslist.fxml"));
 
     Scene scene = new Scene(root);
 

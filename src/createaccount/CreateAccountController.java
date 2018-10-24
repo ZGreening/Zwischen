@@ -1,4 +1,4 @@
-package zwischen.createaccount;
+package createaccount;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,7 +47,7 @@ public class CreateAccountController {
     stage.close();
 
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/loginpage/LoginPage.fxml"));
+        getClass().getClassLoader().getResource("loginpage/LoginPage.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -67,7 +67,7 @@ public class CreateAccountController {
     stage.close();
 
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/mainscreen/MainScreen.fxml"));
+        getClass().getClassLoader().getResource("mainscreen/MainScreen.fxml"));
 
     Scene scene = new Scene(root);
 

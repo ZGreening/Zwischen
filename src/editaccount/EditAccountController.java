@@ -1,4 +1,4 @@
-package zwischen.editaccount;
+package editaccount;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +45,7 @@ public class EditAccountController {
         stage.close();
 
         Parent root = FXMLLoader.load(
-            getClass().getClassLoader().getResource("zwischen/mainscreen/MainScreen.fxml"));
+            getClass().getClassLoader().getResource("mainscreen/MainScreen.fxml"));
 
         Scene scene = new Scene(root);
 

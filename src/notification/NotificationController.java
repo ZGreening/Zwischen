@@ -1,20 +1,21 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        ScheduleController.java
+// File:        NotificationController.java
 // By:          Brandon Davis
 // Group:       3
-// Date:        October 22, 2018
+// Date:        October 20, 2018
 // Description: Controller Class for the notification window
 ///////////////////////////////////////////////////////////////////////////////
 
-package zwischen.rideschedule;
+package notification;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 
-public class ScheduleController {
+public class NotificationController {
 
   @FXML
   private ResourceBundle resources;
@@ -23,37 +24,37 @@ public class ScheduleController {
   private URL location;
 
   @FXML
-  void pressFriend(ActionEvent event) {
+  void pressAccept(MouseEvent event) {
     System.out.println("TODO implement functionality");
   }
 
   @FXML
-  void pressMainMenu(ActionEvent event) {
+  void pressDecline(MouseEvent event) {
     System.out.println("TODO implement functionality");
   }
 
   @FXML
-  void pressMsg(ActionEvent event) {
+  void pressDelete(MouseEvent event) {
     System.out.println("TODO implement functionality");
   }
 
   @FXML
-  void pressNotification(ActionEvent event) {
+  void pressDeletedButton(ActionEvent event) {
     System.out.println("TODO implement functionality");
   }
 
   @FXML
-  void pressProfile(ActionEvent event) {
+  void pressNewButton(ActionEvent event) {
     System.out.println("TODO implement functionality");
   }
 
   @FXML
-  void pressRequestRide(ActionEvent event) {
+  void pressRead(MouseEvent event) {
     System.out.println("TODO implement functionality");
   }
 
   @FXML
-  void selectDate(ActionEvent event) {
+  void pressReadButton(ActionEvent event) {
     System.out.println("TODO implement functionality");
   }
 }

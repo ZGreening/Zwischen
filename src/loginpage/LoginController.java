@@ -1,4 +1,4 @@
-package zwischen.loginpage;
+package loginpage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,7 +36,7 @@ public class LoginController {
     stage.close();
 
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/createaccount/CreateAccount.fxml"));
+        getClass().getClassLoader().getResource("createaccount/CreateAccount.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -61,7 +61,7 @@ public class LoginController {
     stage.close();
 
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("zwischen/mainscreen/mainScreen.fxml"));
+        getClass().getClassLoader().getResource("mainscreen/mainScreen.fxml"));
 
     Scene scene = new Scene(root);
 
