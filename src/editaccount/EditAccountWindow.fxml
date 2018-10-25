@@ -28,8 +28,6 @@
             <ToolBar layoutY="-4.0" prefHeight="45.0" prefWidth="664.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <items>
                 <Button mnemonicParsing="false" onAction="#onReturnToHomepagePressed" text="Return to Homepage" />
-                <Button mnemonicParsing="false" onAction="#onViewDriversRidersPressed" text="View Drivers/Riders" />
-                <Button mnemonicParsing="false" onAction="#onViewMapsPressed" text="View Maps" />
               </items>
             </ToolBar>
           </children>
