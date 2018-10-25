@@ -1,20 +1,20 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        ScheduleController.java
+// File:        DriverWeeklyScheduleController.java
 // By:          Brandon Davis
 // Group:       3
 // Date:        October 22, 2018
 // Description: Controller Class for the ride schedule window
 ///////////////////////////////////////////////////////////////////////////////
 
-package rideschedule;
+package driverweeklyschedule;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class ScheduleController {
+public class DriverWeeklyScheduleController {
 
   @FXML
   private ResourceBundle resources;

@@ -44,7 +44,7 @@ public class MainScreenController {
   @FXML
   void onSetWeeklyDriverSchedulePressed(ActionEvent event) throws Exception {
     Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("rideschedule/RideScheduleWindow.fxml"));
+        getClass().getClassLoader().getResource("driverweeklyschedule/DriverWeeklySchedule.fxml"));
 
     Scene scene = new Scene(root);
 
