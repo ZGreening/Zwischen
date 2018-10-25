@@ -42,7 +42,7 @@ public class MainScreenController {
   private AnchorPane mainmenu;
 
   @FXML
-  void onDisplayAvailableRidesPressed(ActionEvent event) throws Exception {
+  void onSetWeeklyDriverSchedulePressed(ActionEvent event) throws Exception {
     Parent root = FXMLLoader.load(
         getClass().getClassLoader().getResource("rideschedule/RideScheduleWindow.fxml"));
 
