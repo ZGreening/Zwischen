@@ -221,9 +221,8 @@
           prefWidth="200.0"/>
       </children>
     </AnchorPane>
-    <AnchorPane style="-fx-border-color: white; -fx-border-width: 5 0 0 0;" GridPane.columnIndex="3"
-      GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="4" prefHeight="200.0"
-      prefWidth="200.0">
+    <AnchorPane GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="1"
+      GridPane.rowSpan="4" prefHeight="200.0" prefWidth="200.0">
       <children>
         <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
