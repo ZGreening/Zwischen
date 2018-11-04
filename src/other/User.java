@@ -15,7 +15,6 @@ public class User {
   private String email;
   private String phoneNum;
   private boolean isSelectedToDrive = false;
-  private boolean isAvailableToDrive = true;
 
   public String getUsername() {
     return username;
@@ -49,11 +48,13 @@ public class User {
     isSelectedToDrive = selectedToDrive;
   }
 
-  public boolean isAvailableToDrive() {
-    return isAvailableToDrive;
-  }
-
-  public void setAvailableToDrive(boolean availableToDrive) {
-    isAvailableToDrive = availableToDrive;
+  @Override
+  public String toString() {
+    return "User{" +
+        "username='" + username + '\'' +
+        ", email='" + email + '\'' +
+        ", phoneNum='" + phoneNum + '\'' +
+        ", isSelectedToDrive=" + isSelectedToDrive +
+        '}';
   }
 }
