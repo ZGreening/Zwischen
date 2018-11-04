@@ -48,11 +48,4 @@ public class RideHistoryScreenController {
   void returnToMainScreen(ActionEvent event) {
 
   }
-
-  @FXML
-  void initialize() {
-    assert mainReturn
-        != null : "fx:id=\"mainReturn\" was not injected: check your FXML file 'RideHistoryScreen.fxml'.";
-
-  }
 }

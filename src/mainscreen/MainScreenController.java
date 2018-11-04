@@ -130,12 +130,16 @@ public class MainScreenController {
 
   @FXML
   void onViewDriversPressed(ActionEvent event) throws Exception {
+    Stage stage = (Stage) mainmenu.getScene().getWindow();
+
+    stage.close();
+
     Parent root = FXMLLoader.load(
         getClass().getClassLoader().getResource("availabledrivers/AvailableDrivers.fxml"));
 
     Scene scene = new Scene(root);
 
-    Stage stage = new Stage();
+    stage = new Stage();
 
     stage.setTitle("Zwischen");
 
@@ -194,16 +198,6 @@ public class MainScreenController {
     stage.setX(stage.getX() - 150);
 
     stage.show();
-  }
-
-  @FXML
-  void initialize() {
-    assert destinationAddress
-        != null : "fx:id=\"DestinationAddress\" "
-        + "was not injected: check your FXML file 'MainScreen.fxml'.";
-    assert pickUpAddress
-        != null : "fx:id=\"PickUpAddress\" "
-        + "was not injected: check your FXML file 'MainScreen.fxml'.";
   }
 }
 

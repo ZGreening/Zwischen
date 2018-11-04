@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import other.Globals;
+import other.User;
 
 public class Main extends Application {
 
@@ -29,5 +31,10 @@ public class Main extends Application {
     stage.setScene(mainScene);
 
     stage.show();
+
+    User temp = new User();
+    Globals.availableDrivers.add(temp);
+    Globals.availableDrivers.add(temp);
+    Globals.availableDrivers.add(temp);
   }
 }
