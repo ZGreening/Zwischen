@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        Main.java
-// By:          Zachary Greening
 // Group:       3
 // Date:        September 29, 2018
 // Description: Driver Class for the program Zwischen

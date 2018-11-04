@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        AvailableDriversController.java
-// By:          Charles Taylor
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for available drivers screen
@@ -11,54 +10,34 @@ package availabledrivers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 public class AvailableDriversController {
 
   @FXML
-  private Button checkAllBoxes;
+  private Label feedbackLabel;
 
   @FXML
-  private Button uncheckAllBoxes;
+  private VBox scrollpaneVBox;
 
   @FXML
-  private CheckBox rideRequestCheckBox;
-
-  @FXML
-  private CheckBox rideRequestCheckbox2;
-
-  @FXML
-  private CheckBox riderequestcheckbox3;
-
-  @FXML
-  private Button submissionButton;
-
-  @FXML
-  private Button cancelButton;
-
-  @FXML
-  void cancelAndReturnToMainScreen(ActionEvent event) {
+  void onCancelPressed(ActionEvent event) {
 
   }
 
   @FXML
-  void check(ActionEvent event) {
+  void onDeselectAllPressed(ActionEvent event) {
 
   }
 
   @FXML
-  void checkAll(ActionEvent event) {
+  void onSelectAllPressed(ActionEvent event) {
 
   }
 
   @FXML
-  void submitAndReturn(ActionEvent event) {
-
-  }
-
-  @FXML
-  void uncheckAll(ActionEvent event) {
+  void onSubmitPressed(ActionEvent event) {
 
   }
 

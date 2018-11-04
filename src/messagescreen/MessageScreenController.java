@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        MessageScreenController.java
-// By:          Gage Kettering
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for message screen

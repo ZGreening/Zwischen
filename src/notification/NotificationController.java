@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        NotificationController.java
-// By:          Brandon Davis
 // Group:       3
 // Date:        October 20, 2018
 // Description: Controller Class for the notification window

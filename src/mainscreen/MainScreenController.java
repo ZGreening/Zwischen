@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        MainScreenController.java
-// By:          Zachary Greening
 // Group:       3
 // Date:        October 18, 2018
 // Description: Controller Class for the main screen

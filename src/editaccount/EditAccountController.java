@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        EditAccountController.java
-// By:          Tyler Marlow
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for edit account window
