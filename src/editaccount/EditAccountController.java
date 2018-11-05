@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import other.Globals;
 
 public class EditAccountController {
+
   @FXML
   private TextField firstName;
 

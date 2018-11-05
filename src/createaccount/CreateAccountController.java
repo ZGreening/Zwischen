@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import other.Globals;
 
 public class CreateAccountController {
+
   @FXML
   private PasswordField password;
 
