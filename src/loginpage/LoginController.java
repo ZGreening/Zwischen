@@ -34,10 +34,6 @@ public class LoginController {
   @FXML
   void onLoginPressed(ActionEvent event) {
     //Todo give user feedback on why it didn't login
-    if (username.getText().isEmpty() || password.getText().isEmpty()) {
-      return;
-    }
-
     Globals.changeScene("mainscreen/mainScreen.fxml", root);
   }
 }
