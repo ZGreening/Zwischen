@@ -24,7 +24,7 @@ public class MainScreenController {
   private TextField pickUpAddress;
 
   @FXML
-  private Label output;
+  private Label outputText;
 
   @FXML
   private AnchorPane root;
@@ -36,7 +36,8 @@ public class MainScreenController {
 
   @FXML
   void onDriverAvailabilityChanged(ActionEvent event) {
-    output.setText(output.getText() + "\nDriverAvailabilityToggled (Todo Add Functionality)");
+    outputText
+        .setText(outputText.getText() + "\nDriverAvailabilityToggled (Todo Add Functionality)");
     //Todo Add Driver Availabilty changed code
   }
 
@@ -57,7 +58,7 @@ public class MainScreenController {
 
   @FXML
   void onRideRequested(ActionEvent event) {
-    output.setText(output.getText() + "\nRideRequested (Todo Add Functionality)");
+    outputText.setText(outputText.getText() + "\nRideRequested (Todo Add Functionality)");
     //Todo Add ride requested code
   }
 

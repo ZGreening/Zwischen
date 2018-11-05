@@ -37,30 +37,30 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
               </columnConstraints>
               <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                     <children>
-                       <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
-                         <children>
-                           <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                             AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                             alignment="CENTER" textFill="RED" fx:id="feedbackLabel"/>
-                         </children>
-                       </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                               alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="30.0"
-                               prefWidth="151.0" text="Available Drivers">
-                               <font>
-                                 <Font size="24.0"/>
-                               </font>
-                             </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                      alignment="CENTER" textFill="RED" fx:id="feedbackLabel"/>
+                  </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                      alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="30.0"
+                      prefWidth="151.0" text="Available Drivers">
+                      <font>
+                        <Font size="24.0"/>
+                      </font>
+                    </Label>
+                  </children>
+                </AnchorPane>
+              </children>
             </GridPane>
           </children>
         </AnchorPane>
@@ -95,16 +95,16 @@
                       AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"
                       focusTraversable="false" mnemonicParsing="false" onAction="#onCancelPressed"
                       text="Cancel" wrapText="true"/>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                             <Button AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0"
-                               AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"
-                               focusTraversable="false" mnemonicParsing="false"
-                               onAction="#onSubmitPressed" text="Submit" wrapText="true"/>
-                           </children>
-                        </AnchorPane>
+                  </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <Button AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0"
+                      AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"
+                      focusTraversable="false" mnemonicParsing="false"
+                      onAction="#onSubmitPressed" text="Submit" wrapText="true"/>
+                  </children>
+                </AnchorPane>
               </children>
             </GridPane>
           </children>
@@ -127,23 +127,23 @@
                       AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"
                       focusTraversable="false" mnemonicParsing="false"
                       onAction="#onSelectAllPressed" text="Select All" wrapText="true"/>
-                           </children>
-                        </AnchorPane>
+                  </children>
+                </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                             <Button AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0"
-                               AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"
-                               focusTraversable="false" mnemonicParsing="false"
-                               onAction="#onDeselectAllPressed" text="Deselect All"
-                               wrapText="true"/>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
+                  <children>
+                    <Button AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0"
+                      AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"
+                      focusTraversable="false" mnemonicParsing="false"
+                      onAction="#onDeselectAllPressed" text="Deselect All"
+                      wrapText="true"/>
+                  </children>
+                </AnchorPane>
+              </children>
+            </GridPane>
+          </children>
+        </AnchorPane>
         <AnchorPane prefHeight="200.0" prefWidth="200.0"/>
       </children>
     </GridPane>
-   </children>
+  </children>
 </AnchorPane>
