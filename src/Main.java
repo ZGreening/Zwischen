@@ -33,8 +33,10 @@ public class Main extends Application {
     stage.show();
 
     User temp = new User();
+    User temp2 = new User();
+    User temp3 = new User();
     Globals.availableDrivers.add(temp);
-    Globals.availableDrivers.add(temp);
-    Globals.availableDrivers.add(temp);
+    Globals.availableDrivers.add(temp2);
+    Globals.availableDrivers.add(temp3);
   }
 }

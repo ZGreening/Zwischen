@@ -11,9 +11,6 @@ package availabledrivers;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +18,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import other.Globals;
 import other.User;
 
@@ -31,7 +27,7 @@ public class AvailableDriversController {
   private ArrayList<GridPane> driverPane = new ArrayList<>();
 
   @FXML
-  private AnchorPane availableDriversWindow;
+  private AnchorPane root;
 
   @FXML
   private Label feedbackLabel;
@@ -40,23 +36,8 @@ public class AvailableDriversController {
   private VBox scrollpaneVBox;
 
   @FXML
-  void onCancelPressed(ActionEvent event) throws Exception {
-    Stage stage = (Stage) availableDriversWindow.getScene().getWindow();
-
-    stage.close();
-
-    Parent root = FXMLLoader.load(
-        getClass().getClassLoader().getResource("mainscreen/MainScreen.fxml"));
-
-    Scene scene = new Scene(root);
-
-    stage = new Stage();
-
-    stage.setTitle("Zwischen");
-
-    stage.setScene(scene);
-
-    stage.show();
+  void onCancelPressed(ActionEvent event) {
+    Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
 
   @FXML
@@ -82,34 +63,23 @@ public class AvailableDriversController {
   }
 
   @FXML
-  void onSubmitPressed(ActionEvent event) throws Exception {
+  void onSubmitPressed(ActionEvent event) {
     boolean atLeastOneDriver = false;
+    int count = 0;
 
     for (GridPane gridPane : driverPane) {
       CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
       if (checkBox.isSelected()) {
         atLeastOneDriver = true;
-        break;
+        Globals.availableDrivers.get(count).setSelectedToDrive(true);
+      } else {
+        Globals.availableDrivers.get(count).setSelectedToDrive(false);
       }
+      count++;
     }
 
     if (atLeastOneDriver) {
-      Stage stage = (Stage) availableDriversWindow.getScene().getWindow();
-
-      stage.close();
-
-      Parent root = FXMLLoader.load(
-          getClass().getClassLoader().getResource("mainscreen/MainScreen.fxml"));
-
-      Scene scene = new Scene(root);
-
-      stage = new Stage();
-
-      stage.setTitle("Zwischen");
-
-      stage.setScene(scene);
-
-      stage.show();
+      Globals.changeScene("mainscreen/MainScreen.fxml", root);
     } else {
       feedbackLabel.setText("No Drivers Selected");
     }
@@ -119,10 +89,6 @@ public class AvailableDriversController {
   @FXML
   void initialize() {
     for (User user : Globals.availableDrivers) {
-      if (!user.isAvailableToDrive()) {
-        continue;
-      }
-
       GridPane gridPane = new GridPane();
 
       //Set width of grid pane so it takes up full space in parent
@@ -141,6 +107,7 @@ public class AvailableDriversController {
       checkBox.setText("Select");
       checkBox.setFont(new Font(20));
       checkBox.setSelected(user.isSelectedToDrive());
+      checkBox.setFocusTraversable(false);
       GridPane.setColumnIndex(checkBox, 1);
 
       //Add to GUI and store in driverPane ArrayList
