@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        AvailableDriversController.java
-// By:          Charles Taylor
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for available drivers screen
@@ -9,56 +8,114 @@
 
 package availabledrivers;
 
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import other.Globals;
+import other.User;
 
 public class AvailableDriversController {
 
-  @FXML
-  private Button checkAllBoxes;
+
+  private ArrayList<GridPane> driverPane = new ArrayList<>();
 
   @FXML
-  private Button uncheckAllBoxes;
+  private AnchorPane root;
 
   @FXML
-  private CheckBox rideRequestCheckBox;
+  private Label feedbackLabel;
 
   @FXML
-  private CheckBox rideRequestCheckbox2;
+  private VBox scrollpaneVBox;
 
   @FXML
-  private CheckBox riderequestcheckbox3;
+  void onCancelPressed(ActionEvent event) {
+    Globals.changeScene("mainscreen/MainScreen.fxml", root);
+  }
 
   @FXML
-  private Button submissionButton;
+  void onDeselectAllPressed(ActionEvent event) {
+    if (driverPane.isEmpty()) {
+      feedbackLabel.setText("No Available Drivers To Select");
+    }
+    for (GridPane gridPane : driverPane) {
+      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
+      checkBox.setSelected(false);
+    }
+  }
 
   @FXML
-  private Button cancelButton;
+  void onSelectAllPressed(ActionEvent event) {
+    if (driverPane.isEmpty()) {
+      feedbackLabel.setText("No Available Drivers To Select");
+    }
+    for (GridPane gridPane : driverPane) {
+      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
+      checkBox.setSelected(true);
+    }
+  }
 
   @FXML
-  void cancelAndReturnToMainScreen(ActionEvent event) {
+  void onSubmitPressed(ActionEvent event) {
+    boolean atLeastOneDriver = false;
+    int count = 0;
+
+    for (GridPane gridPane : driverPane) {
+      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
+      if (checkBox.isSelected()) {
+        atLeastOneDriver = true;
+        Globals.availableDrivers.get(count).setSelectedToDrive(true);
+      } else {
+        Globals.availableDrivers.get(count).setSelectedToDrive(false);
+      }
+      count++;
+    }
+
+    if (atLeastOneDriver) {
+      Globals.changeScene("mainscreen/MainScreen.fxml", root);
+    } else {
+      feedbackLabel.setText("No Drivers Selected");
+    }
 
   }
 
   @FXML
-  void check(ActionEvent event) {
+  void initialize() {
+    for (User user : Globals.availableDrivers) {
+      GridPane gridPane = new GridPane();
 
-  }
+      //Set width of grid pane so it takes up full space in parent
+      ColumnConstraints column = new ColumnConstraints();
+      column.setPercentWidth(50);
+      gridPane.getColumnConstraints().add(column);
+      gridPane.getColumnConstraints().add(column);
 
-  @FXML
-  void checkAll(ActionEvent event) {
+      //Create label for driver using username
+      Label label = new Label();
+      label.setText(user.getUsername());
+      label.setFont(new Font(20));
 
-  }
+      //Create checkbox to select driver
+      CheckBox checkBox = new CheckBox();
+      checkBox.setText("Select");
+      checkBox.setFont(new Font(20));
+      checkBox.setSelected(user.isSelectedToDrive());
+      checkBox.setFocusTraversable(false);
+      GridPane.setColumnIndex(checkBox, 1);
 
-  @FXML
-  void submitAndReturn(ActionEvent event) {
-
-  }
-
-  @FXML
-  void uncheckAll(ActionEvent event) {
+      //Add to GUI and store in driverPane ArrayList
+      gridPane.getChildren().add(label);
+      gridPane.getChildren().add(checkBox);
+      driverPane.add(gridPane);
+      scrollpaneVBox.getChildren().add(gridPane);
+    }
 
   }
 

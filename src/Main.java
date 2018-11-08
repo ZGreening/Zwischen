@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        Main.java
-// By:          Zachary Greening
 // Group:       3
 // Date:        September 29, 2018
 // Description: Driver Class for the program Zwischen
@@ -12,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import other.Globals;
+import other.User;
 
 public class Main extends Application {
 
@@ -30,5 +31,20 @@ public class Main extends Application {
     stage.setScene(mainScene);
 
     stage.show();
+
+    User temp = new User();
+    User temp2 = new User();
+    User temp3 = new User();
+    Globals.availableDrivers.add(temp);
+    Globals.availableDrivers.add(temp2);
+    Globals.availableDrivers.add(temp3);
+
+    //Todo ReWork CreateAccount Page
+    //Todo ReWork driverWeeklyScedule Page
+    //Todo ReWork edit Account Page
+    //Todo ReWork friendslist page
+    //Todo ReWork messageScreen page
+    //Todo ReWork notification page
+    //Todo ReWork ridehistory page
   }
 }

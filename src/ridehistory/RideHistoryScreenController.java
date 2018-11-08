@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
 // File:        RideHistoryScreenController.java
-// By:          Charles Taylor
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for ride history screen
@@ -47,13 +46,6 @@ public class RideHistoryScreenController {
 
   @FXML
   void returnToMainScreen(ActionEvent event) {
-
-  }
-
-  @FXML
-  void initialize() {
-    assert mainReturn
-        != null : "fx:id=\"mainReturn\" was not injected: check your FXML file 'RideHistoryScreen.fxml'.";
 
   }
 }
