@@ -81,5 +81,11 @@ public class MainScreenController {
   void onViewFriendsListPressed(ActionEvent event) {
     Globals.changeScene("friendslist/friendslist.fxml", root);
   }
+
+  @FXML
+  void onSampleButtonPressed(ActionEvent event) {
+    System.out.println("test");
+    //Todo Stick Map code here
+  }
 }
 
