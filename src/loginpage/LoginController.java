@@ -44,6 +44,6 @@ public class LoginController {
       return;
     }
 
-    Globals.changeScene("mainscreen/mainScreen.fxml", root);
+    Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
 }

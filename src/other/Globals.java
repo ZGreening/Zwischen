@@ -9,8 +9,6 @@
 
 package other;
 
-import static com.sun.corba.se.impl.util.Utility.printStackTrace;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
@@ -51,7 +49,7 @@ public class Globals {
       stage.show();
 
     } catch (IOException exception) {
-      printStackTrace();
+      System.out.println("Could not open window at path: " + newScene);
     }
   }
 }
