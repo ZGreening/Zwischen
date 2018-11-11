@@ -8,12 +8,20 @@
 
 package createaccount;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
 public class CreateAccountController {
@@ -32,6 +40,9 @@ public class CreateAccountController {
 
   @FXML
   private TextField phoneNum;
+
+  @FXML
+  private ImageView avatar;
 
   @FXML
   private Label feedbackLabel;
@@ -71,5 +82,32 @@ public class CreateAccountController {
   @FXML
   void onReturnToLoginPressed(ActionEvent event) {
     Globals.changeScene("loginpage/LoginPage.fxml", root);
+  }
+
+  @FXML
+  void onUploadPressed(ActionEvent event) {
+    FileChooser fileChooser=new FileChooser();
+    fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
+    ArrayList <String> extensionList=new ArrayList<>();
+    extensionList.add("*.jpeg");
+    extensionList.add("*.jpg");
+    extensionList.add("*.png");
+
+    fileChooser.getExtensionFilters().addAll(new ExtensionFilter
+        ("Images: PNG, JPG, or JPEG", extensionList));
+
+    File file = fileChooser.showOpenDialog(root.getScene().getWindow());
+
+    if (file != null) {
+      Globals.currentUser.setImageUrl(file.toURI().toString());
+      avatar.setImage(new Image(Globals.currentUser.getImageUrl()));
+
+    }
+  }
+  @FXML
+  void initialize() {
+    //Could not get this to load on my mac from fxml
+    avatar.setImage(new Image(Globals.currentUser.getImageUrl()));
   }
 }

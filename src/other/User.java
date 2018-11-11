@@ -11,11 +11,11 @@ package other;
 
 public class User {
 
-  private String username = "sampleUserName";
+  private String username = "Default";
   private String email;
   private String phoneNum;
   private boolean isSelectedToDrive = false;
-  private String imageUrl="lib/UserData/Jax.jpg";
+  private String imageUrl="file:lib/UserData/default.png";
 
   public String getUsername() {
     return username;
