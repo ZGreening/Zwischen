@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import other.Globals;
 
 public class MainScreenController {
@@ -22,6 +24,16 @@ public class MainScreenController {
 
   @FXML
   private TextField pickUpAddress;
+
+  @FXML
+  private WebView webViewMaps;
+
+  @FXML
+  private void initialize()
+  {
+    final WebEngine engine = webViewMaps.getEngine();
+    engine.load("http://www.google.com/maps");
+  }
 
   @FXML
   private Label outputText;
