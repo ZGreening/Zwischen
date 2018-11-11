@@ -21,7 +21,10 @@ public class Globals {
 
   //FindBugs flags this, however the purpose is to leave it
   //mutable from anywhere in code.
-  public static ArrayList<User> availableDrivers = new ArrayList<>();
+  public static final ArrayList<User> availableDrivers = new ArrayList<>();
+
+  //Global Variable for the current user
+  public static final User currentUser=new User();
 
   /**
    * A helper function to close the current window and open a new one.
