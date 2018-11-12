@@ -29,13 +29,6 @@ public class MainScreenController {
   private WebView webViewMaps;
 
   @FXML
-  private void initialize()
-  {
-    final WebEngine engine = webViewMaps.getEngine();
-    engine.load("http://www.google.com/maps");
-  }
-
-  @FXML
   private Label outputText;
 
   @FXML
@@ -98,6 +91,12 @@ public class MainScreenController {
   void onSampleButtonPressed(ActionEvent event) {
     System.out.println("test");
     //Todo Stick Map code here
+  }
+
+  @FXML
+  private void initialize() {
+    final WebEngine engine = webViewMaps.getEngine();
+    engine.load("https://www.openstreetmap.org/#map=13/26.4694/-81.7750");
   }
 }
 
