@@ -180,8 +180,7 @@
       <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onSampleButtonPressed" text="sample" />
-                  <WebView fx:id="webViewMaps" prefHeight="238.0" prefWidth="276.0" />
+                  <WebView fx:id="webViewMaps" prefHeight="238.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
       </children>
     </AnchorPane>
