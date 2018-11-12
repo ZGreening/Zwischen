@@ -58,7 +58,7 @@ public class CreateAccountController {
   private void saveUserImage() {
     new File(Globals.userdataPath.toUri()).mkdirs();
 
-    CopyOption copyOptions[] = new CopyOption[]{
+    CopyOption[] copyOptions = new CopyOption[]{
         StandardCopyOption.REPLACE_EXISTING,
         StandardCopyOption.COPY_ATTRIBUTES
     };
@@ -94,9 +94,9 @@ public class CreateAccountController {
       feedbackLabel.setText("Invalid Email");
     } else if (phoneNum.getText().isEmpty()) {
       feedbackLabel.setText("Phone number is empty");
-    } else if (!(phoneNum.getText().matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}") ||
-        phoneNum.getText().matches("[0-9]{3}-[0-9]{3}-[0-9]{4}") ||
-        phoneNum.getText().matches("[0-9]{10}"))) {
+    } else if (!(phoneNum.getText().matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")
+        || phoneNum.getText().matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")
+        || phoneNum.getText().matches("[0-9]{10}"))) {
       feedbackLabel.setText("Incorrect phone number format");
     } else {
       //If none of the issues above, change screens
@@ -120,8 +120,8 @@ public class CreateAccountController {
     extensionList.add("*.jpg");
     extensionList.add("*.png");
 
-    fileChooser.getExtensionFilters().addAll(new ExtensionFilter
-        ("PNG, JPG, or JPEG", extensionList));
+    fileChooser.getExtensionFilters().addAll(
+        new ExtensionFilter("PNG, JPG, or JPEG", extensionList));
 
     file = fileChooser.showOpenDialog(root.getScene().getWindow());
 

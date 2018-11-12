@@ -15,7 +15,7 @@ public class User {
   private String email;
   private String phoneNum;
   private boolean isSelectedToDrive = false;
-  private String imageUrl="file:lib/UserData/default.png";
+  private String imageUrl = "file:lib/UserData/default.png";
 
   public String getUsername() {
     return username;
