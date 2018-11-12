@@ -27,6 +27,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
+//Todo image should be stored in lib, so it can be retrieved rather than store on user computer
+//Todo save image by username
+//Won't need to store URL in database, since username should be unique
+
+
 public class CreateAccountController {
 
   private File file;
