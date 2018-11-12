@@ -8,10 +8,13 @@
 
 package createaccount;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -25,6 +28,8 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
 public class CreateAccountController {
+
+  private File file;
 
   @FXML
   private TextField username;
@@ -49,6 +54,26 @@ public class CreateAccountController {
 
   @FXML
   private AnchorPane root;
+
+  private void saveUserImage() {
+    new File(Globals.userdataPath.toUri()).mkdirs();
+
+    CopyOption copyOptions[] = new CopyOption[]{
+        StandardCopyOption.REPLACE_EXISTING,
+        StandardCopyOption.COPY_ATTRIBUTES
+    };
+
+    if (file != null) {
+      try {
+        Files.copy(Paths.get(file.getAbsolutePath()),
+            Paths.get(Globals.userdataPath.toString() + "/Avatar(" + (
+                new File(Globals.userdataPath.toUri()).listFiles().length + 1) + ").png"),
+            copyOptions);
+      } catch (IOException exception) {
+        System.out.println("Unable to save image");
+      }
+    }
+  }
 
   @FXML
   void onCreateAccountPressed(ActionEvent event) {
@@ -75,6 +100,7 @@ public class CreateAccountController {
       feedbackLabel.setText("Incorrect phone number format");
     } else {
       //If none of the issues above, change screens
+      saveUserImage();
       Globals.changeScene("mainscreen/MainScreen.fxml", root);
     }
   }
@@ -86,28 +112,27 @@ public class CreateAccountController {
 
   @FXML
   void onUploadPressed(ActionEvent event) {
-    FileChooser fileChooser=new FileChooser();
-    fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Documents"));
 
-    ArrayList <String> extensionList=new ArrayList<>();
+    ArrayList<String> extensionList = new ArrayList<>();
     extensionList.add("*.jpeg");
     extensionList.add("*.jpg");
     extensionList.add("*.png");
 
     fileChooser.getExtensionFilters().addAll(new ExtensionFilter
-        ("Images: PNG, JPG, or JPEG", extensionList));
+        ("PNG, JPG, or JPEG", extensionList));
 
-    File file = fileChooser.showOpenDialog(root.getScene().getWindow());
+    file = fileChooser.showOpenDialog(root.getScene().getWindow());
 
     if (file != null) {
       Globals.currentUser.setImageUrl(file.toURI().toString());
       avatar.setImage(new Image(Globals.currentUser.getImageUrl()));
-
     }
   }
+
   @FXML
   void initialize() {
-    //Could not get this to load on my mac from fxml
     avatar.setImage(new Image(Globals.currentUser.getImageUrl()));
   }
 }
