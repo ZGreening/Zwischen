@@ -29,6 +29,9 @@ public class MainScreenController {
   private WebView webViewMaps;
 
   @FXML
+  private WebView webViewMaps1;
+
+  @FXML
   private Label outputText;
 
   @FXML
@@ -63,7 +66,14 @@ public class MainScreenController {
 
   @FXML
   void onRideRequested(ActionEvent event) {
-    outputText.setText(outputText.getText() + "\nRideRequested (Todo Add Functionality)");
+
+//    final WebEngine engine = webViewMaps1.getEngine();
+//    engine.load("https://www.openstreetmap.org/directions?engine=osrm_car&route=26.4635%2C-81.7740%3B26.4894%2C-81.8084");
+//    //engine.load("https://www.openstreetmap.org/directions#map=14/26.4774/-81.8063");
+//
+
+
+    //outputText.setText(outputText.getText() + "\nRideRequested (Todo Add Functionality)");
     //Todo Add ride requested code
   }
 
@@ -92,5 +102,6 @@ public class MainScreenController {
     final WebEngine engine = webViewMaps.getEngine();
     engine.load("https://www.openstreetmap.org/directions#map=13/26.4694/-81.7750");
   }
+
 }
 
