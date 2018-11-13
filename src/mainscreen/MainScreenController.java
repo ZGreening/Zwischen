@@ -90,7 +90,7 @@ public class MainScreenController {
   @FXML
   private void initialize() {
     final WebEngine engine = webViewMaps.getEngine();
-    engine.load("https://www.openstreetmap.org/#map=13/26.4694/-81.7750");
+    engine.load("https://www.openstreetmap.org/directions#map=13/26.4694/-81.7750");
   }
 }
 
