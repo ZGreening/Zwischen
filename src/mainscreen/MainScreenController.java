@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import other.Globals;
 
 public class MainScreenController {
@@ -22,6 +24,9 @@ public class MainScreenController {
 
   @FXML
   private TextField pickUpAddress;
+
+  @FXML
+  private WebView webViewMaps;
 
   @FXML
   private Label outputText;
@@ -86,6 +91,12 @@ public class MainScreenController {
   void onSampleButtonPressed(ActionEvent event) {
     System.out.println("test");
     //Todo Stick Map code here
+  }
+
+  @FXML
+  private void initialize() {
+    final WebEngine engine = webViewMaps.getEngine();
+    engine.load("https://www.openstreetmap.org/#map=13/26.4694/-81.7750");
   }
 }
 
