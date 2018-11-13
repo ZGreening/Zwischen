@@ -12,8 +12,8 @@ package other;
 public class User {
 
   private String username = "default";
-  private String email;
-  private String phoneNum;
+  private String email = "default@mydomain.org";
+  private String phoneNum = "1234567890";
   private boolean isSelectedToDrive = false;
 
   public String getUsername() {

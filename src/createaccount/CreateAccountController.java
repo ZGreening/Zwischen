@@ -75,6 +75,10 @@ public class CreateAccountController {
     }
   }
 
+  private void storeNewAccount(String username, String password, String email, String phoneNum) {
+    //todo add database code
+  }
+
   @FXML
   void onCreateAccountPressed(ActionEvent event) {
     //Get text strings
@@ -112,6 +116,9 @@ public class CreateAccountController {
 
       //If none of the issues above, change screens
       saveUserImage();
+
+      //Add account to database
+      storeNewAccount(usernameText, passwordText, emailText, phoneNumText);
 
       Globals.changeScene("mainscreen/MainScreen.fxml", root);
     }
