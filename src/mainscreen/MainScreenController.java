@@ -72,7 +72,6 @@ public class MainScreenController {
 //    //engine.load("https://www.openstreetmap.org/directions#map=14/26.4774/-81.8063");
 //
 
-
     //outputText.setText(outputText.getText() + "\nRideRequested (Todo Add Functionality)");
     //Todo Add ride requested code
   }
