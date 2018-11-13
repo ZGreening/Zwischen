@@ -10,8 +10,6 @@
 package other;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,11 +18,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Globals {
-
-  //Global constant for userdata path
-  public static final Path userdataPath = Paths
-      .get(System.getProperty("user.home") + "/Documents/Zwischen/userdata");
-
   //FindBugs flags this, however the purpose is to leave it
   //mutable from anywhere in code.
   public static final ArrayList<User> availableDrivers = new ArrayList<>();

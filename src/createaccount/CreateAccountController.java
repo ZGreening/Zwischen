@@ -27,11 +27,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
-//Todo image should be stored in lib, so it can be retrieved rather than store on user computer
-//Todo save image by username
-//Won't need to store URL in database, since username should be unique
-
-
 public class CreateAccountController {
 
   private File file;
@@ -60,22 +55,22 @@ public class CreateAccountController {
   @FXML
   private AnchorPane root;
 
+  /**
+   * Saves a user image to the lib/UserData folder. Username must be unique, otherwise the file will
+   * not save.
+   */
   private void saveUserImage() {
-    new File(Globals.userdataPath.toUri()).mkdirs();
-
     CopyOption[] copyOptions = new CopyOption[]{
-        StandardCopyOption.REPLACE_EXISTING,
         StandardCopyOption.COPY_ATTRIBUTES
     };
 
     if (file != null) {
       try {
         Files.copy(Paths.get(file.getAbsolutePath()),
-            Paths.get(Globals.userdataPath.toString() + "/Avatar(" + (
-                new File(Globals.userdataPath.toUri()).listFiles().length + 1) + ").png"),
-            copyOptions);
+            Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + ".png"), copyOptions);
       } catch (IOException exception) {
-        System.out.println("Unable to save image");
+        System.out.println("Unable to save image\n" + Globals.currentUser.getUsername()
+            + ".png may already exist");
       }
     }
   }
@@ -106,6 +101,12 @@ public class CreateAccountController {
     } else {
       //If none of the issues above, change screens
       saveUserImage();
+
+      //Set the current user's info
+      Globals.currentUser.setUsername(username.getText());
+      Globals.currentUser.setEmail(email.getText());
+      Globals.currentUser.setPhoneNum(phoneNum.getText());
+
       Globals.changeScene("mainscreen/MainScreen.fxml", root);
     }
   }
@@ -117,27 +118,33 @@ public class CreateAccountController {
 
   @FXML
   void onUploadPressed(ActionEvent event) {
+    //Open up file chooser to user's documents directory
     FileChooser fileChooser = new FileChooser();
     fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Documents"));
 
+    //Only allow jpeg jpg and png to be selected
     ArrayList<String> extensionList = new ArrayList<>();
     extensionList.add("*.jpeg");
     extensionList.add("*.jpg");
     extensionList.add("*.png");
-
     fileChooser.getExtensionFilters().addAll(
         new ExtensionFilter("PNG, JPG, or JPEG", extensionList));
 
+    //Open file chooser
     file = fileChooser.showOpenDialog(root.getScene().getWindow());
 
+    //When a file is selected, set as avatar
     if (file != null) {
-      Globals.currentUser.setImageUrl(file.toURI().toString());
-      avatar.setImage(new Image(Globals.currentUser.getImageUrl()));
+      avatar.setImage(new Image(file.toURI().toString()));
+      saveUserImage();
     }
   }
 
   @FXML
   void initialize() {
-    avatar.setImage(new Image(Globals.currentUser.getImageUrl()));
+    //Set up image to use current user's username for image, "default" by default
+    avatar.setImage(new Image(
+        Paths.get("lib/UserData/" + Globals.currentUser.getUsername()).toUri().toString()
+            + ".png"));
   }
 }
