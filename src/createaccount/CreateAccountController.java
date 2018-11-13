@@ -99,13 +99,13 @@ public class CreateAccountController {
         || phoneNum.getText().matches("[0-9]{10}"))) {
       feedbackLabel.setText("Incorrect phone number format");
     } else {
-      //If none of the issues above, change screens
-      saveUserImage();
-
       //Set the current user's info
       Globals.currentUser.setUsername(username.getText());
       Globals.currentUser.setEmail(email.getText());
       Globals.currentUser.setPhoneNum(phoneNum.getText());
+
+      //If none of the issues above, change screens
+      saveUserImage();
 
       Globals.changeScene("mainscreen/MainScreen.fxml", root);
     }
@@ -136,7 +136,6 @@ public class CreateAccountController {
     //When a file is selected, set as avatar
     if (file != null) {
       avatar.setImage(new Image(file.toURI().toString()));
-      saveUserImage();
     }
   }
 
