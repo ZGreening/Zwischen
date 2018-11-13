@@ -11,11 +11,10 @@ package other;
 
 public class User {
 
-  private String username = "sampleUserName";
+  private String username = "default";
   private String email;
   private String phoneNum;
   private boolean isSelectedToDrive = false;
-  private String imageUrl="lib/UserData/Jax.jpg";
 
   public String getUsername() {
     return username;
@@ -47,14 +46,6 @@ public class User {
 
   public void setSelectedToDrive(boolean selectedToDrive) {
     isSelectedToDrive = selectedToDrive;
-  }
-
-  public String getImageUrl() {
-    return imageUrl;
-  }
-
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
   }
 
   @Override

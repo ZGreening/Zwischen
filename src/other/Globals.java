@@ -23,8 +23,8 @@ public class Globals {
   //mutable from anywhere in code.
   public static final ArrayList<User> availableDrivers = new ArrayList<>();
 
-  //Global Variable for the current user
-  public static final User currentUser=new User();
+  //Global constant for the current user
+  public static final User currentUser = new User();
 
   /**
    * A helper function to close the current window and open a new one.
