@@ -11,7 +11,7 @@ package other;
 
 public class User {
 
-  private String username = "sampleUserName";
+  private String username = "default";
   private String email;
   private String phoneNum;
   private boolean isSelectedToDrive = false;

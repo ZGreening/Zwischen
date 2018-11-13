@@ -35,10 +35,12 @@
         <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES"/>
       </rowConstraints>
       <children>
-        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" GridPane.columnIndex="1"
+        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
+          GridPane.columnIndex="1"
           prefHeight="93.0" prefWidth="362.0">
           <children>
-            <Label style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+            <Label style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
               alignment="CENTER" prefHeight="51.0" prefWidth="374.0"
               text="Direct Messages" textAlignment="CENTER">
@@ -48,10 +50,12 @@
             </Label>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" GridPane.columnIndex="2"
+        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
+          GridPane.columnIndex="2"
           prefHeight="42.0" prefWidth="129.0">
           <children>
-            <Button style="-fx-background-color: #13f469#13f469 #13f469#13f469;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+            <Button style="-fx-background-color: #13f469#13f469 #13f469#13f469;"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
               mnemonicParsing="false" onAction="#createNewMessage" prefHeight="51.0"
               prefWidth="117.0" text="New Message"/>
@@ -59,12 +63,15 @@
         </AnchorPane>
         <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" prefHeight="76.0"
           prefWidth="52.0"/>
-        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" GridPane.columnIndex="3"
+        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
+          GridPane.columnIndex="3"
           prefHeight="61.0" prefWidth="27.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="2" prefHeight="74.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="2"
+          prefHeight="74.0"
           prefWidth="73.0">
           <children>
-            <ImageView AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0"
+            <ImageView AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0"
               fitHeight="66.0" fitWidth="52.0" layoutY="7.0"
               pickOnBounds="true" preserveRatio="true">
               <image>
@@ -77,7 +84,8 @@
           GridPane.rowIndex="2" prefHeight="57.0"
           prefWidth="344.0">
           <children>
-            <Label AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="4.0"
+            <Label AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="8.0"
+              AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="4.0"
               layoutX="8.0" layoutY="4.0"
               prefHeight="27.0" text="Creed Bratton">
               <font>
@@ -98,7 +106,8 @@
           GridPane.rowIndex="2" prefHeight="200.0"
           prefWidth="200.0">
           <children>
-            <Label AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="25.0"
+            <Label AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="59.0"
+              AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="25.0"
               layoutX="59.0" layoutY="25.0"
               text="Oct. 20"/>
           </children>
@@ -106,7 +115,8 @@
         <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
           GridPane.rowIndex="2" prefHeight="200.0"
           prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1" GridPane.rowIndex="4" layoutX="62.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
+          GridPane.rowIndex="4" layoutX="62.0"
           layoutY="71.0" prefHeight="57.0"
           prefWidth="344.0">
           <children>
@@ -125,10 +135,12 @@
               text="Me:           I am leaving here now, I'll be at your place in 10 minutes. "/>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="4" layoutX="10.0" layoutY="71.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="4"
+          layoutX="10.0" layoutY="71.0"
           prefHeight="74.0" prefWidth="73.0">
           <children>
-            <ImageView AnchorPane.bottomAnchor="13.11111068725586" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0"
+            <ImageView AnchorPane.bottomAnchor="13.11111068725586" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0"
               fitHeight="66.0" fitWidth="52.0"
               layoutY="7.0" pickOnBounds="true" preserveRatio="true">
               <image>
@@ -137,19 +149,24 @@
             </ImageView>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3" GridPane.rowIndex="4" layoutX="529.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
+          GridPane.rowIndex="4" layoutX="529.0"
           layoutY="71.0" prefHeight="200.0"
           prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3" GridPane.rowIndex="6" layoutX="529.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
+          GridPane.rowIndex="6" layoutX="529.0"
           layoutY="137.0" prefHeight="200.0"
           prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3" GridPane.rowIndex="8" layoutX="529.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
+          GridPane.rowIndex="8" layoutX="529.0"
           layoutY="198.0" prefHeight="200.0"
           prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3" GridPane.rowIndex="10" layoutX="529.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
+          GridPane.rowIndex="10" layoutX="529.0"
           layoutY="268.0" prefHeight="200.0"
           prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1" GridPane.rowIndex="6" layoutX="62.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
+          GridPane.rowIndex="6" layoutX="62.0"
           layoutY="137.0" prefHeight="57.0"
           prefWidth="344.0">
           <children>
@@ -169,7 +186,8 @@
               text="Dwight:     I am on my way to your house, I have two other passengers with me."/>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1" GridPane.rowIndex="8" layoutX="62.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
+          GridPane.rowIndex="8" layoutX="62.0"
           layoutY="198.0" prefHeight="57.0"
           prefWidth="344.0">
           <children>
@@ -188,7 +206,8 @@
               text="Me:            I see that you're going near FGCU, can I get a ride with you?"/>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1" GridPane.rowIndex="10" layoutX="62.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
+          GridPane.rowIndex="10" layoutX="62.0"
           layoutY="268.0" prefHeight="84.0"
           prefWidth="360.0">
           <children>
@@ -207,10 +226,12 @@
               text="Zachary:    I will be leaving my house in 5 minutes. "/>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="6" layoutX="10.0" layoutY="137.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="6"
+          layoutX="10.0" layoutY="137.0"
           prefHeight="74.0" prefWidth="73.0">
           <children>
-            <ImageView AnchorPane.bottomAnchor="14.387630462646484" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0"
+            <ImageView AnchorPane.bottomAnchor="14.387630462646484" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0"
               fitHeight="66.0" fitWidth="52.0"
               layoutY="14.0" pickOnBounds="true" preserveRatio="true">
               <image>
@@ -219,10 +240,12 @@
             </ImageView>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="8" layoutX="10.0" layoutY="198.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="8"
+          layoutX="10.0" layoutY="198.0"
           prefHeight="74.0" prefWidth="73.0">
           <children>
-            <ImageView AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0"
+            <ImageView AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0"
               fitHeight="66.0" fitWidth="52.0" layoutY="12.0"
               pickOnBounds="true" preserveRatio="true">
               <image>
@@ -231,10 +254,12 @@
             </ImageView>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="10" layoutX="10.0" layoutY="268.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="10"
+          layoutX="10.0" layoutY="268.0"
           prefHeight="57.0" prefWidth="40.0">
           <children>
-            <ImageView AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0"
+            <ImageView AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0"
               fitHeight="66.0" fitWidth="52.0" layoutY="10.0"
               pickOnBounds="true" preserveRatio="true">
               <image>
@@ -243,38 +268,46 @@
             </ImageView>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2" GridPane.rowIndex="4" layoutX="422.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
+          GridPane.rowIndex="4" layoutX="422.0"
           layoutY="74.0" prefHeight="200.0"
           prefWidth="200.0">
           <children>
-            <Label AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="25.0"
+            <Label AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="59.0"
+              AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="25.0"
               layoutX="59.0" layoutY="25.0"
               text="Oct. 19"/>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2" GridPane.rowIndex="6" layoutX="422.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
+          GridPane.rowIndex="6" layoutX="422.0"
           layoutY="141.0" prefHeight="200.0"
           prefWidth="200.0">
           <children>
-            <Label AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="25.0"
+            <Label AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="59.0"
+              AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="25.0"
               layoutX="59.0" layoutY="25.0"
               text="Oct. 13"/>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2" GridPane.rowIndex="8" layoutX="422.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
+          GridPane.rowIndex="8" layoutX="422.0"
           layoutY="203.0" prefHeight="200.0"
           prefWidth="200.0">
           <children>
-            <Label AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"
+            <Label AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="54.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"
               layoutX="59.0" layoutY="25.0"
               text="Sept. 28"/>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2" GridPane.rowIndex="10" layoutX="422.0"
+        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
+          GridPane.rowIndex="10" layoutX="422.0"
           layoutY="274.0" prefHeight="0.0"
           prefWidth="107.0">
           <children>
-            <Label AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"
+            <Label AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="54.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"
               layoutX="59.0" layoutY="25.0"
               text="Sept. 21"/>
           </children>
