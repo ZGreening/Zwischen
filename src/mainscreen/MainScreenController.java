@@ -88,12 +88,6 @@ public class MainScreenController {
   }
 
   @FXML
-  void onSampleButtonPressed(ActionEvent event) {
-    System.out.println("test");
-    //Todo Stick Map code here
-  }
-
-  @FXML
   private void initialize() {
     final WebEngine engine = webViewMaps.getEngine();
     engine.load("https://www.openstreetmap.org/#map=13/26.4694/-81.7750");
