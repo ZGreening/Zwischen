@@ -76,10 +76,16 @@ public class EditAccountController {
     avatar.setImage(new Image(
         Paths.get("lib/UserData/" + Globals.currentUser.getUsername()).toUri().toString()
             + ".png"));
+
+    //display username
     username.setText(Globals.currentUser.getUsername());
+
+    //Display current user's phone number
     phoneNum.setText("(" + Globals.currentUser.getPhoneNum().substring(0, 3) + ")"
         + Globals.currentUser.getPhoneNum().substring(3, 6) + "-"
         + Globals.currentUser.getPhoneNum().substring(6, 10));
+
+    //Display current user's email
     email.setText(Globals.currentUser.getEmail());
   }
 }
