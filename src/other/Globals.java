@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Globals {
+
   //FindBugs flags this, however the purpose is to leave it
   //mutable from anywhere in code.
   public static final ArrayList<User> availableDrivers = new ArrayList<>();
