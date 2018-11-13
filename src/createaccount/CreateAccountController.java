@@ -77,32 +77,38 @@ public class CreateAccountController {
 
   @FXML
   void onCreateAccountPressed(ActionEvent event) {
+    //Get text strings
+    String usernameText = username.getText();
+    String passwordText = password.getText();
+    String confirmPasswordText = confirmPassword.getText();
+    String emailText = email.getText();
+    String phoneNumText = phoneNum.getText();
+
     //Ensure all fields are filled and email and phone number are in correct format
-    //Assumes USA phone number type
-    if (username.getText().isEmpty()) {
+    if (usernameText.isEmpty()) {
       feedbackLabel.setText("Username is empty");
-    } else if (password.getText().isEmpty()) {
+    } else if (passwordText.isEmpty()) {
       feedbackLabel.setText("Password is empty");
-    } else if (confirmPassword.getText().isEmpty()) {
+    } else if (confirmPasswordText.isEmpty()) {
       feedbackLabel.setText("Confirm password is empty");
-    } else if (!password.getText().equals(confirmPassword.getText())) {
+    } else if (!passwordText.equals(confirmPasswordText)) {
       feedbackLabel.setText("Passwords do not match");
-    } else if (email.getText().isEmpty()) {
+    } else if (emailText.isEmpty()) {
       feedbackLabel.setText("Email is empty");
-    } else if (!email.getText()
+    } else if (!emailText
         .matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
       feedbackLabel.setText("Invalid Email");
-    } else if (phoneNum.getText().isEmpty()) {
+    } else if (phoneNumText.isEmpty()) {
       feedbackLabel.setText("Phone number is empty");
-    } else if (!(phoneNum.getText().matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")
-        || phoneNum.getText().matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")
-        || phoneNum.getText().matches("[0-9]{10}"))) {
+    } else if (!(phoneNumText.matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")
+        || phoneNumText.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")
+        || phoneNumText.matches("[0-9]{10}"))) {
       feedbackLabel.setText("Incorrect phone number format");
     } else {
       //Set the current user's info
-      Globals.currentUser.setUsername(username.getText());
-      Globals.currentUser.setEmail(email.getText());
-      Globals.currentUser.setPhoneNum(phoneNum.getText());
+      Globals.currentUser.setUsername(usernameText);
+      Globals.currentUser.setEmail(emailText);
+      Globals.currentUser.setPhoneNum(phoneNumText);
 
       //If none of the issues above, change screens
       saveUserImage();
