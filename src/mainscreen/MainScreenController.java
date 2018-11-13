@@ -63,8 +63,8 @@ public class MainScreenController {
 
   @FXML
   void onRideRequested(ActionEvent event) {
-    outputText.setText(outputText.getText() + "\nRideRequested (Todo Add Functionality)");
-    //Todo Add ride requested code
+    outputText
+        .setText(outputText.getText() + "\nRideRequested (Todo Add Functionality)");
   }
 
   @FXML
@@ -90,7 +90,8 @@ public class MainScreenController {
   @FXML
   private void initialize() {
     final WebEngine engine = webViewMaps.getEngine();
-    engine.load("https://www.openstreetmap.org/#map=13/26.4694/-81.7750");
+    engine.load("https://www.openstreetmap.org/directions#map=13/26.4694/-81.7750");
   }
+
 }
 
