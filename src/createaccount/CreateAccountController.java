@@ -8,13 +8,14 @@
 
 package createaccount;
 
+import static other.Globals.stmt;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -28,8 +29,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
-
-import static other.Globals.stmt;
 
 public class CreateAccountController {
 
@@ -80,7 +79,6 @@ public class CreateAccountController {
   }
 
   private void storeNewAccount(String username, String password, String email, String phoneNum) {
-    //todo add database code
     try {
        stmt = Globals.conn.createStatement();
        stmt.execute("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) " +
