@@ -16,6 +16,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSetMetaData;
 
 public class Globals {
 
@@ -25,7 +31,23 @@ public class Globals {
 
   //Global constant for the current user
   public static final User currentUser = new User();
+  private static String dbURL = "jdbc:derby:lib\\ZwischenDB3";
+  // jdbc Connection
+  public static Connection conn;
+  public static Statement stmt;
+  //public static ResultSet resultSet;
 
+  public static void createConnection() {
+    try {
+       conn = DriverManager.getConnection(
+              dbURL, "zwischen", "fundamentals");
+      stmt = conn.createStatement();
+      System.out.println("db connected");
+    } catch (Exception except) {
+      except.printStackTrace();
+      System.out.println("db failed to connect");
+    }
+  }
   /**
    * A helper function to close the current window and open a new one.
    *
@@ -55,4 +77,20 @@ public class Globals {
       System.out.println("Could not open window at path: " + newScene);
     }
   }
+
+  private static void shutdown() {
+    try {
+      if (stmt != null) {
+        stmt.close();
+      }
+      if (conn != null) {
+        DriverManager.getConnection(dbURL + ";shutdown=true");
+        conn.close();
+      }
+    } catch (SQLException sqlExcept) {
+
+    }
+
+  }
+
 }

@@ -14,6 +14,8 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +28,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
+
+import static other.Globals.stmt;
 
 public class CreateAccountController {
 
@@ -77,6 +81,15 @@ public class CreateAccountController {
 
   private void storeNewAccount(String username, String password, String email, String phoneNum) {
     //todo add database code
+    try {
+       stmt = Globals.conn.createStatement();
+       stmt.execute("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) " +
+               "VALUES ('" + username + "','" + password + "','" + email +"','" + phoneNum +"')");
+       stmt.close();
+    } catch (SQLException sqlExcept) {
+      sqlExcept.printStackTrace();
+    }
+
   }
 
   @FXML
@@ -114,13 +127,16 @@ public class CreateAccountController {
       Globals.currentUser.setEmail(emailText);
       Globals.currentUser.setPhoneNum(phoneNumText);
 
+      //Sees if db is connected
+      Globals.createConnection();
+
       //If none of the issues above, change screens
       saveUserImage();
 
       //Add account to database
       storeNewAccount(usernameText, passwordText, emailText, phoneNumText);
 
-      Globals.changeScene("mainscreen/MainScreen.fxml", root);
+      Globals.changeScene("loginpage/LoginPage.fxml", root);
     }
   }
 
