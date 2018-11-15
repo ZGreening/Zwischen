@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -29,6 +30,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
+import static other.Globals.createConnection;
 import static other.Globals.stmt;
 
 public class CreateAccountController {
@@ -80,16 +82,33 @@ public class CreateAccountController {
   }
 
   private void storeNewAccount(String username, String password, String email, String phoneNum) {
-    //todo add database code
-    try {
-       stmt = Globals.conn.createStatement();
-       stmt.execute("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) " +
-               "VALUES ('" + username + "','" + password + "','" + email +"','" + phoneNum +"')");
-       stmt.close();
-    } catch (SQLException sqlExcept) {
-      sqlExcept.printStackTrace();
-    }
-
+      //todo add database code
+       createConnection();
+      try {
+          String usermatch = "";
+          ResultSet resultSet = null;
+          String query = "SELECT * FROM LOGIN";
+          resultSet = stmt.executeQuery(query);
+          while (resultSet.next()) {
+              usermatch = resultSet.getString("USERNAME");
+              if ((username.equals(usermatch))) {
+                  feedbackLabel.setText("Invalid Login Credentials");
+              } else {
+                  stmt.execute("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) " +
+                          "VALUES ('" + username + "','" + password + "','" + email + "','" + phoneNum + "')");
+              }
+          }
+      } catch (SQLException sqlExcept) {
+          sqlExcept.printStackTrace();
+      }/* finally {
+          if (stmt != null) {
+              try {
+                  stmt.close();
+              } catch (SQLException ex) {
+                  System.out.println("Could not close query");
+              }
+          }
+      } */
   }
 
   @FXML
@@ -128,7 +147,7 @@ public class CreateAccountController {
       Globals.currentUser.setPhoneNum(phoneNumText);
 
       //Sees if db is connected
-      Globals.createConnection();
+     // Globals.createConnection();
 
       //If none of the issues above, change screens
       saveUserImage();

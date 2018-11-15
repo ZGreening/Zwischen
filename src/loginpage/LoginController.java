@@ -62,11 +62,17 @@ public class LoginController {
           feedbackLabel.setText("Invalid Login Credentials");
         }
       }
-
-      stmt.close();
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
       System.out.println("failed to check login");
+    } finally {
+      if (stmt != null) {
+        try {
+          stmt.close();
+        } catch (SQLException ex) {
+          System.out.println("Could not close query");
+        }
+      }
     }
 
   }
