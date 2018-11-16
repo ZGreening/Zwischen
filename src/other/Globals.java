@@ -34,16 +34,13 @@ public class Globals {
    */
   public static void changeScene(String newScene, Node oldSceneRoot) {
     try {
-      Stage stage = (Stage) oldSceneRoot.getScene().getWindow();
-
-      stage.close();
+      //Create new window
+      Stage stage = new Stage();
 
       Parent root = FXMLLoader.load(
           Globals.class.getClassLoader().getResource(newScene));
 
       Scene scene = new Scene(root);
-
-      stage = new Stage();
 
       stage.setTitle("Zwischen");
 
@@ -51,8 +48,13 @@ public class Globals {
 
       stage.show();
 
+      //If window is opened successfully, close old window
+      stage = (Stage) oldSceneRoot.getScene().getWindow();
+
+      stage.close();
+
     } catch (IOException exception) {
-      System.out.println("Could not open window at path: " + newScene);
+      System.out.println("Failed to open window at path: " + newScene);
     }
   }
 }
