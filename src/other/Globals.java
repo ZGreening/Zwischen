@@ -10,18 +10,16 @@
 package other;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSetMetaData;
 
 public class Globals {
 
@@ -31,7 +29,7 @@ public class Globals {
 
   //Global constant for the current user
   public static final User currentUser = new User();
-  private static String dbURL = "jdbc:derby:C:\\Users\\deepd\\IdeaProjects\\Zwischen\\lib\\ZwischenDB4";
+  private static String dbURL = "jdbc:derby:lib/ZwischenDB4";
   // jdbc Connection
   public static Connection conn;
   public static Statement stmt, stmt1;
