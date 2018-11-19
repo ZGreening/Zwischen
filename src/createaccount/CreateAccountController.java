@@ -14,8 +14,7 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +28,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
+import static other.Globals.createConnection;
 import static other.Globals.stmt;
+import static other.Globals.stmt1;
 
 public class CreateAccountController {
 
@@ -63,6 +64,9 @@ public class CreateAccountController {
    * Saves a user image to the lib/UserData folder. Username must be unique, otherwise the file will
    * not save.
    */
+
+  public static Connection conn;
+  private static String dbURL = "jdbc:C:\\Users\\deepd\\IdeaProjects\\Zwischen\\lib\\ZwischenDB4";
   private void saveUserImage() {
     CopyOption[] copyOptions = new CopyOption[]{
         StandardCopyOption.COPY_ATTRIBUTES
@@ -80,16 +84,37 @@ public class CreateAccountController {
   }
 
   private void storeNewAccount(String username, String password, String email, String phoneNum) {
-    //todo add database code
-    try {
-       stmt = Globals.conn.createStatement();
-       stmt.execute("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) " +
-               "VALUES ('" + username + "','" + password + "','" + email +"','" + phoneNum +"')");
-       stmt.close();
-    } catch (SQLException sqlExcept) {
-      sqlExcept.printStackTrace();
-    }
+      //todo add database code
+      createConnection();
+      try {
+          String usermatch = "";
+          System.out.println("running");
+          //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+          ResultSet resultSet = stmt.executeQuery("SELECT * FROM LOGIN WHERE USERNAME='"+ username+"'" );
+          if(resultSet.next()) {
+              System.out.println("user found");
+              feedbackLabel.setText("Invalid Login Credentials");
+              System.out.println("username already exists");
+          } else {
+              System.out.println("user not found");
+              System.out.println("username didnt exist");
+              stmt.execute("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) " +
+                      "VALUES ('" + username + "','" + password + "','" + email + "','" + phoneNum + "')");
+              Globals.changeScene("loginpage/LoginPage.fxml", root);
+          }
 
+      } catch (SQLException sqlExcept) {
+          sqlExcept.printStackTrace();
+          System.out.println("something went wrong");
+      } finally {
+          if (stmt != null) {
+              try {
+                  stmt.close();
+              } catch (SQLException ex) {
+                  System.out.println("Could not close query");
+              }
+          }
+      }
   }
 
   @FXML
@@ -128,15 +153,16 @@ public class CreateAccountController {
       Globals.currentUser.setPhoneNum(phoneNumText);
 
       //Sees if db is connected
-      Globals.createConnection();
+     // Globals.createConnection();
 
-      //If none of the issues above, change screens
+      //Saves user image
       saveUserImage();
 
       //Add account to database
       storeNewAccount(usernameText, passwordText, emailText, phoneNumText);
 
-      Globals.changeScene("loginpage/LoginPage.fxml", root);
+      //If none of the issues above, change screens
+      //Globals.changeScene("loginpage/LoginPage.fxml", root);
     }
   }
 
