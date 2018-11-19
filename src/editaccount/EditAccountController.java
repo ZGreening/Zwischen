@@ -52,12 +52,12 @@ public class EditAccountController {
 
   @FXML
   void onUpdateAccountPressed(ActionEvent event) {
-
+    //Todo Add functionality
   }
 
   @FXML
   void onUploadPressed(ActionEvent event) {
-
+    //Todo Add functionality
   }
 
   @FXML
