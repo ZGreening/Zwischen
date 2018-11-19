@@ -83,6 +83,7 @@ public class CreateAccountController {
     }
   }
 
+  //database is working functionally and function works
   private void storeNewAccount(String username, String password, String email, String phoneNum) {
       //todo add database code
       createConnection();
