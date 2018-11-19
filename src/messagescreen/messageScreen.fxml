@@ -1,326 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="407.0" prefWidth="553.0"
-  xmlns="http://javafx.com/javafx/8.0.171" fx:controller="messagescreen.MessageScreenController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: gray;"
+  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
+  fx:controller="messagescreen.MessageScreenController" fx:id="root">
   <children>
     <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-      AnchorPane.topAnchor="0.0" prefHeight="407.0" prefWidth="553.0">
+      AnchorPane.topAnchor="0.0">
       <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="54.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="362.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="109.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="36.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
       </columnConstraints>
       <rowConstraints>
-        <RowConstraints maxHeight="106.0" minHeight="5.0" prefHeight="62.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="106.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="79.0" minHeight="5.0" prefHeight="67.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="271.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="394.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="394.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="366.0" minHeight="5.0" prefHeight="71.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="366.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="314.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
       </rowConstraints>
       <children>
-        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
-          GridPane.columnIndex="1"
-          prefHeight="93.0" prefWidth="362.0">
+        <AnchorPane GridPane.columnSpan="2" prefHeight="200.0" prefWidth="200.0">
           <children>
-            <Label style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
-              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              alignment="CENTER" prefHeight="51.0" prefWidth="374.0"
-              text="Direct Messages" textAlignment="CENTER">
-              <font>
-                <Font size="24.0"/>
-              </font>
-            </Label>
+            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <Label style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0" alignment="TOP_CENTER" text="Zwischen"
+                      textFill="LIGHTGRAY">
+                      <font>
+                        <Font name="Arial Bold" size="30.0"/>
+                      </font>
+                    </Label>
+                  </children>
+                </AnchorPane>
+                <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <Label style="-fx-background-color: saddleBrown;" AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0" alignment="TOP_CENTER" text="Messages">
+                      <font>
+                        <Font name="American Typewriter" size="18.0"/>
+                      </font>
+                    </Label>
+                  </children>
+                </AnchorPane>
+              </children>
+            </GridPane>
           </children>
         </AnchorPane>
-        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
-          GridPane.columnIndex="2"
-          prefHeight="42.0" prefWidth="129.0">
-          <children>
-            <Button style="-fx-background-color: #13f469#13f469 #13f469#13f469;"
-              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              mnemonicParsing="false" onAction="#createNewMessage" prefHeight="51.0"
-              prefWidth="117.0" text="New Message"/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;" prefHeight="76.0"
-          prefWidth="52.0"/>
-        <AnchorPane style="-fx-background-color: #80ccff#80ccff #80ccff#80ccff;"
-          GridPane.columnIndex="3"
-          prefHeight="61.0" prefWidth="27.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="2"
-          prefHeight="74.0"
-          prefWidth="73.0">
-          <children>
-            <ImageView AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0"
-              fitHeight="66.0" fitWidth="52.0" layoutY="7.0"
-              pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@avatars/creed-bratton.jpg"/>
-              </image>
-            </ImageView>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
-          GridPane.rowIndex="2" prefHeight="57.0"
-          prefWidth="344.0">
-          <children>
-            <Label AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="8.0"
-              AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="4.0"
-              layoutX="8.0" layoutY="4.0"
-              prefHeight="27.0" text="Creed Bratton">
-              <font>
-                <Font name="System Bold" size="16.0"/>
-              </font>
-            </Label>
-            <Label layoutX="115.0" layoutY="4.0" prefHeight="27.0" prefWidth="52.0"
-              text="  (Rider)">
-              <font>
-                <Font size="11.0"/>
-              </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="34.0" prefHeight="27.0" prefWidth="284.0"
-              text="Creed:       Hey, noticed you were driving today. Any chance I can get a ride?"/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
-          GridPane.rowIndex="2" prefHeight="200.0"
-          prefWidth="200.0">
-          <children>
-            <Label AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="59.0"
-              AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="25.0"
-              layoutX="59.0" layoutY="25.0"
-              text="Oct. 20"/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
-          GridPane.rowIndex="2" prefHeight="200.0"
-          prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
-          GridPane.rowIndex="4" layoutX="62.0"
-          layoutY="71.0" prefHeight="57.0"
-          prefWidth="344.0">
-          <children>
-            <Label layoutX="8.0" layoutY="4.0" prefHeight="27.0" text="Michael Scott">
-              <font>
-                <Font name="System Bold" size="16.0"/>
-              </font>
-            </Label>
-            <Label layoutX="112.0" layoutY="4.0" prefHeight="27.0" prefWidth="52.0"
-              text="  (Rider)">
-              <font>
-                <Font size="11.0"/>
-              </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="34.0" prefHeight="27.0" prefWidth="284.0"
-              text="Me:           I am leaving here now, I'll be at your place in 10 minutes. "/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="4"
-          layoutX="10.0" layoutY="71.0"
-          prefHeight="74.0" prefWidth="73.0">
-          <children>
-            <ImageView AnchorPane.bottomAnchor="13.11111068725586" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0"
-              fitHeight="66.0" fitWidth="52.0"
-              layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@avatars/michael.png"/>
-              </image>
-            </ImageView>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
-          GridPane.rowIndex="4" layoutX="529.0"
-          layoutY="71.0" prefHeight="200.0"
-          prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
-          GridPane.rowIndex="6" layoutX="529.0"
-          layoutY="137.0" prefHeight="200.0"
-          prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
-          GridPane.rowIndex="8" layoutX="529.0"
-          layoutY="198.0" prefHeight="200.0"
-          prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="3"
-          GridPane.rowIndex="10" layoutX="529.0"
-          layoutY="268.0" prefHeight="200.0"
-          prefWidth="200.0"/>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
-          GridPane.rowIndex="6" layoutX="62.0"
-          layoutY="137.0" prefHeight="57.0"
-          prefWidth="344.0">
-          <children>
-            <Label layoutX="8.0" layoutY="4.0" maxWidth="1.7976931348623157E308" prefHeight="27.0"
-              text="Dwight Schrute">
-              <font>
-                <Font name="System Bold" size="16.0"/>
-              </font>
-            </Label>
-            <Label layoutX="126.0" layoutY="4.0" prefHeight="27.0" prefWidth="52.0"
-              text="  (Driver)">
-              <font>
-                <Font size="11.0"/>
-              </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="34.0" prefHeight="27.0" prefWidth="284.0"
-              text="Dwight:     I am on my way to your house, I have two other passengers with me."/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
-          GridPane.rowIndex="8" layoutX="62.0"
-          layoutY="198.0" prefHeight="57.0"
-          prefWidth="344.0">
-          <children>
-            <Label layoutX="8.0" layoutY="4.0" prefHeight="27.0" text="Brandon Davis">
-              <font>
-                <Font name="System Bold" size="16.0"/>
-              </font>
-            </Label>
-            <Label layoutX="118.0" layoutY="4.0" prefHeight="27.0" prefWidth="52.0"
-              text="  (Driver)">
-              <font>
-                <Font size="11.0"/>
-              </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="34.0" prefHeight="27.0" prefWidth="284.0"
-              text="Me:            I see that you're going near FGCU, can I get a ride with you?"/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="1"
-          GridPane.rowIndex="10" layoutX="62.0"
-          layoutY="268.0" prefHeight="84.0"
-          prefWidth="360.0">
-          <children>
-            <Label layoutX="8.0" layoutY="4.0" prefHeight="27.0" text="Zachary Greening">
-              <font>
-                <Font name="System Bold" size="16.0"/>
-              </font>
-            </Label>
-            <Label layoutX="143.0" layoutY="4.0" prefHeight="27.0" prefWidth="52.0"
-              text="  (Driver)">
-              <font>
-                <Font size="11.0"/>
-              </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="34.0" prefHeight="27.0" prefWidth="284.0"
-              text="Zachary:    I will be leaving my house in 5 minutes. "/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="6"
-          layoutX="10.0" layoutY="137.0"
-          prefHeight="74.0" prefWidth="73.0">
-          <children>
-            <ImageView AnchorPane.bottomAnchor="14.387630462646484" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0"
-              fitHeight="66.0" fitWidth="52.0"
-              layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@avatars/Dwight_Schrute.jpg"/>
-              </image>
-            </ImageView>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="8"
-          layoutX="10.0" layoutY="198.0"
-          prefHeight="74.0" prefWidth="73.0">
-          <children>
-            <ImageView AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0"
-              fitHeight="66.0" fitWidth="52.0" layoutY="12.0"
-              pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@avatars/if_12_avatar_2754577.png"/>
-              </image>
-            </ImageView>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.rowIndex="10"
-          layoutX="10.0" layoutY="268.0"
-          prefHeight="57.0" prefWidth="40.0">
-          <children>
-            <ImageView AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0"
-              fitHeight="66.0" fitWidth="52.0" layoutY="10.0"
-              pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@avatars/if_1_avatar_2754574.png"/>
-              </image>
-            </ImageView>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
-          GridPane.rowIndex="4" layoutX="422.0"
-          layoutY="74.0" prefHeight="200.0"
-          prefWidth="200.0">
-          <children>
-            <Label AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="59.0"
-              AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="25.0"
-              layoutX="59.0" layoutY="25.0"
-              text="Oct. 19"/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
-          GridPane.rowIndex="6" layoutX="422.0"
-          layoutY="141.0" prefHeight="200.0"
-          prefWidth="200.0">
-          <children>
-            <Label AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="59.0"
-              AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="25.0"
-              layoutX="59.0" layoutY="25.0"
-              text="Oct. 13"/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
-          GridPane.rowIndex="8" layoutX="422.0"
-          layoutY="203.0" prefHeight="200.0"
-          prefWidth="200.0">
-          <children>
-            <Label AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="54.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"
-              layoutX="59.0" layoutY="25.0"
-              text="Sept. 28"/>
-          </children>
-        </AnchorPane>
-        <AnchorPane style="-fx-background-color: #e3e8e5#e3e8e5;" GridPane.columnIndex="2"
-          GridPane.rowIndex="10" layoutX="422.0"
-          layoutY="274.0" prefHeight="0.0"
-          prefWidth="107.0">
-          <children>
-            <Label AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="54.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0"
-              layoutX="59.0" layoutY="25.0"
-              text="Sept. 21"/>
-          </children>
-        </AnchorPane>
-        <Line GridPane.rowIndex="9" endX="452.29290771484375" endY="0.2928932309150696"
-          startX="-100.0"/>
-        <Line GridPane.rowIndex="1" endX="452.29290771484375" endY="0.2928932309150696"
-          startX="-100.0"/>
-        <Line GridPane.rowIndex="5" endX="452.5" startX="-100.0"/>
-        <Line GridPane.rowIndex="3" endX="452.29290771484375" endY="0.2928932309150696"
-          startX="-100.0"/>
-        <Line GridPane.rowIndex="7" endX="452.29290771484375" endY="0.2928932309150696"
-          startX="-100.0"/>
       </children>
     </GridPane>
   </children>
