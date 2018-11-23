@@ -38,7 +38,7 @@ public class MainScreenController {
 
   @FXML
   void onSetWeeklyDriverSchedulePressed(ActionEvent event) {
-    Globals.changeScene("driverweeklyschedule/DriverWeeklySchedule.fxml", root);
+    Globals.changeScene("driverweeklyschedule/DriverWeeklySchedule.fxml");
   }
 
   @FXML
@@ -53,27 +53,27 @@ public class MainScreenController {
 
   @FXML
   void onNotificationsPressed(ActionEvent event) {
-    Globals.changeScene("notification/NotificationWindow.fxml", root);
+    Globals.changeScene("notification/NotificationWindow.fxml");
   }
 
   @FXML
   void onRequestRidePressed(ActionEvent event) {
-    Globals.changeScene("availabledrivers/AvailableDrivers.fxml", root);
+    Globals.changeScene("riderequest/RideRequest.fxml");
   }
 
   @FXML
   void onViewHistoryPressed(ActionEvent event) {
-    Globals.changeScene("ridehistory/RideHistoryScreen.fxml", root);
+    Globals.changeScene("ridehistory/RideHistoryScreen.fxml");
   }
 
   @FXML
   void onViewMessagesPressed(ActionEvent event) {
-    Globals.changeScene("messagescreen/messageScreen.fxml", root);
+    Globals.changeScene("messagescreen/messageScreen.fxml");
   }
 
   @FXML
   void onViewFriendsListPressed(ActionEvent event) {
-    Globals.changeScene("friendslist/friendslist.fxml", root);
+    Globals.changeScene("friendslist/friendslist.fxml");
   }
 
   @FXML

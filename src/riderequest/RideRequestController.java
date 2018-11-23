@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        AvailableDriversController.java
+// File:        RideRequestController.java
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for available drivers screen
 ///////////////////////////////////////////////////////////////////////////////
 
-package availabledrivers;
+package riderequest;
 
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -21,7 +21,7 @@ import javafx.scene.text.Font;
 import other.Globals;
 import other.User;
 
-public class AvailableDriversController {
+public class RideRequestController {
 
 
   private ArrayList<GridPane> driverPane = new ArrayList<>();
@@ -37,7 +37,7 @@ public class AvailableDriversController {
 
   @FXML
   void onCancelPressed(ActionEvent event) {
-    Globals.changeScene("mainscreen/MainScreen.fxml", root);
+    Globals.closeScene(root);
   }
 
   @FXML
