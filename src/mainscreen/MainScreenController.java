@@ -87,7 +87,7 @@ public class MainScreenController {
 
     //Load current users avatar in
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + currentUsername).toUri().toString() + ".png"));
+        Paths.get("lib/UserData/" + currentUsername + "/avatar.png").toUri().toString()));
 
     //Display current user
     username.setText("Username:\n" + currentUsername);

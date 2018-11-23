@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import other.Globals;
+import other.Message;
 
 public class MessageScreenController {
 
@@ -34,14 +35,25 @@ public class MessageScreenController {
 
   @FXML
   void onSendPressed(ActionEvent event) {
-    //Todo create message
+    //if (recipient.getValue() == null)
+    //Todo provide feedback
+    //else if (message.getText().isEmpty())
+    //Todo provide feedback
+    System.out.println(this.message.getText());
+    System.out.println(recipient.getValue());
+    System.out.println(Globals.currentUser.getUsername());
+
+    Message message = new Message(this.message.getText(), recipient.getValue(),
+        Globals.currentUser.getUsername());
+
     Globals.closeScene(root);
   }
 
   @FXML
   void initialize() {
-    //Todo get list of usernames, sort and add to recipients
-    recipient.setItems(FXCollections.observableArrayList("Sample user 1", "Sample user 2",
+    //Todo get list of usernames (excluding current user), sort and add to recipients
+    recipient
+        .setItems(FXCollections.observableArrayList("default", "Sample user 1", "Sample user 2",
         "Sample user 3", "Sample user 4", "Sample user 5", "Sample user 6", "Sample user 7",
         "Sample user 8", "Sample user 9", "Sample user 10"));
   }

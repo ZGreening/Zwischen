@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -64,14 +65,30 @@ public class CreateAccountController {
         StandardCopyOption.COPY_ATTRIBUTES
     };
 
-    if (file != null) {
-      try {
-        Files.copy(Paths.get(file.getAbsolutePath()),
-            Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + ".png"), copyOptions);
-      } catch (IOException exception) {
-        System.out.println("Unable to save image\n" + Globals.currentUser.getUsername()
-            + ".png may already exist");
-      }
+    if (file == null) {
+      file = new File("lib/UserData/default/avatar.png");
+    }
+
+    try {
+      Files.copy(Paths.get(file.getAbsolutePath()),
+          Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + "/avatar.png"),
+          copyOptions);
+    } catch (IOException exception) {
+      System.out.println("Unable to save image\n" + Globals.currentUser.getUsername()
+          + "/avatar.png may already exist");
+    }
+  }
+
+  private void createUserFolder() {
+    try {
+      Path path1 = Paths.get("lib/UserData/" + Globals.currentUser.getUsername());
+      Path path2 = Paths.get("messages");
+      Path userMessagesPath = path1.resolve(path2);
+      Files.createDirectory(path1);
+      Files.createDirectory(userMessagesPath);
+    } catch (IOException exception) {
+      System.out.println("Unable to create user directory");
+      exception.printStackTrace();
     }
   }
 
@@ -113,6 +130,9 @@ public class CreateAccountController {
       Globals.currentUser.setUsername(usernameText);
       Globals.currentUser.setEmail(emailText);
       Globals.currentUser.setPhoneNum(phoneNumText);
+
+      //Create new user folder
+      createUserFolder();
 
       //If none of the issues above, change screens
       saveUserImage();
@@ -157,6 +177,6 @@ public class CreateAccountController {
     //Set up image to use current user's username for image, "default" by default
     avatar.setImage(new Image(
         Paths.get("lib/UserData/" + Globals.currentUser.getUsername()).toUri().toString()
-            + ".png"));
+            + "/avatar.png"));
   }
 }

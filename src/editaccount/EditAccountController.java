@@ -74,8 +74,8 @@ public class EditAccountController {
   void initialize() {
     //Set up image to use current user's username for image, "default" by default
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.currentUser.getUsername()).toUri().toString()
-            + ".png"));
+        Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + "/avatar.png").toUri()
+            .toString()));
 
     //display username
     username.setText(Globals.currentUser.getUsername());

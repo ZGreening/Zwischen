@@ -138,7 +138,7 @@
                 <ImageView AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="17.0" fitHeight="75.0"
                   fitWidth="75.0" pickOnBounds="true" preserveRatio="true" fx:id="avatar">
                   <image>
-                    <Image url="@../../lib/UserData/default.png"/>
+                    <Image url="@../../lib/UserData/default/avatar.png"/>
                   </image>
                 </ImageView>
               </children>
