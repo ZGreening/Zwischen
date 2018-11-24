@@ -78,7 +78,7 @@ public class MainScreenController {
   }
 
   @FXML
-  void onViewMessagesPressed(ActionEvent event) {
+  void onSendMessagePressed(ActionEvent event) {
     Globals.changeScene("messages/Messages.fxml");
   }
 
