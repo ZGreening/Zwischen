@@ -59,7 +59,7 @@
                       AnchorPane.topAnchor="0.0" alignment="TOP_CENTER" layoutX="139.0"
                       layoutY="12.0" text="Messages">
                       <font>
-                        <Font size="18.0"/>
+                        <Font name="American Typewriter" size="18.0"/>
                       </font>
                     </Label>
                   </children>

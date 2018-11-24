@@ -75,4 +75,14 @@ public class Message implements Serializable {
       exception.printStackTrace();
     }
   }
+
+  @Override
+  public String toString() {
+    return "Message{"
+        + "message='" + message + '\''
+        + ", recipient='" + recipient + '\''
+        + ", sender='" + sender + '\''
+        + ", read=" + read
+        + '}';
+  }
 }

@@ -44,6 +44,10 @@ public class LoginController {
       return;
     }
 
+    //Load userdata
+    Globals.currentUser.setUsername("default");
+    Globals.currentUser.loadMessages();
+
     Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
 }
