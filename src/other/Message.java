@@ -9,6 +9,7 @@
 package other;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -24,7 +25,7 @@ public class Message implements Serializable, Comparable {
   private String sender;
   private boolean read = false;
   private Date timeCreated = new Date();
-  private Path path;
+  private String path;
 
   /**
    * Constructor for the class Message.
@@ -37,6 +38,32 @@ public class Message implements Serializable, Comparable {
     this.message = message;
     this.recipient = recipient;
     this.sender = sender;
+  }
+
+  /**
+   * Write the message to a file via serialization. The path of the file to write is the path stored
+   * in the class attributes. The path must be set before a file can be written
+   */
+  public void writeFile() {
+    if (path == null) {
+      return;
+    }
+
+    try {
+      Path path = Paths.get(this.path);
+
+      FileOutputStream fileOutputStream = new FileOutputStream(path.toString());
+      ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+      objectOutputStream.writeObject(this);
+
+      fileOutputStream.close();
+      objectOutputStream.close();
+    } catch (FileNotFoundException exception) {
+      System.out.println("File not found " + path);
+    } catch (IOException exception) {
+      System.out.println("IOException fileOutputStream");
+      exception.printStackTrace();
+    }
   }
 
   public boolean isRead() {
@@ -53,10 +80,6 @@ public class Message implements Serializable, Comparable {
 
   public String getSender() {
     return sender;
-  }
-
-  public Path getPath() {
-    return path;
   }
 
   /**
@@ -76,31 +99,23 @@ public class Message implements Serializable, Comparable {
    * recipient already has a folder with a messages folder inside.
    */
   public void sendMessage() {
-    try {
-      Path path1 = Paths.get("lib/UserData/" + recipient + "/messages");
-      File[] file = new File(path1.toString()).listFiles();
-      int numberOfMessages = 0;
+    Path path1 = Paths.get("lib/UserData/" + recipient + "/messages");
+    File[] file = new File(path1.toString()).listFiles();
+    int numberOfMessages = 0;
 
-      if (file != null) {
-        numberOfMessages = file.length;
-      }
-
-      Path path2 = Paths.get("Message" + (numberOfMessages + 1) + ".message");
-
-      path = path1.resolve(path2);
-
-      FileOutputStream fileOutputStream = new FileOutputStream(path.toString());
-      ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-      objectOutputStream.writeObject(this);
-
-      fileOutputStream.close();
-      objectOutputStream.close();
-
-    } catch (IOException exception) {
-      //Todo Send message to user on main screen that message was not sent
-      System.out.println("Unable to send Message");
-      exception.printStackTrace();
+    if (file != null) {
+      numberOfMessages = file.length;
     }
+
+    Path path2 = Paths.get("Message" + (numberOfMessages + 1) + ".message");
+
+    Path newMessagePath = path1.resolve(path2);
+
+    //Save relative path to message as string
+    path = newMessagePath.toString();
+
+    //Write the file stream to user messages folder
+    writeFile();
   }
 
   //Added to fix FindBugs error

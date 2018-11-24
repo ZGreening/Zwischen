@@ -37,12 +37,25 @@ public class NotificationController {
 
   @FXML
   void onDeletePressed(ActionEvent event) {
-
+    //Todo add functionality, make sure to rename message files so that files will not be overwritten
   }
 
   @FXML
   void onMarkAsReadPressed(ActionEvent event) {
+    ArrayList<Message> messages = Globals.currentUser.getMessages();
 
+    for (GridPane gridPane : messageDisplays) {
+      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(4);
+      if (checkBox.isSelected()) {
+        Message message = messages.get(messageDisplays.indexOf(gridPane));
+        message.setRead(true);
+        message.writeFile();  //Rewrite the file so it contains the new value
+
+        //Hide unread message indicator
+        Circle circle = (Circle) gridPane.getChildren().get(0);
+        circle.setVisible(false);
+      }
+    }
   }
 
   @FXML
@@ -131,6 +144,7 @@ public class NotificationController {
 
       messageOutput.getChildren().add(gridPane);
       messageDisplays.add(gridPane);
+
     }
   }
 }
