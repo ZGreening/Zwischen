@@ -71,9 +71,9 @@ public class RideRequestController {
       CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
       if (checkBox.isSelected()) {
         atLeastOneDriver = true;
-        Globals.availableDrivers.get(count).setSelectedToDrive(true);
+        Globals.getAvailableDrivers().get(count).setSelectedToDrive(true);
       } else {
-        Globals.availableDrivers.get(count).setSelectedToDrive(false);
+        Globals.getAvailableDrivers().get(count).setSelectedToDrive(false);
       }
       count++;
     }
@@ -88,7 +88,7 @@ public class RideRequestController {
 
   @FXML
   void initialize() {
-    for (User user : Globals.availableDrivers) {
+    for (User user : Globals.getAvailableDrivers()) {
       GridPane gridPane = new GridPane();
 
       //Set width of grid pane so it takes up full space in parent

@@ -146,7 +146,7 @@ public class CreateAccountController {
 
   @FXML
   void onReturnToLoginPressed(ActionEvent event) {
-    Globals.changeScene("loginpage/LoginPage.fxml", root);
+    Globals.changeScene("login/Login.fxml", root);
   }
 
   @FXML

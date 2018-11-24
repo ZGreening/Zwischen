@@ -8,7 +8,6 @@
 
 package notification;
 
-
 public class NotificationController {
 
 }

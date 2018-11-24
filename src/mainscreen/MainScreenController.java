@@ -11,6 +11,7 @@ package mainscreen;
 import java.nio.file.Paths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,23 +38,26 @@ public class MainScreenController {
   private ImageView avatar;
 
   @FXML
+  private Button notification;
+
+  @FXML
   void onSetWeeklyDriverSchedulePressed(ActionEvent event) {
-    Globals.changeScene("driverweeklyschedule/DriverWeeklySchedule.fxml");
+    Globals.changeScene("driverschedule/DriverSchedule.fxml");
   }
 
   @FXML
   void onEditAccountPressed(ActionEvent event) {
-    Globals.changeScene("editaccount/EditAccountWindow.fxml", root);
+    Globals.changeScene("editaccount/EditAccount.fxml", root);
   }
 
   @FXML
   void onLogoutPressed(ActionEvent event) {
-    Globals.changeScene("loginpage/LoginPage.fxml", root);
+    Globals.changeScene("login/Login.fxml", root);
   }
 
   @FXML
   void onNotificationsPressed(ActionEvent event) {
-    Globals.changeScene("notification/NotificationWindow.fxml");
+    Globals.changeScene("notification/Notification.fxml");
   }
 
   @FXML
@@ -63,12 +67,12 @@ public class MainScreenController {
 
   @FXML
   void onViewHistoryPressed(ActionEvent event) {
-    Globals.changeScene("ridehistory/RideHistoryScreen.fxml");
+    Globals.changeScene("ridehistory/RideHistory.fxml");
   }
 
   @FXML
   void onViewMessagesPressed(ActionEvent event) {
-    Globals.changeScene("messagescreen/messageScreen.fxml");
+    Globals.changeScene("messages/Messages.fxml");
   }
 
   @FXML

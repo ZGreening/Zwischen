@@ -6,7 +6,7 @@
 // Description: Controller class for login window
 ///////////////////////////////////////////////////////////////////////////////
 
-package loginpage;
+package login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

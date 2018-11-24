@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        MessageScreenController.java
+// File:        MessagesController.java
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for message screen
 ///////////////////////////////////////////////////////////////////////////////
 
-package messagescreen;
+package messages;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import other.Globals;
 import other.Message;
 
-public class MessageScreenController {
+public class MessagesController {
 
   @FXML
   private TextArea message;
@@ -45,6 +45,7 @@ public class MessageScreenController {
 
     Message message = new Message(this.message.getText(), recipient.getValue(),
         Globals.currentUser.getUsername());
+    //message.sendMessage();
 
     Globals.closeScene(root);
   }

@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        DriverWeeklyScheduleController.java
+// File:        DriverScheduleController.java
 // Group:       3
 // Date:        October 22, 2018
 // Description: Controller Class for the ride schedule window
 ///////////////////////////////////////////////////////////////////////////////
 
-package driverweeklyschedule;
+package driverschedule;
 
 
-public class DriverWeeklyScheduleController {
+public class DriverScheduleController {
 
 }

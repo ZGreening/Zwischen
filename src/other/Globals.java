@@ -20,12 +20,14 @@ import javafx.stage.Stage;
 
 public class Globals {
 
-  //FindBugs flags this, however the purpose is to leave it
-  //mutable from anywhere in code.
-  public static final ArrayList<User> availableDrivers = new ArrayList<>();
+  private static final ArrayList<User> availableDrivers = new ArrayList<>();
 
   //Global constant for the current user
   public static final User currentUser = new User();
+
+  public static ArrayList<User> getAvailableDrivers() {
+    return availableDrivers;
+  }
 
   /**
    * An overloaded helper function to close the current window and open a new one.

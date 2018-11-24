@@ -24,6 +24,13 @@ public class Message implements Serializable {
 
   private String sender;
 
+  /**
+   * Constructor for the class Message.
+   *
+   * @param message The message to send
+   * @param recipient The username of the recipient
+   * @param sender The username of the sender
+   */
   public Message(String message, String recipient, String sender) {
     this.message = message;
     this.recipient = recipient;
@@ -41,7 +48,13 @@ public class Message implements Serializable {
   public void sendMessage() {
     try {
       Path path1 = Paths.get("lib/UserData/" + recipient + "/messages");
-      int numberOfMessages = new File(path1.toString()).listFiles().length;
+      File[] file = new File(path1.toString()).listFiles();
+      int numberOfMessages = 0;
+
+      if (file != null) {
+        numberOfMessages = file.length;
+      }
+
       Path path2 = Paths.get("Message" + (numberOfMessages + 1) + ".message");
 
       Path newMessagePath = path1.resolve(path2);

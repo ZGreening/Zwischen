@@ -110,7 +110,7 @@
               <Button AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" focusTraversable="false"
                 mnemonicParsing="false" onAction="#onNotificationsPressed" prefHeight="10.0"
-                prefWidth="106.0" text="Notifications">
+                prefWidth="106.0" text="Notifications" fx:id="notifications">
                 <font>
                   <Font size="12.0"/>
                 </font>
