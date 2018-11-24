@@ -24,6 +24,7 @@ public class Message implements Serializable, Comparable {
   private String sender;
   private boolean read = false;
   private Date timeCreated = new Date();
+  private Path path;
 
   /**
    * Constructor for the class Message.
@@ -54,6 +55,10 @@ public class Message implements Serializable, Comparable {
     return sender;
   }
 
+  public Path getPath() {
+    return path;
+  }
+
   /**
    * Method to get the time created. To avoid Findbugs error, a new date object is created and set
    * to the time of timeCreated.
@@ -82,9 +87,9 @@ public class Message implements Serializable, Comparable {
 
       Path path2 = Paths.get("Message" + (numberOfMessages + 1) + ".message");
 
-      Path newMessagePath = path1.resolve(path2);
+      path = path1.resolve(path2);
 
-      FileOutputStream fileOutputStream = new FileOutputStream(newMessagePath.toString());
+      FileOutputStream fileOutputStream = new FileOutputStream(path.toString());
       ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
       objectOutputStream.writeObject(this);
 
