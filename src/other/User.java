@@ -16,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class User {
 
@@ -31,7 +32,7 @@ public class User {
 
   /**
    * A function to deserialize all the message files in a users messages folder and load them into
-   * the messages ArrayList.
+   * the messages ArrayList. Messages are sorted by the date that they were created.
    */
   public void loadMessages() {
     Path path = Paths.get("lib/UserData/" + username + "/messages");
@@ -58,6 +59,8 @@ public class User {
                 .println("ClassNotFoundException: unable to read message file " + messageFile);
           }
         }
+
+        Collections.sort(messages);
       }
     }
   }

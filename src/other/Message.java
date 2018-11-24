@@ -15,13 +15,15 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 
-public class Message implements Serializable {
+public class Message implements Serializable, Comparable {
 
   private String message;
   private String recipient;
   private String sender;
   private boolean read = false;
+  private Date timeCreated = new Date();
 
   /**
    * Constructor for the class Message.
@@ -42,6 +44,26 @@ public class Message implements Serializable {
 
   public void setRead(boolean read) {
     this.read = read;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public String getSender() {
+    return sender;
+  }
+
+  /**
+   * Method to get the time created. To avoid Findbugs error, a new date object is created and set
+   * to the time of timeCreated.
+   *
+   * @return a Date object of the time created
+   */
+  public Date getTimeCreated() {
+    Date date = new Date();
+    date.setTime(timeCreated.getTime());
+    return date;
   }
 
   /**
@@ -76,13 +98,14 @@ public class Message implements Serializable {
     }
   }
 
+  //Added to fix FindBugs error
   @Override
-  public String toString() {
-    return "Message{"
-        + "message='" + message + '\''
-        + ", recipient='" + recipient + '\''
-        + ", sender='" + sender + '\''
-        + ", read=" + read
-        + '}';
+  public boolean equals(Object object) {
+    return (this == object);
+  }
+
+  @Override
+  public int compareTo(Object message) {
+    return ((Message) message).getTimeCreated().compareTo(this.timeCreated);
   }
 }

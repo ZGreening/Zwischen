@@ -101,10 +101,34 @@
         </AnchorPane>
         <AnchorPane GridPane.rowIndex="6" prefHeight="200.0" prefWidth="200.0">
           <children>
-            <Button AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
-              AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
-              layoutX="96.0" layoutY="19.0" mnemonicParsing="false" onAction="#onDeletePressed"
-              text="Delete"/>
+            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <Button AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                      AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0"
+                      focusTraversable="false" mnemonicParsing="false"
+                      onAction="#onMarkAsReadPressed" text="Mark as Read"/>
+                  </children>
+                </AnchorPane>
+                <AnchorPane GridPane.columnIndex="1" prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <Button AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0"
+                      AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"
+                      focusTraversable="false" mnemonicParsing="false" onAction="#onDeletePressed"
+                      text="Delete"/>
+                  </children>
+                </AnchorPane>
+              </children>
+            </GridPane>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="6" prefHeight="200.0"
