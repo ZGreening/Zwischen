@@ -52,8 +52,6 @@ public class MessagesController {
   void initialize() {
     //Todo get list of usernames (excluding current user), sort and add to recipients
     recipient
-        .setItems(FXCollections.observableArrayList("default", "Sample user 1", "Sample user 2",
-            "Sample user 3", "Sample user 4", "Sample user 5", "Sample user 6", "Sample user 7",
-            "Sample user 8", "Sample user 9", "Sample user 10"));
+        .setItems(FXCollections.observableArrayList("default"));
   }
 }

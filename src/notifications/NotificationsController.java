@@ -1,17 +1,20 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        NotificationController.java
+// File:        NotificationsController.java
 // Group:       3
 // Date:        October 20, 2018
-// Description: Controller Class for the notification window
+// Description: Controller Class for the notifications window
 ///////////////////////////////////////////////////////////////////////////////
 
-package notification;
+package notifications;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -22,10 +25,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import messageview.MessageViewController;
 import other.Globals;
 import other.Message;
 
-public class NotificationController {
+public class NotificationsController {
 
   private ArrayList<GridPane> messageDisplays = new ArrayList<>();
 
@@ -34,6 +40,33 @@ public class NotificationController {
 
   @FXML
   private VBox messageOutput;
+
+  private void openMessageView(Message message) {
+    try {
+      Stage stage = new Stage();
+      FXMLLoader loader = new FXMLLoader(
+          getClass().getClassLoader().getResource("messageview/MessageView.fxml"));
+      MessageViewController messageViewController = new MessageViewController(message);
+
+      //load scene with instantiated controller
+      loader.setController(messageViewController);
+      AnchorPane anchorPane = loader.load();
+      Scene scene = new Scene(anchorPane);
+
+      //Set stage
+      stage.setScene(scene);
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.setTitle("Zwischen");
+      stage.show();
+
+      //Close old stage
+      stage = (Stage) root.getScene().getWindow();
+      stage.close();
+    } catch (IOException exception) {
+      System.out.println("Unable to open message view");
+    }
+
+  }
 
   @FXML
   void onDeletePressed(ActionEvent event) {
@@ -146,11 +179,10 @@ public class NotificationController {
       gridPane.setStyle("-fx-background-color: lightgrey");
 
       //Set ability to read individual message in messageView by clicking on it
-      gridPane.setOnMouseClicked(e -> Globals.changeScene("messageview/MessageView.fxml"));
+      gridPane.setOnMouseClicked(e -> openMessageView(message));
 
       messageOutput.getChildren().add(gridPane);
       messageDisplays.add(gridPane);
-
     }
   }
 }

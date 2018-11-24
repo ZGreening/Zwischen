@@ -43,7 +43,7 @@ public class Main extends Application {
     //Todo ReWork edit Account Page
     //Todo ReWork friendslist page
     //Todo ReWork messageScreen page
-    //Todo ReWork notification page
+    //Todo ReWork notifications page
     //Todo ReWork ridehistory page
   }
 }

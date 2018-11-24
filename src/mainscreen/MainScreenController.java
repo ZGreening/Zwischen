@@ -59,12 +59,12 @@ public class MainScreenController {
 
   @FXML
   void onNotificationsPressed(ActionEvent event) {
-    //Set notification button to normal look
+    //Set notifications button to normal look
     notifications.setStyle("");
     notifications.setOnMouseEntered(null);
     notifications.setOnMouseExited(null);
 
-    Globals.changeScene("notification/Notification.fxml");
+    Globals.changeScene("notifications/Notifications.fxml");
   }
 
   @FXML
