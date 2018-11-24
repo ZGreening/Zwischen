@@ -142,6 +142,9 @@ public class NotificationController {
       gridPane.add(checkBox, 4, 0);
       gridPane.setStyle("-fx-background-color: lightgrey");
 
+      //Set ability to read individual message in messageView by clicking on it
+      gridPane.setOnMouseClicked(e -> Globals.changeScene("messageview/MessageView.fxml"));
+
       messageOutput.getChildren().add(gridPane);
       messageDisplays.add(gridPane);
 
