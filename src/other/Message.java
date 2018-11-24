@@ -19,10 +19,9 @@ import java.nio.file.Paths;
 public class Message implements Serializable {
 
   private String message;
-
   private String recipient;
-
   private String sender;
+  private boolean read = false;
 
   /**
    * Constructor for the class Message.
@@ -37,8 +36,12 @@ public class Message implements Serializable {
     this.sender = sender;
   }
 
-  public Message(Path path) {
-    //Todo add functionality
+  public boolean isRead() {
+    return read;
+  }
+
+  public void setRead(boolean read) {
+    this.read = read;
   }
 
   /**

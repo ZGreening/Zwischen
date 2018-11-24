@@ -9,12 +9,23 @@
 
 package other;
 
+import java.util.ArrayList;
+
 public class User {
 
   private String username = "default";
   private String email = "default@mydomain.org";
   private String phoneNum = "1234567890";
+  private ArrayList<Message> messages = new ArrayList<>();
   private boolean isSelectedToDrive = false;
+
+  public ArrayList<Message> getMessages() {
+    return messages;
+  }
+
+  public void setMessages(ArrayList<Message> messages) {
+    this.messages = messages;
+  }
 
   public String getUsername() {
     return username;
@@ -46,6 +57,17 @@ public class User {
 
   public void setSelectedToDrive(boolean selectedToDrive) {
     isSelectedToDrive = selectedToDrive;
+  }
+
+  /**
+   * A helper method to reset all userdata to default on user logout
+   */
+  public void resetUser() {
+    username = "default";
+    email = "default@mydomain.org";
+    phoneNum = "1234567890";
+    messages = new ArrayList<>();
+    isSelectedToDrive = false;
   }
 
   @Override

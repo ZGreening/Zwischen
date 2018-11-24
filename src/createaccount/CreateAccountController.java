@@ -9,7 +9,9 @@
 package createaccount;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
+import other.Message;
 
 public class CreateAccountController {
 
@@ -92,6 +95,25 @@ public class CreateAccountController {
     }
   }
 
+  private ArrayList<Message> loadUserMessages() {
+    Path path = Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + "messages");
+    File file = new File(path.toString());
+    ArrayList<Message> messages = new ArrayList<>();
+
+    for (File messageFile : file.listFiles()) {
+      try {
+        FileInputStream fileInputStream = new FileInputStream(messageFile);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Message message = (Message) objectInputStream.readObject();
+        messages.add(message);
+      } catch (Exception exception) {
+        System.out.println("Unable to read message file " + messageFile);
+      }
+    }
+
+    return messages;
+  }
+
   private void storeNewAccount(String username, String password, String email, String phoneNum) {
     //todo add database code
   }
@@ -130,6 +152,7 @@ public class CreateAccountController {
       Globals.currentUser.setUsername(usernameText);
       Globals.currentUser.setEmail(emailText);
       Globals.currentUser.setPhoneNum(phoneNumText);
+      Globals.currentUser.setMessages(loadUserMessages());
 
       //Create new user folder
       createUserFolder();

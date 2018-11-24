@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import other.Globals;
+import other.Message;
 
 public class MainScreenController {
 
@@ -38,7 +39,7 @@ public class MainScreenController {
   private ImageView avatar;
 
   @FXML
-  private Button notification;
+  private Button notifications;
 
   @FXML
   void onSetWeeklyDriverSchedulePressed(ActionEvent event) {
@@ -52,11 +53,17 @@ public class MainScreenController {
 
   @FXML
   void onLogoutPressed(ActionEvent event) {
+    Globals.currentUser.resetUser();
     Globals.changeScene("login/Login.fxml", root);
   }
 
   @FXML
   void onNotificationsPressed(ActionEvent event) {
+    //Set notification button to normal look
+    notifications.setStyle("");
+    notifications.setOnMouseEntered(null);
+    notifications.setOnMouseExited(null);
+
     Globals.changeScene("notification/Notification.fxml");
   }
 
@@ -81,7 +88,7 @@ public class MainScreenController {
   }
 
   @FXML
-  private void initialize() {
+  void initialize() {
     //Get username for current user
     String currentUsername = Globals.currentUser.getUsername();
 
@@ -93,11 +100,30 @@ public class MainScreenController {
     avatar.setImage(new Image(
         Paths.get("lib/UserData/" + currentUsername + "/avatar.png").toUri().toString()));
 
+    if (hasUnreadMessages()) {
+      notifications.setStyle("-fx-background-color: green;");
+      notifications
+          .setOnMouseEntered(e -> notifications.setStyle("-fx-background-color: lightgreen"));
+      notifications.setOnMouseExited(e -> notifications.setStyle("-fx-background-color: green"));
+    }
+
     //Display current user
     username.setText("Username:\n" + currentUsername);
 
     //Output welcome message
     feedbackLabel.setText("Welcome " + currentUsername + "!");
+  }
+
+  private boolean hasUnreadMessages() {
+    boolean hasUnreadMessages = false;
+
+    for (Message message : Globals.currentUser.getMessages()) {
+      if (!message.isRead()) {
+        hasUnreadMessages = true;
+        break;  //If one unread message is discovered, leave early
+      }
+    }
+    return hasUnreadMessages;
   }
 }
 

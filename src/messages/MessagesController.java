@@ -35,17 +35,15 @@ public class MessagesController {
 
   @FXML
   void onSendPressed(ActionEvent event) {
-    //if (recipient.getValue() == null)
-    //Todo provide feedback
-    //else if (message.getText().isEmpty())
-    //Todo provide feedback
-    System.out.println(this.message.getText());
-    System.out.println(recipient.getValue());
-    System.out.println(Globals.currentUser.getUsername());
+    if (recipient.getValue() == null) {
+      return;
+    } else if (message.getText().isEmpty()) {
+      return;
+    }
 
     Message message = new Message(this.message.getText(), recipient.getValue(),
         Globals.currentUser.getUsername());
-    //message.sendMessage();
+    message.sendMessage();
 
     Globals.closeScene(root);
   }
@@ -55,7 +53,7 @@ public class MessagesController {
     //Todo get list of usernames (excluding current user), sort and add to recipients
     recipient
         .setItems(FXCollections.observableArrayList("default", "Sample user 1", "Sample user 2",
-        "Sample user 3", "Sample user 4", "Sample user 5", "Sample user 6", "Sample user 7",
-        "Sample user 8", "Sample user 9", "Sample user 10"));
+            "Sample user 3", "Sample user 4", "Sample user 5", "Sample user 6", "Sample user 7",
+            "Sample user 8", "Sample user 9", "Sample user 10"));
   }
 }
