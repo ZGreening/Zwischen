@@ -54,6 +54,9 @@ public class NotificationController {
         //Hide unread message indicator
         Circle circle = (Circle) gridPane.getChildren().get(0);
         circle.setVisible(false);
+
+        //Uncheck checkbox
+        checkBox.setSelected(false);
       }
     }
   }

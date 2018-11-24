@@ -95,24 +95,37 @@ public class Message implements Serializable, Comparable {
   }
 
   /**
-   * Stores a message object via serialization into a users message folder. Assumes that the
-   * recipient already has a folder with a messages folder inside.
+   * Creates a message file path to the recipients messages folder. Ensures that the filepath is
+   * unique, and calls writeFile to write a message file.
    */
   public void sendMessage() {
     Path path1 = Paths.get("lib/UserData/" + recipient + "/messages");
-    File[] file = new File(path1.toString()).listFiles();
-    int numberOfMessages = 0;
+    File[] files = new File(path1.toString()).listFiles();
 
-    if (file != null) {
-      numberOfMessages = file.length;
+    int iii = 1; //Number of the file to check
+    String fileName = "Message" + iii + ".message"; //First file name
+    boolean validNameFound = false;
+
+    //Loop until valid file name found
+    while (!validNameFound) {
+      validNameFound = true;
+
+      for (File file : files) {
+        //Check if filename exists
+        if (fileName.equals(file.getName())) {
+          iii++; //increment file number
+          fileName = "Message" + iii + ".message"; //create next file name
+          validNameFound = false;
+          break; //Loop through files again to make sure the new name was not already passed
+        }
+      }
     }
 
-    Path path2 = Paths.get("Message" + (numberOfMessages + 1) + ".message");
-
-    Path newMessagePath = path1.resolve(path2);
+    //Create filename path
+    Path path2 = Paths.get(fileName);
 
     //Save relative path to message as string
-    path = newMessagePath.toString();
+    path = path1.resolve(path2).toString();
 
     //Write the file stream to user messages folder
     writeFile();
