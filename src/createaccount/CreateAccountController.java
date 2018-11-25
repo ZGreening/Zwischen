@@ -65,10 +65,12 @@ public class CreateAccountController {
         StandardCopyOption.COPY_ATTRIBUTES
     };
 
+    //If an image file path was not loaded, use default avatar.png
     if (file == null) {
       file = new File("lib/UserData/default/avatar.png");
     }
 
+    //Copy image to users folder
     try {
       Files.copy(Paths.get(file.getAbsolutePath()),
           Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + "/avatar.png"),
@@ -84,6 +86,8 @@ public class CreateAccountController {
       Path path1 = Paths.get("lib/UserData/" + Globals.currentUser.getUsername());
       Path path2 = Paths.get("messages");
       Path userMessagesPath = path1.resolve(path2);
+
+      //Create user folder and user messages folder
       Files.createDirectory(path1);
       Files.createDirectory(userMessagesPath);
     } catch (IOException exception) {
