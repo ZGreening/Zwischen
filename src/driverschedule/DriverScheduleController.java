@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        MessageScreenController.java
+// File:        DriverScheduleController.java
 // Group:       3
-// Date:        October 24, 2018
-// Description: Controller class for message screen
+// Date:        October 22, 2018
+// Description: Controller Class for the ride schedule window
 ///////////////////////////////////////////////////////////////////////////////
 
-package messagescreen;
+package driverschedule;
 
 
-public class MessageScreenController {
+public class DriverScheduleController {
 
 }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        RideHistoryScreenController.java
+// File:        RideHistoryController.java
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for ride history screen
@@ -14,7 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class RideHistoryScreenController {
+public class RideHistoryController {
 
   @FXML
   private ResourceBundle resources;

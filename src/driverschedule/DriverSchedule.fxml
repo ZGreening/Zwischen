@@ -14,7 +14,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
   minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="963.0"
   xmlns="http://javafx.com/javafx/8.0.171"
-  fx:controller="driverweeklyschedule.DriverWeeklyScheduleController">
+  fx:controller="driverschedule.DriverScheduleController">
   <AnchorPane style="-fx-background-color: #31c5d8;" prefHeight="682.0" prefWidth="224.0">
     <Button layoutX="75.0" layoutY="438.0" mnemonicParsing="false" onAction="#pressMainMenu"
       text="Main Menu"/>

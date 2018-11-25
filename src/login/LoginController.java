@@ -6,7 +6,7 @@
 // Description: Controller class for login window
 ///////////////////////////////////////////////////////////////////////////////
 
-package loginpage;
+package login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,6 +43,10 @@ public class LoginController {
       feedbackLabel.setText("UserName is Empty");
       return;
     }
+
+    //Load userdata
+    Globals.currentUser.setUsername("default");
+    Globals.currentUser.loadMessages();
 
     Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
