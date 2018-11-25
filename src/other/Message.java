@@ -66,13 +66,21 @@ public class Message implements Serializable, Comparable {
     }
   }
 
+  /**
+   * A method to delete the associated message file of this class. The class attribute path must not
+   * be null.
+   */
   public void deleteFile() {
     if (path == null) {
       return;
     }
 
     File file = new File(path);
-    file.delete();
+    boolean successful = file.delete();
+
+    if (!successful) {
+      System.out.println("Unable to delete file at path: " + path);
+    }
   }
 
   public boolean isRead() {
