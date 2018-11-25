@@ -66,6 +66,15 @@ public class Message implements Serializable, Comparable {
     }
   }
 
+  public void deleteFile() {
+    if (path == null) {
+      return;
+    }
+
+    File file = new File(path);
+    file.delete();
+  }
+
   public boolean isRead() {
     return read;
   }

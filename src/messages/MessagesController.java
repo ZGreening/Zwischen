@@ -28,6 +28,10 @@ public class MessagesController {
   @FXML
   private AnchorPane root;
 
+  public ComboBox<String> getRecipient() {
+    return recipient;
+  }
+
   @FXML
   void onCancelPressed(ActionEvent event) {
     Globals.closeScene(root);

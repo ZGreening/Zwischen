@@ -15,6 +15,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -70,7 +73,40 @@ public class NotificationsController {
 
   @FXML
   void onDeletePressed(ActionEvent event) {
-    //Todo add functionality, make sure to rename message files so that files will not be overwritten
+    ArrayList<Message> messages = Globals.currentUser.getMessages();
+    ArrayList<Message> deleted = new ArrayList<>();
+    boolean firstTime = true;
+
+    for (GridPane gridPane : messageDisplays) {
+      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(4);
+      if (checkBox.isSelected()) {
+        if (firstTime) {
+          firstTime = false;
+
+          //Prompt confirmation dialog first time
+          Alert alert = new Alert(AlertType.CONFIRMATION,
+              "Do you really want to delete?\nThis cannot be undone.", ButtonType.OK,
+              ButtonType.CANCEL);
+          alert.showAndWait();
+
+          //If the user does not want to delete, return early
+          if (alert.getResult() != ButtonType.OK) {
+            return;
+          }
+        }
+
+        //Delete message
+        Message message = messages.get(messageDisplays.indexOf(gridPane));
+        message.deleteFile();
+        deleted.add(message);
+        messageOutput.getChildren().remove(gridPane);
+      }
+    }
+
+    //Delete messages from currentUsers messages attribute
+    for (Message message : deleted) {
+      messages.remove(message);
+    }
   }
 
   @FXML
@@ -112,6 +148,27 @@ public class NotificationsController {
     for (GridPane gridPane : messageDisplays) {
       CheckBox checkBox = (CheckBox) gridPane.getChildren().get(4);
       checkBox.setSelected(true);
+    }
+  }
+
+  @FXML
+  void onMarkAsUnreadPressed(ActionEvent event) {
+    ArrayList<Message> messages = Globals.currentUser.getMessages();
+
+    for (GridPane gridPane : messageDisplays) {
+      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(4);
+      if (checkBox.isSelected()) {
+        Message message = messages.get(messageDisplays.indexOf(gridPane));
+        message.setRead(false);
+        message.writeFile();  //Rewrite the file so it contains the new value
+
+        //Show unread message indicator
+        Circle circle = (Circle) gridPane.getChildren().get(0);
+        circle.setVisible(true);
+
+        //Uncheck checkbox
+        checkBox.setSelected(false);
+      }
     }
   }
 
@@ -176,7 +233,11 @@ public class NotificationsController {
       gridPane.add(sender, 2, 0);
       gridPane.add(messageLabel, 3, 0);
       gridPane.add(checkBox, 4, 0);
-      gridPane.setStyle("-fx-background-color: lightgrey");
+
+      //Set color for mouse hover
+      gridPane.setStyle("-fx-background-color: silver");
+      gridPane.setOnMouseEntered(e -> gridPane.setStyle("-fx-background-color: lightgrey"));
+      gridPane.setOnMouseExited(e -> gridPane.setStyle("-fx-background-color: silver"));
 
       //Set ability to read individual message in messageView by clicking on it
       gridPane.setOnMouseClicked(e -> openMessageView(message));
