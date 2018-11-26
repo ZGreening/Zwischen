@@ -96,7 +96,6 @@ public class LoginController {
       feedbackLabel.setText("Password must be more than 5 characters");
     }
     else {
-      //SELECT * FROM LOGIN WHERE USERNAME = '" + username + "' AND PASSWORD = '" + password + "'"
       //does user exist?
       checkLogin(localuser, localpass);
       Globals.currentUser.setUsername(localuser);
