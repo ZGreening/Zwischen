@@ -99,6 +99,7 @@ public class LoginController {
       //SELECT * FROM LOGIN WHERE USERNAME = '" + username + "' AND PASSWORD = '" + password + "'"
       //does user exist?
       checkLogin(localuser, localpass);
+      Globals.currentUser.setUsername(localuser);
 
       //if user exists enter program
       //Globals.changeScene("mainscreen/MainScreen.fxml", root);

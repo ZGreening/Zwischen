@@ -8,18 +8,13 @@
 
 package createaccount;
 
-import static other.Globals.createConnection;
-import static other.Globals.stmt;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +27,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
+
+import static other.Globals.createConnection;
+import static other.Globals.stmt;
+import static other.Globals.stmt1;
 
 public class CreateAccountController {
 
@@ -155,7 +154,7 @@ public class CreateAccountController {
       Globals.currentUser.setPhoneNum(phoneNumText);
 
       //Sees if db is connected
-      //Globals.createConnection();
+     // Globals.createConnection();
 
       //Saves user image
       saveUserImage();

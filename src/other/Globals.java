@@ -29,10 +29,10 @@ public class Globals {
 
   //Global constant for the current user
   public static final User currentUser = new User();
-  private static String dbURL = "jdbc:derby:lib/ZwischenDB4";
+  private static String dbURL = "jdbc:derby:C:\\Users\\deepd\\ZwischenTest\\Zwischen\\lib\\ZwischenDB4";
   // jdbc Connection
   public static Connection conn;
-  public static Statement stmt, stmt1;
+  public static Statement stmt, stmt1, stmt2, stmt3;
   //public static ResultSet resultSet;
 
   public static void createConnection() {
@@ -40,6 +40,9 @@ public class Globals {
       conn = DriverManager.getConnection(
               dbURL, "tyler", "zwischen");
       stmt = conn.createStatement();
+      stmt1 = conn.createStatement();
+      stmt2 = conn.createStatement();
+      stmt3 = conn.createStatement();
       System.out.println("db connected");
     } catch (Exception except) {
       except.printStackTrace();
