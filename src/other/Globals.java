@@ -29,7 +29,7 @@ public class Globals {
 
   //Global constant for the current user
   public static final User currentUser = new User();
-  private static String dbURL = "jdbc:derby:C:\\Users\\deepd\\ZwischenTest\\Zwischen\\lib\\ZwischenDB4";
+  private static String dbURL = "jdbc:derby:lib/ZwischenDB4";
   // jdbc Connection
   public static Connection conn;
   public static Statement stmt, stmt1, stmt2, stmt3;
