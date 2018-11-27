@@ -15,7 +15,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -68,7 +67,7 @@ public class RideRequestController implements Initializable {
   private TableColumn<Ride, String> toColumn;
 
   @FXML
-  private TableColumn<Ride, LocalDate> dateColumn;
+  private TableColumn<Ride, Date> dateColumn;
 
   @FXML
   private TableColumn<Ride, Integer> seatsColumn;
@@ -94,11 +93,9 @@ public class RideRequestController implements Initializable {
 
         //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
         ResultSet resultSet13 = stmt13
-            .executeQuery("SELECT * FROM RIDE WHERE [TO='" + Globals.rideRequested.dest + "']AND "
-                + "[FROM='" + Globals.rideRequested.startP + "'] AND [TIME='"
-                + Globals.rideRequested.date + "'] ");
+            .executeQuery("SELECT * FROM RIDE");
         if (resultSet13.next()) {
-          //Send request notification
+          //todo Send request notification
           System.out.println("Ride Request sent");
 
         } else {
@@ -119,7 +116,7 @@ public class RideRequestController implements Initializable {
 
     ObservableList<Ride> rides = FXCollections.observableArrayList();
     for (Ride ride : rides) {
-      if (ride.checkBox.isSelected()) {
+      if (ride.getCheckBox().isSelected()) {
         //send request
         System.out.println(("request sent"));
       }
@@ -138,7 +135,7 @@ public class RideRequestController implements Initializable {
     driverColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("driver"));
     toColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("to"));
     fromColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("StartP"));
-    dateColumn.setCellValueFactory(new PropertyValueFactory<Ride, LocalDate>("date"));
+    dateColumn.setCellValueFactory(new PropertyValueFactory<Ride, Date>("date"));
     seatsColumn.setCellValueFactory(new PropertyValueFactory<Ride, Integer>("seats"));
     messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
     checkboxColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));

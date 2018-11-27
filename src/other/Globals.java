@@ -24,7 +24,6 @@ public class Globals {
   public static final User currentUser = new User();
   private static final ArrayList<User> availableDrivers = new ArrayList<>();
   //Global constant for the current user
-  public static Request rideRequested = new Request("Chuck", "Target", new Date(), "FGCU");
   public static String dbURL;
 
   public static ArrayList<User> getAvailableDrivers() {

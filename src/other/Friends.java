@@ -1,12 +1,44 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project:     Zwischen
+// File:        Friends.java
+// Group:       3
+// Date:        November 26, 2018
+// Description: Concrete class Friends represents the link between users
+///////////////////////////////////////////////////////////////////////////////
+
 package other;
 
 import javafx.scene.control.Button;
 
 public class Friends extends User {
 
-  public String friendName;
-  public Button removeFriend;
-  public Button messsegeFriend;
+  private String friendName;
+  private Button removeFriend;
+  private Button messsegeFriend;
+
+  public String getFriendName() {
+    return friendName;
+  }
+
+  public void setFriendName(String friendName) {
+    this.friendName = friendName;
+  }
+
+  public Button getRemoveFriend() {
+    return removeFriend;
+  }
+
+  public void setRemoveFriend(Button removeFriend) {
+    this.removeFriend = removeFriend;
+  }
+
+  public Button getMesssegeFriend() {
+    return messsegeFriend;
+  }
+
+  public void setMesssegeFriend(Button messsegeFriend) {
+    this.messsegeFriend = messsegeFriend;
+  }
 
   public Friends(String friendName) {
 
