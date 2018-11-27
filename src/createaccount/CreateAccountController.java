@@ -152,7 +152,7 @@ public class CreateAccountController {
       if (Globals.resultSet.next()) {
         feedbackLabel.setText("User already exists");
       } else {
-        Globals.resultSet = Globals.statement.executeQuery(String
+        Globals.statement.executeUpdate(String
             .format("INSERT INTO LOGIN VALUES('%s','%s','%s','%s','%s')", username, password, email,
                 phoneNum, folderName));
         Globals.currentUser.loginUser(username, email, phoneNum, folderName);
