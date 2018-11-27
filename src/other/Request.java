@@ -1,9 +1,9 @@
 package other;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Request {
+
   public String rider;
   public String dest;
   public Date date;

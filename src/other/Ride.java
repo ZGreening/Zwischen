@@ -1,8 +1,8 @@
 package other;
-import java.time.LocalDate;
+
 import java.util.Date;
-import javafx.event.ActionEvent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 
 public class Ride {
 
