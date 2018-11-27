@@ -8,6 +8,7 @@
 
 package messages;
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,8 +55,9 @@ public class MessagesController {
 
   @FXML
   void initialize() {
-    //Todo get list of usernames (excluding current user), sort and add to recipients
-    recipient
-        .setItems(FXCollections.observableArrayList("default"));
+    ArrayList<String> usernames = Globals.getAllUsernames();
+    usernames
+        .remove(Globals.currentUser.getUsername());    //So you cannot send a message to yourself
+    recipient.setItems(FXCollections.observableArrayList(usernames));
   }
 }

@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -118,6 +119,29 @@ public class Globals {
   public static void closeScene(Node root) {
     Stage stage = (Stage) root.getScene().getWindow();
     stage.close();
+  }
+
+  public static ArrayList<String> getAllUsernames() {
+    initializeDatabase();
+    ArrayList<String> usernames = new ArrayList<>();
+
+    try {
+      resultSet = statement.executeQuery("SELECT USERNAME FROM LOGIN");
+
+      while (resultSet.next()) {
+        usernames.add(resultSet.getString("USERNAME"));
+      }
+
+    } catch (SQLException exception) {
+      System.out.println("Unable to fetch all username");
+    } finally {
+      shutdownDatabase();
+    }
+
+    System.out.println(usernames.size());
+    Collections.sort(usernames);
+
+    return usernames;
   }
 
   /**
