@@ -84,7 +84,7 @@ public class MainScreenController {
 
   @FXML
   void onViewFriendsListPressed(ActionEvent event) {
-    Globals.changeScene("friendslist/friendslist.fxml");
+    Globals.changeScene("friendslist/FriendList.fxml");
   }
 
   @FXML

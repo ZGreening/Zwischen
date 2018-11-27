@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
@@ -52,21 +51,18 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="610.0">
                      <children>
-                        <HBox layoutX="14.0" layoutY="53.0" prefHeight="86.0" prefWidth="574.0">
-                           <children>
-                              <TableView fx:id="availableDriversTableview" prefHeight="148.0" prefWidth="575.0">
-                                <columns>
-                                  <TableColumn fx:id="driverColumn" prefWidth="105.59997940063477" text="Driver" />
-                                    <TableColumn prefWidth="69.5999755859375" text="Rider" />
-                                  <TableColumn fx:id="fromColumn" prefWidth="78.39996337890625" text="from" />
-                                    <TableColumn fx:id="toColumn" prefWidth="74.39994812011719" text="to" />
-                                    <TableColumn fx:id="dateColumn" prefWidth="96.7999267578125" text="Date/TIme" />
-                                    <TableColumn fx:id="messageColumn" prefWidth="60.79998779296875" text="Message" />
-                                    <TableColumn fx:id="seatsColumn" prefWidth="71.20001220703125" text="delete" />
-                                </columns>
-                              </TableView>
-                           </children>
-                        </HBox>
+                        <TableView fx:id="availableDriversTableview" prefHeight="311.0" prefWidth="575.0">
+                          <columns>
+                            <TableColumn fx:id="driverColumn" prefWidth="105.59997940063477" text="Driver" />
+                              <TableColumn prefWidth="69.5999755859375" text="Rider" />
+                            <TableColumn fx:id="fromColumn" prefWidth="78.39996337890625" text="from" />
+                              <TableColumn fx:id="toColumn" prefWidth="74.39994812011719" text="to" />
+                              <TableColumn fx:id="dateColumn" prefWidth="96.7999267578125" text="Date/TIme" />
+                              <TableColumn fx:id="messegeColumn" prefWidth="60.79998779296875" text="Messege" />
+                              <TableColumn fx:id="seatsColumn" prefWidth="71.20001220703125" text="delete" />
+                              <TableColumn fx:id="checkboxColumn" prefWidth="88.800048828125" text="Checkbox" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
               </content>
