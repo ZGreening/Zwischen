@@ -40,10 +40,7 @@ public class Main extends Application {
     Globals.getAvailableDrivers().add(temp3);
 
     //Todo ReWork driverWeeklyScedule Page
-    //Todo ReWork edit Account Page
     //Todo ReWork friendslist page
-    //Todo ReWork messageScreen page
-    //Todo ReWork notifications page
     //Todo ReWork ridehistory page
   }
 }

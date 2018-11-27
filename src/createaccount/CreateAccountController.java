@@ -147,13 +147,13 @@ public class CreateAccountController {
     String folderName = generateUniqueFolderName(username);
 
     try {
-      Globals.statement = Globals.getConnection()
-          .prepareStatement(("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) "
-              + "VALUES('" + username + "','" + password + "','" + email + "','" + phoneNum + "','"
-              + folderName + "')"));
-
       Globals.resultSet = Globals.statement
           .executeQuery("SELECT * FROM LOGIN WHERE USERNAME='" + username + "'");
+
+      Globals.statement = Globals.getConnection()
+          .prepareStatement(
+              ("INSERT INTO LOGIN VALUES('" + username + "','" + password + "','" + email + "','"
+                  + phoneNum + "','" + folderName + "')"));
 
       if (Globals.resultSet.next()) {
         feedbackLabel.setText("User already exists");
@@ -163,9 +163,11 @@ public class CreateAccountController {
         Globals.currentUser.loginUser(username, email, phoneNum, folderName);
         createUserFolder();
         saveUserImage();
+        Globals.changeScene("mainscreen/MainScreen.fxml", root);
       }
     } catch (SQLException exception) {
       System.out.println("Unable to create new user: " + username);
+      exception.printStackTrace();
     } finally {
       Globals.shutdownDatabase();
     }

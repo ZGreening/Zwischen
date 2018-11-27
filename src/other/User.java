@@ -36,7 +36,7 @@ public class User {
    * the messages ArrayList. Messages are sorted by the date that they were created.
    */
   public void loadMessages() {
-    Path path = Paths.get("lib/UserData/" + username + "/messages");
+    Path path = Paths.get("lib/UserData/" + userFolder + "/messages");
     File file = new File(path.toString());
 
     if (file != null) {
@@ -131,15 +131,5 @@ public class User {
     this.phoneNum = phoneNum;
     this.userFolder = userFolder;
     loadMessages();
-  }
-
-  @Override
-  public String toString() {
-    return "User{"
-        + "username='" + username + '\''
-        + ", email='" + email + '\''
-        + ", phoneNum='" + phoneNum + '\''
-        + ", isSelectedToDrive=" + isSelectedToDrive
-        + '}';
   }
 }
