@@ -9,6 +9,8 @@
 package editaccount;
 
 import java.nio.file.Paths;
+import java.sql.SQLException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,71 +23,81 @@ import other.Globals;
 
 public class EditAccountController {
 
-  @FXML
-  private AnchorPane root;
+    @FXML
+    private AnchorPane root;
 
-  @FXML
-  private ImageView avatar;
+    @FXML
+    private ImageView avatar;
 
-  @FXML
-  private Label username;
+    @FXML
+    private Label username;
 
-  @FXML
-  private PasswordField password;
+    @FXML
+    private PasswordField password;
 
-  @FXML
-  private TextField phoneNum;
+    @FXML
+    private TextField phoneNum;
 
-  @FXML
-  private TextField email;
+    @FXML
+    private TextField email;
 
-  @FXML
-  private PasswordField confirmPassword;
+    @FXML
+    private PasswordField confirmPassword;
 
-  @FXML
-  private Label feedbackLabel;
+    @FXML
+    private Label feedbackLabel;
 
-  @FXML
-  void onReturnToMainScreenPressed(ActionEvent event) {
-    Globals.changeScene("mainscreen/MainScreen.fxml", root);
-  }
+    @FXML
+    void onReturnToMainScreenPressed(ActionEvent event) {
+        Globals.changeScene("mainscreen/MainScreen.fxml", root);
+    }
 
-  @FXML
-  void onUpdateAccountPressed(ActionEvent event) {
-    //Todo Add functionality
-  }
+    @FXML
+    void onUpdateAccountPressed(ActionEvent event) {
+        //Todo Add functionality
+        String newpass = password.getText();
+        String newPNumber = phoneNum.getText();
+        Globals.initializeDatabase();
+        try {
+            Globals.statement = Globals.getConnection().createStatement();
+            Globals.resultSet = Globals.statement.executeQuery("UPDATE LOGIN SET PASSWORD = 'newpass' WHERE PASSWORD = 'password'");
+        } catch (SQLException sqlExcept) {
+            System.out.println("unable to update account");
+        }
+    }
 
-  @FXML
-  void onUploadPressed(ActionEvent event) {
-    //Todo Add functionality
-  }
+        @FXML
+        void onUploadPressed (ActionEvent event){
+            //Todo Add functionality
+        }
 
-  @FXML
-  void onPhoneNumMouseClicked() {
-    phoneNum.selectAll();
-  }
+        @FXML
+        void onPhoneNumMouseClicked () {
+            phoneNum.selectAll();
+        }
 
-  @FXML
-  void onEmailMouseClicked() {
-    email.selectAll();
-  }
+        @FXML
+        void onEmailMouseClicked () {
+            email.selectAll();
+        }
 
-  @FXML
-  void initialize() {
-    //Set up image to use current user's username for image, "default" by default
-    avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png").toUri()
-            .toString()));
+        @FXML
+        void initialize () {
+            //Set up image to use current user's username for image, "default" by default
+            avatar.setImage(new Image(
+                    Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png").toUri()
+                            .toString()));
 
-    //display username
-    username.setText(Globals.currentUser.getUsername());
+            //display username
+            username.setText(Globals.currentUser.getUsername());
 
-    //Display current user's phone number
-    phoneNum.setText("(" + Globals.currentUser.getPhoneNum().substring(0, 3) + ")"
-        + Globals.currentUser.getPhoneNum().substring(3, 6) + "-"
-        + Globals.currentUser.getPhoneNum().substring(6, 10));
+            //Display current user's phone number
+            phoneNum.setText("(" + Globals.currentUser.getPhoneNum().substring(0, 3) + ")"
+                    + Globals.currentUser.getPhoneNum().substring(3, 6) + "-"
+                    + Globals.currentUser.getPhoneNum().substring(6, 10));
 
-    //Display current user's email
-    email.setText(Globals.currentUser.getEmail());
-  }
-}
+            //Display current user's email
+            email.setText(Globals.currentUser.getEmail());
+        }
+    }
+
