@@ -22,7 +22,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("loginpage/LoginPage.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("login/Login.fxml"));
 
     Scene mainScene = new Scene(root);
 
@@ -35,15 +35,15 @@ public class Main extends Application {
     User temp = new User();
     User temp2 = new User();
     User temp3 = new User();
-    Globals.availableDrivers.add(temp);
-    Globals.availableDrivers.add(temp2);
-    Globals.availableDrivers.add(temp3);
+    Globals.getAvailableDrivers().add(temp);
+    Globals.getAvailableDrivers().add(temp2);
+    Globals.getAvailableDrivers().add(temp3);
 
     //Todo ReWork driverWeeklyScedule Page
     //Todo ReWork edit Account Page
     //Todo ReWork friendslist page
     //Todo ReWork messageScreen page
-    //Todo ReWork notification page
+    //Todo ReWork notifications page
     //Todo ReWork ridehistory page
   }
 }

@@ -12,6 +12,7 @@ package other;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -19,54 +20,51 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Globals {
 
-  //FindBugs flags this, however the purpose is to leave it
-  //mutable from anywhere in code.
-  public static final ArrayList<User> availableDrivers = new ArrayList<>();
-
-  //Global constant for the current user
+  private static final ArrayList<User> availableDrivers = new ArrayList<>();
   public static final User currentUser = new User();
-  private static String dbURL = "jdbc:derby:lib/ZwischenDB4";
-  // jdbc Connection
-  public static Connection conn;
-  public static Statement stmt, stmt1, stmt2, stmt3;
-  //public static ResultSet resultSet;
+  private static final String dbURL = "jdbc:derby:lib/ZwischenDB4";
+  public static Statement statement;
+  public static ResultSet resultSet;
+  private static Connection connection;
 
-  public static void createConnection() {
+  public static Connection getConnection() {
+    return connection;
+  }
+
+  public static ArrayList<User> getAvailableDrivers() {
+    return availableDrivers;
+  }
+
+  public static void initializeDatabase() {
     try {
-      conn = DriverManager.getConnection(
-              dbURL, "tyler", "zwischen");
-      stmt = conn.createStatement();
-      stmt1 = conn.createStatement();
-      stmt2 = conn.createStatement();
-      stmt3 = conn.createStatement();
-      System.out.println("db connected");
+      connection = DriverManager.getConnection(
+          dbURL, "tyler", "zwischen");
+      statement = connection.createStatement();
     } catch (Exception except) {
-      except.printStackTrace();
       System.out.println("db failed to connect");
     }
   }
+
   /**
-   * A helper function to close the current window and open a new one.
+   * An overloaded helper function to close the current window and open a new one.
    *
-   * @param newScene The relative path to the new scene fxml file
+   * @param newScenePath The relative path to the new scene fxml file
    * @param oldSceneRoot The root of the current scene to close
    */
-  public static void changeScene(String newScene, Node oldSceneRoot) {
+  public static void changeScene(String newScenePath, Node oldSceneRoot) {
     try {
-      Stage stage = (Stage) oldSceneRoot.getScene().getWindow();
-
-      stage.close();
+      //Create new window
+      Stage stage = new Stage();
 
       Parent root = FXMLLoader.load(
-          Globals.class.getClassLoader().getResource(newScene));
+          Globals.class.getClassLoader().getResource(newScenePath));
 
       Scene scene = new Scene(root);
-
-      stage = new Stage();
 
       stage.setTitle("Zwischen");
 
@@ -74,24 +72,69 @@ public class Globals {
 
       stage.show();
 
+      //If window is opened successfully, close old window
+      stage = (Stage) oldSceneRoot.getScene().getWindow();
+
+      stage.close();
+
     } catch (IOException exception) {
-      System.out.println("Could not open window at path: " + newScene);
+      System.out.println("Failed to open window at path: " + newScenePath);
     }
   }
 
-  private static void shutdown() {
+  /**
+   * An overloaded helper function to open a new window and disable the current one while the new
+   * one is open.
+   *
+   * @param newScenePath The relative path to the new scene fxml file
+   */
+  public static void changeScene(String newScenePath) {
     try {
-      if (stmt != null) {
-        stmt.close();
-      }
-      if (conn != null) {
-        DriverManager.getConnection(dbURL + ";shutdown=true");
-        conn.close();
-      }
-    } catch (SQLException sqlExcept) {
+      Stage stage = new Stage();
 
+      Parent root = FXMLLoader.load(Globals.class.getClassLoader().getResource(newScenePath));
+
+      Scene scene = new Scene(root);
+
+      stage.setTitle("Zwischen");
+
+      stage.initModality(Modality.APPLICATION_MODAL);
+
+      stage.setScene(scene);
+
+      stage.show();
+    } catch (IOException exception) {
+      System.out.println("Failed to open window at path: " + newScenePath);
     }
+  }
 
+  /**
+   * A helper function to close a stage.
+   *
+   * @param root the root of the scene to close
+   */
+  public static void closeScene(Node root) {
+    Stage stage = (Stage) root.getScene().getWindow();
+    stage.close();
+  }
+
+  public static void shutdownDatabase() {
+    try {
+      if (statement != null) {
+        statement.close();
+      }
+      if (resultSet != null) {
+        resultSet.close();
+      }
+      if (connection != null) {
+        DriverManager.getConnection(dbURL + ";shutdown=true");
+        connection.close();
+      }
+
+    } catch (SQLException exception) {
+      //A catch of the exception actually mean successful
+      //shutdown according to the derby documentation
+    }
   }
 }
 

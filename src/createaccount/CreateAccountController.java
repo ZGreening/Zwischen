@@ -12,9 +12,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,10 +29,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
-
-import static other.Globals.createConnection;
-import static other.Globals.stmt;
-import static other.Globals.stmt1;
 
 public class CreateAccountController {
 
@@ -64,58 +62,113 @@ public class CreateAccountController {
    * Saves a user image to the lib/UserData folder. Username must be unique, otherwise the file will
    * not save.
    */
-
-  public static Connection conn;
-  private static String dbURL = "jdbc:C:\\Users\\deepd\\IdeaProjects\\Zwischen\\lib\\ZwischenDB4";
   private void saveUserImage() {
     CopyOption[] copyOptions = new CopyOption[]{
         StandardCopyOption.COPY_ATTRIBUTES
     };
 
-    if (file != null) {
-      try {
-        Files.copy(Paths.get(file.getAbsolutePath()),
-            Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + ".png"), copyOptions);
-      } catch (IOException exception) {
-        System.out.println("Unable to save image\n" + Globals.currentUser.getUsername()
-            + ".png may already exist");
-      }
+    //If an image file path was not loaded, use default avatar.png
+    if (file == null) {
+      file = new File("lib/UserData/default/avatar.png");
+    }
+
+    //Copy image to users folder
+    try {
+      Files.copy(Paths.get(file.getAbsolutePath()),
+          Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png"),
+          copyOptions);
+    } catch (IOException exception) {
+      System.out.println("Unable to save image\n" + Globals.currentUser.getUserFolder()
+          + "/avatar.png may already exist");
     }
   }
 
-  //database is working functionally and function works
-  private void storeNewAccount(String username, String password, String email, String phoneNum) {
-      //todo add database code
-      createConnection();
-      try {
-          String usermatch = "";
-          System.out.println("running");
-          //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-          ResultSet resultSet = stmt.executeQuery("SELECT * FROM LOGIN WHERE USERNAME='"+ username+"'" );
-          if(resultSet.next()) {
-              System.out.println("user found");
-              feedbackLabel.setText("Invalid Login Credentials");
-              System.out.println("username already exists");
-          } else {
-              System.out.println("user not found");
-              System.out.println("username didnt exist");
-              stmt.execute("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) " +
-                      "VALUES ('" + username + "','" + password + "','" + email + "','" + phoneNum + "')");
-              Globals.changeScene("loginpage/LoginPage.fxml", root);
-          }
+  private void createUserFolder() {
+    try {
+      Path path1 = Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder());
+      Path path2 = Paths.get("messages");
+      Path userMessagesPath = path1.resolve(path2);
 
-      } catch (SQLException sqlExcept) {
-          sqlExcept.printStackTrace();
-          System.out.println("something went wrong");
-      } finally {
-          if (stmt != null) {
-              try {
-                  stmt.close();
-              } catch (SQLException ex) {
-                  System.out.println("Could not close query");
-              }
-          }
+      //Create user folder and user messages folder
+      Files.createDirectory(path1);
+      Files.createDirectory(userMessagesPath);
+    } catch (IOException exception) {
+      System.out.println("Unable to create user directory");
+    }
+  }
+
+  /**
+   * Generates a unique user foldername. Folder name will be the same as the username in all lower
+   * case. If a folder already exists with the users username, then a number will be appended to the
+   * foldername.
+   *
+   * @param username the username to generate a folder name for
+   * @return the folder name as a string
+   */
+  private String generateUniqueFolderName(String username) {
+    File file = new File("lib/UserData");
+    File[] files = file.listFiles();
+    boolean uniqueNameFound = false;
+    String uniqueName = username.toLowerCase();
+    int iii = 1;
+
+    while (!uniqueNameFound) {
+      uniqueNameFound = true;
+
+      if (iii > 1) {
+        uniqueName = username.toLowerCase() + iii;
       }
+
+      for (File file1 : files) {
+        if (file1.getName().toLowerCase().equals(uniqueName)) {
+          uniqueNameFound = false;
+          iii++;
+          break;
+        }
+      }
+    }
+
+    return uniqueName;
+  }
+
+  /**
+   * A function to store a new user account to the database. The function gets a unique foldername,
+   * creates the user folders and saves the user image. It then logs in as the user. **Must have a
+   * unique username**
+   *
+   * @param username new user's username
+   * @param password new user's password
+   * @param email new user's email
+   * @param phoneNum new user's phone number
+   */
+  private void storeAccountAndLogin(String username, String password, String email,
+      String phoneNum) {
+    Globals.initializeDatabase();
+    String folderName = generateUniqueFolderName(username);
+
+    try {
+      Globals.statement = Globals.getConnection()
+          .prepareStatement(("INSERT INTO LOGIN(USERNAME, PASSWORD, EMAIL, PNUMBER) "
+              + "VALUES('" + username + "','" + password + "','" + email + "','" + phoneNum + "','"
+              + folderName + "')"));
+
+      Globals.resultSet = Globals.statement
+          .executeQuery("SELECT * FROM LOGIN WHERE USERNAME='" + username + "'");
+
+      if (Globals.resultSet.next()) {
+        feedbackLabel.setText("User already exists");
+      } else {
+        PreparedStatement statement = (PreparedStatement) Globals.statement;
+        statement.executeUpdate();
+        Globals.currentUser.loginUser(username, email, phoneNum, folderName);
+        createUserFolder();
+        saveUserImage();
+      }
+    } catch (SQLException exception) {
+      System.out.println("Unable to create new user: " + username);
+    } finally {
+      Globals.shutdownDatabase();
+    }
   }
 
   @FXML
@@ -148,28 +201,23 @@ public class CreateAccountController {
         || phoneNumText.matches("[0-9]{10}"))) {
       feedbackLabel.setText("Incorrect phone number format");
     } else {
-      //Set the current user's info
-      Globals.currentUser.setUsername(usernameText);
-      Globals.currentUser.setEmail(emailText);
-      Globals.currentUser.setPhoneNum(phoneNumText);
 
-      //Sees if db is connected
-     // Globals.createConnection();
+      //if phone number was entered with parenthesis or dashes, format to a number only string
+      if (phoneNumText.matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")) {
+        phoneNumText =
+            phoneNumText.substring(1, 4) + phoneNumText.substring(5, 8) + phoneNumText.substring(9);
+      } else if (phoneNumText.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")) {
+        phoneNumText =
+            phoneNumText.substring(0, 3) + phoneNumText.substring(4, 7) + phoneNumText.substring(8);
+      }
 
-      //Saves user image
-      saveUserImage();
-
-      //Add account to database
-      storeNewAccount(usernameText, passwordText, emailText, phoneNumText);
-
-      //If none of the issues above, change screens
-      //Globals.changeScene("loginpage/LoginPage.fxml", root);
+      storeAccountAndLogin(usernameText, passwordText, emailText, phoneNumText);
     }
   }
 
   @FXML
   void onReturnToLoginPressed(ActionEvent event) {
-    Globals.changeScene("loginpage/LoginPage.fxml", root);
+    Globals.changeScene("login/Login.fxml", root);
   }
 
   @FXML
@@ -199,7 +247,7 @@ public class CreateAccountController {
   void initialize() {
     //Set up image to use current user's username for image, "default" by default
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.currentUser.getUsername()).toUri().toString()
-            + ".png"));
+        Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder()).toUri().toString()
+            + "/avatar.png"));
   }
 }
