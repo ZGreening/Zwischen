@@ -164,8 +164,7 @@ public class RideRequestController implements Initializable {
 
 
       //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-      ResultSet resultSet12 = stmt12.executeQuery("SELECT * FROM RIDE WHERE [TO='"+ Globals.rideRequested.dest+"']AND "
-          + "[FROM='"+Globals.rideRequested.startP+"'] AND [TIME='"+Globals.rideRequested.date+"'] " );
+      ResultSet resultSet12 = stmt12.executeQuery("SELECT * FROM RIDE");
       if(resultSet12.next()) {
         Ride ride = new Ride(resultSet12.getString("Driver"), resultSet12.getString("TO"),
             resultSet12.getString("FROM"), resultSet12.getDate("TIME"),
