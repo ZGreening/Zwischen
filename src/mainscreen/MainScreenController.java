@@ -53,7 +53,7 @@ public class MainScreenController {
 
   @FXML
   void onLogoutPressed(ActionEvent event) {
-    Globals.currentUser.resetUser();
+    Globals.currentUser.logoutUser();
     Globals.changeScene("login/Login.fxml", root);
   }
 
@@ -90,7 +90,7 @@ public class MainScreenController {
   @FXML
   void initialize() {
     //Get username for current user
-    String currentUsername = Globals.currentUser.getUsername();
+    final String currentUsername = Globals.currentUser.getUsername();
 
     //Setup Maps in WebView
     final WebEngine engine = webViewMaps.getEngine();
@@ -98,7 +98,8 @@ public class MainScreenController {
 
     //Load current users avatar in
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + currentUsername + "/avatar.png").toUri().toString()));
+        Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png").toUri()
+            .toString()));
 
     if (hasUnreadMessages()) {
       notifications.setStyle("-fx-background-color: green;");

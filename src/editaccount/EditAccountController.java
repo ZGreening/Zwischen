@@ -52,12 +52,12 @@ public class EditAccountController {
 
   @FXML
   void onUpdateAccountPressed(ActionEvent event) {
-
+    //Todo Add functionality
   }
 
   @FXML
   void onUploadPressed(ActionEvent event) {
-
+    //Todo Add functionality
   }
 
   @FXML
@@ -74,7 +74,7 @@ public class EditAccountController {
   void initialize() {
     //Set up image to use current user's username for image, "default" by default
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.currentUser.getUsername() + "/avatar.png").toUri()
+        Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png").toUri()
             .toString()));
 
     //display username
