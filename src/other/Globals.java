@@ -40,6 +40,9 @@ public class Globals {
     return availableDrivers;
   }
 
+  /**
+   * A helper method to initialize a connection to the database.
+   */
   public static void initializeDatabase() {
     try {
       connection = DriverManager.getConnection(
@@ -118,6 +121,9 @@ public class Globals {
     stage.close();
   }
 
+  /**
+   * A helper method to shutdown connection to the database.
+   */
   public static void shutdownDatabase() {
     try {
       if (statement != null) {
