@@ -23,8 +23,9 @@ public class User {
   private String username = "default";
   private String email = "default@mydomain.org";
   private String phoneNum = "1234567890";
+  private String userFolder = "default";
   private ArrayList<Message> messages = new ArrayList<>();
-  private boolean isSelectedToDrive = false;
+  private boolean isSelectedToDrive = false;  //Todo is this still necessary?
 
   public ArrayList<Message> getMessages() {
     return messages;
@@ -35,7 +36,7 @@ public class User {
    * the messages ArrayList. Messages are sorted by the date that they were created.
    */
   public void loadMessages() {
-    Path path = Paths.get("lib/UserData/" + username + "/messages");
+    Path path = Paths.get("lib/UserData/" + userFolder + "/messages");
     File file = new File(path.toString());
 
     if (file != null) {
@@ -97,24 +98,38 @@ public class User {
     isSelectedToDrive = selectedToDrive;
   }
 
+  public String getUserFolder() {
+    return userFolder;
+  }
+
+  public void setUserFolder(String userFolder) {
+    this.userFolder = userFolder;
+  }
+
   /**
    * A helper method to reset all userdata to default on user logout.
    */
-  public void resetUser() {
+  public void logoutUser() {
     username = "default";
     email = "default@mydomain.org";
     phoneNum = "1234567890";
-    messages = new ArrayList<>();
+    messages = new ArrayList<>(); //unload messages
     isSelectedToDrive = false;
   }
 
-  @Override
-  public String toString() {
-    return "User{"
-        + "username='" + username + '\''
-        + ", email='" + email + '\''
-        + ", phoneNum='" + phoneNum + '\''
-        + ", isSelectedToDrive=" + isSelectedToDrive
-        + '}';
+  /**
+   * A helper method to set all current user data on login.
+   *
+   * @param username current user's username
+   * @param email current user's email
+   * @param phoneNum current user's phoneNum
+   * @param userFolder current user's userFolder
+   */
+  public void loginUser(String username, String email, String phoneNum, String userFolder) {
+    this.username = username;
+    this.email = email;
+    this.phoneNum = phoneNum;
+    this.userFolder = userFolder;
+    loadMessages();
   }
 }

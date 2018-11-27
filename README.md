@@ -1,4 +1,5 @@
 # Zwischen
+
 The Car Sharing Application
 
 ## Project: Zwischen
@@ -9,24 +10,32 @@ designed to help students at FGCU get around, as well as helping to reduce car e
 
 ## Installation:
 
-Clone from github
+Create a new project, clone source files from github, goto product structure and add derby.jar as dependency module.
+
+### Dependencies
+
+derby.jar
 
 ## Usage:
+
 At first use, click the create account button, and fill in the text boxes with the appropriate information.
 Once your account is created, log in, and either set your schedule by clicking the Driver Schedule button, 
 or request a ride with the Request Ride button. Over time, friends can be added,
 allowing for greater consistency of scheduling through the app.
 
+## Built With
+
+* [IntelliJ Idea](https://www.jetbrains.com/idea/) -IDE
+* [Scene Builder](https://gluonhq.com/products/scene-builder/) -FXML Editor
+* [Apache Derby](https://db.apache.org/derby/) -Database
+
 ## Credits:
-* [Zachary Greening](https://github.com/zgreening) Lead Developer
 
-* [Tyler Marlow](https://github.com/Tmarlow98) Database Programmer
-
-* [Gage Kettering](https://github.com/CluckHeads) Back End Code Developer
-
-* [Charles Taylor](https://github.com/ChuckT95) Back End Code Developer
-
-* [Brandon Davis](https://github.com/btdavis3378) Back End Code Developer
+* [Zachary Greening](https://github.com/zgreening) -Lead Developer
+* [Tyler Marlow](https://github.com/Tmarlow98) -Database Programmer
+* [Gage Kettering](https://github.com/CluckHeads) -Back End Code Developer
+* [Charles Taylor](https://github.com/ChuckT95) -Back End Code Developer
+* [Brandon Davis](https://github.com/btdavis3378) -Back End Code Developer
 
 ## License:
 

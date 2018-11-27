@@ -10,8 +10,12 @@
 package other;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,13 +25,31 @@ import javafx.stage.Stage;
 
 public class Globals {
 
-  public static final User currentUser = new User();
   private static final ArrayList<User> availableDrivers = new ArrayList<>();
-  //Global constant for the current user
-  public static String dbURL;
+  public static final User currentUser = new User();
+  private static final String dbURL = "jdbc:derby:lib/ZwischenDB";
+  public static Statement statement;
+  public static ResultSet resultSet;
+  private static Connection connection;
+
+  public static Connection getConnection() {
+    return connection;
+  }
 
   public static ArrayList<User> getAvailableDrivers() {
     return availableDrivers;
+  }
+
+  /**
+   * A helper method to initialize a connection to the database.
+   */
+  public static void initializeDatabase() {
+    try {
+      connection = DriverManager.getConnection(dbURL);
+      statement = connection.createStatement();
+    } catch (Exception except) {
+      System.out.println("db failed to connect");
+    }
   }
 
   /**
@@ -97,4 +119,27 @@ public class Globals {
     Stage stage = (Stage) root.getScene().getWindow();
     stage.close();
   }
+
+  /**
+   * A helper method to shutdown connection to the database.
+   */
+  public static void shutdownDatabase() {
+    try {
+      if (statement != null) {
+        statement.close();
+      }
+      if (resultSet != null) {
+        resultSet.close();
+      }
+      if (connection != null) {
+        DriverManager.getConnection(dbURL + ";shutdown=true");
+        connection.close();
+      }
+
+    } catch (SQLException exception) {
+      //A catch of the exception actually mean successful
+      //shutdown according to the derby documentation
+    }
+  }
 }
+

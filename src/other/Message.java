@@ -20,6 +20,7 @@ import java.util.Date;
 
 public class Message implements Serializable, Comparable {
 
+  //Todo fix recipient not user and fix directory
   private String message;
   private String recipient;
   private String sender;

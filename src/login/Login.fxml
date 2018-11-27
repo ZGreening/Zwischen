@@ -10,9 +10,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
-  minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-  fx:controller="login.LoginController" fx:id="root">
+  minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+  xmlns="http://javafx.com/javafx/8.0.171" fx:controller="login.LoginController" fx:id="root">
   <children>
     <GridPane style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0"
       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -44,9 +43,8 @@
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0"
-                      AnchorPane.leftAnchor="0.0"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" alignment="TOP_CENTER"
-                      layoutX="30.0" layoutY="6.0"
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0" alignment="TOP_CENTER" layoutX="30.0" layoutY="6.0"
                       text="Zwischen" textFill="LIGHTGRAY">
                       <font>
                         <Font name="Arial Bold" size="30.0"/>
@@ -57,10 +55,13 @@
                 <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label style="-fx-background-color: saddleBrown;" AnchorPane.bottomAnchor="0.0"
-                      AnchorPane.leftAnchor="0.0"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                      alignment="TOP_CENTER" layoutX="33.0"
-                      layoutY="9.0" text="The Car Sharing App"/>
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0" alignment="TOP_CENTER" layoutX="33.0" layoutY="9.0"
+                      text="The Car Sharing App">
+                      <font>
+                        <Font name="American Typewriter" size="18.0"/>
+                      </font>
+                    </Label>
                   </children>
                 </AnchorPane>
               </children>
@@ -87,8 +88,7 @@
                 <AnchorPane GridPane.columnSpan="2" prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-                      AnchorPane.rightAnchor="0.0"
-                      AnchorPane.topAnchor="0.0" text="Welcome">
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" text="Welcome">
                       <font>
                         <Font size="24.0"/>
                       </font>
@@ -98,24 +98,21 @@
                 <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0"
-                      text="Username:"/>
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" text="Username:"/>
                   </children>
                 </AnchorPane>
                 <AnchorPane GridPane.rowIndex="2" prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                      text="Password:"/>
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" text="Password:"/>
                   </children>
                 </AnchorPane>
                 <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1" prefHeight="200.0"
                   prefWidth="200.0">
                   <children>
                     <TextField AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                      AnchorPane.rightAnchor="10.0"
-                      AnchorPane.topAnchor="20.0" promptText="username"
-                      fx:id="username"/>
+                      AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"
+                      promptText="username" fx:id="username"/>
                   </children>
                 </AnchorPane>
                 <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2" prefHeight="200.0"
@@ -131,8 +128,7 @@
                   <children>
                     <Button AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0"
                       AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0"
-                      focusTraversable="false"
-                      mnemonicParsing="false" onAction="#onLoginPressed"
+                      focusTraversable="false" mnemonicParsing="false" onAction="#onLoginPressed"
                       text="Login"/>
                   </children>
                 </AnchorPane>
@@ -157,10 +153,8 @@
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-                      AnchorPane.rightAnchor="20.0"
-                      AnchorPane.topAnchor="0.0" alignment="TOP_CENTER"
-                      layoutX="64.0" layoutY="18.0"
-                      text="New to Car Share?">
+                      AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"
+                      alignment="TOP_CENTER" layoutX="64.0" layoutY="18.0" text="New to Car Share?">
                       <font>
                         <Font size="18.0"/>
                       </font>
@@ -170,11 +164,9 @@
                 <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Button AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0"
-                      AnchorPane.rightAnchor="0.0"
-                      AnchorPane.topAnchor="0.0" focusTraversable="false"
-                      layoutX="62.0" layoutY="1.0"
-                      mnemonicParsing="false" onAction="#onCreateAccountPressed"
-                      text="Create Account"/>
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                      focusTraversable="false" layoutX="62.0" layoutY="1.0" mnemonicParsing="false"
+                      onAction="#onCreateAccountPressed" text="Create Account"/>
                   </children>
                 </AnchorPane>
               </children>
@@ -185,9 +177,8 @@
           prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"
-              alignment="CENTER" textFill="RED"
-              wrapText="true" fx:id="feedbackLabel"/>
+              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" alignment="CENTER"
+              textFill="RED" wrapText="true" fx:id="feedbackLabel"/>
           </children>
         </AnchorPane>
       </children>
