@@ -27,7 +27,7 @@ public class Globals {
 
   private static final ArrayList<User> availableDrivers = new ArrayList<>();
   public static final User currentUser = new User();
-  private static final String dbURL = "jdbc:derby:lib/ZwischenDB4";
+  private static final String dbURL = "jdbc:derby:lib/ZwischenDB";
   public static Statement statement;
   public static ResultSet resultSet;
   private static Connection connection;
@@ -45,8 +45,7 @@ public class Globals {
    */
   public static void initializeDatabase() {
     try {
-      connection = DriverManager.getConnection(
-          dbURL, "tyler", "zwischen");
+      connection = DriverManager.getConnection(dbURL);
       statement = connection.createStatement();
     } catch (Exception except) {
       System.out.println("db failed to connect");

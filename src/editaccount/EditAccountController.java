@@ -9,6 +9,7 @@
 package editaccount;
 
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -53,6 +54,16 @@ public class EditAccountController {
   @FXML
   void onUpdateAccountPressed(ActionEvent event) {
     //Todo Add functionality
+    String newpass = password.getText();
+    String newPNumber = phoneNum.getText();
+    Globals.initializeDatabase();
+    try {
+      Globals.statement = Globals.getConnection().createStatement();
+      Globals.resultSet = Globals.statement
+          .executeQuery("UPDATE LOGIN SET PASSWORD = 'newpass' WHERE PASSWORD = 'password'");
+    } catch (SQLException sqlExcept) {
+      System.out.println("unable to update account");
+    }
   }
 
   @FXML
@@ -89,3 +100,4 @@ public class EditAccountController {
     email.setText(Globals.currentUser.getEmail());
   }
 }
+
