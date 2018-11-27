@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        RideRequestController.java
+// File:        AvailableDriversController.java
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for available drivers screen
@@ -8,61 +8,191 @@
 
 package riderequest;
 
+
+
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import other.Globals;
+import other.Ride;
 import other.User;
 
-public class RideRequestController {
 
-
-  private ArrayList<GridPane> driverPane = new ArrayList<>();
-
+public class RideRequestController implements Initializable {
   @FXML
   private AnchorPane root;
 
   @FXML
+  private Button requestAllButton;
+
+  @FXML
+  private Button requestCheckedButton;
+
+  @FXML
+  private Button ReturnHomeButton;
+
+  @FXML
   private Label feedbackLabel;
+
+  //setting up columns for tableview
+  @FXML
+  private TableView<Ride> availableDriversTableview;
+
+  @FXML
+  private TableColumn<Ride, String> driverColumn;
+
+  @FXML
+  private TableColumn<Ride,  String> fromColumn;
+
+  @FXML
+  private TableColumn<Ride,  String> toColumn;
+
+  @FXML
+  private TableColumn<Ride, LocalDate> dateColumn;
+
+  @FXML
+  private TableColumn<Ride, Integer> seatsColumn;
+
+  @FXML
+  private TableColumn<Ride, Button> messageColumn;
+
+  @FXML
+  private TableColumn<Ride, CheckBox> checkboxColumn;
+
+  @FXML
+  void onRequestAllButtonPressed(ActionEvent event) {
+    if (availableDriversTableview.getItems().size()==0){
+      feedbackLabel.setText("No Available Drivers To Select");
+    }else{
+      try {
+        Connection conn13 = DriverManager.getConnection(
+            Globals.dbURL, "zwischen", "fundamentals");
+        Statement stmt13 = conn13.createStatement();
+
+
+
+        //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+        ResultSet resultSet13 = stmt13.executeQuery("SELECT * FROM RIDE WHERE [TO='"+ Globals.rideRequested.dest+"']AND "
+            + "[FROM='"+Globals.rideRequested.startP+"'] AND [TIME='"+Globals.rideRequested.date+"'] " );
+        if(resultSet13.next()) {
+          //Send request notification
+          System.out.println("Ride Request sent");
+
+        } else {
+          feedbackLabel.setText("No Available Drivers To show");
+        }
+        stmt13.close();
+      } catch (SQLException sqlExcept) {
+        sqlExcept.printStackTrace();
+        System.out.println("something went wrong");
+      }
+
+
+    }}
+
+
+
+
+
+
+  @FXML
+  void onRequestCheckedButtonPressed(ActionEvent event) {
+
+
+    ObservableList<Ride> rides = FXCollections.observableArrayList();
+    for(Ride ride: rides){
+      if(ride.checkBox.isSelected()){
+        //send request
+        System.out.println(("request sent"));
+      }
+
+    }}
+
+  @FXML
+  void onReturnHomeButtonPressed(ActionEvent event) {
+    Globals.changeScene("mainscreen/MainScreen.fxml", root);
+  }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+
+    driverColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("driver"));
+    toColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("dest"));
+    fromColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("StartP"));
+    dateColumn.setCellValueFactory(new PropertyValueFactory<Ride, LocalDate>("date"));
+    seatsColumn.setCellValueFactory(new PropertyValueFactory<Ride, Integer>("seats"));
+    messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
+    checkboxColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));
+
+    availableDriversTableview.setItems(getRides());
+
+  }
+
+  public ObservableList<Ride> getRides() {
+
+    ObservableList<Ride> rides = FXCollections.observableArrayList();
+
+    try {
+      Connection conn12 = DriverManager.getConnection(
+          Globals.dbURL, "zwischen", "fundamentals");
+      Statement stmt12 = conn12.createStatement();
+
+
+
+      //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+      ResultSet resultSet12 = stmt12.executeQuery("SELECT * FROM RIDE WHERE [TO='"+ Globals.rideRequested.dest+"']AND "
+          + "[FROM='"+Globals.rideRequested.startP+"'] AND [TIME='"+Globals.rideRequested.date+"'] " );
+      if(resultSet12.next()) {
+        Ride ride = new Ride(resultSet12.getString("Driver"), resultSet12.getString("TO"),
+            resultSet12.getString("FROM"), resultSet12.getDate("TIME"),
+            resultSet12.getInt("SEATS_AVAILABLE"));
+        rides.add(ride);
+      } else {
+        feedbackLabel.setText("No Available Drivers To show");
+      }
+      stmt12.close();
+    } catch (SQLException sqlExcept) {
+      sqlExcept.printStackTrace();
+      System.out.println("something went wrong");
+    }
+    return rides;
+  }
+
+  private ArrayList<GridPane> driverPane = new ArrayList<>();
 
   @FXML
   private VBox scrollpaneVBox;
 
-  @FXML
-  void onCancelPressed(ActionEvent event) {
-    Globals.closeScene(root);
-  }
 
-  @FXML
-  void onDeselectAllPressed(ActionEvent event) {
-    if (driverPane.isEmpty()) {
-      feedbackLabel.setText("No Available Drivers To Select");
-    }
-    for (GridPane gridPane : driverPane) {
-      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
-      checkBox.setSelected(false);
-    }
-  }
 
-  @FXML
-  void onSelectAllPressed(ActionEvent event) {
-    if (driverPane.isEmpty()) {
-      feedbackLabel.setText("No Available Drivers To Select");
-    }
-    for (GridPane gridPane : driverPane) {
-      CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
-      checkBox.setSelected(true);
-    }
-  }
 
-  @FXML
+
+
+ /* @FXML
   void onSubmitPressed(ActionEvent event) {
     boolean atLeastOneDriver = false;
     int count = 0;
@@ -71,9 +201,9 @@ public class RideRequestController {
       CheckBox checkBox = (CheckBox) gridPane.getChildren().get(1);
       if (checkBox.isSelected()) {
         atLeastOneDriver = true;
-        Globals.getAvailableDrivers().get(count).setSelectedToDrive(true);
+        Globals.availableDrivers.get(count).setSelectedToDrive(true);
       } else {
-        Globals.getAvailableDrivers().get(count).setSelectedToDrive(false);
+        Globals.availableDrivers.get(count).setSelectedToDrive(false);
       }
       count++;
     }
@@ -84,40 +214,8 @@ public class RideRequestController {
       feedbackLabel.setText("No Drivers Selected");
     }
 
-  }
+  }*/
 
-  @FXML
-  void initialize() {
-    for (User user : Globals.getAvailableDrivers()) {
-      GridPane gridPane = new GridPane();
-
-      //Set width of grid pane so it takes up full space in parent
-      ColumnConstraints column = new ColumnConstraints();
-      column.setPercentWidth(50);
-      gridPane.getColumnConstraints().add(column);
-      gridPane.getColumnConstraints().add(column);
-
-      //Create label for driver using username
-      Label label = new Label();
-      label.setText(user.getUsername());
-      label.setFont(new Font(20));
-
-      //Create checkbox to select driver
-      CheckBox checkBox = new CheckBox();
-      checkBox.setText("Select");
-      checkBox.setFont(new Font(20));
-      checkBox.setSelected(user.isSelectedToDrive());
-      checkBox.setFocusTraversable(false);
-      GridPane.setColumnIndex(checkBox, 1);
-
-      //Add to GUI and store in driverPane ArrayList
-      gridPane.getChildren().add(label);
-      gridPane.getChildren().add(checkBox);
-      driverPane.add(gridPane);
-      scrollpaneVBox.getChildren().add(gridPane);
-    }
-
-  }
 
 }
 

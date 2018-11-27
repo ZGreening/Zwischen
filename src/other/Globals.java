@@ -11,6 +11,7 @@ package other;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -23,7 +24,9 @@ public class Globals {
   private static final ArrayList<User> availableDrivers = new ArrayList<>();
 
   //Global constant for the current user
+  public static Request rideRequested = new Request("Chuck", "Target", new Date(), "FGCU");
   public static final User currentUser = new User();
+  public static String dbURL;
 
   public static ArrayList<User> getAvailableDrivers() {
     return availableDrivers;
