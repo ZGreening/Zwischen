@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue Nov 27 09:43:38 EST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0167-55a0-27a7-0000064eb978 
+on database directory C:\Users\ctayl\OneDrive\Idea Projects\Zwischen\lib\ZwischenDB4 with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Loaded from file:/C:/Users/ctayl/OneDrive/Idea%20Projects/Zwischen/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_181-b13
+user.dir=C:\Users\ctayl\OneDrive\Idea Projects\Zwischen
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
