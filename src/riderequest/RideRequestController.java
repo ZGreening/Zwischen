@@ -158,10 +158,12 @@ public class RideRequestController implements Initializable {
       //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
       ResultSet resultSet12 = stmt12.executeQuery("SELECT * FROM RIDE");
       if (resultSet12.next()) {
-        Ride ride = new Ride(resultSet12.getString("Driver"), resultSet12.getString("GOINGTO"),
-            resultSet12.getString("COMINGFROM"), resultSet12.getDate("TIME"),
-            resultSet12.getInt("SEATS_AVAILABLE"));
-        rides.add(ride);
+        while(resultSet12.next()) {
+          Ride ride = new Ride(resultSet12.getString("Driver"), resultSet12.getString("GOINGTO"),
+              resultSet12.getString("COMINGFROM"), resultSet12.getDate("TIME"),
+              resultSet12.getInt("SEATS_AVAILABLE"));
+          rides.add(ride);
+        }
       } else {
         feedbackLabel.setText("No Available Drivers To show");
         Ride ride = new Ride("Dummy", "destination", "Start", new Date(), 3);

@@ -127,6 +127,7 @@ public class FriendListController implements Initializable {
       ResultSet resultSet19 = stmt19.executeQuery("SELECT * FROM FRIENDS WHERE [FRIEND1='" +
           Globals.currentUser + "']OR " + "[FRIEND2'" + Globals.currentUser + "']");
       if (resultSet19.next()) {
+        while(resultSet19.next()){
         if (resultSet19.getString("FRIEND1") == Globals.currentUser.getUsername()) {
           Friends friend = new Friends(resultSet19.getString("FRIEND2"));
           friends.add(friend);
@@ -134,7 +135,7 @@ public class FriendListController implements Initializable {
           Friends friend = new Friends(resultSet19.getString("FRIEND1"));
           friends.add(friend);
         }
-      } else {
+      } }else {
         feedbackLabel.setText("You have no friends");
       }
       stmt19.close();
