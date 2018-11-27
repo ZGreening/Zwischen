@@ -15,7 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -148,18 +147,14 @@ public class CreateAccountController {
 
     try {
       Globals.resultSet = Globals.statement
-          .executeQuery("SELECT * FROM LOGIN WHERE USERNAME='" + username + "'");
-
-      Globals.statement = Globals.getConnection()
-          .prepareStatement(
-              ("INSERT INTO LOGIN VALUES('" + username + "','" + password + "','" + email + "','"
-                  + phoneNum + "','" + folderName + "')"));
+          .executeQuery(String.format("SELECT * FROM LOGIN WHERE USERNAME='%s'", username));
 
       if (Globals.resultSet.next()) {
         feedbackLabel.setText("User already exists");
       } else {
-        PreparedStatement statement = (PreparedStatement) Globals.statement;
-        statement.executeUpdate();
+        Globals.resultSet = Globals.statement.executeQuery(String
+            .format("INSERT INTO LOGIN VALUES('%s','%s','%s','%s','%s')", username, password, email,
+                phoneNum, folderName));
         Globals.currentUser.loginUser(username, email, phoneNum, folderName);
         createUserFolder();
         saveUserImage();
