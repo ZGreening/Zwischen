@@ -132,6 +132,7 @@ public class DriverScheduleController {
 
   @FXML
   void initialize() {
+
     //Filling values to comboboxes
     availabilityList0.setItems(availabilityListBox);
     availabilityList1.setItems(availabilityListBox);
@@ -278,3 +279,4 @@ public class DriverScheduleController {
     this.sunday = sunday;
   }
 }
+
