@@ -30,6 +30,12 @@ public class MainScreenController {
   private WebView webViewMaps;
 
   @FXML
+  private Label notConnected;
+
+  @FXML
+  private Button retryButton;
+
+  @FXML
   private Label feedbackLabel;
 
   @FXML
@@ -43,6 +49,20 @@ public class MainScreenController {
 
   @FXML
   private Button notifications;
+
+  private void tryWebViewConnection() {
+    final WebEngine engine = webViewMaps.getEngine();
+
+    try {
+      URL url = new URL("https://www.openstreetmap.org/directions#map=13/26.4694/-81.7750");
+      URLConnection connection = url.openConnection();
+      connection.connect();
+      engine.load(url.toString());
+    } catch (IOException exception) {
+      retryButton.setVisible(true);
+      notConnected.setVisible(true);
+    }
+  }
 
   @FXML
   void onSetWeeklyDriverSchedulePressed(ActionEvent event) {
@@ -91,27 +111,23 @@ public class MainScreenController {
   }
 
   @FXML
+  void onRetryConnectionPressed(ActionEvent event) {
+    retryButton.setVisible(false);
+    notConnected.setVisible(false);
+    tryWebViewConnection();
+  }
+
+  @FXML
   void initialize() {
     //Get username for current user
     final String currentUsername = Globals.getCurrentUser().getUsername();
 
-    //Setup Maps in WebView
-    final WebEngine engine = webViewMaps.getEngine();
-    try {
-      URL url = new URL("https://www.openstreetmap.org/directions#map=13/26.4694/-81.7750");
-      URLConnection connection = url.openConnection();
-      connection.connect();
-      engine.load(url.toString());
-    } catch (IOException exception) {
-      System.out.println("not connected");
-      //todo add feedback to user
-    }
+    tryWebViewConnection();
 
     //Load current users avatar in
     avatar.setImage(new Image(
         Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png")
-            .toUri()
-            .toString()));
+            .toUri().toString()));
 
     if (hasUnreadMessages()) {
       notifications.setStyle("-fx-background-color: green;");
