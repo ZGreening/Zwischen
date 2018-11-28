@@ -73,7 +73,7 @@ public class NotificationsController {
 
   @FXML
   void onDeletePressed(ActionEvent event) {
-    ArrayList<Message> messages = Globals.currentUser.getMessages();
+    ArrayList<Message> messages = Globals.getCurrentUser().getMessages();
     ArrayList<Message> deleted = new ArrayList<>();
     boolean firstTime = true;
 
@@ -111,7 +111,7 @@ public class NotificationsController {
 
   @FXML
   void onMarkAsReadPressed(ActionEvent event) {
-    ArrayList<Message> messages = Globals.currentUser.getMessages();
+    ArrayList<Message> messages = Globals.getCurrentUser().getMessages();
 
     for (GridPane gridPane : messageDisplays) {
       CheckBox checkBox = (CheckBox) gridPane.getChildren().get(4);
@@ -153,7 +153,7 @@ public class NotificationsController {
 
   @FXML
   void onMarkAsUnreadPressed(ActionEvent event) {
-    ArrayList<Message> messages = Globals.currentUser.getMessages();
+    ArrayList<Message> messages = Globals.getCurrentUser().getMessages();
 
     for (GridPane gridPane : messageDisplays) {
       CheckBox checkBox = (CheckBox) gridPane.getChildren().get(4);
@@ -174,7 +174,7 @@ public class NotificationsController {
 
   @FXML
   void initialize() {
-    for (Message message : Globals.currentUser.getMessages()) {
+    for (Message message : Globals.getCurrentUser().getMessages()) {
       GridPane gridPane = new GridPane();
 
       //Set column spacing

@@ -69,7 +69,7 @@ public class MessageViewController {
     alert.showAndWait();
 
     if (alert.getResult() == ButtonType.OK) {
-      ArrayList<Message> messages = Globals.currentUser.getMessages();
+      ArrayList<Message> messages = Globals.getCurrentUser().getMessages();
       messages.remove(message);
       message.deleteFile();
       Globals.changeScene("notifications/Notifications.fxml", root);

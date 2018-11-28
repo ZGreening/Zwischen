@@ -47,7 +47,7 @@ public class MessagesController {
     }
 
     Message message = new Message(this.message.getText(), recipient.getValue(),
-        Globals.currentUser.getUsername());
+        Globals.getCurrentUser().getUsername());
     message.sendMessage();
 
     Globals.closeScene(root);
@@ -57,7 +57,8 @@ public class MessagesController {
   void initialize() {
     ArrayList<String> usernames = Globals.getAllUsernames();
     usernames
-        .remove(Globals.currentUser.getUsername());    //So you cannot send a message to yourself
+        .remove(
+            Globals.getCurrentUser().getUsername());    //So you cannot send a message to yourself
     recipient.setItems(FXCollections.observableArrayList(usernames));
   }
 }
