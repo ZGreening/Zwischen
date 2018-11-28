@@ -27,7 +27,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: black;" text="Available Drivers" textFill="LIGHTGRAY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: black;" text="Available Drivers" textFill="LIGHTGRAY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <font>
                 <Font name="Arial" size="24.0" />
               </font>
