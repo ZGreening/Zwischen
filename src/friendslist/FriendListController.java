@@ -82,9 +82,9 @@ public class FriendListController implements Initializable {
         Statement stmt18 = conn17.createStatement();
 
         ResultSet resultSet18 = stmt18.executeQuery("SELECT * FROM FRIENDS WHERE [[FRIEND1='" +
-            requestNameEntryText + "']AND " + "[FRIEND2'" + Globals.currentUser + "']]OR[[FRIEND1'"
+            requestNameEntryText + "']AND " + "[FRIEND2'" + Globals.getCurrentUser() + "']]OR[[FRIEND1'"
             +
-            Globals.currentUser + "']AND[FRIEND1='" + requestNameEntryText + "']");
+            Globals.getCurrentUser() + "']AND[FRIEND1='" + requestNameEntryText + "']");
 
         if (resultSet18.next()) {
 
@@ -125,13 +125,13 @@ public class FriendListController implements Initializable {
       Statement stmt19 = conn19.createStatement();
 
       ResultSet resultSet19 = stmt19.executeQuery("SELECT * FROM FRIENDS WHERE [FRIEND1='" +
-          Globals.currentUser + "']OR " + "[FRIEND2'" + Globals.currentUser + "']");
+          Globals.getCurrentUser() + "']OR " + "[FRIEND2'" + Globals.getCurrentUser().getUsername() + "']");
       if (resultSet19.next()) {
         while(resultSet19.next()){
-        if (resultSet19.getString("FRIEND1") == Globals.currentUser.getUsername()) {
+        if (resultSet19.getString("FRIEND1") == Globals.getCurrentUser().getUsername()) {
           Friends friend = new Friends(resultSet19.getString("FRIEND2"));
           friends.add(friend);
-        } else if ((resultSet19.getString("FRIEND2") == Globals.currentUser.getUsername())) {
+        } else if ((resultSet19.getString("FRIEND2") == Globals.getCurrentUser().getUsername())) {
           Friends friend = new Friends(resultSet19.getString("FRIEND1"));
           friends.add(friend);
         }
