@@ -22,7 +22,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("login/Login.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("mainscreen/MainScreen.fxml"));
 
     Scene mainScene = new Scene(root);
 
