@@ -8,6 +8,9 @@
 
 package mainscreen;
 
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Paths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -94,7 +97,15 @@ public class MainScreenController {
 
     //Setup Maps in WebView
     final WebEngine engine = webViewMaps.getEngine();
-    engine.load("https://www.openstreetmap.org/directions#map=13/26.4694/-81.7750");
+    try {
+      URL url = new URL("https://www.openstreetmap.org/directions#map=13/26.4694/-81.7750");
+      URLConnection connection = url.openConnection();
+      connection.connect();
+      engine.load(url.toString());
+    } catch (IOException exception) {
+      System.out.println("not connected");
+      //todo add feedback to user
+    }
 
     //Load current users avatar in
     avatar.setImage(new Image(

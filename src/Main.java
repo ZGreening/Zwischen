@@ -7,9 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import other.Globals;
 import other.User;
@@ -21,16 +18,8 @@ public class Main extends Application {
   }
 
   @Override
-  public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("login/Login.fxml"));
-
-    Scene mainScene = new Scene(root);
-
-    stage.setTitle("Zwischen");
-
-    stage.setScene(mainScene);
-
-    stage.show();
+  public void start(Stage stage) {
+    Globals.changeScene("login/Login.fxml");
 
     User temp = new User();
     User temp2 = new User();
@@ -38,9 +27,5 @@ public class Main extends Application {
     Globals.getAvailableDrivers().add(temp);
     Globals.getAvailableDrivers().add(temp2);
     Globals.getAvailableDrivers().add(temp3);
-
-    //Todo ReWork driverWeeklyScedule Page
-    //Todo ReWork friendslist page
-    //Todo ReWork ridehistory page
   }
 }
