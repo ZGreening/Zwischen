@@ -51,8 +51,11 @@ public class AvailableDriversController implements Initializable {
           "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM",
           "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM", "11:30 PM");
 
-  private ObservableList<String> locations = FXCollections.observableArrayList("Florida Gulf Coast University",
-          "Miromar Outlets", "Gulf Coast Town Center", "Coconut Point", "Florida SouthWestern State College");
+  private ObservableList<String> locations = FXCollections.observableArrayList("Coastal Village Apartments",
+          "Coconut Point Mall", "Florida Gulf Coast University", "Florida SouthWestern State College",
+          "Gulf Coast Town Center", "Miromar Outlets", "The Reef Apartments", "Walmart Supercenter (Estero)");
+
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -64,7 +67,7 @@ public class AvailableDriversController implements Initializable {
 
   @FXML
   void onCancelPressed(ActionEvent event) {
-    Globals.changeScene("mainscreen/MainScreen.fxml", root);
+    Globals.closeScene(root);
   }
 
 
@@ -75,15 +78,12 @@ public class AvailableDriversController implements Initializable {
   }
 
   @FXML
-  void timeComboBox(ActionEvent event) {
+  void onSearchPressed(ActionEvent event) {
 
   }
 
   @FXML
   void initialize() {
-    assert root != null : "fx:id=\"root\" was not injected: check your FXML file 'AvailableDrivers.fxml'.";
-    assert scrollpaneVBox != null : "fx:id=\"scrollpaneVBox\" was not injected: check your FXML file 'AvailableDrivers.fxml'.";
-    assert pickupComboBox != null : "fx:id=\"pickupComboBox\" was not injected: check your FXML file 'AvailableDrivers.fxml'.";
 
   }
 }
