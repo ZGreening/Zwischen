@@ -9,6 +9,8 @@
 package editaccount;
 
 import java.nio.file.Paths;
+import java.sql.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -50,9 +52,64 @@ public class EditAccountController {
     Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
 
+
+    void updateAccount (String passToUpdate, String emailToUpdate, String pNumberToUpdate) {
+
+      try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+           Statement statement = connection.createStatement();
+           ResultSet resultSet = statement.executeQuery("SELECT * FROM LOGIN")
+      ) {
+
+          if (!passToUpdate.isEmpty()) {
+              statement.executeUpdate("UPDATE LOGIN SET PASSWORD = '" + passToUpdate + "' " +
+                      "WHERE USERNAME = '" + Globals.getCurrentUser().getUsername() + "'");
+          } else {
+              feedbackLabel.setText("password not updated");
+          }
+          statement.executeUpdate("UPDATE LOGIN SET EMAIL = '" + emailToUpdate + "' " +
+                  "WHERE USERNAME = '" + Globals.getCurrentUser().getUsername() + "'");
+          statement.executeUpdate("UPDATE LOGIN SET PNUMBER = '" + pNumberToUpdate + "' " +
+                  "WHERE USERNAME = '" + Globals.getCurrentUser().getUsername() + "'");
+          feedbackLabel.setText("account updated");
+      } catch (SQLException sqlExcept) {
+          sqlExcept.printStackTrace();
+      }
+
+    }
+
   @FXML
   void onUpdateAccountPressed(ActionEvent event) {
-    //Todo Add functionality
+      //Todo Add functionality
+      String newpass = password.getText();
+      String newConfirmPass = confirmPassword.getText();
+      String newPNumber = phoneNum.getText();
+      String newEmail = email.getText();
+
+      if (!newpass.equals(newConfirmPass)) {
+          feedbackLabel.setText("Passwords do not match");
+      } else if (newEmail.isEmpty()) {
+          feedbackLabel.setText("Email is empty");
+      } else if (!newEmail
+              .matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
+          feedbackLabel.setText("Invalid Email");
+      } else if (newPNumber.isEmpty()) {
+          feedbackLabel.setText("Phone number is empty");
+      } else if (!(newPNumber.matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")
+              || newPNumber.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")
+              || newPNumber.matches("[0-9]{10}"))) {
+          feedbackLabel.setText("Incorrect phone number format");
+      } else {
+
+          //if phone number was entered with parenthesis or dashes, format to a number only string
+          if (newPNumber.matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")) {
+              newPNumber =
+                      newPNumber.substring(1, 4) + newPNumber.substring(5, 8) + newPNumber.substring(9);
+          } else if (newPNumber.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")) {
+              newPNumber =
+                      newPNumber.substring(0, 3) + newPNumber.substring(4, 7) + newPNumber.substring(8);
+          }
+          updateAccount(newpass, newEmail, newPNumber);
+      }
   }
 
   @FXML
