@@ -15,7 +15,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,17 +78,17 @@ public class CreateAccountController {
     //Copy image to users folder
     try {
       Files.copy(Paths.get(file.getAbsolutePath()),
-          Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png"),
+          Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png"),
           copyOptions);
     } catch (IOException exception) {
-      System.out.println("Unable to save image\n" + Globals.currentUser.getUserFolder()
+      System.out.println("Unable to save image\n" + Globals.getCurrentUser().getUserFolder()
           + "/avatar.png may already exist");
     }
   }
 
   private void createUserFolder() {
     try {
-      Path path1 = Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder());
+      Path path1 = Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder());
       Path path2 = Paths.get("messages");
       Path userMessagesPath = path1.resolve(path2);
 
@@ -142,29 +146,27 @@ public class CreateAccountController {
    */
   private void storeAccountAndLogin(String username, String password, String email,
       String phoneNum) {
-    Globals.initializeDatabase();
     String folderName = generateUniqueFolderName(username);
 
-    try {
-      Globals.resultSet = Globals.statement
-          .executeQuery(String.format("SELECT * FROM LOGIN WHERE USERNAME='%s'", username));
+    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement
+            .executeQuery(String.format("SELECT * FROM LOGIN WHERE USERNAME='%s'", username))) {
 
-      if (Globals.resultSet.next()) {
+      if (resultSet.next()) {
         feedbackLabel.setText("User already exists");
       } else {
-        Globals.statement.executeUpdate(String
+        statement.executeUpdate(String
             .format("INSERT INTO LOGIN VALUES('%s','%s','%s','%s','%s')", username, password, email,
                 phoneNum, folderName));
-        Globals.currentUser.loginUser(username, email, phoneNum, folderName);
+        Globals.getCurrentUser().loginUser(username, email, phoneNum, folderName);
         createUserFolder();
         saveUserImage();
         Globals.changeScene("mainscreen/MainScreen.fxml", root);
       }
+
     } catch (SQLException exception) {
       System.out.println("Unable to create new user: " + username);
-      exception.printStackTrace();
-    } finally {
-      Globals.shutdownDatabase();
     }
   }
 
@@ -244,7 +246,7 @@ public class CreateAccountController {
   void initialize() {
     //Set up image to use current user's username for image, "default" by default
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder()).toUri().toString()
+        Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder()).toUri().toString()
             + "/avatar.png"));
   }
 }

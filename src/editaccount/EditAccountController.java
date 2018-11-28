@@ -9,7 +9,6 @@
 package editaccount;
 
 import java.nio.file.Paths;
-import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -54,16 +53,6 @@ public class EditAccountController {
   @FXML
   void onUpdateAccountPressed(ActionEvent event) {
     //Todo Add functionality
-    String newpass = password.getText();
-    String newPNumber = phoneNum.getText();
-    Globals.initializeDatabase();
-    try {
-      Globals.statement = Globals.getConnection().createStatement();
-      Globals.resultSet = Globals.statement
-          .executeQuery("UPDATE LOGIN SET PASSWORD = 'newpass' WHERE PASSWORD = 'password'");
-    } catch (SQLException sqlExcept) {
-      System.out.println("unable to update account");
-    }
   }
 
   @FXML
@@ -85,19 +74,19 @@ public class EditAccountController {
   void initialize() {
     //Set up image to use current user's username for image, "default" by default
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png").toUri()
-            .toString()));
+        Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png")
+            .toUri().toString()));
 
     //display username
-    username.setText(Globals.currentUser.getUsername());
+    username.setText(Globals.getCurrentUser().getUsername());
 
     //Display current user's phone number
-    phoneNum.setText("(" + Globals.currentUser.getPhoneNum().substring(0, 3) + ")"
-        + Globals.currentUser.getPhoneNum().substring(3, 6) + "-"
-        + Globals.currentUser.getPhoneNum().substring(6, 10));
+    phoneNum.setText("(" + Globals.getCurrentUser().getPhoneNum().substring(0, 3) + ")"
+        + Globals.getCurrentUser().getPhoneNum().substring(3, 6) + "-"
+        + Globals.getCurrentUser().getPhoneNum().substring(6, 10));
 
     //Display current user's email
-    email.setText(Globals.currentUser.getEmail());
+    email.setText(Globals.getCurrentUser().getEmail());
   }
 }
 

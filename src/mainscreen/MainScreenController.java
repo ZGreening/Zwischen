@@ -53,7 +53,7 @@ public class MainScreenController {
 
   @FXML
   void onLogoutPressed(ActionEvent event) {
-    Globals.currentUser.logoutUser();
+    Globals.getCurrentUser().logoutUser();
     Globals.changeScene("login/Login.fxml", root);
   }
 
@@ -90,7 +90,7 @@ public class MainScreenController {
   @FXML
   void initialize() {
     //Get username for current user
-    final String currentUsername = Globals.currentUser.getUsername();
+    final String currentUsername = Globals.getCurrentUser().getUsername();
 
     //Setup Maps in WebView
     final WebEngine engine = webViewMaps.getEngine();
@@ -98,7 +98,8 @@ public class MainScreenController {
 
     //Load current users avatar in
     avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.currentUser.getUserFolder() + "/avatar.png").toUri()
+        Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png")
+            .toUri()
             .toString()));
 
     if (hasUnreadMessages()) {
@@ -118,7 +119,7 @@ public class MainScreenController {
   private boolean hasUnreadMessages() {
     boolean hasUnreadMessages = false;
 
-    for (Message message : Globals.currentUser.getMessages()) {
+    for (Message message : Globals.getCurrentUser().getMessages()) {
       if (!message.isRead()) {
         hasUnreadMessages = true;
         break;  //If one unread message is discovered, leave early

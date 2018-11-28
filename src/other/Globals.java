@@ -27,30 +27,14 @@ import javafx.stage.Stage;
 public class Globals {
 
   private static final ArrayList<User> availableDrivers = new ArrayList<>();
-  public static final User currentUser = new User();
-  private static final String dbURL = "jdbc:derby:lib/ZwischenDB";
-  public static Statement statement;
-  public static ResultSet resultSet;
-  private static Connection connection;
+  private static final User currentUser = new User();
 
-  public static Connection getConnection() {
-    return connection;
+  public static User getCurrentUser() {
+    return currentUser;
   }
 
   public static ArrayList<User> getAvailableDrivers() {
     return availableDrivers;
-  }
-
-  /**
-   * A helper method to initialize a connection to the database.
-   */
-  public static void initializeDatabase() {
-    try {
-      connection = DriverManager.getConnection(dbURL);
-      statement = connection.createStatement();
-    } catch (Exception except) {
-      System.out.println("db failed to connect");
-    }
   }
 
   /**
@@ -121,12 +105,17 @@ public class Globals {
     stage.close();
   }
 
+  /**
+   * Gets all usernames from the database and returns them in an string ArrayList.
+   *
+   * @return String ArrayList of usernames
+   */
   public static ArrayList<String> getAllUsernames() {
-    initializeDatabase();
     ArrayList<String> usernames = new ArrayList<>();
 
-    try {
-      resultSet = statement.executeQuery("SELECT USERNAME FROM LOGIN");
+    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT USERNAME FROM LOGIN")) {
 
       while (resultSet.next()) {
         usernames.add(resultSet.getString("USERNAME"));
@@ -134,36 +123,11 @@ public class Globals {
 
     } catch (SQLException exception) {
       System.out.println("Unable to fetch all username");
-    } finally {
-      shutdownDatabase();
     }
 
-    System.out.println(usernames.size());
     Collections.sort(usernames);
 
     return usernames;
-  }
-
-  /**
-   * A helper method to shutdown connection to the database.
-   */
-  public static void shutdownDatabase() {
-    try {
-      if (statement != null) {
-        statement.close();
-      }
-      if (resultSet != null) {
-        resultSet.close();
-      }
-      if (connection != null) {
-        DriverManager.getConnection(dbURL + ";shutdown=true");
-        connection.close();
-      }
-
-    } catch (SQLException exception) {
-      //A catch of the exception actually mean successful
-      //shutdown according to the derby documentation
-    }
   }
 }
 

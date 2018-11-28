@@ -8,7 +8,11 @@
 
 package login;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,39 +42,31 @@ public class LoginController {
   }
 
   private void checkAndLogin(String username, String password) {
-    Globals.initializeDatabase();
+    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM LOGIN")) {
 
-    try {
-      Globals.statement = Globals.getConnection().createStatement();
-      Globals.resultSet = Globals.statement.executeQuery("SELECT * FROM LOGIN");
-      boolean loggedIn = false;
-
-      while (Globals.resultSet.next()) {
+      while (resultSet.next()) {
         //Get username and password from row
-        String databaseUsername = Globals.resultSet.getString("USERNAME");
-        String databasePassword = Globals.resultSet.getString("PASSWORD");
-        String databaseEmail = Globals.resultSet.getString("EMAIL");
-        String databasePhoneNumber = Globals.resultSet.getString("PNUMBER");
-        String databaseFolder = Globals.resultSet.getString("FOLDER");
+        String databaseUsername = resultSet.getString("USERNAME");
+        String databasePassword = resultSet.getString("PASSWORD");
+        String databaseEmail = resultSet.getString("EMAIL");
+        String databasePhoneNumber = resultSet.getString("PNUMBER");
+        String databaseFolder = resultSet.getString("FOLDER");
 
         //Determine if user entered password and username match
         if ((username.equals(databaseUsername)) && (password.equals(databasePassword))) {
-          Globals.currentUser
+          Globals.getCurrentUser()
               .loginUser(databaseUsername, databaseEmail, databasePhoneNumber, databaseFolder);
           Globals.changeScene("mainscreen/MainScreen.fxml", root);
-          loggedIn = true;
-          break;
+          return;
         }
       }
 
-      if (!loggedIn) {
-        feedbackLabel.setText("Username or Password is incorrect");
-      }
+      feedbackLabel.setText("Username or Password is incorrect");
 
     } catch (SQLException sqlExcept) {
       System.out.println("Unable to check login database");
-    } finally {
-      Globals.shutdownDatabase();
     }
   }
 
