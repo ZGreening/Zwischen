@@ -10,80 +10,96 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ridehistory.RideHistoryController">
-   <children>
-      <GridPane layoutX="-6.0" layoutY="-3.0" prefHeight="407.0" prefWidth="607.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="55.600012207031256" minHeight="3.599996948242193" prefHeight="17.199987792968756" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="94.80000305175781" minHeight="0.0" prefHeight="14.999993896484362" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="322.40000610351564" minHeight="10.0" prefHeight="322.40000610351564" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <AnchorPane prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <children>
-                  <AnchorPane layoutX="-4.0" layoutY="-56.0" prefHeight="100.0" prefWidth="611.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="611.0">
-                           <children>
-                              <Label layoutX="134.0" layoutY="73.0" prefHeight="18.0" prefWidth="182.0" text="Zwischen" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="306.0" layoutY="82.0" prefHeight="18.0" prefWidth="170.0" text="Ride History" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
+  minHeight="-Infinity"
+  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1"
+  fx:controller="ridehistory.RideHistoryController"
+  fx:id="root">
+  <children>
+    <GridPane layoutX="-6.0" layoutY="-3.0" prefHeight="407.0" prefWidth="607.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="55.600012207031256" minHeight="3.599996948242193"
+          prefHeight="17.199987792968756" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="94.80000305175781" minHeight="0.0"
+          prefHeight="14.999993896484362" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="322.40000610351564" minHeight="10.0"
+          prefHeight="322.40000610351564" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <children>
+        <Label GridPane.rowIndex="4" prefHeight="18.0" prefWidth="605.0" fx:id="feedbackLabel"/>
+        <AnchorPane prefHeight="100.0" prefWidth="611.0">
+          <children>
+            <AnchorPane prefHeight="200.0" prefWidth="611.0">
+              <children>
+                <Label layoutX="316.0" layoutY="91.0" prefHeight="18.0" prefWidth="170.0"
+                  text="Ride History" textAlignment="CENTER">
+                  <font>
+                    <Font size="24.0"/>
+                  </font>
+                </Label>
+              </children>
             </AnchorPane>
-            <ScrollPane prefHeight="400.0" prefWidth="606.0" GridPane.rowIndex="2">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="610.0">
-                     <children>
-                        <TableView fx:id="availableDriversTableview" prefHeight="311.0" prefWidth="575.0">
-                          <columns>
-                            <TableColumn fx:id="driverColumn" prefWidth="105.59997940063477" text="Driver" />
-                              <TableColumn prefWidth="69.5999755859375" text="Rider" />
-                            <TableColumn fx:id="fromColumn" prefWidth="78.39996337890625" text="from" />
-                              <TableColumn fx:id="toColumn" prefWidth="74.39994812011719" text="to" />
-                              <TableColumn fx:id="dateColumn" prefWidth="96.7999267578125" text="Date/TIme" />
-                              <TableColumn fx:id="messegeColumn" prefWidth="60.79998779296875" text="Messege" />
-                              <TableColumn fx:id="seatsColumn" prefWidth="71.20001220703125" text="delete" />
-                              <TableColumn fx:id="checkboxColumn" prefWidth="88.800048828125" text="Checkbox" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-            <Label fx:id="feedbackLabel" prefHeight="18.0" prefWidth="605.0" GridPane.rowIndex="4" />
-            <GridPane prefHeight="30.0" prefWidth="600.0" GridPane.rowIndex="3">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="deleteAllButton" mnemonicParsing="false" onAction="#onDeleteAllButtonPressed" text="Delete All" />
-                  <Button fx:id="deleteCheckedButton" mnemonicParsing="false" onAction="#onDeleteCheckedButtonPressed" prefHeight="26.0" prefWidth="117.0" text="Delete Checked" GridPane.columnIndex="1" />
-                  <Button fx:id="ReturnHomeButton" mnemonicParsing="false" onAction="#onReturnHomeButtonPressed" prefHeight="26.0" prefWidth="107.0" text="Return Home" GridPane.columnIndex="2" />
-               </children>
-            </GridPane>
-         </children>
-      </GridPane>
-   </children>
+          </children>
+        </AnchorPane>
+        <GridPane GridPane.rowIndex="3" prefHeight="30.0" prefWidth="600.0">
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+          </rowConstraints>
+          <children>
+            <Button mnemonicParsing="false" onAction="#onDeleteAllButtonPressed"
+              text="Delete All" fx:id="deleteAllButton"/>
+            <Button GridPane.columnIndex="1" mnemonicParsing="false"
+              onAction="#onDeleteCheckedButtonPressed" prefHeight="26.0" prefWidth="117.0"
+              text="Delete Checked" fx:id="deleteCheckedButton"/>
+            <Button GridPane.columnIndex="2" mnemonicParsing="false"
+              onAction="#onReturnHomeButtonPressed" prefHeight="26.0" prefWidth="107.0"
+              text="Return Home" fx:id="ReturnHomeButton"/>
+          </children>
+        </GridPane>
+        <AnchorPane GridPane.rowIndex="1" prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Label layoutX="61.0" layoutY="-10.0" prefHeight="18.0" prefWidth="182.0"
+              text="Zwischen" textAlignment="CENTER">
+              <font>
+                <Font size="36.0"/>
+              </font>
+            </Label>
+          </children>
+        </AnchorPane>
+        <ScrollPane GridPane.rowIndex="2" prefHeight="400.0" prefWidth="606.0">
+          <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="610.0">
+              <children>
+                <TableView layoutX="-22.0" layoutY="-3.0" prefHeight="311.0"
+                  prefWidth="575.0" fx:id="availableDriversTableview">
+                  <columns>
+                    <TableColumn prefWidth="105.59997940063477" text="Driver" fx:id="driverColumn"/>
+                    <TableColumn prefWidth="69.5999755859375" text="Rider"/>
+                    <TableColumn prefWidth="78.39996337890625" text="from" fx:id="fromColumn"/>
+                    <TableColumn prefWidth="74.39994812011719" text="to" fx:id="toColumn"/>
+                    <TableColumn prefWidth="96.7999267578125" text="Date/TIme" fx:id="dateColumn"/>
+                    <TableColumn prefWidth="60.79998779296875" text="Messege"
+                      fx:id="messegeColumn"/>
+                    <TableColumn prefWidth="71.20001220703125" text="delete" fx:id="seatsColumn"/>
+                    <TableColumn prefWidth="88.800048828125" text="Checkbox"
+                      fx:id="checkboxColumn"/>
+                  </columns>
+                </TableView>
+              </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+      </children>
+    </GridPane>
+  </children>
 </AnchorPane>
