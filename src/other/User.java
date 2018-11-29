@@ -29,9 +29,31 @@ public class User {
   private String userFolder = "default";
   private ArrayList<Message> messages = new ArrayList<>();
   private boolean isSelectedToDrive = false;  //Todo is this still necessary?
+  private ArrayList<DailyRide> dailyRides = new ArrayList<>();
+
+
+  public ArrayList<DailyRide> getDailyRides() {
+    return dailyRides;
+  }
 
   public ArrayList<Message> getMessages() {
     return messages;
+  }
+
+  private void dailyRidesDeserialize() {
+    try{
+    File file=new File("lib/UserData/"+userFolder+"/driverSchedule");
+
+    FileInputStream fileInputStream = new FileInputStream(file);
+    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+      dailyRides = (ArrayList<DailyRide>) objectInputStream.readObject();
+    objectInputStream.close();
+    fileInputStream.close();
+    } catch (IOException exception) {
+      System.out.println("say something");
+    } catch (ClassNotFoundException exception) {
+      System.out.println("class not found");
+    }
   }
 
   /**
@@ -128,6 +150,7 @@ public class User {
     phoneNum = "1234567890";
     messages = new ArrayList<>(); //unload messages
     isSelectedToDrive = false;
+    dailyRides.clear();
   }
 
   /**
@@ -144,5 +167,6 @@ public class User {
     this.phoneNum = phoneNum;
     this.userFolder = userFolder;
     loadMessages();
+    dailyRidesDeserialize();
   }
 }
