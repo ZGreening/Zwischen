@@ -62,8 +62,7 @@ public class EditAccountController {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM LOGIN")) {
 
       if (!passToUpdate.isEmpty()) {
-        statement.executeUpdate("UPDATE LOGIN SET PASSWORD = '" + passToUpdate + "' " +
-            "WHERE USERNAME = '" + Globals.getCurrentUser().getUsername() + "'");
+        statement.executeUpdate(String.format("UPDATE LOGIN SET PASSWORD = '%s' WHERE USERNAME = '%s'", passToUpdate, Globals.getCurrentUser().getUsername()));
       } else {
         feedbackLabel.setText("Password not updated");
       }
@@ -88,6 +87,10 @@ public class EditAccountController {
 
     if (!newpass.equals(newConfirmPass)) {
       feedbackLabel.setText("Passwords do not match");
+    } else if (newpass.length() < 5) {
+      feedbackLabel.setText("password must be atleast 5 characters long");
+    } else if (newConfirmPass.length() < 5) {
+      feedbackLabel.setText("confirm password must be atleast 5 characters long");
     } else if (newEmail.isEmpty()) {
       feedbackLabel.setText("Email is empty");
     } else if (!newEmail
