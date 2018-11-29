@@ -9,14 +9,10 @@
 
 package other;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -41,14 +37,13 @@ public class User {
     return messages;
   }
 
-  //todo Add function here to deserialize (Brandon)
   private void dailyRidesDeserialize() {
     try{
     File file=new File("lib/UserData/"+userFolder+"/driverSchedule");
 
     FileInputStream fileInputStream = new FileInputStream(file);
     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-    ArrayList<DailyRide> dailyRides = (ArrayList<DailyRide>) objectInputStream.readObject();
+      dailyRides = (ArrayList<DailyRide>) objectInputStream.readObject();
     objectInputStream.close();
     fileInputStream.close();
     } catch (IOException exception) {
