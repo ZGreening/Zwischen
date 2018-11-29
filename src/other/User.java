@@ -13,8 +13,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -92,24 +95,13 @@ public class User {
     return username;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
 
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
   public String getPhoneNum() {
     return phoneNum;
-  }
-
-  public void setPhoneNum(String phoneNum) {
-    this.phoneNum = phoneNum;
   }
 
   public boolean isSelectedToDrive() {
@@ -124,8 +116,29 @@ public class User {
     return userFolder;
   }
 
-  public void setUserFolder(String userFolder) {
-    this.userFolder = userFolder;
+  /**
+   * Saves a user image to the lib/UserData folder. Username must be unique, otherwise the file will
+   * not save.
+   */
+  public void saveUserImage(File file) {
+    CopyOption[] copyOptions = new CopyOption[]{
+        StandardCopyOption.COPY_ATTRIBUTES
+    };
+
+    //If an image file path was not loaded, use default avatar.png
+    if (file == null) {
+      file = new File("lib/UserData/default/avatar.png");
+    }
+
+    //Copy image to users folder
+    try {
+      Files.copy(Paths.get(file.getAbsolutePath()),
+          Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png"),
+          copyOptions);
+    } catch (IOException exception) {
+      System.out.println("Unable to save image\n" + Globals.getCurrentUser().getUserFolder()
+          + "/avatar.png may already exist");
+    }
   }
 
   /**
