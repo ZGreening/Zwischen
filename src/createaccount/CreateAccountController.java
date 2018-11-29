@@ -201,14 +201,7 @@ public class CreateAccountController {
       feedbackLabel.setText("Incorrect phone number format");
     } else {
 
-      //if phone number was entered with parenthesis or dashes, format to a number only string
-      if (phoneNumText.matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")) {
-        phoneNumText =
-            phoneNumText.substring(1, 4) + phoneNumText.substring(5, 8) + phoneNumText.substring(9);
-      } else if (phoneNumText.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")) {
-        phoneNumText =
-            phoneNumText.substring(0, 3) + phoneNumText.substring(4, 7) + phoneNumText.substring(8);
-      }
+      phoneNumText = Globals.formatPhoneNum(phoneNumText);
 
       storeAccountAndLogin(usernameText, passwordText, emailText, phoneNumText);
     }

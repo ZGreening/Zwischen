@@ -22,25 +22,6 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("login/Login.fxml"));
-
-    Scene mainScene = new Scene(root);
-
-    stage.setTitle("Zwischen");
-
-    stage.setScene(mainScene);
-
-    stage.show();
-
-    User temp = new User();
-    User temp2 = new User();
-    User temp3 = new User();
-    Globals.getAvailableDrivers().add(temp);
-    Globals.getAvailableDrivers().add(temp2);
-    Globals.getAvailableDrivers().add(temp3);
-
-    //Todo ReWork driverWeeklyScedule Page
-    //Todo ReWork friendslist page
-    //Todo ReWork ridehistory page
+    Globals.changeScene("login/Login.fxml");
   }
 }

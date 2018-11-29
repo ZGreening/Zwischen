@@ -38,6 +38,29 @@ public class Globals {
   }
 
   /**
+   * A function that takes a phone number and formats it into a string without parentheses or
+   * dashes. Must be US style phone number.
+   *
+   * @param phoneNum phone number to format
+   * @return formatted phone number
+   */
+  public static String formatPhoneNum(String phoneNum) {
+    String formattedNum;
+
+    if (phoneNum.matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")) {
+      formattedNum = phoneNum.substring(1, 4) + phoneNum.substring(5, 8) + phoneNum.substring(9);
+    } else if (phoneNum.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")) {
+      formattedNum = phoneNum.substring(0, 3) + phoneNum.substring(4, 7) + phoneNum.substring(8);
+    } else if (phoneNum.matches("[0-9]{10}")) {
+      formattedNum = phoneNum;
+    } else {
+      formattedNum = ""; //Return empty string if not a recognized format
+    }
+
+    return formattedNum;
+  }
+
+  /**
    * An overloaded helper function to close the current window and open a new one.
    *
    * @param newScenePath The relative path to the new scene fxml file
