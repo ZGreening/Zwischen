@@ -77,7 +77,7 @@ public class RideRequestController implements Initializable {
 
   @FXML
   private TableColumn<Ride, CheckBox> checkboxColumn;
-  private ArrayList<GridPane> driverPane = new ArrayList<>();
+
   @FXML
   private VBox scrollpaneVBox;
 

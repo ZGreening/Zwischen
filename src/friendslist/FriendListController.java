@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import other.Friends;
 import other.Globals;
 
+
 public class FriendListController implements Initializable {
 
   @FXML
@@ -63,55 +64,55 @@ public class FriendListController implements Initializable {
   }
 
   @FXML
-  void onSendRequestPressed(ActionEvent event) {
+  void onSendRequestPressed(ActionEvent event) throws SQLException {
     String requestNameEntryText = requestNameEntry.getText();
 
     if (requestNameEntryText.isEmpty()) {
       feedbackLabel.setText("request field empty");
     } else {
-      try {
+
         Connection conn17 = DriverManager.getConnection(
             "jdbc:derby:lib/ZwischenDB");
         Statement stmt17 = conn17.createStatement();
 
-        ResultSet resultSet17 = stmt17.executeQuery("SELECT * FROM USERS WHERE USERNAME='" +
-            requestNameEntryText + "'");
+        ResultSet resultSet18;
+        try (ResultSet resultSet17 = stmt17.executeQuery(String.format("SELECT * FROM LOGIN WHERE USERNAME=%S",
+            requestNameEntryText))) {
 
-        Connection conn18 = DriverManager.getConnection(
-            "jdbc:derby:lib/ZwischenDB");
-        Statement stmt18 = conn17.createStatement();
+          Connection conn18 = DriverManager.getConnection(
+              "jdbc:derby:lib/ZwischenDB");
+          Statement stmt18 = conn18.createStatement();
 
-        ResultSet resultSet18 = stmt18.executeQuery("SELECT * FROM FRIENDS WHERE [[FRIEND1='" +
-            requestNameEntryText + "']AND " + "[FRIEND2'" + Globals.getCurrentUser() + "']]OR[[FRIEND1'"
-            +
-            Globals.getCurrentUser() + "']AND[FRIEND1='" + requestNameEntryText + "']");
+          resultSet18 = stmt18.executeQuery(String.format("SELECT * FROM FRIENDS WHERE [FRIEND1=%s]AND[FRIEND2=%S]'",
+              requestNameEntryText, Globals.getCurrentUser()));
 
-        if (resultSet18.next()) {
+          if (resultSet18.next()) {
 
-          feedbackLabel.setText("You are already friends");
-          System.out.println("already friends");
-        } else if (resultSet17.next()) {
-          //todo send notification with friend request
-          feedbackLabel.setText("Friend request sent");
-          System.out.println("Friend request sent");
-        } else {
-          feedbackLabel.setText("invalid username entry");
-          System.out.println("invalid username entry");
-        }stmt17.close();
-        stmt18.close();
-        conn17.close();
-        conn18.close();
-        resultSet17.close();
-        resultSet18.close();
+            feedbackLabel.setText("You are already friends");
+            System.out.println("already friends");
+          } else if (resultSet17.next()) {
 
+            //todo send notification with friend request
+            feedbackLabel.setText("Friend request sent");
+            System.out.println("Friend request sent");
+          } else {
+            feedbackLabel.setText("invalid username entry");
+            System.out.println("invalid username entry");
+          } resultSet17.close();
+          stmt18.close();
+          conn18.close();
+          resultSet18.close();
       } catch (SQLException e) {
         e.printStackTrace();
       }
+      stmt17.close();
 
+      conn17.close();
     }
 
 
   }
+
 
 
   @Override
@@ -124,23 +125,28 @@ public class FriendListController implements Initializable {
           "jdbc:derby:lib/ZwischenDB");
       Statement stmt19 = conn19.createStatement();
 
-      ResultSet resultSet19 = stmt19.executeQuery("SELECT * FROM FRIENDS WHERE [FRIEND1='" +
-          Globals.getCurrentUser() + "']OR " + "[FRIEND2'" + Globals.getCurrentUser().getUsername() + "']");
-      if (resultSet19.next()) {
-        while(resultSet19.next()){
-        if (resultSet19.getString("FRIEND1") == Globals.getCurrentUser().getUsername()) {
-          Friends friend = new Friends(resultSet19.getString("FRIEND2"));
-          friends.add(friend);
-        } else if ((resultSet19.getString("FRIEND2") == Globals.getCurrentUser().getUsername())) {
-          Friends friend = new Friends(resultSet19.getString("FRIEND1"));
-          friends.add(friend);
+      try (ResultSet resultSet19 = stmt19.executeQuery(String.format("SELECT * FROM FRIENDS WHERE [FRIEND1=%s]OR[FRIEND2=%s]",
+          Globals.getCurrentUser(),Globals.getCurrentUser()
+          .getUsername()))) {
+        if (resultSet19.next()) {
+          while (resultSet19.next()) {
+            if (resultSet19.getString("FRIEND1").equals(Globals.getCurrentUser().getUsername())) {
+              Friends friend = new Friends(resultSet19.getString("FRIEND2"));
+              friends.add(friend);
+            } else if ((resultSet19.getString("FRIEND2").equals( Globals.getCurrentUser()
+                .getUsername()))) {
+              Friends friend = new Friends(resultSet19.getString("FRIEND1"));
+              friends.add(friend);
+            }
+          }stmt19.close();
+          conn19.close();
+        } else {
+          feedbackLabel.setText("You have no friends");
+
         }
-      } }else {
-        feedbackLabel.setText("You have no friends");
+        stmt19.close();
+        conn19.close();
       }
-      stmt19.close();
-      conn19.close();
-      resultSet19.close();
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
       System.out.println("something went wrong");

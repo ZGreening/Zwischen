@@ -79,11 +79,11 @@ public class Ride {
   private CheckBox checkBox;
 
   public Ride(String driver, String dest, String startP, Date date, int seats) {
-    this.driver = driver;
-    this.dest = dest;
-    this.date = date;
-    this.startP = startP;
-    this.seats = seats;
+   setDriver(driver);
+    setDest(dest);
+    setDate(date);
+    setStartP(startP);
+setSeats(seats);
     this.messege = new Button();
     this.checkBox = new CheckBox();
   }
@@ -92,7 +92,6 @@ public class Ride {
     this.dest = dest;
     this.date = date;
     this.startP = startP;
-    this.seats = seats;
     this.messege = new Button();
     this.checkBox = new CheckBox();
   }

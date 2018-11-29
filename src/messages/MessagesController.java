@@ -26,10 +26,6 @@ public class MessagesController {
   @FXML
   private ComboBox<String> recipient;
 
-  public static void setRecipient(ComboBox<String> recipient) {
-    recipient = recipient;
-  }
-
   @FXML
   private AnchorPane root;
 

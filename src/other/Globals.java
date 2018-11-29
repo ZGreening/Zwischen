@@ -66,6 +66,7 @@ public class Globals {
 
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
+      exception.printStackTrace();
     }
   }
 
@@ -92,6 +93,7 @@ public class Globals {
       stage.show();
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
+      exception.printStackTrace();
     }
   }
 

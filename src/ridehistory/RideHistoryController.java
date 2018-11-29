@@ -37,136 +37,157 @@ import javafx.scene.layout.AnchorPane;
 import messages.MessagesController;
 import other.Globals;
 import other.PastRide;
-import other.Ride;
 
 public class RideHistoryController implements Initializable {
 
 
+  @FXML
+  private AnchorPane root;
+
+  @FXML
+  private TableView<PastRide> availableDriversTableview;
+
+  @FXML
+  private TableColumn<PastRide, String> driverColumn;
+
+  @FXML
+  private TableColumn<PastRide, String> fromColumn;
+
+  @FXML
+  private TableColumn<PastRide, String> toColumn;
+
+  @FXML
+  private TableColumn<PastRide, Date> dateColumn;
+
+  @FXML
+  private TableColumn<PastRide, Button> messageColumn;
 
 
-    @FXML
-    private AnchorPane root;
+  @FXML
+  private TableColumn<PastRide, CheckBox> deleteColumn;
 
-    @FXML
-    private TableView<PastRide> availableDriversTableview;
+  @FXML
+  private Label feedbackLabel;
+  ObservableList<PastRide> past = getPastRides();
+  @FXML
+  private Button deleteAllButton;
+  @FXML
+  private Button deleteCheckedButton;
+  @FXML
+  private Button ReturnHomeButton;
 
-    @FXML
-    private TableColumn<PastRide, String> driverColumn;
+  @FXML
+  void onDeleteAllButtonPressed(ActionEvent event) throws SQLException {
 
-    @FXML
-    private TableColumn<PastRide, String> fromColumn;
+    ObservableList<PastRide> rides2 = FXCollections.observableArrayList();
 
-    @FXML
-    private TableColumn<PastRide, String> toColumn;
-
-    @FXML
-    private TableColumn<PastRide, Date> dateColumn;
-
-    @FXML
-    private TableColumn<PastRide, Button> messageColumn;
-
-
-    @FXML
-    private TableColumn<PastRide, CheckBox> deleteColumn;
-
-    @FXML
-    private Label feedbackLabel;
-
-    @FXML
-    private Button deleteAllButton;
-
-    @FXML
-    private Button deleteCheckedButton;
-
-    @FXML
-    private Button ReturnHomeButton;
-
-    @FXML
-    void onDeleteAllButtonPressed(ActionEvent event) throws SQLException {
-      ObservableList<PastRide> rides = FXCollections.observableArrayList();
-      for (PastRide ride : rides) {
-
-        Connection conn121 = DriverManager.getConnection(
-            "jdbc:derby:lib/ZwischenDB");
-        PreparedStatement stmt121 = conn121.prepareStatement("DELETE FROM PAST_RIDE WHERE [DRIVER ='" +
-            getCurrentUser().getUsername() + "']OR[RIDER ='" +
-            getCurrentUser().getUsername() + "']");
-        stmt121.execute();
-
-          System.out.println(("deleted"));
-          stmt121.close();
-          conn121.close();
-        }
-
-
-    }
-
-    @FXML
-    void onDeleteCheckedButtonPressed(ActionEvent event) throws SQLException {
-
-      ObservableList<PastRide> rides = FXCollections.observableArrayList();
-      for (PastRide ride : rides) {
-        if (ride.getCheckBox().isSelected()) {
-          Connection conn123 = DriverManager.getConnection(
-              "jdbc:derby:lib/ZwischenDB");
-          PreparedStatement stmt123 = conn123.prepareStatement("DELETE FROM PAST_RIDE WHERE [DRIVER ='" +
-              ride.getDriver() + "']AND[RIDER ='" +
-              ride.getRider() + "']AND[GOINGTO ='" +
-              ride.getDest() + "']AND[COMINGFROM ='" +
-              ride.getStartP() + "']AND [OCCURRANCE ='" +
-              ride.getDate() + "']");
-          stmt123.execute();
-          stmt123.close();
-          conn123.close();
-          System.out.println(("deleted"));
-
-        }
-
+    for (PastRide ride : past) {
+      String query = String.format(String.format(
+          "DELETE * FROM PAST_RIDE WHERE DRIVER =%s AND RIDER=%s AND GOINTTO=%s AND COMINGFROM= %s AND OCCURRANCE= '"
+          , ride.getDriver()
+          , ride.getRider()
+          , ride.getDest()
+          , ride.getStartP()) + ride.getDate());
+      //todo fix date query statement
+      rides2.add(ride);
+      Connection conn12p = DriverManager.getConnection(
+          "jdbc:derby:lib/ZwischenDB");
+      try (PreparedStatement stmt12p = conn12p
+          .prepareStatement(query)) {
+        stmt12p.execute();
       }
+
+      conn12p.close();
+
+      System.out.println(("deleted"));
+      past.remove(ride);
     }
 
-    @FXML
-    void onReturnHomeButtonPressed(ActionEvent event) {
+
+  }
+
+  @FXML
+  void onDeleteCheckedButtonPressed(ActionEvent event) throws SQLException {
+
+    ObservableList<PastRide> rides = FXCollections.observableArrayList();
+
+    for (PastRide ride : past) {
+      String query = String.format(String.format(
+          "DELETE * FROM PAST_RIDE WHERE DRIVER =%s AND RIDER=%s AND GOINTTO=%s AND COMINGFROM= %s AND OCCURRANCE= '"
+          , ride.getDriver()
+          , ride.getRider()
+          , ride.getDest()
+          , ride.getStartP()) + ride.getDate());
+      //todo fix date query statement
+      if (ride.getCheckBox().isSelected()) {
+
+        rides.add(ride);
+        Connection conn123 = DriverManager.getConnection(
+            "jdbc:derby:lib/ZwischenDB");
+        try (PreparedStatement stmt123 = conn123
+            .prepareStatement(query)) {
+          stmt123.execute();
+
+        }
+
+        conn123.close();
+
+        System.out.println(("deleted"));
+        past.remove(ride);
+      }
 
     }
+
+  }
+
+  @FXML
+  void onReturnHomeButtonPressed(ActionEvent event) {
+
+  }
+
   public ObservableList<PastRide> getPastRides() {
 
     ObservableList<PastRide> pastRides = FXCollections.observableArrayList();
 
     try {
-      Connection conn120 = DriverManager.getConnection(
-          "jdbc:derby:lib/ZwischenDB");
-      Statement stmt120 = conn120.createStatement();
 
-      //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-      ResultSet resultSet120 = stmt120.executeQuery("SELECT * FROM PAST_RIDE WHERE [DRIVER ='" +
-          getCurrentUser().getUsername() + "']OR" + "[RIDER='" + getCurrentUser().getUsername() + "']");
-      if(resultSet120.next()){
-      while (resultSet120.next()) {
-        PastRide pastRide = new PastRide(resultSet120.getString("DRIVER"), resultSet120.getString("RIDER"),
-            resultSet120.getString("GOINGTO"), resultSet120.getString("COMINGFROM"),
-            resultSet120.getDate("DATE"));
-        pastRides.add(pastRide);
-      }} else {
-        feedbackLabel.setText("No Available Drivers To show");
-        PastRide ride = new PastRide("Dummy", "driver", "destination", "Start", new Date());
-        pastRides.add(ride);
-        PastRide ride2 = new PastRide("Dummy2", "driver", "destination", "Start", new Date());
-        pastRides.add(ride2);
+      try (
+
+          Connection conn120 = DriverManager.getConnection(
+              "jdbc:derby:lib/ZwischenDB");
+          Statement stmt120 = conn120.createStatement()) {
+
+        String query = String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
+            getCurrentUser().getUsername(), getCurrentUser()
+                .getUsername());
+
+        ResultSet resultSet120 = stmt120.executeQuery(query);
+
+        if (resultSet120.next()) {
+          while (resultSet120.next()) {
+            PastRide pastRide = new PastRide(resultSet120.getString("DRIVER"),
+                resultSet120.getString("RIDER"),
+                resultSet120.getString("GOINTTO"), resultSet120.getString("COMINGFROM"),
+                resultSet120.getDate("OCCURRANCE"));
+            pastRides.add(pastRide);
+          }
+        } else {
+          feedbackLabel.setText("No History To show");
+          PastRide ride = new PastRide("Dummy", "driver", "destination", "Start", new Date());
+          pastRides.add(ride);
+          PastRide ride2 = new PastRide("Dummy2", "driver", "destination", "Start", new Date());
+          pastRides.add(ride2);
+        }
+        resultSet120.close();
       }
-      conn120.close();
-      stmt120.close();
-      resultSet120.close();
+
+
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
       System.out.println("something went wrong");
     }
     return pastRides;
   }
-
-  Button []messege = new Button[availableDriversTableview.getItems().size()];
-
-
 
 
   @Override
@@ -178,53 +199,61 @@ public class RideHistoryController implements Initializable {
     messageColumn.setCellValueFactory(new PropertyValueFactory<PastRide, Button>("message"));
     deleteColumn.setCellValueFactory(new PropertyValueFactory<PastRide, CheckBox>("checkBox"));
 
-    for(int p = 0; p<availableDriversTableview.getItems().size();p++){
-      messege[p]= new Button();
+    Button[] message = new Button[availableDriversTableview.getItems().size()];
+    //todo fix message button
+    for (int p = 0; p < availableDriversTableview.getItems().size(); p++) {
+      message[p] = new Button();
       final int j = p;
-      messege[p].setOnAction((ActionEvent event) -> {    Globals.changeScene("messages/Messages.fxml");
+      message[p].setOnAction((ActionEvent event) -> {
+        Globals.changeScene("messages/Messages.fxml");
         try {
           FXMLLoader loader = new FXMLLoader(
               getClass().getClassLoader().getResource("messages/Messages.fxml"));
           MessagesController controller = loader.getController();
           ComboBox<String> comboBox = controller.getRecipient();
-          comboBox.getSelectionModel().select(changeAndMessege(j));
+          comboBox.getSelectionModel().select(changeAndMessage(j));
         } catch (SQLException e) {
           e.printStackTrace();
         }
       });
     }
 
-    availableDriversTableview.setItems(getPastRides());
-}
-String changeAndMessege(int p) throws SQLException {
-  PastRide[] pastRides = new PastRide[p];
-  Connection conn126 = DriverManager.getConnection(
-      "jdbc:derby:lib/ZwischenDB");
-  Statement stmt126 = conn126.createStatement();
-
-
-  //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-  ResultSet resultSet126 = stmt126.executeQuery("SELECT * FROM PAST_RIDE WHERE [DRIVER ='" +
-      getCurrentUser().getUsername() + "']OR" + "[RIDER='" + getCurrentUser().getUsername() + "']");
-  if (resultSet126.next()) {
-    while (resultSet126.next()) {
-      int i = 0;
-      PastRide pastRide = new PastRide(resultSet126.getString("DRIVER"),
-          resultSet126.getString("RIDER"),
-          resultSet126.getString("GOINGTO"), resultSet126.getString("COMINGFROM"),
-          resultSet126.getDate("DATE"));
-      pastRides[i]=pastRide;
-    }
-
-  }      conn126.close();
-  stmt126.close();
-  resultSet126.close();
-  if(getCurrentUser().getUsername().equals(pastRides[p].getRider())){
-    return  pastRides[p].getDriver();}else{
-    return  pastRides[p].getRider();
+    availableDriversTableview.setItems(past);
   }
 
-}
+  String changeAndMessage(int p) throws SQLException {
+    PastRide[] pastRides = new PastRide[p];
+    Connection conn126 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB");
+    ResultSet resultSet126;
+    try (Statement stmt126 = conn126.createStatement()) {
+
+      //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+      resultSet126 = stmt126
+          .executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE [DRIVER =%s]OR[RIDER=%s]",
+              getCurrentUser().getUsername(), getCurrentUser().getUsername()));
+      if (resultSet126.next()) {
+        while (resultSet126.next()) {
+          int i = 0;
+          PastRide pastRide = new PastRide(resultSet126.getString("DRIVER"),
+              resultSet126.getString("RIDER"),
+              resultSet126.getString("GOINTTO"), resultSet126.getString("COMINGFROM"),
+              resultSet126.getDate("OCCURRANCE"));
+          pastRides[i] = pastRide;
+        }
+
+      }
+      conn126.close();
+
+    }
+    resultSet126.close();
+    if (getCurrentUser().getUsername().equals(pastRides[p].getRider())) {
+      return pastRides[p].getDriver();
+    } else {
+      return pastRides[p].getRider();
+    }
+
+  }
 
 }
 

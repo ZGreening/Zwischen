@@ -10,9 +10,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
-  minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
   fx:controller="ridehistory.RideHistoryController"
   fx:id="root">
   <children>
@@ -88,11 +87,9 @@
                     <TableColumn prefWidth="78.39996337890625" text="from" fx:id="fromColumn"/>
                     <TableColumn prefWidth="74.39994812011719" text="to" fx:id="toColumn"/>
                     <TableColumn prefWidth="96.7999267578125" text="Date/TIme" fx:id="dateColumn"/>
-                    <TableColumn prefWidth="60.79998779296875" text="Messege"
-                      fx:id="messegeColumn"/>
-                    <TableColumn prefWidth="71.20001220703125" text="delete" fx:id="seatsColumn"/>
-                    <TableColumn prefWidth="88.800048828125" text="Checkbox"
-                      fx:id="checkboxColumn"/>
+                    <TableColumn prefWidth="60.79998779296875" text="Message"
+                      fx:id="messageColumn"/>
+                    <TableColumn prefWidth="71.20001220703125" text="delete" fx:id="deleteColumn"/>
                   </columns>
                 </TableView>
               </children>
