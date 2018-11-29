@@ -15,13 +15,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import messages.MessagesController;
 import other.Globals;
+import other.Message;
 
 public class AvailableDriversController implements Initializable {
+
+  private Message message;
 
   @FXML
   private ResourceBundle resources;
@@ -74,7 +79,15 @@ public class AvailableDriversController implements Initializable {
 
   @FXML
   void onSubmitPressed(ActionEvent event) {
+//    Globals.closeScene(root);
+//    Globals.changeScene("messages/Messages.fxml");
+//
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("messages/Messages.fxml"));
 
+    // Sets the user as the recipient
+    MessagesController controller = loader.getController();
+    ComboBox<String> comboBox = controller.getRecipient();
+    comboBox.getSelectionModel().select(message.getSender());
   }
 
   @FXML
