@@ -137,6 +137,8 @@ public class RideHistoryController implements Initializable {
   @FXML
   void onReturnHomeButtonPressed(ActionEvent event) {
 
+    Globals.changeScene("mainscreen/MainScreen.fxml", root);
+
   }
 
   public ObservableList<PastRide> getPastRides() {

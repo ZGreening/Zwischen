@@ -100,14 +100,32 @@ public class Ride {
   private static int number = 0;
   private int idnumber;
 
+  public void setIdnumber(){
+    this.idnumber = number++;
+  }
 
   public Ride(String driver, String dest, String startP, Date date, int seats) {
    setDriver(driver);
     setDest(dest);
     setDate(date);
     setStartP(startP);
-setSeats(seats);
+    setSeats(seats);
+    setIdnumber();
     this.messege = new Button();
+
+    this.messege.setOnAction((ActionEvent event) -> {
+      Globals.changeScene("messages/Messages.fxml");
+      try {
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getClassLoader().getResource("messages/Messages.fxml"));
+        MessagesController controller = loader.getController();
+        ComboBox<String> comboBox = controller.getRecipient();
+        comboBox.getSelectionModel().select(changeAndMessage(idnumber));
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    });
+
     this.checkBox = new CheckBox();
   }
   public Ride(String driver, String dest, String startP, Date date) {
@@ -115,8 +133,8 @@ setSeats(seats);
     this.dest = dest;
     this.date = date;
     this.startP = startP;
-    this.idnumber=number++;
     this.messege = new Button();
+
     this.messege.setOnAction((ActionEvent event) -> {
       Globals.changeScene("messages/Messages.fxml");
       try {
