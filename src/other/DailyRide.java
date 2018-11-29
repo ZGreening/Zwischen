@@ -15,6 +15,14 @@ public class DailyRide {
   String pickupLocation;
   String destination;
 
+  public DailyRide(boolean isAvailable, String time, String pickupLocation,
+      String destination) {
+    this.isAvailable = isAvailable;
+    this.time = time;
+    this.pickupLocation = pickupLocation;
+    this.destination = destination;
+  }
+
   public boolean isAvailable() {
     return isAvailable;
   }

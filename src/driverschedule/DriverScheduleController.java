@@ -1,18 +1,18 @@
 package driverschedule;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import other.DailyRide;
 
 public class DriverScheduleController {
 
-  //values for comboboxes
+  //values for combo boxes
   ObservableList<String> availabilityListBox = FXCollections
       .observableArrayList("Available", "Not Available");
 
@@ -130,10 +130,32 @@ public class DriverScheduleController {
   @FXML
   private ComboBox dest6;
 
+  private ArrayList<ComboBox[] availabilityArray = new ComboBox<String>[]{availabilityList0,
+      availabilityList1,
+      availabilityList2, availabilityList3, availabilityList4, availabilityList5,
+      availabilityList6};
+
+  private ComboBox<String>[] timeArray = new ComboBox[]{time0, time1, time2, time3, time4, time5,
+      time6};
+
+  private ComboBox<String>[] pickupArray = new ComboBox[]{pickup0, pickup1, pickup2, pickup3,
+      pickup4, pickup5, pickup6};
+
+  private ComboBox<String>[] destArray = new ComboBox[]{dest0, dest1, dest2, dest3, dest4, dest5,
+      dest6};
+
   @FXML
   void initialize() {
 
-    //Filling values to comboboxes
+    //Filling values to combo boxes
+    for (int iii = 0; iii < availabilityArray.length; iii++) {
+      System.out.println(availabilityArray[0]);
+      availabilityArray[iii].setItems(availabilityListBox);
+      timeArray[iii].setItems(timeBox);
+      pickupArray[iii].setItems(destinationBox);
+      destArray[iii].setItems(destinationBox);
+    }
+    /*
     availabilityList0.setItems(availabilityListBox);
     availabilityList1.setItems(availabilityListBox);
     availabilityList2.setItems(availabilityListBox);
@@ -141,6 +163,7 @@ public class DriverScheduleController {
     availabilityList4.setItems(availabilityListBox);
     availabilityList5.setItems(availabilityListBox);
     availabilityList6.setItems(availabilityListBox);
+
 
     time0.setItems(timeBox);
     time1.setItems(timeBox);
@@ -165,60 +188,69 @@ public class DriverScheduleController {
     dest4.setItems(destinationBox);
     dest5.setItems(destinationBox);
     dest6.setItems(destinationBox);
+    */
   }
 
-
+  /**
+   * A function to store combobox values into separate arraylists.
+   */
   @FXML
-  void saveSchedule(ActionEvent event) {
-  }
+  public void saveSchedule(ActionEvent event) {
+    DailyRide[] dailyRide = new DailyRide[availabilityArray.length];
 
-    /**
-     * A function to store combobox values into separate arraylists.
-     */
-    public void saveSchedule(javafx.event.ActionEvent actionEvent) {
-      String mon1 = (String) availabilityList0.getValue();
-      String mon2 = (String) time0.getValue();
-      String mon3 = (String) pickup0.getValue();
-      String mon4 = (String) dest0.getValue();
-      monday.addAll(Arrays.asList(mon1, mon2, mon3, mon4));
-
-      String tue1 = (String) availabilityList1.getValue();
-      String tue2 = (String) time1.getValue();
-      String tue3 = (String) pickup1.getValue();
-      String tue4 = (String) dest1.getValue();
-      tuesday.addAll(Arrays.asList(tue1, tue2, tue3, tue4));
-
-      String wed1 = (String) availabilityList2.getValue();
-      String wed2 = (String) time2.getValue();
-      String wed3 = (String) pickup2.getValue();
-      String wed4 = (String) dest2.getValue();
-      wednesday.addAll(Arrays.asList(wed1, wed2, wed3, wed4));
-
-      String thur1 = (String) availabilityList3.getValue();
-      String thur2 = (String) time3.getValue();
-      String thur3 = (String) pickup3.getValue();
-      String thur4 = (String) dest3.getValue();
-      thursday.addAll(Arrays.asList(thur1, thur2, thur3, thur4));
-
-      String fri1 = (String) availabilityList4.getValue();
-      String fri2 = (String) time4.getValue();
-      String fri3 = (String) pickup4.getValue();
-      String fri4 = (String) dest4.getValue();
-      friday.addAll(Arrays.asList(fri1, fri2, fri3, fri4));
-
-      String sat1 = (String) availabilityList5.getValue();
-      String sat2 = (String) time5.getValue();
-      String sat3 = (String) pickup5.getValue();
-      String sat4 = (String) dest5.getValue();
-      saturday.addAll(Arrays.asList(sat1, sat2, sat3, sat4));
-
-      String sun1 = (String) availabilityList6.getValue();
-      String sun2 = (String) time6.getValue();
-      String sun3 = (String) pickup6.getValue();
-      String sun4 = (String) dest6.getValue();
-      sunday.addAll(Arrays.asList(sun1, sun2, sun3, sun4));
-      System.out.println(monday);
+    for (int iii = 0; iii < availabilityArray.length; iii++) {
+      String string = (String) availabilityArray[iii].getValue();
+      dailyRide[iii] = new DailyRide(string.equals("Available"),
+          timeArray[iii].getValue(), pickupArray[iii].getValue(),
+          destArray[iii].getValue());
     }
+
+    /*
+    DailyRide dailyRide=new DailyRide();
+    String mon1 =  (String) availabilityList0.getValue();
+    String mon2 = (String) time0.getValue();
+    String mon3 = (String) pickup0.getValue();
+    String mon4 = (String) dest0.getValue();
+
+
+    String tue1 = (String) availabilityList1.getValue();
+    String tue2 = (String) time1.getValue();
+    String tue3 = (String) pickup1.getValue();
+    String tue4 = (String) dest1.getValue();
+    tuesday.addAll(Arrays.asList(tue1, tue2, tue3, tue4));
+
+    String wed1 = (String) availabilityList2.getValue();
+    String wed2 = (String) time2.getValue();
+    String wed3 = (String) pickup2.getValue();
+    String wed4 = (String) dest2.getValue();
+    wednesday.addAll(Arrays.asList(wed1, wed2, wed3, wed4));
+
+    String thur1 = (String) availabilityList3.getValue();
+    String thur2 = (String) time3.getValue();
+    String thur3 = (String) pickup3.getValue();
+    String thur4 = (String) dest3.getValue();
+    thursday.addAll(Arrays.asList(thur1, thur2, thur3, thur4));
+
+    String fri1 = (String) availabilityList4.getValue();
+    String fri2 = (String) time4.getValue();
+    String fri3 = (String) pickup4.getValue();
+    String fri4 = (String) dest4.getValue();
+    friday.addAll(Arrays.asList(fri1, fri2, fri3, fri4));
+
+    String sat1 = (String) availabilityList5.getValue();
+    String sat2 = (String) time5.getValue();
+    String sat3 = (String) pickup5.getValue();
+    String sat4 = (String) dest5.getValue();
+    saturday.addAll(Arrays.asList(sat1, sat2, sat3, sat4));
+
+    String sun1 = (String) availabilityList6.getValue();
+    String sun2 = (String) time6.getValue();
+    String sun3 = (String) pickup6.getValue();
+    String sun4 = (String) dest6.getValue();
+    sunday.addAll(Arrays.asList(sun1, sun2, sun3, sun4));
+    */
+    System.out.println(dailyRide[0]);
+  }
 
   public ArrayList<String> getMonday() {
     return monday;
