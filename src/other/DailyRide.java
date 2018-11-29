@@ -54,4 +54,14 @@ public class DailyRide {
   public void setDestination(String destination) {
     this.destination = destination;
   }
+
+  @Override
+  public String toString() {
+    return "DailyRide{" +
+        "isAvailable=" + isAvailable +
+        ", time='" + time + '\'' +
+        ", pickupLocation='" + pickupLocation + '\'' +
+        ", destination='" + destination + '\'' +
+        '}';
+  }
 }

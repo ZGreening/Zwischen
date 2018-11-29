@@ -26,10 +26,18 @@ public class User {
   private String userFolder = "default";
   private ArrayList<Message> messages = new ArrayList<>();
   private boolean isSelectedToDrive = false;  //Todo is this still necessary?
+  private ArrayList<DailyRide> dailyRides = new ArrayList<>();
+
+
+  public ArrayList<DailyRide> getDailyRides() {
+    return dailyRides;
+  }
 
   public ArrayList<Message> getMessages() {
     return messages;
   }
+
+  //todo Add function here to deserialize (Brandon)
 
   /**
    * A function to deserialize all the message files in a users messages folder and load them into
@@ -131,5 +139,6 @@ public class User {
     this.phoneNum = phoneNum;
     this.userFolder = userFolder;
     loadMessages();
+    //todo function call (Brandon)
   }
 }

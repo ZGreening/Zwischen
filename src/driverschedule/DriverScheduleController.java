@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import other.DailyRide;
+import other.Globals;
 
 public class DriverScheduleController {
 
@@ -130,31 +132,47 @@ public class DriverScheduleController {
   @FXML
   private ComboBox dest6;
 
-  private ArrayList<ComboBox[] availabilityArray = new ComboBox<String>[]{availabilityList0,
-      availabilityList1,
-      availabilityList2, availabilityList3, availabilityList4, availabilityList5,
-      availabilityList6};
+  private Control[] availabilityArray;
 
-  private ComboBox<String>[] timeArray = new ComboBox[]{time0, time1, time2, time3, time4, time5,
-      time6};
+  private Control[] timeArray;
 
-  private ComboBox<String>[] pickupArray = new ComboBox[]{pickup0, pickup1, pickup2, pickup3,
-      pickup4, pickup5, pickup6};
+  private Control[] pickupArray;
 
-  private ComboBox<String>[] destArray = new ComboBox[]{dest0, dest1, dest2, dest3, dest4, dest5,
-      dest6};
+  private Control[] destArray;
 
   @FXML
   void initialize() {
+    //To store a combobox array a temporary array must be made and then assign it to class variables
+    //Otherwise values will be null
+    Control[] temp = {availabilityList0,
+        availabilityList1, availabilityList2, availabilityList3, availabilityList4,
+        availabilityList5,
+        availabilityList6};
+
+    Control[] temp2 = {time0, time1, time2, time3, time4, time5,
+        time6};
+
+    Control[] temp3 = {pickup0, pickup1, pickup2, pickup3,
+        pickup4, pickup5, pickup6};
+
+    Control[] temp4 = {dest0, dest1, dest2, dest3, dest4, dest5,
+        dest6};
+
+    availabilityArray = temp;
+    timeArray = temp2;
+    pickupArray = temp3;
+    destArray = temp4;
+
 
     //Filling values to combo boxes
     for (int iii = 0; iii < availabilityArray.length; iii++) {
-      System.out.println(availabilityArray[0]);
-      availabilityArray[iii].setItems(availabilityListBox);
-      timeArray[iii].setItems(timeBox);
-      pickupArray[iii].setItems(destinationBox);
-      destArray[iii].setItems(destinationBox);
+      ((ComboBox<String>) availabilityArray[iii]).setItems(availabilityListBox);
+      ((ComboBox<String>) timeArray[iii]).setItems(timeBox);
+      ((ComboBox<String>) pickupArray[iii]).setItems(destinationBox);
+      ((ComboBox<String>) destArray[iii]).setItems(destinationBox);
     }
+
+    //Todo getting out of array and displaying on the GUI
     /*
     availabilityList0.setItems(availabilityListBox);
     availabilityList1.setItems(availabilityListBox);
@@ -196,15 +214,21 @@ public class DriverScheduleController {
    */
   @FXML
   public void saveSchedule(ActionEvent event) {
-    DailyRide[] dailyRide = new DailyRide[availabilityArray.length];
-
     for (int iii = 0; iii < availabilityArray.length; iii++) {
-      String string = (String) availabilityArray[iii].getValue();
-      dailyRide[iii] = new DailyRide(string.equals("Available"),
-          timeArray[iii].getValue(), pickupArray[iii].getValue(),
-          destArray[iii].getValue());
-    }
+      String string = ((ComboBox<String>) availabilityArray[iii]).getValue();
 
+      if (string != null && timeArray[iii] != null && pickupArray != null && destArray != null) {
+        Globals.getCurrentUser().getDailyRides().add(new DailyRide(string.equals("Available"),
+            ((ComboBox<String>) timeArray[iii]).getValue(),
+            ((ComboBox<String>) pickupArray[iii]).getValue(),
+            ((ComboBox<String>) destArray[iii]).getValue()));
+      }
+    }
+    System.out.println(Globals.getCurrentUser().getDailyRides().get(0));
+
+    //Todo Use lib/Userdata/Globals.getUserFolder()
+    //  Serialization convert dailyRides to a byte string and store in file (Brandon)
+    //  Serialize here
     /*
     DailyRide dailyRide=new DailyRide();
     String mon1 =  (String) availabilityList0.getValue();
@@ -249,7 +273,7 @@ public class DriverScheduleController {
     String sun4 = (String) dest6.getValue();
     sunday.addAll(Arrays.asList(sun1, sun2, sun3, sun4));
     */
-    System.out.println(dailyRide[0]);
+
   }
 
   public ArrayList<String> getMonday() {
