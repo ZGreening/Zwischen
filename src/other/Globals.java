@@ -82,9 +82,6 @@ public class Globals {
 
       stage.show();
 
-      stage.setMinHeight(scene.getHeight());
-      stage.setMinWidth(scene.getWidth());
-
       //If window is opened successfully, close old window
       stage = (Stage) oldSceneRoot.getScene().getWindow();
 
@@ -92,6 +89,7 @@ public class Globals {
 
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
+      exception.printStackTrace();
     }
   }
 
@@ -116,12 +114,9 @@ public class Globals {
       stage.setScene(scene);
 
       stage.show();
-
-      stage.setMinHeight(scene.getHeight());
-      stage.setMinWidth(scene.getWidth());
-
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
+      exception.printStackTrace();
     }
   }
 
