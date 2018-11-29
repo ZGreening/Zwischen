@@ -10,11 +10,9 @@ package createaccount;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -60,31 +58,6 @@ public class CreateAccountController {
 
   @FXML
   private AnchorPane root;
-
-  /**
-   * Saves a user image to the lib/UserData folder. Username must be unique, otherwise the file will
-   * not save.
-   */
-  private void saveUserImage() {
-    CopyOption[] copyOptions = new CopyOption[]{
-        StandardCopyOption.COPY_ATTRIBUTES
-    };
-
-    //If an image file path was not loaded, use default avatar.png
-    if (file == null) {
-      file = new File("lib/UserData/default/avatar.png");
-    }
-
-    //Copy image to users folder
-    try {
-      Files.copy(Paths.get(file.getAbsolutePath()),
-          Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png"),
-          copyOptions);
-    } catch (IOException exception) {
-      System.out.println("Unable to save image\n" + Globals.getCurrentUser().getUserFolder()
-          + "/avatar.png may already exist");
-    }
-  }
 
   private void createUserFolder() {
     try {
@@ -161,7 +134,7 @@ public class CreateAccountController {
                 phoneNum, folderName));
         Globals.getCurrentUser().loginUser(username, email, phoneNum, folderName);
         createUserFolder();
-        saveUserImage();
+        Globals.getCurrentUser().saveUserImage(file);
         Globals.changeScene("mainscreen/MainScreen.fxml", root);
       }
 
@@ -182,10 +155,16 @@ public class CreateAccountController {
     //Ensure all fields are filled and email and phone number are in correct format
     if (usernameText.isEmpty()) {
       feedbackLabel.setText("Username is empty");
+    } else if (usernameText.length() < 5) {
+      feedbackLabel.setText("Username must be atleast 5 characters long");
     } else if (passwordText.isEmpty()) {
       feedbackLabel.setText("Password is empty");
+    } else if (passwordText.length() < 5) {
+      feedbackLabel.setText("Password must be atleast 5 characters long");
     } else if (confirmPasswordText.isEmpty()) {
       feedbackLabel.setText("Confirm password is empty");
+    } else if (confirmPasswordText.length() < 5) {
+      feedbackLabel.setText("Confirm Password must be atleast 5 characters long");
     } else if (!passwordText.equals(confirmPasswordText)) {
       feedbackLabel.setText("Passwords do not match");
     } else if (emailText.isEmpty()) {
@@ -201,14 +180,7 @@ public class CreateAccountController {
       feedbackLabel.setText("Incorrect phone number format");
     } else {
 
-      //if phone number was entered with parenthesis or dashes, format to a number only string
-      if (phoneNumText.matches("\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}")) {
-        phoneNumText =
-            phoneNumText.substring(1, 4) + phoneNumText.substring(5, 8) + phoneNumText.substring(9);
-      } else if (phoneNumText.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")) {
-        phoneNumText =
-            phoneNumText.substring(0, 3) + phoneNumText.substring(4, 7) + phoneNumText.substring(8);
-      }
+      phoneNumText = Globals.formatPhoneNum(phoneNumText);
 
       storeAccountAndLogin(usernameText, passwordText, emailText, phoneNumText);
     }
