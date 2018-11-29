@@ -60,12 +60,15 @@ public class EditAccountController {
     Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
 
-  private void updateAccount(String passToUpdate, String emailToUpdate, String pNumberToUpdate) {
+  private void updateAccount(String passToUpdate, String emailToUpdate,
+      String phoneNumberToUpdate) {
     try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
         Statement statement = connection.createStatement()) {
 
       if (!passToUpdate.isEmpty()) {
-        statement.executeUpdate(String.format("UPDATE LOGIN SET PASSWORD = '%s' WHERE USERNAME = '%s'", passToUpdate, Globals.getCurrentUser().getUsername()));
+        statement.executeUpdate(String
+            .format("UPDATE LOGIN SET PASSWORD = '%s' WHERE USERNAME = '%s'", passToUpdate,
+                Globals.getCurrentUser().getUsername()));
       } else {
         feedbackLabel.setText("Password not updated");
       }
@@ -73,7 +76,7 @@ public class EditAccountController {
           .format("UPDATE LOGIN SET EMAIL = '%s' WHERE USERNAME = '%s'", emailToUpdate,
               Globals.getCurrentUser().getUsername()));
       statement.executeUpdate(String
-          .format("UPDATE LOGIN SET PNUMBER = '%s' WHERE USERNAME = '%s'", pNumberToUpdate,
+          .format("UPDATE LOGIN SET PNUMBER = '%s' WHERE USERNAME = '%s'", phoneNumberToUpdate,
               Globals.getCurrentUser().getUsername()));
       feedbackLabel.setText("Account updated");
       Globals.getCurrentUser().saveUserImage(file);
