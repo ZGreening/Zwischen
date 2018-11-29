@@ -7,12 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import other.Globals;
-import other.User;
 
 public class Main extends Application {
 
@@ -21,7 +17,7 @@ public class Main extends Application {
   }
 
   @Override
-  public void start(Stage stage) throws Exception {
+  public void start(Stage stage) {
     Globals.changeScene("login/Login.fxml");
   }
 }
