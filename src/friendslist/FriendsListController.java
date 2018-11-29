@@ -1,20 +1,20 @@
-///////////////////////////////////////////////////////////////////////////////
-// Project:     Zwischen
-// File:        FriendsList.java
-// Group:       3
-// Date:        October 24, 2018
-// Description: Controller class for friends list
-///////////////////////////////////////////////////////////////////////////////
-
 package friendslist;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
+import other.Globals;
 
 public class FriendsListController {
+
+
 
   @FXML
   private ResourceBundle resources;
@@ -23,17 +23,27 @@ public class FriendsListController {
   private URL location;
 
   @FXML
-  void becomeDriver(ActionEvent event) {
-    //todo rename function in fxml and here to remove abiguity
+  private AnchorPane root;
+
+  @FXML
+  private ComboBox<String> addUserComboBox;
+
+  @FXML
+  void onAddUserPressed(ActionEvent event) {
+
   }
 
   @FXML
-  void becomeRider(ActionEvent event) {
-    //todo rename function in fxml and here to remove abiguity
+  void onReturnHomePressed(ActionEvent event) {
+    Globals.closeScene(root);
   }
+
+
 
   @FXML
   void initialize() {
-
+    ArrayList<String> usernames = Globals.getAllUsernames();
+    usernames.remove(Globals.getCurrentUser().getUsername());    //So you cannot send a message to yourself
+    addUserComboBox.setItems(FXCollections.observableArrayList(usernames));
   }
 }
