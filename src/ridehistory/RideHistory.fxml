@@ -83,7 +83,6 @@
                   prefWidth="575.0" fx:id="availableDriversTableview">
                   <columns>
                     <TableColumn prefWidth="105.59997940063477" text="Driver" fx:id="driverColumn"/>
-                    <TableColumn prefWidth="69.5999755859375" text="Rider"/>
                     <TableColumn prefWidth="78.39996337890625" text="from" fx:id="fromColumn"/>
                     <TableColumn prefWidth="74.39994812011719" text="to" fx:id="toColumn"/>
                     <TableColumn prefWidth="96.7999267578125" text="Date/TIme" fx:id="dateColumn"/>

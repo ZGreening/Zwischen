@@ -121,31 +121,34 @@ public class FriendListController implements Initializable {
     ObservableList<Friends> friends = FXCollections.observableArrayList();
 
     try {
-      Connection conn19 = DriverManager.getConnection(
-          "jdbc:derby:lib/ZwischenDB");
-      Statement stmt19 = conn19.createStatement();
+      try (Connection conn19 = DriverManager.getConnection(
+          "jdbc:derby:lib/ZwischenDB")) {
+        Statement stmt19 = conn19.createStatement();
 
-      try (ResultSet resultSet19 = stmt19.executeQuery(String.format("SELECT * FROM FRIENDS WHERE [FRIEND1=%s]OR[FRIEND2=%s]",
-          Globals.getCurrentUser(),Globals.getCurrentUser()
-          .getUsername()))) {
-        if (resultSet19.next()) {
-          while (resultSet19.next()) {
-            if (resultSet19.getString("FRIEND1").equals(Globals.getCurrentUser().getUsername())) {
-              Friends friend = new Friends(resultSet19.getString("FRIEND2"));
-              friends.add(friend);
-            } else if ((resultSet19.getString("FRIEND2").equals( Globals.getCurrentUser()
-                .getUsername()))) {
-              Friends friend = new Friends(resultSet19.getString("FRIEND1"));
-              friends.add(friend);
+        try (ResultSet resultSet19 = stmt19
+            .executeQuery(String.format("SELECT * FROM FRIENDS WHERE [FRIEND1=%s]OR[FRIEND2=%s]",
+                Globals.getCurrentUser(), Globals.getCurrentUser()
+                    .getUsername()))) {
+          if (resultSet19.next()) {
+            while (resultSet19.next()) {
+              if (resultSet19.getString("FRIEND1").equals(Globals.getCurrentUser().getUsername())) {
+                Friends friend = new Friends(resultSet19.getString("FRIEND2"));
+                friends.add(friend);
+              } else if ((resultSet19.getString("FRIEND2").equals(Globals.getCurrentUser()
+                  .getUsername()))) {
+                Friends friend = new Friends(resultSet19.getString("FRIEND1"));
+                friends.add(friend);
+              }
             }
-          }stmt19.close();
-          conn19.close();
-        } else {
-          feedbackLabel.setText("You have no friends");
+            stmt19.close();
+            conn19.close();
+          } else {
+            feedbackLabel.setText("You have no friends");
 
+          }
+          stmt19.close();
+          conn19.close();
         }
-        stmt19.close();
-        conn19.close();
       }
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();

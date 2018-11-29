@@ -8,9 +8,21 @@
 
 package other;
 
+import static other.Globals.getCurrentUser;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import messages.MessagesController;
+import ridehistory.RideHistoryController;
 
 public class Ride {
 
@@ -77,6 +89,9 @@ public class Ride {
   private Integer seats;
   private Button messege;
   private CheckBox checkBox;
+  private static int number = 0;
+  private int idnumber;
+
 
   public Ride(String driver, String dest, String startP, Date date, int seats) {
    setDriver(driver);
@@ -92,7 +107,55 @@ setSeats(seats);
     this.dest = dest;
     this.date = date;
     this.startP = startP;
+    this.idnumber=number++;
     this.messege = new Button();
+    this.messege.setOnAction((ActionEvent event) -> {
+      Globals.changeScene("messages/Messages.fxml");
+      try {
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getClassLoader().getResource("messages/Messages.fxml"));
+        MessagesController controller = loader.getController();
+        ComboBox<String> comboBox = controller.getRecipient();
+        comboBox.getSelectionModel().select(changeAndMessage(idnumber));
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    });
+
     this.checkBox = new CheckBox();
+
+  }
+  String changeAndMessage(int p) throws SQLException {
+    PastRide[] pastRides = new PastRide[p];
+    Connection conn126 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB");
+    ResultSet resultSet126;
+    try (Statement stmt126 = conn126.createStatement()) {
+
+      //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+      resultSet126 = stmt126
+          .executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
+              getCurrentUser().getUsername(), getCurrentUser().getUsername()));
+      if (resultSet126.next()) {
+        while (resultSet126.next()) {
+          int i = 0;
+          PastRide pastRide = new PastRide(resultSet126.getString("DRIVER"),
+              resultSet126.getString("RIDER"),
+              resultSet126.getString("GOINTTO"), resultSet126.getString("COMINGFROM"),
+              resultSet126.getDate("OCCURRANCE"));
+          pastRides[i] = pastRide;
+        }
+
+      }
+      conn126.close();
+
+    }
+    resultSet126.close();
+    if (getCurrentUser().getUsername().equals(pastRides[p].getRider())) {
+      return pastRides[p].getDriver();
+    } else {
+      return pastRides[p].getRider();
+    }
+
   }
 }
