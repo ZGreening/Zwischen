@@ -1,6 +1,16 @@
 package driverschedule;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -41,6 +51,8 @@ public class DriverScheduleController {
   ArrayList<String> friday = new ArrayList<String>();
   ArrayList<String> saturday = new ArrayList<String>();
   ArrayList<String> sunday = new ArrayList<String>();
+
+  private String pathTest;
 
   @FXML
   private ResourceBundle resources;
@@ -172,10 +184,22 @@ public class DriverScheduleController {
       ((ComboBox<String>) destArray[iii]).setItems(destinationBox);
     }
 
+    ArrayList<DailyRide> dailyRides=Globals.getCurrentUser().getDailyRides();
     //Todo getting out of array and displaying on the GUI
+    for (int iii = 0; iii < dailyRides.size(); iii++) {
+      if (dailyRides.get(iii).isAvailable()) {
+        ((ComboBox<String>) availabilityArray[iii]).setValue("Available");
+      } else {
+        ((ComboBox<String>) availabilityArray[iii]).setValue("Not Available");
+      }
+
+      ((ComboBox<String>) timeArray[iii]).setValue(dailyRides.get(iii).getTime());
+      ((ComboBox<String>) pickupArray[iii]).setValue(dailyRides.get(iii).getTime());
+      ((ComboBox<String>) destArray[iii]).setValue(dailyRides.get(iii).getTime());
+    }
+
     /*
     availabilityList0.setItems(availabilityListBox);
-    availabilityList1.setItems(availabilityListBox);
     availabilityList2.setItems(availabilityListBox);
     availabilityList3.setItems(availabilityListBox);
     availabilityList4.setItems(availabilityListBox);
@@ -214,6 +238,7 @@ public class DriverScheduleController {
    */
   @FXML
   public void saveSchedule(ActionEvent event) {
+    Globals.getCurrentUser().getDailyRides().clear();
     for (int iii = 0; iii < availabilityArray.length; iii++) {
       String string = ((ComboBox<String>) availabilityArray[iii]).getValue();
 
@@ -227,8 +252,24 @@ public class DriverScheduleController {
     System.out.println(Globals.getCurrentUser().getDailyRides().get(0));
 
     //Todo Use lib/Userdata/Globals.getUserFolder()
+
     //  Serialization convert dailyRides to a byte string and store in file (Brandon)
     //  Serialize here
+
+      try{
+        File file=new File("lib/UserData/"+Globals.getCurrentUser()+"/driverSchedule");
+
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(Globals.getCurrentUser().getDailyRides());
+
+        objectOutputStream.close();
+        fileOutputStream.close();
+
+      } catch (IOException exception) {
+        System.out.println("say something");
+      }
+      //Globals.getcurrentuser.dailyrides
     /*
     DailyRide dailyRide=new DailyRide();
     String mon1 =  (String) availabilityList0.getValue();

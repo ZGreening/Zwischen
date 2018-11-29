@@ -9,10 +9,14 @@
 
 package other;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -38,6 +42,21 @@ public class User {
   }
 
   //todo Add function here to deserialize (Brandon)
+  private void dailyRidesDeserialize() {
+    try{
+    File file=new File("lib/UserData/"+userFolder+"/driverSchedule");
+
+    FileInputStream fileInputStream = new FileInputStream(file);
+    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+    ArrayList<DailyRide> dailyRides = (ArrayList<DailyRide>) objectInputStream.readObject();
+    objectInputStream.close();
+    fileInputStream.close();
+    } catch (IOException exception) {
+      System.out.println("say something");
+    } catch (ClassNotFoundException exception) {
+      System.out.println("class not found");
+    }
+  }
 
   /**
    * A function to deserialize all the message files in a users messages folder and load them into
@@ -139,6 +158,6 @@ public class User {
     this.phoneNum = phoneNum;
     this.userFolder = userFolder;
     loadMessages();
-    //todo function call (Brandon)
+    dailyRidesDeserialize();
   }
 }
