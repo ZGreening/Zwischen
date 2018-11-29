@@ -12,7 +12,6 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -63,8 +62,7 @@ public class EditAccountController {
 
   void updateAccount(String passToUpdate, String emailToUpdate, String pNumberToUpdate) {
     try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM LOGIN")) {
+        Statement statement = connection.createStatement()) {
 
       if (!passToUpdate.isEmpty()) {
         statement.executeUpdate(String.format("UPDATE LOGIN SET PASSWORD = '%s' WHERE USERNAME = '%s'", passToUpdate, Globals.getCurrentUser().getUsername()));
