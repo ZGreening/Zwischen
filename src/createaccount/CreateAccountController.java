@@ -10,11 +10,9 @@ package createaccount;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -60,31 +58,6 @@ public class CreateAccountController {
 
   @FXML
   private AnchorPane root;
-
-  /**
-   * Saves a user image to the lib/UserData folder. Username must be unique, otherwise the file will
-   * not save.
-   */
-  private void saveUserImage() {
-    CopyOption[] copyOptions = new CopyOption[]{
-        StandardCopyOption.COPY_ATTRIBUTES
-    };
-
-    //If an image file path was not loaded, use default avatar.png
-    if (file == null) {
-      file = new File("lib/UserData/default/avatar.png");
-    }
-
-    //Copy image to users folder
-    try {
-      Files.copy(Paths.get(file.getAbsolutePath()),
-          Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png"),
-          copyOptions);
-    } catch (IOException exception) {
-      System.out.println("Unable to save image\n" + Globals.getCurrentUser().getUserFolder()
-          + "/avatar.png may already exist");
-    }
-  }
 
   private void createUserFolder() {
     try {
@@ -161,7 +134,7 @@ public class CreateAccountController {
                 phoneNum, folderName));
         Globals.getCurrentUser().loginUser(username, email, phoneNum, folderName);
         createUserFolder();
-        saveUserImage();
+        Globals.getCurrentUser().saveUserImage(file);
         Globals.changeScene("mainscreen/MainScreen.fxml", root);
       }
 

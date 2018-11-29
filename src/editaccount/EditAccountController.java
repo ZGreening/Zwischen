@@ -8,12 +8,14 @@
 
 package editaccount;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,6 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
 public class EditAccountController {
@@ -50,11 +54,12 @@ public class EditAccountController {
   @FXML
   private Label feedbackLabel;
 
+  private File file;
+
   @FXML
   void onReturnToMainScreenPressed(ActionEvent event) {
     Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
-
 
   void updateAccount(String passToUpdate, String emailToUpdate, String pNumberToUpdate) {
     try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
@@ -73,6 +78,7 @@ public class EditAccountController {
           .format("UPDATE LOGIN SET PNUMBER = '%s' WHERE USERNAME = '%s'", pNumberToUpdate,
               Globals.getCurrentUser().getUsername()));
       feedbackLabel.setText("Account updated");
+      Globals.getCurrentUser().saveUserImage(file);
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
     }
@@ -110,7 +116,25 @@ public class EditAccountController {
 
   @FXML
   void onUploadPressed(ActionEvent event) {
-    //Todo Add functionality
+    //Open up file chooser to user's documents directory
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Documents"));
+
+    //Only allow jpeg jpg and png to be selected
+    ArrayList<String> extensionList = new ArrayList<>();
+    extensionList.add("*.jpeg");
+    extensionList.add("*.jpg");
+    extensionList.add("*.png");
+    fileChooser.getExtensionFilters().addAll(
+        new ExtensionFilter("PNG, JPG, or JPEG", extensionList));
+
+    //Open file chooser
+    file = fileChooser.showOpenDialog(root.getScene().getWindow());
+
+    //When a file is selected, set as avatar
+    if (file != null) {
+      avatar.setImage(new Image(file.toURI().toString()));
+    }
   }
 
   @FXML
