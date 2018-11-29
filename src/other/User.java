@@ -142,6 +142,7 @@ public class User {
     phoneNum = "1234567890";
     messages = new ArrayList<>(); //unload messages
     isSelectedToDrive = false;
+    dailyRides.clear();
   }
 
   /**
