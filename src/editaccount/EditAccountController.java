@@ -60,7 +60,7 @@ public class EditAccountController {
     Globals.changeScene("mainscreen/MainScreen.fxml", root);
   }
 
-  void updateAccount(String passToUpdate, String emailToUpdate, String pNumberToUpdate) {
+  private void updateAccount(String passToUpdate, String emailToUpdate, String pNumberToUpdate) {
     try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
         Statement statement = connection.createStatement()) {
 
@@ -91,10 +91,8 @@ public class EditAccountController {
 
     if (!newpass.equals(newConfirmPass)) {
       feedbackLabel.setText("Passwords do not match");
-    } else if (newpass.length() < 5) {
-      feedbackLabel.setText("password must be atleast 5 characters long");
-    } else if (newConfirmPass.length() < 5) {
-      feedbackLabel.setText("confirm password must be atleast 5 characters long");
+    } else if (!newpass.isEmpty() && newpass.length() < 5) {
+      feedbackLabel.setText("Password must be atleast 5 characters long");
     } else if (newEmail.isEmpty()) {
       feedbackLabel.setText("Email is empty");
     } else if (!newEmail
