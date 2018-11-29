@@ -18,4 +18,9 @@ public class PastRide extends Ride {
     super(driver, dest, startP, date);
     this.rider = rider;
   }
+  public PastRide( String rider,String driver, String dest, String startP, Date date, int idNum) {
+    super(driver, dest, startP, date);
+    this.rider = rider;
+    this.setIdnumber(idNum);
+  }
 }

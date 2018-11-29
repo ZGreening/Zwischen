@@ -86,7 +86,7 @@ public class RideHistoryController implements Initializable {
 
     for (PastRide ride : past) {
       String query = String.format(String.format(
-          "DELETE FROM PAST_RIDE WHERE DRIVER = '%d' "
+          "DELETE FROM PAST_RIDE WHERE IDENTIFIER = '%d' "
           , ride.getIdnumber()));
       rides2.add(ride);
 
@@ -113,7 +113,7 @@ public class RideHistoryController implements Initializable {
 
     for (PastRide ride : past) {
       String query = String.format(String.format(
-          "DELETE FROM PAST_RIDE WHERE DRIVER = '%d' "
+          "DELETE FROM PAST_RIDE WHERE IDENTIFIER = '%d' "
           , ride.getIdnumber()));
 
       if (ride.getCheckBox().isSelected()) {
@@ -157,11 +157,8 @@ public class RideHistoryController implements Initializable {
         ResultSet resultSet120 = stmt120.executeQuery(query);
 
         if(resultSet120.wasNull()) {
+
           feedbackLabel.setText("No History To show");
-          PastRide ride = new PastRide("Dummy", "driver", "destination", "Start", new Date());
-          pastRides.add(ride);
-          PastRide ride2 = new PastRide("Dummy2", "driver", "destination", "Start", new Date());
-          pastRides.add(ride2);
 
         }
         else {
@@ -169,7 +166,7 @@ public class RideHistoryController implements Initializable {
             PastRide pastRide = new PastRide(resultSet120.getString("DRIVER"),
                 resultSet120.getString("RIDER"),
                 resultSet120.getString("GOINTTO"), resultSet120.getString("COMINGFROM"),
-                resultSet120.getDate("OCCURRANCE"));
+                resultSet120.getDate("OCCURRANCE"), resultSet120.getInt("IDENTIFIER"));
             pastRides.add(pastRide);
           }
 
