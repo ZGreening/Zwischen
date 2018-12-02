@@ -40,6 +40,11 @@ public class Friends extends User {
     this.messsegeFriend = messsegeFriend;
   }
 
+  /**
+   * Constructor for the class Friends.
+   *
+   * @param friendName the name of the friend
+   */
   public Friends(String friendName) {
 
     this.friendName = friendName;

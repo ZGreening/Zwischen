@@ -14,11 +14,31 @@ public class PastRide extends Ride {
 
   private String rider;
 
-  public PastRide( String rider,String driver, String dest, String startP, Date date) {
+  /**
+   * An overloaded constructor for the class PastRide.
+   *
+   * @param rider The passenger who requested the ride
+   * @param driver The driver
+   * @param dest The destination
+   * @param startP The starting location
+   * @param date The date of the ride
+   */
+  public PastRide(String rider, String driver, String dest, String startP, Date date) {
     super(driver, dest, startP, date);
     this.rider = rider;
   }
-  public PastRide( String rider,String driver, String dest, String startP, Date date, int idNum) {
+
+  /**
+   * An overloaded constructor for the class PastRide.
+   *
+   * @param rider The passenger who requested the ride
+   * @param driver The driver
+   * @param dest The destination
+   * @param startP The starting location
+   * @param date The date of the ride
+   * @param idNum The id of the ride //Todo What is the IDNumber???
+   */
+  public PastRide(String rider, String driver, String dest, String startP, Date date, int idNum) {
     super(driver, dest, startP, date);
     this.rider = rider;
     this.setIdnumber(idNum);

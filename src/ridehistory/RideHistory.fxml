@@ -62,7 +62,7 @@
               text="Delete Checked" fx:id="deleteCheckedButton"/>
             <Button GridPane.columnIndex="2" mnemonicParsing="false"
               onAction="#onReturnHomeButtonPressed" prefHeight="26.0" prefWidth="107.0"
-              text="Return Home" fx:id="ReturnHomeButton"/>
+              text="Return Home" fx:id="returnHomeButton"/>
           </children>
         </GridPane>
         <AnchorPane GridPane.rowIndex="1" prefHeight="100.0" prefWidth="200.0">

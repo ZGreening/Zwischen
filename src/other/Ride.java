@@ -22,7 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import messages.MessagesController;
-import ridehistory.RideHistoryController;
 
 public class Ride {
 
@@ -74,13 +73,8 @@ public class Ride {
     this.seats = seats;
   }
 
-  public Button getMessege() {
-    return messege;
-  }
-
-  public void setMessege(Button messege) {
-    this.messege = messege;
-  }
+  private static int nextIDNumber = 0;
+  private Button message;
 
   public CheckBox getCheckBox() {
     return checkBox;
@@ -95,25 +89,28 @@ public class Ride {
   private Date date;
   private String startP;
   private Integer seats;
-  private Button messege;
   private CheckBox checkBox;
-  private static int number = 0;
   private int idnumber;
 
-  public void setIdnumber(){
-    this.idnumber = number++;
-  }
-
+  /**
+   * Constructor fo the class Ride.
+   *
+   * @param driver the driver
+   * @param dest the destination
+   * @param startP the starting location
+   * @param date the date of the ride
+   * @param seats the number of seats in the car
+   */
   public Ride(String driver, String dest, String startP, Date date, int seats) {
-   setDriver(driver);
+    setDriver(driver);
     setDest(dest);
     setDate(date);
     setStartP(startP);
     setSeats(seats);
-    setIdnumber();
-    this.messege = new Button();
+    setIdnumber(nextIDNumber++);
+    this.message = new Button();
 
-    this.messege.setOnAction((ActionEvent event) -> {
+    this.message.setOnAction((ActionEvent event) -> {
       Globals.changeScene("messages/Messages.fxml");
       try {
         FXMLLoader loader = new FXMLLoader(
@@ -128,14 +125,23 @@ public class Ride {
 
     this.checkBox = new CheckBox();
   }
+
+  /**
+   * An overloaded constructor for the class Ride.
+   *
+   * @param driver the driver
+   * @param dest the destination
+   * @param startP the starting location
+   * @param date the data of the ride
+   */
   public Ride(String driver, String dest, String startP, Date date) {
     this.driver = driver;
     this.dest = dest;
     this.date = date;
     this.startP = startP;
-    this.messege = new Button();
+    this.message = new Button();
 
-    this.messege.setOnAction((ActionEvent event) -> {
+    this.message.setOnAction((ActionEvent event) -> {
       Globals.changeScene("messages/Messages.fxml");
       try {
         FXMLLoader loader = new FXMLLoader(
@@ -151,6 +157,22 @@ public class Ride {
     this.checkBox = new CheckBox();
 
   }
+
+  /*
+  This method already exists
+  private void setIdnumber() {
+    this.idnumber = nextIDNumber++;
+  }
+  */
+
+  public Button getMessage() {
+    return message;
+  }
+
+  public void setMessage(Button message) {
+    this.message = message;
+  }
+
   String changeAndMessage(int p) throws SQLException {
     PastRide[] pastRides = new PastRide[p];
     Connection conn126 = DriverManager.getConnection(
