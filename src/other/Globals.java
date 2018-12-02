@@ -128,6 +128,14 @@ public class Globals {
     }
   }
 
+  /**
+   * A method to preload the messages screen with the send to field filled out with the given
+   * parameter. This method closes the scene of the root parameter. This method assumes sentTo is a
+   * valid user in the system.
+   *
+   * @param sendTo The user to preset the sent to field to
+   * @param root The root of the scene to close
+   */
   public static void loadMessagesWithSendTo(String sendTo, Node root) {
     try {
       //Fetch resources

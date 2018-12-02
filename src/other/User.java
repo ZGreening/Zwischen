@@ -41,14 +41,14 @@ public class User {
   }
 
   private void dailyRidesDeserialize() {
-    try{
-    File file=new File("lib/UserData/"+userFolder+"/driverSchedule");
+    try {
+      File file = new File("lib/UserData/" + userFolder + "/driverSchedule");
 
-    FileInputStream fileInputStream = new FileInputStream(file);
-    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+      FileInputStream fileInputStream = new FileInputStream(file);
+      ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
       dailyRides = (ArrayList<DailyRide>) objectInputStream.readObject();
-    objectInputStream.close();
-    fileInputStream.close();
+      objectInputStream.close();
+      fileInputStream.close();
     } catch (IOException exception) {
       System.out.println("say something");
     } catch (ClassNotFoundException exception) {

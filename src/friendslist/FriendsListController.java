@@ -3,7 +3,6 @@ package friendslist;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,11 +58,8 @@ public class FriendsListController {
 
   @FXML
   void initialize() {
-    // Grabs the names from the
     ArrayList<String> usernames = Globals.getAllUsernames();
-    usernames.remove(Globals.getCurrentUser().getUsername());    //So you cannot send a message to yourself
+    usernames.remove(Globals.getCurrentUser().getUsername());
     addUserComboBox.setItems(FXCollections.observableArrayList(usernames));
-    //This line puts ALL users in the database as your friends
-    //friendslist.setItems(FXCollections.observableArrayList(usernames));
   }
 }
