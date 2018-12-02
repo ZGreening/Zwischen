@@ -9,27 +9,20 @@
 
 package messageview;
 
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import messages.MessagesController;
 import other.Globals;
 import other.Message;
 
@@ -90,33 +83,7 @@ public class MessageViewController {
 
   @FXML
   void onReplyPressed(ActionEvent event) {
-    try {
-      //Fetch resources
-      Stage stage = new Stage();
-      FXMLLoader loader = new FXMLLoader(
-          getClass().getClassLoader().getResource("messages/Messages.fxml"));
-
-      //Load scene
-      AnchorPane anchorPane = loader.load();
-      Scene scene = new Scene(anchorPane);
-
-      //Set up stage
-      stage.setTitle("Zwischen");
-      stage.setScene(scene);
-      stage.initModality(Modality.APPLICATION_MODAL);
-      stage.show();
-
-      //Set message recipient
-      MessagesController controller = loader.getController();
-      ComboBox<String> comboBox = controller.getRecipient();
-      comboBox.getSelectionModel().select(message.getSender());
-
-      //Close current window
-      stage = (Stage) root.getScene().getWindow();
-      stage.close();
-    } catch (IOException exception) {
-      System.out.println("Unable to open message window");
-    }
+    Globals.loadMessagesWithSendTo(message.getSender(), root);
   }
 
   @FXML

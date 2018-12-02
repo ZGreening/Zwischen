@@ -15,11 +15,18 @@ public class DailyRide {
   String pickupLocation;
   String destination;
 
-  public DailyRide(boolean isAvailable, String time, String pickupLocation,
-      String destination) {
+  /**
+   * Constructor for the class DailyRide.
+   *
+   * @param time Time they are available
+   * @param startingLocation Location they are leaving from
+   * @param destination Location they are headed to
+   */
+  public DailyRide(boolean isAvailable, String time, String startingLocation,
+      String destination) { //Todo remove isAvailable
     this.isAvailable = isAvailable;
     this.time = time;
-    this.pickupLocation = pickupLocation;
+    this.pickupLocation = startingLocation;
     this.destination = destination;
   }
 
@@ -53,15 +60,5 @@ public class DailyRide {
 
   public void setDestination(String destination) {
     this.destination = destination;
-  }
-
-  @Override
-  public String toString() {
-    return "DailyRide{" +
-        "isAvailable=" + isAvailable +
-        ", time='" + time + '\'' +
-        ", pickupLocation='" + pickupLocation + '\'' +
-        ", destination='" + destination + '\'' +
-        '}';
   }
 }

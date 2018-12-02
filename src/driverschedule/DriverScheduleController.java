@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////////////////////////////
+// Project:     Zwischen
+// File:        DriverScheduleController.java
+// Group:       3
+// Date:        October 22, 2018
+// Description: Controller Class for the ride schedule window
+///////////////////////////////////////////////////////////////////////////////
+
 package driverschedule;
 
 import java.io.File;
@@ -35,14 +43,14 @@ public class DriverScheduleController {
           "Gulf Coast Town Center", "Miromar Outlets", "The Reef Apartments",
           "Walmart Supercenter (Estero)");
 
-  //ArrayList for each row (days of the week)
+  /*//ArrayList for each row (days of the week)
   ArrayList<String> monday = new ArrayList<String>();
   ArrayList<String> tuesday = new ArrayList<String>();
   ArrayList<String> wednesday = new ArrayList<String>();
   ArrayList<String> thursday = new ArrayList<String>();
   ArrayList<String> friday = new ArrayList<String>();
   ArrayList<String> saturday = new ArrayList<String>();
-  ArrayList<String> sunday = new ArrayList<String>();
+  ArrayList<String> sunday = new ArrayList<String>();*/
 
   @FXML
   private ComboBox availabilityList0;
@@ -140,19 +148,15 @@ public class DriverScheduleController {
   void initialize() {
     //To store a combobox array a temporary array must be made and then assign it to class variables
     //Otherwise values will be null
-    Control[] temp = {availabilityList0,
+    final Control[] temp = {availabilityList0,
         availabilityList1, availabilityList2, availabilityList3, availabilityList4,
-        availabilityList5,
-        availabilityList6};
+        availabilityList5, availabilityList6};
 
-    Control[] temp2 = {time0, time1, time2, time3, time4, time5,
-        time6};
+    final Control[] temp2 = {time0, time1, time2, time3, time4, time5, time6};
 
-    Control[] temp3 = {pickup0, pickup1, pickup2, pickup3,
-        pickup4, pickup5, pickup6};
+    final Control[] temp3 = {pickup0, pickup1, pickup2, pickup3, pickup4, pickup5, pickup6};
 
-    Control[] temp4 = {dest0, dest1, dest2, dest3, dest4, dest5,
-        dest6};
+    final Control[] temp4 = {dest0, dest1, dest2, dest3, dest4, dest5, dest6};
 
     availabilityArray = temp;
     timeArray = temp2;
@@ -180,40 +184,6 @@ public class DriverScheduleController {
       ((ComboBox<String>) pickupArray[iii]).setValue(dailyRides.get(iii).getTime());
       ((ComboBox<String>) destArray[iii]).setValue(dailyRides.get(iii).getTime());
     }
-
-    /*
-    availabilityList0.setItems(availabilityListBox);
-    availabilityList2.setItems(availabilityListBox);
-    availabilityList3.setItems(availabilityListBox);
-    availabilityList4.setItems(availabilityListBox);
-    availabilityList5.setItems(availabilityListBox);
-    availabilityList6.setItems(availabilityListBox);
-
-
-    time0.setItems(timeBox);
-    time1.setItems(timeBox);
-    time2.setItems(timeBox);
-    time3.setItems(timeBox);
-    time4.setItems(timeBox);
-    time5.setItems(timeBox);
-    time6.setItems(timeBox);
-
-    pickup0.setItems(destinationBox);
-    pickup1.setItems(destinationBox);
-    pickup2.setItems(destinationBox);
-    pickup3.setItems(destinationBox);
-    pickup4.setItems(destinationBox);
-    pickup5.setItems(destinationBox);
-    pickup6.setItems(destinationBox);
-
-    dest0.setItems(destinationBox);
-    dest1.setItems(destinationBox);
-    dest2.setItems(destinationBox);
-    dest3.setItems(destinationBox);
-    dest4.setItems(destinationBox);
-    dest5.setItems(destinationBox);
-    dest6.setItems(destinationBox);
-    */
   }
 
   /**
@@ -225,22 +195,25 @@ public class DriverScheduleController {
     for (int iii = 0; iii < availabilityArray.length; iii++) {
       String string = ((ComboBox<String>) availabilityArray[iii]).getValue();
 
-      if (string != null && timeArray[iii] != null && pickupArray != null && destArray != null) {
+      System.out.println(string);
+      System.out.println(!((ComboBox<String>) timeArray[iii]).getValue().isEmpty());
+      System.out.println(!((ComboBox<String>) pickupArray[iii]).getValue().isEmpty());
+      System.out.println(!((ComboBox<String>) destArray[iii]).getValue().isEmpty());
+
+      if (string != null && !((ComboBox<String>) timeArray[iii]).getValue().isEmpty()
+          && !((ComboBox<String>) pickupArray[iii]).getValue().isEmpty()
+          && !((ComboBox<String>) destArray[iii]).getValue().isEmpty()) {
         Globals.getCurrentUser().getDailyRides().add(new DailyRide(string.equals("Available"),
             ((ComboBox<String>) timeArray[iii]).getValue(),
             ((ComboBox<String>) pickupArray[iii]).getValue(),
             ((ComboBox<String>) destArray[iii]).getValue()));
+        //Todo fix button focus on all new screens (Zachary)
       }
     }
-    System.out.println(Globals.getCurrentUser().getDailyRides().get(0));
-
-    //Todo Use lib/Userdata/Globals.getUserFolder()
-
-    //  Serialization convert dailyRides to a byte string and store in file (Brandon)
-    //  Serialize here
 
     try {
-      File file = new File("lib/UserData/" + Globals.getCurrentUser() + "/driverSchedule");
+      File file = new File(
+          "lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/driverSchedule");
 
       FileOutputStream fileOutputStream = new FileOutputStream(file);
       ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -250,110 +223,8 @@ public class DriverScheduleController {
       fileOutputStream.close();
 
     } catch (IOException exception) {
-      System.out.println("say something");
+      System.out.println("Unable to save drive schedule");
     }
-    //Globals.getcurrentuser.dailyrides
-    /*
-    DailyRide dailyRide=new DailyRide();
-    String mon1 =  (String) availabilityList0.getValue();
-    String mon2 = (String) time0.getValue();
-    String mon3 = (String) pickup0.getValue();
-    String mon4 = (String) dest0.getValue();
-
-
-    String tue1 = (String) availabilityList1.getValue();
-    String tue2 = (String) time1.getValue();
-    String tue3 = (String) pickup1.getValue();
-    String tue4 = (String) dest1.getValue();
-    tuesday.addAll(Arrays.asList(tue1, tue2, tue3, tue4));
-
-    String wed1 = (String) availabilityList2.getValue();
-    String wed2 = (String) time2.getValue();
-    String wed3 = (String) pickup2.getValue();
-    String wed4 = (String) dest2.getValue();
-    wednesday.addAll(Arrays.asList(wed1, wed2, wed3, wed4));
-
-    String thur1 = (String) availabilityList3.getValue();
-    String thur2 = (String) time3.getValue();
-    String thur3 = (String) pickup3.getValue();
-    String thur4 = (String) dest3.getValue();
-    thursday.addAll(Arrays.asList(thur1, thur2, thur3, thur4));
-
-    String fri1 = (String) availabilityList4.getValue();
-    String fri2 = (String) time4.getValue();
-    String fri3 = (String) pickup4.getValue();
-    String fri4 = (String) dest4.getValue();
-    friday.addAll(Arrays.asList(fri1, fri2, fri3, fri4));
-
-    String sat1 = (String) availabilityList5.getValue();
-    String sat2 = (String) time5.getValue();
-    String sat3 = (String) pickup5.getValue();
-    String sat4 = (String) dest5.getValue();
-    saturday.addAll(Arrays.asList(sat1, sat2, sat3, sat4));
-
-    String sun1 = (String) availabilityList6.getValue();
-    String sun2 = (String) time6.getValue();
-    String sun3 = (String) pickup6.getValue();
-    String sun4 = (String) dest6.getValue();
-    sunday.addAll(Arrays.asList(sun1, sun2, sun3, sun4));
-    */
-
-  }
-
-  public ArrayList<String> getMonday() {
-    return monday;
-  }
-
-  public void setMonday(ArrayList<String> monday) {
-    this.monday = monday;
-  }
-
-  public ArrayList<String> getTuesday() {
-    return tuesday;
-  }
-
-  public void setTuesday(ArrayList<String> tuesday) {
-    this.tuesday = tuesday;
-  }
-
-  public ArrayList<String> getWednesday() {
-    return wednesday;
-  }
-
-  public void setWednesday(ArrayList<String> wednesday) {
-    this.wednesday = wednesday;
-  }
-
-  public ArrayList<String> getThursday() {
-    return thursday;
-  }
-
-  public void setThursday(ArrayList<String> thursday) {
-    this.thursday = thursday;
-  }
-
-  public ArrayList<String> getFriday() {
-    return friday;
-  }
-
-  public void setFriday(ArrayList<String> friday) {
-    this.friday = friday;
-  }
-
-  public ArrayList<String> getSaturday() {
-    return saturday;
-  }
-
-  public void setSaturday(ArrayList<String> saturday) {
-    this.saturday = saturday;
-  }
-
-  public ArrayList<String> getSunday() {
-    return sunday;
-  }
-
-  public void setSunday(ArrayList<String> sunday) {
-    this.sunday = sunday;
   }
 }
 

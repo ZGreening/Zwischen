@@ -21,8 +21,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import messages.MessagesController;
 
 public class Globals {
 
@@ -122,6 +125,44 @@ public class Globals {
 
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
+    }
+  }
+
+  /**
+   * A method to preload the messages screen with the send to field filled out with the given
+   * parameter. This method closes the scene of the root parameter. This method assumes sentTo is a
+   * valid user in the system.
+   *
+   * @param sendTo The user to preset the sent to field to
+   * @param root The root of the scene to close
+   */
+  public static void loadMessagesWithSendTo(String sendTo, Node root) {
+    try {
+      //Fetch resources
+      Stage stage = new Stage();
+      FXMLLoader loader = new FXMLLoader(
+          Globals.class.getResource("messages/Messages.fxml"));
+
+      //Load scene
+      AnchorPane anchorPane = loader.load();
+      Scene scene = new Scene(anchorPane);
+
+      //Set up stage
+      stage.setTitle("Zwischen");
+      stage.setScene(scene);
+      stage.initModality(Modality.APPLICATION_MODAL);
+      stage.show();
+
+      //Set message recipient
+      MessagesController controller = loader.getController();
+      ComboBox<String> comboBox = controller.getRecipient();
+      comboBox.getSelectionModel().select(sendTo);
+
+      //Close current window
+      stage = (Stage) root.getScene().getWindow();
+      stage.close();
+    } catch (IOException exception) {
+      System.out.println("Unable to open message window");
     }
   }
 
