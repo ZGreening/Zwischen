@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Project:     Zwischen
-// File:        AvailableDriversController.java
+// File:        RideRequest.java
 // Group:       3
 // Date:        October 24, 2018
 // Description: Controller class for available drivers screen
 ///////////////////////////////////////////////////////////////////////////////
 
-package availabledrivers;
+package riderequest;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,13 +20,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import other.Globals;
 
-public class AvailableDriversController implements Initializable {
+public class RideRequest implements Initializable {
 
-  @FXML
-  private ResourceBundle resources;
-
-  @FXML
-  private URL location;
+  //private Message message;
 
   @FXML
   private AnchorPane root;
@@ -62,7 +58,6 @@ public class AvailableDriversController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
     pickupComboBox.setItems(locations);
     destinationComboBox.setItems(locations);
     timeComboBox.setItems(time);
@@ -81,11 +76,6 @@ public class AvailableDriversController implements Initializable {
 
   @FXML
   void onSearchPressed(ActionEvent event) {
-
-  }
-
-  @FXML
-  void initialize() {
 
   }
 }
