@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,91 +11,118 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-  minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
-  fx:controller="ridehistory.RideHistoryController"
-  fx:id="root">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1"
+  fx:id="root" fx:controller="ridehistory.RideHistoryController">
   <children>
-    <GridPane layoutX="-6.0" layoutY="-3.0" prefHeight="407.0" prefWidth="607.0">
+    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+      layoutX="2.0" layoutY="2.0" prefHeight="402.0"
+      prefWidth="602.0">
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
       </columnConstraints>
       <rowConstraints>
-        <RowConstraints maxHeight="55.600012207031256" minHeight="3.599996948242193"
-          prefHeight="17.199987792968756" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="94.80000305175781" minHeight="0.0"
-          prefHeight="14.999993896484362" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="322.40000610351564" minHeight="10.0"
-          prefHeight="322.40000610351564" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="164.79999008178712" minHeight="10.0"
+          prefHeight="104.20001831054688" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="324.0" minHeight="10.0" prefHeight="239.39998168945314"
+          vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="122.39999999999998" minHeight="0.0"
+          prefHeight="31.20002441406251" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="69.99997558593748" minHeight="0.0" prefHeight="21.5999755859375"
+          vgrow="SOMETIMES"/>
       </rowConstraints>
       <children>
-        <Label GridPane.rowIndex="4" prefHeight="18.0" prefWidth="605.0" fx:id="feedbackLabel"/>
-        <AnchorPane prefHeight="100.0" prefWidth="611.0">
+        <AnchorPane prefHeight="102.0" prefWidth="600.0">
           <children>
-            <AnchorPane prefHeight="200.0" prefWidth="611.0">
+            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+              layoutX="-2.0" layoutY="-2.0" prefHeight="106.4"
+              prefWidth="602.4">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
               <children>
-                <Label layoutX="316.0" layoutY="91.0" prefHeight="18.0" prefWidth="170.0"
-                  text="Ride History" textAlignment="CENTER">
+                <Label alignment="CENTER" prefHeight="61.0" prefWidth="599.0" text="Zwischen"
+                  textAlignment="CENTER">
+                  <font>
+                    <Font size="36.0"/>
+                  </font>
+                </Label>
+                <Label GridPane.rowIndex="1" alignment="CENTER" prefHeight="65.0" prefWidth="600.0"
+                  text="Ride History">
                   <font>
                     <Font size="24.0"/>
                   </font>
                 </Label>
               </children>
-            </AnchorPane>
+            </GridPane>
           </children>
         </AnchorPane>
-        <GridPane GridPane.rowIndex="3" prefHeight="30.0" prefWidth="600.0">
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-          </rowConstraints>
+        <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
           <children>
-            <Button mnemonicParsing="false" onAction="#onDeleteAllButtonPressed"
-              text="Delete All" fx:id="deleteAllButton"/>
-            <Button GridPane.columnIndex="1" mnemonicParsing="false"
-              onAction="#onDeleteCheckedButtonPressed" prefHeight="26.0" prefWidth="117.0"
-              text="Delete Checked" fx:id="deleteCheckedButton"/>
-            <Button GridPane.columnIndex="2" mnemonicParsing="false"
-              onAction="#onReturnHomeButtonPressed" prefHeight="26.0" prefWidth="107.0"
-              text="Return Home" fx:id="returnHomeButton"/>
-          </children>
-        </GridPane>
-        <AnchorPane GridPane.rowIndex="1" prefHeight="100.0" prefWidth="200.0">
-          <children>
-            <Label layoutX="61.0" layoutY="-10.0" prefHeight="18.0" prefWidth="182.0"
-              text="Zwischen" textAlignment="CENTER">
-              <font>
-                <Font size="36.0"/>
-              </font>
-            </Label>
+            <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+              layoutX="-2.0" layoutY="-7.0" prefHeight="241.6"
+              prefWidth="602.4">
+              <content>
+                <AnchorPane>
+                  <children>
+                    <TableView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" prefHeight="400.0"
+                      prefWidth="605.6" fx:id="availableDriversTableview">
+                      <columns>
+                        <TableColumn prefWidth="98.39999079704285" text="Username"
+                          fx:id="driverColumn"/>
+                        <TableColumn prefWidth="88.0" text="from" fx:id="fromColumn"/>
+                        <TableColumn prefWidth="130.3999786376953" text="to" fx:id="toColumn"/>
+                        <TableColumn prefWidth="129.60003662109375" text="Date/Time"
+                          fx:id="dateColumn"/>
+                        <TableColumn prefWidth="63.199951171875" text="message"
+                          fx:id="messageColumn"/>
+                        <TableColumn prefWidth="93.5999755859375" text="Delete"
+                          fx:id="deleteColumn"/>
+                      </columns>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+              </content>
+            </ScrollPane>
           </children>
         </AnchorPane>
-        <ScrollPane GridPane.rowIndex="2" prefHeight="400.0" prefWidth="606.0">
-          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="610.0">
+        <AnchorPane GridPane.rowIndex="2" prefHeight="200.0" prefWidth="200.0">
+          <children>
+            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+              layoutX="-1.0" layoutY="1.0" prefHeight="36.0"
+              prefWidth="602.4">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
               <children>
-                <TableView layoutX="-22.0" layoutY="-3.0" prefHeight="311.0"
-                  prefWidth="575.0" fx:id="availableDriversTableview">
-                  <columns>
-                    <TableColumn prefWidth="105.59997940063477" text="Driver" fx:id="driverColumn"/>
-                    <TableColumn prefWidth="78.39996337890625" text="from" fx:id="fromColumn"/>
-                    <TableColumn prefWidth="74.39994812011719" text="to" fx:id="toColumn"/>
-                    <TableColumn prefWidth="96.7999267578125" text="Date/TIme" fx:id="dateColumn"/>
-                    <TableColumn prefWidth="60.79998779296875" text="Message"
-                      fx:id="messageColumn"/>
-                    <TableColumn prefWidth="71.20001220703125" text="delete" fx:id="deleteColumn"/>
-                  </columns>
-                </TableView>
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#onReturnHomeButtonPressed"
+                  text="Return Home" fx:id="returnHome"/>
+                <Button GridPane.columnIndex="1" alignment="CENTER" mnemonicParsing="false"
+                  onAction="#onDeleteCheckedButtonPressed" text="Delete Checked"
+                  fx:id="deleteChecked"/>
+                <Button GridPane.columnIndex="2" mnemonicParsing="false"
+                  onAction="#onDeleteAllButtonPressed" prefHeight="26.0" prefWidth="100.0"
+                  text="Delete All" fx:id="deleteAll"/>
               </children>
-            </AnchorPane>
-          </content>
-        </ScrollPane>
+            </GridPane>
+          </children>
+        </AnchorPane>
+        <AnchorPane GridPane.rowIndex="3" prefHeight="200.0" prefWidth="200.0">
+          <children>
+            <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+              layoutX="-1.0" layoutY="-1.0" prefHeight="25.6"
+              prefWidth="608.8" fx:id="feedbackLabel"/>
+          </children>
+        </AnchorPane>
       </children>
     </GridPane>
   </children>

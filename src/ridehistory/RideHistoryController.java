@@ -49,7 +49,7 @@ public class RideHistoryController implements Initializable {
   private TableColumn<PastRide, String> toColumn;
 
   @FXML
-  private TableColumn<PastRide, Date> dateColumn;
+  private TableColumn<PastRide, String> dateColumn;
 
   @FXML
   private TableColumn<PastRide, Button> messageColumn;
@@ -157,7 +157,7 @@ public class RideHistoryController implements Initializable {
             PastRide pastRide = new PastRide(resultSet120.getString("DRIVER"),
                 resultSet120.getString("RIDER"),
                 resultSet120.getString("GOINTTO"), resultSet120.getString("COMINGFROM"),
-                resultSet120.getDate("OCCURRANCE"), resultSet120.getInt("IDENTIFIER"));
+                resultSet120.getString("OCCURRANCE"), resultSet120.getInt("IDENTIFIER"));
             pastRides.add(pastRide);
           }
 
@@ -176,8 +176,8 @@ public class RideHistoryController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     driverColumn.setCellValueFactory(new PropertyValueFactory<PastRide, String>("driver"));
     toColumn.setCellValueFactory(new PropertyValueFactory<PastRide, String>("to"));
-    fromColumn.setCellValueFactory(new PropertyValueFactory<PastRide, String>("StartP"));
-    dateColumn.setCellValueFactory(new PropertyValueFactory<PastRide, Date>("date"));
+    fromColumn.setCellValueFactory(new PropertyValueFactory<PastRide, String>("startP"));
+    dateColumn.setCellValueFactory(new PropertyValueFactory<PastRide, String>("occurrance"));
     messageColumn.setCellValueFactory(new PropertyValueFactory<PastRide, Button>("message"));
     deleteColumn.setCellValueFactory(new PropertyValueFactory<PastRide, CheckBox>("checkBox"));
 

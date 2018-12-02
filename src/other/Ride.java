@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -41,12 +41,12 @@ public class Ride {
     this.dest = dest;
   }
 
-  public Date getDate() {
-    return date;
+  public String getOccurrance() {
+    return occurrance;
   }
 
-  public void setDate(Date date) {
-    this.date = date;
+  public void setOccurrance(String occurrance) {
+    this.occurrance = occurrance;
   }
 
   public String getStartP() {
@@ -86,7 +86,7 @@ public class Ride {
 
   private String driver;
   private String dest;
-  private Date date;
+  private String occurrance;
   private String startP;
   private Integer seats;
   private CheckBox checkBox;
@@ -98,13 +98,13 @@ public class Ride {
    * @param driver the driver
    * @param dest the destination
    * @param startP the starting location
-   * @param date the date of the ride
+   * @param time the time of the ride
    * @param seats the number of seats in the car
    */
-  public Ride(String driver, String dest, String startP, Date date, int seats) {
+  public Ride(String driver, String dest, String startP, String time, int seats) {
     setDriver(driver);
     setDest(dest);
-    setDate(date);
+    setOccurrance(time);
     setStartP(startP);
     setSeats(seats);
     setIdnumber(nextIDNumber++);
@@ -132,12 +132,12 @@ public class Ride {
    * @param driver the driver
    * @param dest the destination
    * @param startP the starting location
-   * @param date the data of the ride
+   * @param time the time of the ride
    */
-  public Ride(String driver, String dest, String startP, Date date) {
+  public Ride(String driver, String dest, String startP, String time) {
     this.driver = driver;
     this.dest = dest;
-    this.date = date;
+    setOccurrance(time);
     this.startP = startP;
     this.message = new Button();
 
@@ -190,7 +190,7 @@ public class Ride {
           PastRide pastRide = new PastRide(resultSet126.getString("DRIVER"),
               resultSet126.getString("RIDER"),
               resultSet126.getString("GOINTTO"), resultSet126.getString("COMINGFROM"),
-              resultSet126.getDate("OCCURRANCE"));
+              resultSet126.getString("OCCURRANCE"));
           pastRides[i] = pastRide;
         }
 

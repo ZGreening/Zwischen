@@ -23,8 +23,8 @@ public class PastRide extends Ride {
    * @param startP The starting location
    * @param date The date of the ride
    */
-  public PastRide(String rider, String driver, String dest, String startP, Date date) {
-    super(driver, dest, startP, date);
+  public PastRide(String rider, String driver, String dest, String startP, String time) {
+    super(driver, dest, startP, time);
     this.rider = rider;
   }
 
@@ -35,11 +35,11 @@ public class PastRide extends Ride {
    * @param driver The driver
    * @param dest The destination
    * @param startP The starting location
-   * @param date The date of the ride
+   * @param time The time of the ride
    * @param idNum The id of the ride //Todo What is the IDNumber???
    */
-  public PastRide(String rider, String driver, String dest, String startP, Date date, int idNum) {
-    super(driver, dest, startP, date);
+  public PastRide(String rider, String driver, String dest, String startP, String time, int idNum) {
+    super(driver, dest, startP, time);
     this.rider = rider;
     this.setIdnumber(idNum);
   }
