@@ -97,7 +97,7 @@ public class MainScreenController {
 
   @FXML
   void onViewHistoryPressed(ActionEvent event) {
-    Globals.changeScene("ridehistory/RideHistory.fxml");
+    Globals.changeScene("ridehistory/RideHistory.fxml", root);
   }
 
   @FXML

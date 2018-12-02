@@ -30,6 +30,7 @@ import messages.MessagesController;
 public class Globals {
 
   private static final ArrayList<User> availableDrivers = new ArrayList<>();
+
   private static final User currentUser = new User();
 
   public static User getCurrentUser() {
@@ -85,8 +86,9 @@ public class Globals {
 
       stage.show();
 
-      stage.setMinHeight(scene.getHeight());
+      //Set minimum size of window
       stage.setMinWidth(scene.getWidth());
+      stage.setMinHeight(scene.getHeight());
 
       //If window is opened successfully, close old window
       stage = (Stage) oldSceneRoot.getScene().getWindow();
@@ -95,6 +97,7 @@ public class Globals {
 
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
+      exception.printStackTrace();
     }
   }
 
@@ -120,11 +123,12 @@ public class Globals {
 
       stage.show();
 
-      stage.setMinHeight(scene.getHeight());
+      //Set minimum size of window
       stage.setMinWidth(scene.getWidth());
-
+      stage.setMinHeight(scene.getHeight());
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
+      exception.printStackTrace();
     }
   }
 
@@ -152,6 +156,10 @@ public class Globals {
       stage.setScene(scene);
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.show();
+
+      //Set minimum size of window
+      stage.setMinWidth(scene.getWidth());
+      stage.setMinHeight(scene.getHeight());
 
       //Set message recipient
       MessagesController controller = loader.getController();
