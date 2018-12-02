@@ -96,7 +96,8 @@ public class MessageViewController {
     messageText.setText("Message: " + message.getMessage());
     sender.setText("Sender:\n" + message.getSender());
     senderAvatar.setImage(new Image(
-        Paths.get("lib/UserData/" + message.getSender() + "/avatar.png").toUri().toString()));
+        Paths.get("lib/UserData/" + message.getSender() + "/defaultAvatar.png").toUri()
+            .toString()));
 
     scrollPane.setFitToWidth(true);
 

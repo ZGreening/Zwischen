@@ -53,7 +53,10 @@ public class EditAccountController {
   @FXML
   private Label feedbackLabel;
 
-  private File file;
+  //saveUserImage will replace userImage with default if file==null, so file should not be null
+  private File file = new File(
+      Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/avatar.png")
+          .toString());
 
   @FXML
   void onReturnToMainScreenPressed(ActionEvent event) {
@@ -72,14 +75,19 @@ public class EditAccountController {
       } else {
         feedbackLabel.setText("Password not updated");
       }
+
       statement.executeUpdate(String
           .format("UPDATE LOGIN SET EMAIL = '%s' WHERE USERNAME = '%s'", emailToUpdate,
               Globals.getCurrentUser().getUsername()));
       statement.executeUpdate(String
           .format("UPDATE LOGIN SET PNUMBER = '%s' WHERE USERNAME = '%s'", phoneNumberToUpdate,
               Globals.getCurrentUser().getUsername()));
-      feedbackLabel.setText("Account updated");
-      Globals.getCurrentUser().saveUserImage(file);
+
+      //Update new user information by logging in with new email and phone number
+      Globals.getCurrentUser().loginUser(Globals.getCurrentUser().getUsername(),
+          emailToUpdate, phoneNumberToUpdate, Globals.getCurrentUser().getUserFolder());
+
+      Globals.getCurrentUser().saveUserImage(file, true);
     } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
     }
@@ -110,6 +118,7 @@ public class EditAccountController {
     } else {
       newPNumber = Globals.formatPhoneNum(newPNumber);
       updateAccount(newpass, newEmail, newPNumber);
+      Globals.changeScene("mainscreen/MainScreen.fxml", root);
     }
   }
 

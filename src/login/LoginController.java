@@ -45,6 +45,7 @@ public class LoginController {
     try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM LOGIN")) {
+      boolean usernameFound = false;
 
       while (resultSet.next()) {
         //Get username and password from row
@@ -60,10 +61,21 @@ public class LoginController {
               .loginUser(databaseUsername, databaseEmail, databasePhoneNumber, databaseFolder);
           Globals.changeScene("mainscreen/MainScreen.fxml", root);
           return;
+        } else if (username.equals(databaseUsername)) {
+          usernameFound = true;
         }
       }
 
-      feedbackLabel.setText("Username or Password is incorrect");
+      if (usernameFound) {
+        feedbackLabel.setText("Password is incorrect");
+        this.password.selectAll();
+        this.password.requestFocus();
+      } else {
+        feedbackLabel.setText("Username does not exist");
+        this.password.clear();
+        this.username.selectAll();
+        this.username.requestFocus();
+      }
 
     } catch (SQLException sqlExcept) {
       System.out.println("Unable to check login database");

@@ -211,7 +211,8 @@ public class NotificationsController {
       //Get sender's avatar
       ImageView imageView = new ImageView();
       imageView.setImage(new Image(
-          Paths.get("lib/UserData/" + message.getSender() + "/avatar.png").toUri().toString()));
+          Paths.get("lib/UserData/" + message.getSender() + "/defaultAvatar.png").toUri()
+              .toString()));
       imageView.setFitHeight(75);
       imageView.setFitWidth(75);
 

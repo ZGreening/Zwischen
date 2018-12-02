@@ -23,12 +23,11 @@ import java.util.Collections;
 
 public class User {
 
-  private String username = "default";
-  private String email = "default@mydomain.org";
-  private String phoneNum = "1234567890";
-  private String userFolder = "default";
+  private String username;
+  private String email;
+  private String phoneNum;
+  private String userFolder;
   private ArrayList<Message> messages = new ArrayList<>();
-  private boolean isSelectedToDrive = false;  //Todo is this still necessary?
   private ArrayList<DailyRide> dailyRides = new ArrayList<>();
 
 
@@ -95,21 +94,12 @@ public class User {
     return username;
   }
 
-
   public String getEmail() {
     return email;
   }
 
   public String getPhoneNum() {
     return phoneNum;
-  }
-
-  public boolean isSelectedToDrive() {
-    return isSelectedToDrive;
-  }
-
-  public void setSelectedToDrive(boolean selectedToDrive) {
-    isSelectedToDrive = selectedToDrive;
   }
 
   public String getUserFolder() {
@@ -120,14 +110,19 @@ public class User {
    * Saves a user image to the lib/UserData folder. Username must be unique, otherwise the file will
    * not save.
    */
-  public void saveUserImage(File file) {
-    CopyOption[] copyOptions = new CopyOption[]{
-        StandardCopyOption.COPY_ATTRIBUTES
-    };
+  public void saveUserImage(File file, boolean overwrite) {
+    CopyOption[] copyOptions;
 
-    //If an image file path was not loaded, use default avatar.png
+    if (overwrite) {
+      copyOptions = new CopyOption[]{StandardCopyOption.COPY_ATTRIBUTES,
+          StandardCopyOption.REPLACE_EXISTING};
+    } else {
+      copyOptions = new CopyOption[]{StandardCopyOption.COPY_ATTRIBUTES};
+    }
+
+    //If an image file path was not loaded, use default defaultAvatar.png
     if (file == null) {
-      file = new File("lib/UserData/default/avatar.png");
+      file = new File("lib/defaultAvatar.png");
     }
 
     //Copy image to users folder
@@ -145,11 +140,11 @@ public class User {
    * A helper method to reset all userdata to default on user logout.
    */
   public void logoutUser() {
-    username = "default";
-    email = "default@mydomain.org";
-    phoneNum = "1234567890";
+    username = null;
+    email = null;
+    phoneNum = null;
+    userFolder = null;
     messages = new ArrayList<>(); //unload messages
-    isSelectedToDrive = false;
     dailyRides.clear();
   }
 
@@ -167,6 +162,6 @@ public class User {
     this.phoneNum = phoneNum;
     this.userFolder = userFolder;
     loadMessages();
-    dailyRidesDeserialize();
+    dailyRidesDeserialize(); //Todo switch to database
   }
 }

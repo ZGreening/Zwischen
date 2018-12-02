@@ -10,6 +10,7 @@ package createaccount;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -134,7 +135,7 @@ public class CreateAccountController {
                 phoneNum, folderName));
         Globals.getCurrentUser().loginUser(username, email, phoneNum, folderName);
         createUserFolder();
-        Globals.getCurrentUser().saveUserImage(file);
+        Globals.getCurrentUser().saveUserImage(file, false);
         Globals.changeScene("mainscreen/MainScreen.fxml", root);
       }
 
@@ -217,8 +218,10 @@ public class CreateAccountController {
   @FXML
   void initialize() {
     //Set up image to use current user's username for image, "default" by default
-    avatar.setImage(new Image(
-        Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder()).toUri().toString()
-            + "/avatar.png"));
+    try {
+      avatar.setImage(new Image(Paths.get("lib/defaultAvatar.png").toUri().toURL().toString()));
+    } catch (MalformedURLException exception) {
+      exception.printStackTrace();
+    }
   }
 }
