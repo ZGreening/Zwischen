@@ -63,12 +63,11 @@ public class CreateAccountController {
   private void createUserFolder() {
     try {
       Path path1 = Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder());
-      Path path2 = Paths.get("messages");
-      Path userMessagesPath = path1.resolve(path2);
+      Path path2 = path1.resolve("messages");
 
       //Create user folder and user messages folder
       Files.createDirectory(path1);
-      Files.createDirectory(userMessagesPath);
+      Files.createDirectory(path2);
     } catch (IOException exception) {
       System.out.println("Unable to create user directory");
     }
