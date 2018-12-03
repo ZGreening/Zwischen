@@ -9,26 +9,57 @@
 package riderequest;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javax.xml.transform.Result;
 import other.Globals;
+import other.PastRide;
+import other.Request;
+import other.Ride;
 
 public class RideRequest implements Initializable {
 
   //private Message message;
-
+  ObservableList<Ride> available = getRides();
   @FXML
   private AnchorPane root;
+  @FXML
+  private TableView<Ride> availableDriversTableview;
 
   @FXML
-  private VBox scrollpaneVBox;
+  private TableColumn<Ride, String> driverColumn;
+
+  @FXML
+  private TableColumn<Ride, String> fromColumn;
+
+  @FXML
+  private TableColumn<Ride, String> toColumn;
+
+  @FXML
+  private TableColumn<Ride, String> dateColumn;
+
+  @FXML
+  private TableColumn<Ride, Button> messageColumn;
+
+  @FXML
+  private TableColumn<Ride, CheckBox> requestColumn;
 
   @FXML
   private ComboBox<String> pickupComboBox;
@@ -38,6 +69,45 @@ public class RideRequest implements Initializable {
 
   @FXML
   private ComboBox<String> timeComboBox;
+
+  private ObservableList<Ride> getRides() {
+    ObservableList<Ride> rides = FXCollections.observableArrayList();
+
+    try {
+
+      try (
+
+          Connection conn130 = DriverManager.getConnection(
+              "jdbc:derby:lib/ZwischenDB");
+          Statement stmt130 = conn130.createStatement()) {
+
+        String query = String.format("SELECT * FROM RIDE WHERE GOINGTO = '%s' AND COMINGFROM = '%s'",
+            Globals.getCurrentUser().getUsername(), Globals.getCurrentUser().getUsername());
+
+        ResultSet resultSet130 = stmt130.executeQuery(query);
+
+        if (resultSet130.wasNull()) {
+
+
+
+        } else {
+          while (resultSet130.next()) {
+            Ride ride = new Ride(resultSet130.getString("DRIVER"),
+                resultSet130.getString("GOINGTO"),
+                resultSet130.getString("COMINGFROM"),
+                resultSet130.getString("OCCURRANCE"), resultSet130.getInt("SEATS"));
+            rides.add(ride);
+          }
+
+        }
+        resultSet130.close();
+      }
+    } catch (SQLException sqlExcept) {
+      sqlExcept.printStackTrace();
+      System.out.println("something went wrong");
+    }
+    return rides;
+  }
 
   private ObservableList<String> time = FXCollections
       .observableArrayList("12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM",
@@ -61,6 +131,18 @@ public class RideRequest implements Initializable {
     pickupComboBox.setItems(locations);
     destinationComboBox.setItems(locations);
     timeComboBox.setItems(time);
+
+    driverColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("driver"));
+    toColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("to"));
+    fromColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("startP"));
+    dateColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("occurance"));
+    messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
+    requestColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));
+
+    for (int p = 0; p < availableDriversTableview.getItems().size(); p++) {
+
+      availableDriversTableview.setItems(available);
+    }
   }
 
   @FXML
@@ -71,11 +153,43 @@ public class RideRequest implements Initializable {
 
   @FXML
   void onSubmitPressed(ActionEvent event) {
+    ObservableList<Ride> rides = FXCollections.observableArrayList();
 
+    for (Ride ride : available) {
+      String query = String.format(
+          String.format("INSERT INTO PAST_RIDE VALUES('%s','%s','%s','%d','%s')", ride.getDriver(),Globals.getCurrentUser().getUsername(), ride.getDest(),ride.getStartP(),ride.getIdnumber(),
+              ride.getOccurrance()));
+
+      if (ride.getCheckBox().isSelected()) {
+
+        rides.add(ride);
+        try (Connection conn133 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB")) {
+          Statement stmt133 = conn133.createStatement();
+          ResultSet rs130 = stmt133.executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE IDENTIFIER = %d", ride.getIdnumber()));
+          if(rs130.next()){
+            System.out.println("already sent");
+          }else{
+          stmt133.executeUpdate(query);
+
+            System.out.println(("sent"));
+          } stmt133.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+
+
+        available.remove(ride);
+      }
+
+    }
   }
 
   @FXML
   void onSearchPressed(ActionEvent event) {
+
+    Globals.currentRequest = new Request(destinationComboBox.getValue(), pickupComboBox.getValue(),
+        timeComboBox.getValue());
+    Globals.changeScene("riderequest/RideRequest.fxml", root);
 
   }
 }
