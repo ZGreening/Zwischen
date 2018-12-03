@@ -139,7 +139,7 @@ public class RideRequest implements Initializable {
     messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
     requestColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));
 
-    for (int p = 0; p < requestTableview.getItems().size(); p++) {
+    for (int p = 0; p < requestDriversTableview.getItems().size(); p++) {
 
       requestDriversTableview.setItems(available);
     }
