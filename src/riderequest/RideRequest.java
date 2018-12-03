@@ -41,7 +41,7 @@ public class RideRequest implements Initializable {
   @FXML
   private AnchorPane root;
   @FXML
-  private TableView<Ride> availableDriversTableview;
+  private TableView<Ride> requestDriversTableview;
 
   @FXML
   private TableColumn<Ride, String> driverColumn;
@@ -139,9 +139,9 @@ public class RideRequest implements Initializable {
     messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
     requestColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));
 
-    for (int p = 0; p < availableDriversTableview.getItems().size(); p++) {
+    for (int p = 0; p < requestTableview.getItems().size(); p++) {
 
-      availableDriversTableview.setItems(available);
+      requestDriversTableview.setItems(available);
     }
   }
 
