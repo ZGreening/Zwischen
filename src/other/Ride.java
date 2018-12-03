@@ -10,6 +10,7 @@ package other;
 
 import static other.Globals.getCurrentUser;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -57,13 +58,9 @@ public class Ride {
     this.startP = startP;
   }
 
-  public int getIdnumber() {
-    return idnumber;
-  }
 
-  public void setIdnumber(int idnumber) {
-    this.idnumber = idnumber;
-  }
+
+
 
   public Integer getSeats() {
     return seats;
@@ -91,6 +88,19 @@ public class Ride {
   private Integer seats;
   private CheckBox checkBox;
   private int idnumber;
+  private int idnumber() throws SQLException {
+    Connection conn140 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB");
+
+    try (Statement stmt140 = conn140.createStatement()) {
+
+      //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+      ResultSet resultSet140 = stmt140
+          .executeQuery("SELECT TOP 1 * FROM IDNUMBER ORDER BY ID DESC");
+      this.idnumber = resultSet140.getInt("ID") + 1;
+
+    }return this.idnumber;
+  }
 
   /**
    * Constructor fo the class Ride.
@@ -101,13 +111,14 @@ public class Ride {
    * @param time the time of the ride
    * @param seats the number of seats in the car
    */
-  public Ride(String driver, String dest, String startP, String time, int seats) {
+  public Ride(String driver, String dest, String startP, String time, int seats)
+      throws SQLException {
     setDriver(driver);
     setDest(dest);
     setOccurrance(time);
     setStartP(startP);
     setSeats(seats);
-    setIdnumber(nextIDNumber++);
+    idnumber();
     this.message = new Button();
 
     this.message.setOnAction((ActionEvent event) -> {
@@ -117,7 +128,7 @@ public class Ride {
             getClass().getClassLoader().getResource("messages/Messages.fxml"));
         MessagesController controller = loader.getController();
         ComboBox<String> comboBox = controller.getRecipient();
-        comboBox.getSelectionModel().select(changeAndMessage(idnumber));
+        comboBox.getSelectionModel().select(changeAndMessage(idnumber()));
       } catch (SQLException e) {
         e.printStackTrace();
       }
