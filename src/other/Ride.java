@@ -163,7 +163,9 @@ public class Ride {
 
         //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
         ResultSet resultSet140 = stmt140
-            .executeQuery("SELECT IDENTIFIER FROM IDNUMBER");
+            .executeQuery("SELECT MAX(IDENTIFIER) FROM IDNUMBER");
+
+        resultSet140.next();
 
           this.idnumber = (resultSet140.getInt(1));
           this.idnumber++;
