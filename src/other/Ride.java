@@ -88,9 +88,13 @@ public class Ride {
   private Integer seats;
   private CheckBox checkBox;
   private int idnumber;
+  public int getIdnumber(){
+    return this.idnumber;
+  }
   private int idnumber() throws SQLException {
-    Connection conn140 = DriverManager.getConnection(
-        "jdbc:derby:lib/ZwischenDB");
+
+    try(Connection conn140 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB")){
 
     try (Statement stmt140 = conn140.createStatement()) {
 
@@ -99,7 +103,17 @@ public class Ride {
           .executeQuery("SELECT TOP 1 * FROM IDNUMBER ORDER BY ID DESC");
       this.idnumber = resultSet140.getInt("ID") + 1;
 
-    }return this.idnumber;
+    }}
+    try(Connection conn141 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB");){try (Statement stmt141 = conn141.createStatement()) {
+          String query2 = String.format("INSERT INTO IDNUMBER VALUES('%d')", this.idnumber);
+          //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+      stmt141.executeUpdate(query2);
+
+
+    }}
+
+    return this.idnumber;
   }
 
   /**
