@@ -28,31 +28,25 @@ public class User {
   private String phoneNum;
   private String userFolder;
   private ArrayList<Message> messages = new ArrayList<>();
-  private ArrayList<DailyRide> dailyRides = new ArrayList<>();
-
-
-  public ArrayList<DailyRide> getDailyRides() {
-    return dailyRides;
-  }
 
   public ArrayList<Message> getMessages() {
     return messages;
   }
 
-  private void dailyRidesDeserialize() {
-    try {
-      File file = new File("lib/UserData/" + userFolder + "/driverSchedule");
+  public String getUsername() {
+    return username;
+  }
 
-      FileInputStream fileInputStream = new FileInputStream(file);
-      ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-      dailyRides = (ArrayList<DailyRide>) objectInputStream.readObject();
-      objectInputStream.close();
-      fileInputStream.close();
-    } catch (IOException exception) {
-      System.out.println("say something");
-    } catch (ClassNotFoundException exception) {
-      System.out.println("class not found");
-    }
+  public String getEmail() {
+    return email;
+  }
+
+  public String getPhoneNum() {
+    return phoneNum;
+  }
+
+  public String getUserFolder() {
+    return userFolder;
   }
 
   /**
@@ -88,22 +82,6 @@ public class User {
         Collections.sort(messages);
       }
     }
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public String getPhoneNum() {
-    return phoneNum;
-  }
-
-  public String getUserFolder() {
-    return userFolder;
   }
 
   /**
@@ -145,7 +123,6 @@ public class User {
     phoneNum = null;
     userFolder = null;
     messages = new ArrayList<>(); //unload messages
-    dailyRides.clear();
   }
 
   /**
@@ -162,6 +139,5 @@ public class User {
     this.phoneNum = phoneNum;
     this.userFolder = userFolder;
     loadMessages();
-    dailyRidesDeserialize(); //Todo switch to database
   }
 }
