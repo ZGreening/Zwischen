@@ -11,7 +11,8 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
   minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
-  xmlns="http://javafx.com/javafx/8.0.171" fx:controller="driverschedule.DriverScheduleController">
+  xmlns="http://javafx.com/javafx/8.0.171" fx:controller="driverschedule.DriverScheduleController"
+  fx:id="root">
    <children>
       <GridPane layoutX="179.0" layoutY="90.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -169,49 +170,50 @@
                          </font>
                        </Label>
                        <ScrollPane style="-fx-border-color: black;" GridPane.columnIndex="1"
-                         GridPane.columnSpan="3" focusTraversable="false" hbarPolicy="NEVER">
+                         GridPane.columnSpan="3" focusTraversable="false" hbarPolicy="NEVER"
+                         vbarPolicy="NEVER">
                          <content>
                            <VBox fx:id="monday"/>
                          </content>
                        </ScrollPane>
                        <ScrollPane style="-fx-border-color: black;" GridPane.columnIndex="1"
                          GridPane.columnSpan="3" GridPane.rowIndex="1" focusTraversable="false"
-                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0">
+                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" vbarPolicy="NEVER">
                          <content>
                            <VBox fx:id="tuesday"/>
                          </content>
                        </ScrollPane>
                        <ScrollPane style="-fx-border-color: black;" GridPane.columnIndex="1"
                          GridPane.columnSpan="3" GridPane.rowIndex="2" focusTraversable="false"
-                         hbarPolicy="NEVER" layoutX="587.0" layoutY="10.0">
+                         hbarPolicy="NEVER" layoutX="587.0" layoutY="10.0" vbarPolicy="NEVER">
                          <content>
                            <VBox fx:id="wednesday"/>
                          </content>
                        </ScrollPane>
                        <ScrollPane style="-fx-border-color: black;" GridPane.columnIndex="1"
                          GridPane.columnSpan="3" GridPane.rowIndex="3" focusTraversable="false"
-                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0">
+                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" vbarPolicy="NEVER">
                          <content>
                            <VBox fx:id="thursday"/>
                          </content>
                        </ScrollPane>
                        <ScrollPane style="-fx-border-color: black;" GridPane.columnIndex="1"
                          GridPane.columnSpan="3" GridPane.rowIndex="4" focusTraversable="false"
-                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0">
+                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" vbarPolicy="NEVER">
                          <content>
                            <VBox fx:id="friday"/>
                          </content>
                        </ScrollPane>
                        <ScrollPane style="-fx-border-color: black;" GridPane.columnIndex="1"
                          GridPane.columnSpan="3" GridPane.rowIndex="5" focusTraversable="false"
-                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0">
+                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" vbarPolicy="NEVER">
                          <content>
                            <VBox fx:id="saturday"/>
                          </content>
                        </ScrollPane>
                        <ScrollPane style="-fx-border-color: black;" GridPane.columnIndex="1"
                          GridPane.columnSpan="3" GridPane.rowIndex="6" focusTraversable="false"
-                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0">
+                         hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" vbarPolicy="NEVER">
                          <content>
                            <VBox fx:id="sunday"/>
                          </content>
