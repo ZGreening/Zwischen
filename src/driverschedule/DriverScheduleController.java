@@ -56,6 +56,7 @@ public class DriverScheduleController {
     final GridPane gridPane = new GridPane();
     String dayString;
 
+    //For storing day as a string
     if (day == monday) {
       dayString = "Monday";
     } else if (day == tuesday) {
@@ -116,6 +117,7 @@ public class DriverScheduleController {
         day.getChildren().remove(gridPane);
         dailyRides.remove(ride);
 
+        //Delete from database
         try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
             Statement statement = connection.createStatement()) {
           statement.executeUpdate(String
@@ -126,17 +128,18 @@ public class DriverScheduleController {
                   ride.time.getValue()));
         } catch (SQLException exception) {
           System.out.println("Unable to delete from database");
-          exception.printStackTrace();
         }
       }
     });
 
+    //If row has information, display it in the GUI
     if (origin != null && destination != null && time != null) {
       originBox.getSelectionModel().select(origin);
       destinationBox.getSelectionModel().select(destination);
       timeBox.getSelectionModel().select(time);
     }
 
+    //Create gridpane
     gridPane.add(originBox, 0, 0);
     gridPane.add(destinationBox, 1, 0);
     gridPane.add(timeBox, 2, 0);
@@ -152,9 +155,11 @@ public class DriverScheduleController {
     try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
         Statement statement = connection.createStatement()) {
 
+      //Delete all rows so that there are no conflicting entries
       statement
           .executeUpdate(String.format("DELETE FROM %s", Globals.getCurrentUser().getUserFolder()));
 
+      //Save all rides
       for (Ride ride : dailyRides) {
         if (ride.rowIsFilled()) {
           statement.executeUpdate(String.format("INSERT INTO %s VALUES('%s','%s','%s','%s')",
@@ -177,6 +182,7 @@ public class DriverScheduleController {
         ResultSet resultSet = statement.executeQuery(String
             .format("select * from %s", Globals.getCurrentUser().getUserFolder().toUpperCase()))) {
 
+      //Load entries from database
       while (resultSet.next()) {
         String day = resultSet.getString("DAY");
         String origin = resultSet.getString("ORIGIN");
@@ -213,6 +219,7 @@ public class DriverScheduleController {
       System.out.println("Unable to load  user data");
     }
 
+    //Generate empty rows under all filled rows
     generateNewRideRow(monday, null, null, null);
     generateNewRideRow(tuesday, null, null, null);
     generateNewRideRow(wednesday, null, null, null);
@@ -222,6 +229,7 @@ public class DriverScheduleController {
     generateNewRideRow(sunday, null, null, null);
   }
 
+  //Private class ride used for organization of dynamic javafx objects
   private class Ride {
 
     private ComboBox<String> origin;
@@ -240,12 +248,6 @@ public class DriverScheduleController {
     private boolean rowIsFilled() {
       return (origin.getValue() != null && destination.getValue() != null
           && time.getValue() != null);
-    }
-
-    public String toString() {
-      return "Day=" + day + "\nOrigin=" + origin.getValue() + "\nDestination=" + destination
-          .getValue() + "\nTime="
-          + time.getValue();
     }
   }
 }

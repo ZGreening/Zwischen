@@ -37,10 +37,10 @@ public class Main extends Application {
     Globals.changeScene("login/Login.fxml");
     //Todo Known issues:
     //  Ride request needs functionality
-    //  driver schedule needs fixing, (switch to database for schedule, so it can be easily accessed
-    //    for ride request screen
     //  Correct FindBugs and CheckStyle errors!!!
     //  Check all windows follow 4:3 sizing
     //  Fix sending messages to from using username to using userFolder
+    //  Driver Schedule only use available times, days cannont have the same time for driving
+    //  Store friends list using serialization
   }
 }
