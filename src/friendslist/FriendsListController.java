@@ -58,8 +58,10 @@ public class FriendsListController {
 
   @FXML
   void initialize() {
+
     ArrayList<String> usernames = Globals.getAllUsernames();
     usernames.remove(Globals.getCurrentUser().getUsername());
     addUserComboBox.setItems(FXCollections.observableArrayList(usernames));
+
   }
 }

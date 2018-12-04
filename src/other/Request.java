@@ -6,10 +6,13 @@ public class Request {
   private String coming;
   private String time;
 
+  //A constructor to create an object, which allows search(in riderequest) to compare database values and make objects to populate a tableview
   public Request(String going, String coming, String time) {
+
     this.going = going;
     this.coming = coming;
     this.time = time;
+
   }
 
   public Request() {
