@@ -154,7 +154,7 @@ public class Ride {
     return this.idnumber;
   }
 
-  private int idnumber() throws SQLException {
+  private int idnumber() {
 
     try (Connection conn140 = DriverManager.getConnection(
         "jdbc:derby:lib/ZwischenDB")) {
@@ -163,22 +163,27 @@ public class Ride {
 
         //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
         ResultSet resultSet140 = stmt140
-            .executeQuery("SELECT TOP 1 * FROM IDNUMBER ORDER BY ID DESC");
-        this.idnumber = resultSet140.getInt("ID") + 1;
+            .executeQuery("SELECT IDENTIFIER FROM IDNUMBER");
 
-      }
+          this.idnumber = (resultSet140.getInt(1));
+          this.idnumber++;
+
+        try (Connection conn141 = DriverManager.getConnection(
+            "jdbc:derby:lib/ZwischenDB");) {
+          try (Statement stmt141 = conn141.createStatement()) {
+            String query2 = String.format("UPDATE IDNUMBER SET IDENTIFIER = %d", this.idnumber);
+            //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+            stmt141.executeUpdate(query2);
+
+
+          }
+        }
+      }catch(SQLException e){
+        e.printStackTrace();
     }
-    try (Connection conn141 = DriverManager.getConnection(
-        "jdbc:derby:lib/ZwischenDB");) {
-      try (Statement stmt141 = conn141.createStatement()) {
-        String query2 = String.format("INSERT INTO IDNUMBER VALUES('%d')", this.idnumber);
-        //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-        stmt141.executeUpdate(query2);
-
-
-      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
-
     return this.idnumber;
   }
 

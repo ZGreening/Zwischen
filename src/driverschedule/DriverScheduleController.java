@@ -12,6 +12,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import other.DailyRide;
 import other.Globals;
+import other.Ride;
 
 public class DriverScheduleController {
 
@@ -166,9 +171,9 @@ public class DriverScheduleController {
     //Filling values to combo boxes
     for (int iii = 0; iii < availabilityArray.length; iii++) {
       ((ComboBox<String>) availabilityArray[iii]).setItems(availabilityListBox);
-      ((ComboBox<String>) timeArray[iii]).setItems(timeBox);
+      ((ComboBox<String>) timeArray[iii]).setItems(destinationBox);
       ((ComboBox<String>) pickupArray[iii]).setItems(destinationBox);
-      ((ComboBox<String>) destArray[iii]).setItems(destinationBox);
+      ((ComboBox<String>) destArray[iii]).setItems(timeBox);
     }
 
     ArrayList<DailyRide> dailyRides = Globals.getCurrentUser().getDailyRides();
@@ -190,15 +195,20 @@ public class DriverScheduleController {
    * A function to store combobox values into separate arraylists.
    */
   @FXML
-  public void saveSchedule(ActionEvent event) {
+  public void saveSchedule(ActionEvent event) throws SQLException {
     Globals.getCurrentUser().getDailyRides().clear();
+    try {
+      Connection conn150 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+      Statement stmt150 = conn150.createStatement();
+      stmt150.executeUpdate(String.format("DELETE * FROM RIDE WHERE DRIVER = %s",
+          Globals.getCurrentUser().getUsername()));
+    } catch (SQLException e) {
+    }
     for (int iii = 0; iii < availabilityArray.length; iii++) {
       String string = ((ComboBox<String>) availabilityArray[iii]).getValue();
 
-      System.out.println(string);
-      System.out.println(!((ComboBox<String>) timeArray[iii]).getValue().isEmpty());
-      System.out.println(!((ComboBox<String>) pickupArray[iii]).getValue().isEmpty());
-      System.out.println(!((ComboBox<String>) destArray[iii]).getValue().isEmpty());
+
+
 
       if (string != null && !((ComboBox<String>) timeArray[iii]).getValue().isEmpty()
           && !((ComboBox<String>) pickupArray[iii]).getValue().isEmpty()
@@ -207,23 +217,21 @@ public class DriverScheduleController {
             ((ComboBox<String>) timeArray[iii]).getValue(),
             ((ComboBox<String>) pickupArray[iii]).getValue(),
             ((ComboBox<String>) destArray[iii]).getValue()));
-        //Todo fix button focus on all new screens (Zachary)
+        Ride ride = new Ride(Globals.getCurrentUser().getUsername(),
+            ((ComboBox<String>) timeArray[iii]).getValue(),
+            ((ComboBox<String>) pickupArray[iii]).getValue(),
+            ((ComboBox<String>) destArray[iii]).getValue(), 3);
+        try {
+          Connection conn151 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+          Statement stmt151 = conn151.createStatement();
+          String query3 = String.format("INSERT INTO RIDE VALUES('%s','%s','%s','%d','%s')",
+              Globals.getCurrentUser().getUsername(), ride.getDest(), ride.getStartP(),
+              ride.getSeats(), ride.getOccurrance());
+          stmt151.executeUpdate(query3);
+        } catch (SQLException e) {
+        }
       }
-    }
 
-    try {
-      File file = new File(
-          "lib/UserData/" + Globals.getCurrentUser().getUserFolder() + "/driverSchedule");
-
-      FileOutputStream fileOutputStream = new FileOutputStream(file);
-      ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-      objectOutputStream.writeObject(Globals.getCurrentUser().getDailyRides());
-
-      objectOutputStream.close();
-      fileOutputStream.close();
-
-    } catch (IOException exception) {
-      System.out.println("Unable to save drive schedule");
     }
   }
 }

@@ -139,7 +139,7 @@ public class RideHistoryController implements Initializable {
       try (
 
           Connection conn120 = DriverManager.getConnection(
-              "jdbc:derby:lib/ZwischenDB");
+              "jF");
           Statement stmt120 = conn120.createStatement()) {
 
         String query = String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
