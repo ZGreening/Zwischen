@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -27,10 +28,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javax.xml.transform.Result;
+import messages.MessagesController;
 import other.Globals;
-import other.PastRide;
 import other.Request;
 import other.Ride;
 
@@ -69,6 +68,20 @@ public class RideRequest implements Initializable {
 
   @FXML
   private ComboBox<String> timeComboBox;
+  private ObservableList<String> time = FXCollections
+      .observableArrayList("12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM",
+          "3:00 AM", "3:30 AM", "4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM", "6:00 AM", "6:30 AM",
+          "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM",
+          "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM",
+          "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM",
+          "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM",
+          "10:30 PM", "11:00 PM", "11:30 PM");
+  private ObservableList<String> locations = FXCollections
+      .observableArrayList("Coastal Village Apartments",
+          "Coconut Point Mall", "Florida Gulf Coast University",
+          "Florida SouthWestern State College",
+          "Gulf Coast Town Center", "Miromar Outlets", "The Reef Apartments",
+          "Walmart Supercenter (Estero)");
 
   private ObservableList<Ride> getRides() {
     ObservableList<Ride> rides = FXCollections.observableArrayList();
@@ -81,14 +94,13 @@ public class RideRequest implements Initializable {
               "jdbc:derby:lib/ZwischenDB");
           Statement stmt130 = conn130.createStatement()) {
 
-        String query = String.format("SELECT * FROM RIDE WHERE GOINGTO = '%s' AND COMINGFROM = '%s'",
-            Globals.getCurrentUser().getUsername(), Globals.getCurrentUser().getUsername());
+        String query = String
+            .format("SELECT * FROM RIDE WHERE GOINGTO = '%s' AND COMINGFROM = '%s'",
+                Globals.getCurrentUser().getUsername(), Globals.getCurrentUser().getUsername());
 
         ResultSet resultSet130 = stmt130.executeQuery(query);
 
         if (resultSet130.wasNull()) {
-
-
 
         } else {
           while (resultSet130.next()) {
@@ -109,23 +121,6 @@ public class RideRequest implements Initializable {
     return rides;
   }
 
-  private ObservableList<String> time = FXCollections
-      .observableArrayList("12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM",
-          "3:00 AM", "3:30 AM", "4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM", "6:00 AM", "6:30 AM",
-          "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM",
-          "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM",
-          "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM",
-          "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM",
-          "10:30 PM", "11:00 PM", "11:30 PM");
-
-  private ObservableList<String> locations = FXCollections
-      .observableArrayList("Coastal Village Apartments",
-          "Coconut Point Mall", "Florida Gulf Coast University",
-          "Florida SouthWestern State College",
-          "Gulf Coast Town Center", "Miromar Outlets", "The Reef Apartments",
-          "Walmart Supercenter (Estero)");
-
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     pickupComboBox.setItems(locations);
@@ -142,6 +137,7 @@ public class RideRequest implements Initializable {
     for (int p = 0; p < requestDriversTableview.getItems().size(); p++) {
 
       requestDriversTableview.setItems(available);
+
     }
   }
 
@@ -157,7 +153,9 @@ public class RideRequest implements Initializable {
 
     for (Ride ride : available) {
       String query = String.format(
-          String.format("INSERT INTO PAST_RIDE VALUES('%s','%s','%s','%d','%s')", ride.getDriver(),Globals.getCurrentUser().getUsername(), ride.getDest(),ride.getStartP(),ride.getIdnumber(),
+          String.format("INSERT INTO PAST_RIDE VALUES('%s','%s','%s','%d','%s')", ride.getDriver(),
+              Globals.getCurrentUser().getUsername(), ride.getDest(), ride.getStartP(),
+              ride.getIdnumber(),
               ride.getOccurrance()));
 
       if (ride.getCheckBox().isSelected()) {
@@ -165,22 +163,31 @@ public class RideRequest implements Initializable {
         rides.add(ride);
         try (Connection conn133 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB")) {
           Statement stmt133 = conn133.createStatement();
-          ResultSet rs130 = stmt133.executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE IDENTIFIER = %d", ride.getIdnumber()));
-          if(rs130.next()){
+          ResultSet rs130 = stmt133.executeQuery(
+              String.format("SELECT * FROM PAST_RIDE WHERE IDENTIFIER = %d", ride.getIdnumber()));
+          if (rs130.next()) {
             System.out.println("already sent");
-          }else{
-          stmt133.executeUpdate(query);
+          } else {
+            stmt133.executeUpdate(query);
 
             System.out.println(("sent"));
-          } stmt133.close();
+          }
+          stmt133.close();
         } catch (SQLException e) {
           e.printStackTrace();
         }
 
+        Globals.changeScene("messages/Messages.fxml");
 
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getClassLoader().getResource("messages/Messages.fxml"));
+        MessagesController controller = loader.getController();
+        ComboBox<String> comboBox = controller.getRecipient();
+        comboBox.getSelectionModel().select(ride.getDriver());
         available.remove(ride);
-      }
 
+
+      }
     }
   }
 

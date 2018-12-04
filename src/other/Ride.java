@@ -10,13 +10,11 @@ package other;
 
 import static other.Globals.getCurrentUser;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -26,61 +24,8 @@ import messages.MessagesController;
 
 public class Ride {
 
-  public String getDriver() {
-    return driver;
-  }
-
-  public void setDriver(String driver) {
-    this.driver = driver;
-  }
-
-  public String getDest() {
-    return dest;
-  }
-
-  public void setDest(String dest) {
-    this.dest = dest;
-  }
-
-  public String getOccurrance() {
-    return occurrance;
-  }
-
-  public void setOccurrance(String occurrance) {
-    this.occurrance = occurrance;
-  }
-
-  public String getStartP() {
-    return startP;
-  }
-
-  public void setStartP(String startP) {
-    this.startP = startP;
-  }
-
-
-
-
-
-  public Integer getSeats() {
-    return seats;
-  }
-
-  public void setSeats(Integer seats) {
-    this.seats = seats;
-  }
-
   private static int nextIDNumber = 0;
   private Button message;
-
-  public CheckBox getCheckBox() {
-    return checkBox;
-  }
-
-  public void setCheckBox(CheckBox checkBox) {
-    this.checkBox = checkBox;
-  }
-
   private String driver;
   private String dest;
   private String occurrance;
@@ -88,33 +33,6 @@ public class Ride {
   private Integer seats;
   private CheckBox checkBox;
   private int idnumber;
-  public int getIdnumber(){
-    return this.idnumber;
-  }
-  private int idnumber() throws SQLException {
-
-    try(Connection conn140 = DriverManager.getConnection(
-        "jdbc:derby:lib/ZwischenDB")){
-
-    try (Statement stmt140 = conn140.createStatement()) {
-
-      //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-      ResultSet resultSet140 = stmt140
-          .executeQuery("SELECT TOP 1 * FROM IDNUMBER ORDER BY ID DESC");
-      this.idnumber = resultSet140.getInt("ID") + 1;
-
-    }}
-    try(Connection conn141 = DriverManager.getConnection(
-        "jdbc:derby:lib/ZwischenDB");){try (Statement stmt141 = conn141.createStatement()) {
-          String query2 = String.format("INSERT INTO IDNUMBER VALUES('%d')", this.idnumber);
-          //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-      stmt141.executeUpdate(query2);
-
-
-    }}
-
-    return this.idnumber;
-  }
 
   /**
    * Constructor fo the class Ride.
@@ -159,12 +77,13 @@ public class Ride {
    * @param startP the starting location
    * @param time the time of the ride
    */
-  public Ride(String driver, String dest, String startP, String time) {
+  public Ride(String driver, String dest, String startP, String time) throws SQLException {
     this.driver = driver;
     this.dest = dest;
     setOccurrance(time);
     this.startP = startP;
     this.message = new Button();
+    idnumber();
 
     this.message.setOnAction((ActionEvent event) -> {
       Globals.changeScene("messages/Messages.fxml");
@@ -181,6 +100,86 @@ public class Ride {
 
     this.checkBox = new CheckBox();
 
+  }
+
+  public String getDriver() {
+    return driver;
+  }
+
+  public void setDriver(String driver) {
+    this.driver = driver;
+  }
+
+  public String getDest() {
+    return dest;
+  }
+
+  public void setDest(String dest) {
+    this.dest = dest;
+  }
+
+  public String getOccurrance() {
+    return occurrance;
+  }
+
+  public void setOccurrance(String occurrance) {
+    this.occurrance = occurrance;
+  }
+
+  public String getStartP() {
+    return startP;
+  }
+
+  public void setStartP(String startP) {
+    this.startP = startP;
+  }
+
+  public Integer getSeats() {
+    return seats;
+  }
+
+  public void setSeats(Integer seats) {
+    this.seats = seats;
+  }
+
+  public CheckBox getCheckBox() {
+    return checkBox;
+  }
+
+  public void setCheckBox(CheckBox checkBox) {
+    this.checkBox = checkBox;
+  }
+
+  public int getIdnumber() {
+    return this.idnumber;
+  }
+
+  private int idnumber() throws SQLException {
+
+    try (Connection conn140 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB")) {
+
+      try (Statement stmt140 = conn140.createStatement()) {
+
+        //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+        ResultSet resultSet140 = stmt140
+            .executeQuery("SELECT TOP 1 * FROM IDNUMBER ORDER BY ID DESC");
+        this.idnumber = resultSet140.getInt("ID") + 1;
+
+      }
+    }
+    try (Connection conn141 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB");) {
+      try (Statement stmt141 = conn141.createStatement()) {
+        String query2 = String.format("INSERT INTO IDNUMBER VALUES('%d')", this.idnumber);
+        //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+        stmt141.executeUpdate(query2);
+
+
+      }
+    }
+
+    return this.idnumber;
   }
 
   /*

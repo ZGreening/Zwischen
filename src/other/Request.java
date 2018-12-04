@@ -2,6 +2,19 @@ package other;
 
 public class Request {
 
+  private String going;
+  private String coming;
+  private String time;
+
+  public Request(String going, String coming, String time) {
+    this.going = going;
+    this.coming = coming;
+    this.time = time;
+  }
+
+  public Request() {
+  }
+
   public String getGoing() {
     return going;
   }
@@ -24,18 +37,5 @@ public class Request {
 
   public void setTime(String time) {
     this.time = time;
-  }
-
-  private String going;
-private String coming;
-private String time;
-
-  public Request(String going, String coming, String time) {
-    this.going = going;
-    this.coming = coming;
-    this.time = time;
-  }
-
-  public Request() {
   }
 }

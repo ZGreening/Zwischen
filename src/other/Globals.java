@@ -29,10 +29,9 @@ import messages.MessagesController;
 
 public class Globals {
 
-  public static  Request currentRequest = new Request();
   private static final ArrayList<User> availableDrivers = new ArrayList<>();
-
   private static final User currentUser = new User();
+  public static Request currentRequest = new Request();
 
   public static User getCurrentUser() {
     return currentUser;

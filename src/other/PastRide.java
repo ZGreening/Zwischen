@@ -1,16 +1,8 @@
 package other;
 
-import java.util.Date;
+import java.sql.SQLException;
 
 public class PastRide extends Ride {
-
-  public String getRider() {
-    return rider;
-  }
-
-  public void setRider(String rider) {
-    this.rider = rider;
-  }
 
   private String rider;
 
@@ -21,9 +13,10 @@ public class PastRide extends Ride {
    * @param driver The driver
    * @param dest The destination
    * @param startP The starting location
-   * @param date The date of the ride
+   * @param time The date of the ride
    */
-  public PastRide(String rider, String driver, String dest, String startP, String time) {
+  public PastRide(String rider, String driver, String dest, String startP, String time)
+      throws SQLException {
     super(driver, dest, startP, time);
     this.rider = rider;
   }
@@ -36,11 +29,20 @@ public class PastRide extends Ride {
    * @param dest The destination
    * @param startP The starting location
    * @param time The time of the ride
-   * @param idNum The id of the ride //Todo What is the IDNumber???
+   * @param idNum The id of the ride used for simplification
    */
-  public PastRide(String rider, String driver, String dest, String startP, String time, int idNum) {
+  public PastRide(String rider, String driver, String dest, String startP, String time, int idNum)
+      throws SQLException {
     super(driver, dest, startP, time);
     this.rider = rider;
-    this.setIdnumber(idNum);
+
+  }
+
+  public String getRider() {
+    return rider;
+  }
+
+  public void setRider(String rider) {
+    this.rider = rider;
   }
 }
