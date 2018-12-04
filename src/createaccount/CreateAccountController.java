@@ -189,8 +189,8 @@ public class CreateAccountController {
           Statement statement = connection.createStatement()) {
 
         statement.executeUpdate(String.format(
-            "create table %s(DAY VARCHAR(10),ORIGIN VARCHAR(255),DESTINATION VARCHAR(255),TIME VARCHAR(10))",
-            Globals.getCurrentUser().getUserFolder()));
+            "create table %s(DAY VARCHAR(10),ORIGIN VARCHAR(255),DESTINATION VARCHAR(255),"
+                + "TIME VARCHAR(10))", Globals.getCurrentUser().getUserFolder()));
 
       } catch (SQLException exception) {
         System.out.println("Unable to create user table");

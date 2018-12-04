@@ -53,7 +53,7 @@ public class DriverScheduleController {
   private ArrayList<Ride> dailyRides = new ArrayList<>();
 
   private void generateNewRideRow(VBox day, String origin, String destination, String time) {
-    GridPane gridPane = new GridPane();
+    final GridPane gridPane = new GridPane();
     String dayString;
 
     if (day == monday) {
@@ -82,7 +82,7 @@ public class DriverScheduleController {
     deleteButton.setText("Delete");
     deleteButton.setFont(new Font(12));
 
-    Ride ride = new Ride(originBox, destinationBox, timeBox, dayString);
+    final Ride ride = new Ride(originBox, destinationBox, timeBox, dayString);
 
     originBox.setEditable(true);
     destinationBox.setEditable(true);
@@ -120,9 +120,10 @@ public class DriverScheduleController {
             Statement statement = connection.createStatement()) {
           statement.executeUpdate(String
               .format(
-                  "DELETE from %s where (DAY='%s' and ORIGIN='%s' and DESTINATION='%s' and TIME='%s')",
-                  Globals.getCurrentUser().getUserFolder().toUpperCase(), ride.day,
-                  ride.origin.getValue(), ride.destination.getValue(), ride.time.getValue()));
+                  "DELETE from %s where (DAY='%s' and ORIGIN='%s' and DESTINATION='%s' and "
+                      + "TIME='%s')", Globals.getCurrentUser().getUserFolder().toUpperCase(),
+                  ride.day, ride.origin.getValue(), ride.destination.getValue(),
+                  ride.time.getValue()));
         } catch (SQLException exception) {
           System.out.println("Unable to delete from database");
           exception.printStackTrace();
