@@ -94,11 +94,12 @@ public class RideRequest implements Initializable {
 
           Connection conn130 = DriverManager.getConnection(
               "jdbc:derby:lib/ZwischenDB");
+
           Statement stmt130 = conn130.createStatement()) {
 
         String query = String
             .format("SELECT * FROM RIDE WHERE GOINGTO = '%s' AND COMINGFROM = '%s'",
-                Globals.getCurrentUser().getUsername(), Globals.getCurrentUser().getUsername());
+                Globals.currentRequest.getGoing(), Globals.currentRequest.getComing());
 
         ResultSet resultSet130 = stmt130.executeQuery(query);
 
