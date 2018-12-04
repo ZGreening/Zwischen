@@ -183,6 +183,18 @@ public class CreateAccountController {
       phoneNumText = Globals.formatPhoneNum(phoneNumText);
 
       storeAccountAndLogin(usernameText, passwordText, emailText, phoneNumText);
+
+      //Create a table for the new user to store their schedule
+      try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+          Statement statement = connection.createStatement()) {
+
+        statement.executeUpdate(String.format(
+            "create table %s(DAY VARCHAR(10),ORIGIN VARCHAR(255),DESTINATION VARCHAR(255),"
+                + "TIME VARCHAR(10))", Globals.getCurrentUser().getUserFolder()));
+
+      } catch (SQLException exception) {
+        System.out.println("Unable to create user table");
+      }
     }
   }
 

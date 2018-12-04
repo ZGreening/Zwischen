@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: grey;"
-  maxHeight="-Infinity" maxWidth="-Infinity"
-  minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0"
-  xmlns="http://javafx.com/javafx/8.0.171" fx:controller="createaccount.CreateAccountController"
-  fx:id="root">
+  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171"
+  fx:controller="createaccount.CreateAccountController" fx:id="root">
   <children>
     <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
       AnchorPane.topAnchor="0.0">
@@ -53,10 +52,9 @@
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0"
-                      AnchorPane.leftAnchor="0.0"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" alignment="TOP_CENTER"
-                      layoutX="116.0" layoutY="28.0"
-                      text="Zwischen" textFill="LIGHTGRAY">
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0" alignment="TOP_CENTER" layoutX="116.0"
+                      layoutY="28.0" text="Zwischen" textFill="LIGHTGRAY">
                       <font>
                         <Font name="Arial Bold" size="30.0"/>
                       </font>
@@ -66,12 +64,11 @@
                 <AnchorPane GridPane.rowIndex="1" prefHeight="200.0" prefWidth="200.0">
                   <children>
                     <Label style="-fx-background-color: saddlebrown;" AnchorPane.bottomAnchor="0.0"
-                      AnchorPane.leftAnchor="0.0"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                      alignment="TOP_CENTER" layoutX="183.0"
+                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                      AnchorPane.topAnchor="0.0" alignment="TOP_CENTER" layoutX="183.0"
                       layoutY="14.0" text="Create Account">
                       <font>
-                        <Font size="18.0"/>
+                        <Font name="American Typewriter" size="18.0"/>
                       </font>
                     </Label>
                   </children>
@@ -83,67 +80,61 @@
         <AnchorPane GridPane.rowIndex="2" GridPane.rowSpan="2">
           <children>
             <ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0"
-              fitHeight="75.0" fitWidth="75.0" pickOnBounds="true"
-              smooth="false" fx:id="avatar"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" fitHeight="75.0"
+              fitWidth="75.0" pickOnBounds="true" smooth="false" fx:id="avatar"/>
             <Button AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="110.0"
-              AnchorPane.rightAnchor="0.0"
-              AnchorPane.topAnchor="20.0" focusTraversable="false" mnemonicParsing="false"
-              onAction="#onUploadPressed" text="Upload"
-              wrapText="true"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" focusTraversable="false"
+              mnemonicParsing="false" onAction="#onUploadPressed" text="Upload" wrapText="true"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.rowIndex="4" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              layoutX="83.0" layoutY="29.0" text="Username:"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" layoutX="83.0" layoutY="29.0"
+              text="Username:"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.rowIndex="5" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              layoutX="66.0" layoutY="29.0" text="Password:"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" layoutX="66.0" layoutY="29.0"
+              text="Password:"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.rowIndex="6" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="0.0"
-              AnchorPane.topAnchor="0.0" layoutX="100.0"
-              layoutY="29.0" text="Confirm password:"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" layoutX="100.0" layoutY="29.0"
+              text="Confirm password:"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.rowIndex="7" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              layoutX="83.0" layoutY="38.0" text="Email:"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" layoutX="83.0" layoutY="38.0"
+              text="Email:"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.rowIndex="8" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              layoutX="90.0" layoutY="29.0" text="Phone Number:"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" layoutX="90.0" layoutY="29.0"
+              text="Phone Number:"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.columnSpan="2" GridPane.rowIndex="9" prefHeight="200.0"
           prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              alignment="CENTER" layoutX="55.0" layoutY="23.0"
-              textFill="RED" fx:id="feedbackLabel"/>
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" alignment="CENTER"
+              layoutX="55.0" layoutY="23.0" textFill="RED" fx:id="feedbackLabel"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.rowIndex="10" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-              alignment="CENTER" layoutX="83.0" layoutY="6.0"
-              text="Already have an account?">
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" alignment="CENTER"
+              layoutX="83.0" layoutY="6.0" text="Already have an account?">
               <font>
                 <Font size="14.0"/>
               </font>
@@ -153,17 +144,15 @@
         <AnchorPane GridPane.rowIndex="11" prefHeight="200.0" prefWidth="200.0">
           <children>
             <Button AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
-              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0"
-              focusTraversable="false" mnemonicParsing="false"
-              onAction="#onReturnToLoginPressed" text="Return to Login"/>
+              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" focusTraversable="false"
+              mnemonicParsing="false" onAction="#onReturnToLoginPressed" text="Return to Login"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="200.0"
           prefWidth="200.0">
           <children>
             <TextField AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="20.0"
-              AnchorPane.topAnchor="10.0" focusTraversable="false"
+              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
               promptText="username" fx:id="username"/>
           </children>
         </AnchorPane>
@@ -171,8 +160,7 @@
           prefWidth="200.0">
           <children>
             <PasswordField AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="20.0"
-              AnchorPane.topAnchor="10.0" focusTraversable="false"
+              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
               promptText="password" fx:id="password"/>
           </children>
         </AnchorPane>
@@ -180,17 +168,15 @@
           prefWidth="200.0">
           <children>
             <PasswordField AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0"
-              focusTraversable="false" promptText="confirm password"
-              fx:id="confirmPassword"/>
+              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
+              promptText="confirm password" fx:id="confirmPassword"/>
           </children>
         </AnchorPane>
         <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="7" prefHeight="200.0"
           prefWidth="200.0">
           <children>
             <TextField AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="20.0"
-              AnchorPane.topAnchor="10.0" focusTraversable="false"
+              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
               promptText="example@mydomain.com" fx:id="email"/>
           </children>
         </AnchorPane>
@@ -198,8 +184,7 @@
           prefWidth="200.0">
           <children>
             <TextField AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="20.0"
-              AnchorPane.topAnchor="10.0" focusTraversable="false"
+              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
               promptText="(000)000-0000" fx:id="phoneNum"/>
           </children>
         </AnchorPane>
@@ -208,8 +193,7 @@
           <children>
             <Button AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0"
               AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0" focusTraversable="false"
-              mnemonicParsing="false" onAction="#onCreateAccountPressed"
-              text="Create Account"/>
+              mnemonicParsing="false" onAction="#onCreateAccountPressed" text="Create Account"/>
           </children>
         </AnchorPane>
       </children>
