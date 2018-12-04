@@ -38,8 +38,6 @@ public class Main extends Application {
     //Todo Known issues:
     //  Ride request needs functionality
     //  Correct FindBugs and CheckStyle errors!!!
-    //  Check all windows follow 4:3 sizing
-    //  Fix sending messages to from using username to using userFolder
     //  Driver Schedule only use available times, days cannont have the same time for driving
     //  Store friends list using serialization
   }

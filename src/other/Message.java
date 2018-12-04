@@ -16,11 +16,15 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 public class Message implements Serializable, Comparable {
 
-  //Todo fix recipient not user and fix directory
   private String message;
   private String recipient;
   private String sender;
@@ -117,7 +121,20 @@ public class Message implements Serializable, Comparable {
    * unique, and calls writeFile to write a message file.
    */
   public void sendMessage() {
-    Path path1 = Paths.get("lib/UserData/" + recipient + "/messages");
+    String folder = "";
+
+    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(
+            String.format("Select FOLDER from LOGIN WHERE USERNAME='%s'", recipient))) {
+      if (resultSet.next()) {
+        folder = resultSet.getString("FOLDER");
+      }
+    } catch (SQLException exception) {
+      System.out.println("Unable to get " + "'s folder");
+    }
+
+    Path path1 = Paths.get("lib/UserData/" + folder + "/messages");
     File[] files = new File(path1.toString()).listFiles();
 
     int iii = 1; //Number of the file to check
