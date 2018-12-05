@@ -98,8 +98,7 @@ public class RideRequest implements Initializable {
           Statement stmt130 = conn130.createStatement()) {
 
         String query = String
-            .format("SELECT * FROM RIDE WHERE GOINGTO = '%s' AND COMINGFROM = '%s'",
-                Globals.currentRequest.getGoing(), Globals.currentRequest.getComing());
+            .format("SELECT * FROM RIDE");
 
         ResultSet resultSet130 = stmt130.executeQuery(query);
 
@@ -108,7 +107,7 @@ public class RideRequest implements Initializable {
             Ride ride = new Ride(resultSet130.getString("DRIVER"),
                 resultSet130.getString("GOINGTO"),
                 resultSet130.getString("COMINGFROM"),
-                resultSet130.getString("OCCURRANCE"), resultSet130.getInt("SEATS"));
+                resultSet130.getString("OCCURANCE"), resultSet130.getInt("SEATS"));
             rides.add(ride);
           }
 
@@ -131,7 +130,7 @@ public class RideRequest implements Initializable {
     driverColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("driver"));
     toColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("to"));
     fromColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("startP"));
-    dateColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("occurance"));
+    dateColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("time"));
     messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
     requestColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));
 
@@ -204,5 +203,7 @@ public class RideRequest implements Initializable {
         timeComboBox.getValue());
     available = getRides();
     requestDriversTableview.setItems(available);
+    System.out.println("functionality missing");
+
   }
 }

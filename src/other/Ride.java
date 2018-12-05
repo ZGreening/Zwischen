@@ -56,11 +56,9 @@ public class Ride {
     this.message.setOnAction((ActionEvent event) -> {
       Globals.changeScene("messages/Messages.fxml");
       try {
-        FXMLLoader loader = new FXMLLoader(
-            getClass().getClassLoader().getResource("messages/Messages.fxml"));
-        MessagesController controller = loader.getController();
-        ComboBox<String> comboBox = controller.getRecipient();
-        comboBox.getSelectionModel().select(changeAndMessage(idnumber()));
+
+        MessagesController.setRecipient(changeAndMessage(idnumber()));
+        Globals.changeScene("messages/messages");
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -80,7 +78,7 @@ public class Ride {
   public Ride(String driver, String dest, String startP, String time) throws SQLException {
     this.driver = driver;
     this.dest = dest;
-    setOccurrance(time);
+    this.occurrance = time;
     this.startP = startP;
     this.message = new Button();
     idnumber();
@@ -103,7 +101,7 @@ public class Ride {
   }
 
   public String getDriver() {
-    return driver;
+    return this.driver;
   }
 
   public void setDriver(String driver) {
@@ -111,7 +109,7 @@ public class Ride {
   }
 
   public String getDest() {
-    return dest;
+    return this.dest;
   }
 
   public void setDest(String dest) {
@@ -119,7 +117,7 @@ public class Ride {
   }
 
   public String getOccurrance() {
-    return occurrance;
+    return this.occurrance;
   }
 
   public void setOccurrance(String occurrance) {
