@@ -156,15 +156,15 @@ public class CreateAccountController {
     if (usernameText.isEmpty()) {
       feedbackLabel.setText("Username is empty");
     } else if (usernameText.length() < 5) {
-      feedbackLabel.setText("Username must be atleast 5 characters long");
+      feedbackLabel.setText("Username must be at least 5 characters long");
     } else if (passwordText.isEmpty()) {
       feedbackLabel.setText("Password is empty");
     } else if (passwordText.length() < 5) {
-      feedbackLabel.setText("Password must be atleast 5 characters long");
+      feedbackLabel.setText("Password must be at least 5 characters long");
     } else if (confirmPasswordText.isEmpty()) {
       feedbackLabel.setText("Confirm password is empty");
     } else if (confirmPasswordText.length() < 5) {
-      feedbackLabel.setText("Confirm Password must be atleast 5 characters long");
+      feedbackLabel.setText("Confirm Password must be at least 5 characters long");
     } else if (!passwordText.equals(confirmPasswordText)) {
       feedbackLabel.setText("Passwords do not match");
     } else if (emailText.isEmpty()) {
