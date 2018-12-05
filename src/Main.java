@@ -38,7 +38,7 @@ public class Main extends Application {
     //Todo Known issues:
     //  Ride request needs functionality
     //  Correct FindBugs and CheckStyle errors!!!
-    //  Driver Schedule only use available times, days cannont have the same time for driving
+    //  Driver Schedule only use available times, days cannot have the same time for driving
     //  Store friends list using serialization
   }
 }
