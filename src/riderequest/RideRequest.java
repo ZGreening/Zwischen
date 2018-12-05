@@ -150,7 +150,7 @@ public class RideRequest implements Initializable {
 
   @FXML
   void onSubmitPressed(ActionEvent event) {
-    ObservableList<Ride> rides = FXCollections.observableArrayList();
+
 
     for (Ride ride : available) {
       String query = String.format(
@@ -161,16 +161,15 @@ public class RideRequest implements Initializable {
 
       if (ride.getCheckBox().isSelected()) {
 
-        rides.add(ride);
+
         try (Connection conn133 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB")) {
           Statement stmt133 = conn133.createStatement();
-          ResultSet rs130 = stmt133.executeQuery(
+          ResultSet rs133 = stmt133.executeQuery(
               String.format("SELECT * FROM PAST_RIDE WHERE IDENTIFIER = %d", ride.getIdnumber()));
-          if (rs130.next()) {
-            System.out.println("already sent");
+          if (rs133.next()) {
+            System.out.println("Already sent. Go to Ride History and  send a message");
           } else {
             stmt133.executeUpdate(query);
-
             System.out.println(("sent"));
           }
           stmt133.close();
@@ -194,10 +193,16 @@ public class RideRequest implements Initializable {
 
   @FXML
   void onSearchPressed(ActionEvent event) {
+    driverColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("driver"));
+    toColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("to"));
+    fromColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("startP"));
+    dateColumn.setCellValueFactory(new PropertyValueFactory<Ride, String>("occurance"));
+    messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
+    requestColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));
 
     Globals.currentRequest = new Request(destinationComboBox.getValue(), pickupComboBox.getValue(),
         timeComboBox.getValue());
-    Globals.changeScene("riderequest/RideRequest.fxml", root);
-
+    available = getRides();
+    requestDriversTableview.setItems(available);
   }
 }

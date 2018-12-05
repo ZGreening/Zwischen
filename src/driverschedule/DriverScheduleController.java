@@ -207,9 +207,6 @@ public class DriverScheduleController {
     for (int iii = 0; iii < availabilityArray.length; iii++) {
       String string = ((ComboBox<String>) availabilityArray[iii]).getValue();
 
-
-
-
       if (string != null && !((ComboBox<String>) timeArray[iii]).getValue().isEmpty()
           && !((ComboBox<String>) pickupArray[iii]).getValue().isEmpty()
           && !((ComboBox<String>) destArray[iii]).getValue().isEmpty()) {
@@ -228,7 +225,9 @@ public class DriverScheduleController {
               Globals.getCurrentUser().getUsername(), ride.getDest(), ride.getStartP(),
               ride.getSeats(), ride.getOccurrance());
           stmt151.executeUpdate(query3);
+          stmt151.close();
         } catch (SQLException e) {
+
         }
       }
 
