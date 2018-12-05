@@ -1,34 +1,28 @@
 package friendslist;
 
-import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import other.Globals;
+import other.User;
 
 public class FriendsListController {
-
-  @FXML
-  private ResourceBundle resources;
-
-  @FXML
-  private URL location;
 
   @FXML
   private AnchorPane root;
 
   @FXML
-  private ScrollPane scrollFriends;
-
-  @FXML
-  private ListView<String> friendslist;
+  private ListView<String> friendsList;
 
   @FXML
   private ComboBox<String> addUserComboBox;
@@ -38,12 +32,29 @@ public class FriendsListController {
   @FXML
   void onAddUserPressed(ActionEvent event) {
     String newFriend = addUserComboBox.getValue();
-    if (!newFriend.isEmpty()) {
+
+    if (newFriend != null) {
       //Adds selected friend to the list view
       if (!friendsListArray.contains(newFriend)) {
         friendsListArray.add(newFriend);
-        friendslist.setItems(friendsListArray);
+        friendsList.setItems(friendsListArray);
       }
+
+      try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+          Statement statement = connection.createStatement();
+          ResultSet resultSet = statement
+              .executeQuery(String.format("SELECT * from LOGIN where USERNAME='%s'", newFriend))) {
+        if (resultSet.next()) {
+          String phoneNumber = resultSet.getString("PNUMBER");
+          String email = resultSet.getString("EMAIL");
+          Globals.getCurrentUser().getFriends().add(new User(newFriend, email, phoneNumber));
+        }
+      } catch (SQLException exception) {
+        System.out.println("Failed to get friend information from database");
+      }
+
+      Globals.getCurrentUser().storeFriends();
+
       // Removes friend from the combobox
       if (friendsListArray.contains(newFriend)) {
         addUserComboBox.getItems().remove(newFriend);
@@ -61,5 +72,13 @@ public class FriendsListController {
     ArrayList<String> usernames = Globals.getAllUsernames();
     usernames.remove(Globals.getCurrentUser().getUsername());
     addUserComboBox.setItems(FXCollections.observableArrayList(usernames));
+
+    for (User friend : Globals.getCurrentUser().getFriends()) {
+      friendsListArray.add(friend.getUsername());
+      addUserComboBox.getItems().remove(friend.getUsername());
+    }
+
+    //Load friends
+    friendsList.setItems(friendsListArray);
   }
 }
