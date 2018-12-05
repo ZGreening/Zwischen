@@ -33,12 +33,14 @@ public class Ride {
     this.driver = driver;
   }
 
+  public void setRider(String rider) { this.rider = rider; }
+
   public String getDest() {
-    return dest;
+    return goingTo;
   }
 
   public void setDest(String dest) {
-    this.dest = dest;
+    this.goingTo = dest;
   }
 
   public Date getDate() {
@@ -50,11 +52,11 @@ public class Ride {
   }
 
   public String getStartP() {
-    return startP;
+    return comingFrom;
   }
 
   public void setStartP(String startP) {
-    this.startP = startP;
+    this.comingFrom = startP;
   }
 
   public int getIdnumber() {
@@ -84,10 +86,19 @@ public class Ride {
     this.checkBox = checkBox;
   }
 
+  public Button getMessage() {
+        return message;
+    }
+
+    public void setMessage(Button message) {
+        this.message = message;
+    }
+
   private String driver;
-  private String dest;
+  private String rider;
+  private String goingTo;
+  private String comingFrom;
   private Date date;
-  private String startP;
   private Integer seats;
   private CheckBox checkBox;
   private int idnumber;
@@ -96,16 +107,18 @@ public class Ride {
    * Constructor fo the class Ride.
    *
    * @param driver the driver
-   * @param dest the destination
-   * @param startP the starting location
+   * @param rider the rider
+   * @param goingTo the destination
+   * @param comingFrom the starting location
    * @param date the date of the ride
    * @param seats the number of seats in the car
    */
-  public Ride(String driver, String dest, String startP, Date date, int seats) {
+  public Ride(String driver, String rider, String goingTo, String comingFrom, Date date, int seats) {
     setDriver(driver);
-    setDest(dest);
+    setRider(rider);
+    setDest(goingTo);
+    setStartP(comingFrom);
     setDate(date);
-    setStartP(startP);
     setSeats(seats);
     setIdnumber(nextIDNumber++);
     this.message = new Button();
@@ -136,9 +149,9 @@ public class Ride {
    */
   public Ride(String driver, String dest, String startP, Date date) {
     this.driver = driver;
-    this.dest = dest;
+    this.goingTo = dest;
     this.date = date;
-    this.startP = startP;
+    this.comingFrom = startP;
     this.message = new Button();
 
     this.message.setOnAction((ActionEvent event) -> {
@@ -158,47 +171,28 @@ public class Ride {
 
   }
 
-  /*
-  This method already exists
-  private void setIdnumber() {
-    this.idnumber = nextIDNumber++;
-  }
-  */
-
-  public Button getMessage() {
-    return message;
-  }
-
-  public void setMessage(Button message) {
-    this.message = message;
-  }
-
   String changeAndMessage(int p) throws SQLException {
     PastRide[] pastRides = new PastRide[p];
-    Connection conn126 = DriverManager.getConnection(
-        "jdbc:derby:lib/ZwischenDB");
-    ResultSet resultSet126;
-    try (Statement stmt126 = conn126.createStatement()) {
+    try (Connection conn126 = DriverManager.getConnection(
+            "jdbc:derby:lib/ZwischenDB");
+            Statement stmt126 = conn126.createStatement();
+            ResultSet resultSet126 = stmt126
+                    .executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
+                 getCurrentUser().getUsername(), getCurrentUser().getUsername()))) {
 
       //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
-      resultSet126 = stmt126
-          .executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
-              getCurrentUser().getUsername(), getCurrentUser().getUsername()));
       if (resultSet126.next()) {
         while (resultSet126.next()) {
           int i = 0;
           PastRide pastRide = new PastRide(resultSet126.getString("DRIVER"),
               resultSet126.getString("RIDER"),
-              resultSet126.getString("GOINTTO"), resultSet126.getString("COMINGFROM"),
+              resultSet126.getString("GOINTTO"),
+                  resultSet126.getString("COMINGFROM"),
               resultSet126.getDate("OCCURRANCE"));
           pastRides[i] = pastRide;
         }
-
       }
-      conn126.close();
-
     }
-    resultSet126.close();
     if (getCurrentUser().getUsername().equals(pastRides[p].getRider())) {
       return pastRides[p].getDriver();
     } else {
