@@ -11,8 +11,11 @@ package other;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,37 +24,70 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class User {
+public class User implements Serializable {
 
   private String username;
   private String email;
   private String phoneNum;
   private String userFolder;
   private ArrayList<Message> messages = new ArrayList<>();
-  private ArrayList<DailyRide> dailyRides = new ArrayList<>();
+  private ArrayList<User> friends = new ArrayList<>();
 
+  public User(String username, String email, String phoneNum) {
+    this.username = username;
+    this.email = email;
+    this.phoneNum = phoneNum;
+  }
 
-  public ArrayList<DailyRide> getDailyRides() {
-    return dailyRides;
+  public User() {
+  }
+
+  public ArrayList<User> getFriends() {
+    return friends;
   }
 
   public ArrayList<Message> getMessages() {
     return messages;
   }
 
-  private void dailyRidesDeserialize() {
-    try {
-      File file = new File("lib/UserData/" + userFolder + "/driverSchedule");
+  public String getUsername() {
+    return username;
+  }
 
-      FileInputStream fileInputStream = new FileInputStream(file);
-      ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-      dailyRides = (ArrayList<DailyRide>) objectInputStream.readObject();
-      objectInputStream.close();
-      fileInputStream.close();
+  public String getEmail() {
+    return email;
+  }
+
+  public String getPhoneNum() {
+    return phoneNum;
+  }
+
+  public String getUserFolder() {
+    return userFolder;
+  }
+
+  public void loadFriends() {
+    Path path = Paths.get("lib/UserData/" + userFolder + "/");
+    Path file = path.resolve("friends.list");
+
+    try (FileInputStream fileInputStream = new FileInputStream(file.toString());
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+      friends = (ArrayList<User>) objectInputStream.readObject();
+    } catch (IOException | ClassNotFoundException exception) {
+      System.out.println("Failed to load friends.list");
+    }
+  }
+
+  public void storeFriends() {
+    Path path = Paths.get("lib/UserData/" + userFolder + "/");
+    Path file = path.resolve("friends.list");
+
+    try (FileOutputStream fileOutputStream = new FileOutputStream(file.toString());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+      System.out.println(friends);
+      objectOutputStream.writeObject(friends);
     } catch (IOException exception) {
-      System.out.println("say something");
-    } catch (ClassNotFoundException exception) {
-      System.out.println("class not found");
+      System.out.println("Failed to save friends.list");
     }
   }
 
@@ -88,22 +124,6 @@ public class User {
         Collections.sort(messages);
       }
     }
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public String getPhoneNum() {
-    return phoneNum;
-  }
-
-  public String getUserFolder() {
-    return userFolder;
   }
 
   /**
@@ -145,7 +165,6 @@ public class User {
     phoneNum = null;
     userFolder = null;
     messages = new ArrayList<>(); //unload messages
-    dailyRides.clear();
   }
 
   /**
@@ -162,6 +181,6 @@ public class User {
     this.phoneNum = phoneNum;
     this.userFolder = userFolder;
     loadMessages();
-    dailyRidesDeserialize(); //Todo switch to database
+    loadFriends();
   }
 }

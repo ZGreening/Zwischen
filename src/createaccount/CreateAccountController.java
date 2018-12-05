@@ -156,19 +156,15 @@ public class CreateAccountController {
     if (usernameText.isEmpty()) {
       feedbackLabel.setText("Username is empty");
     } else if (usernameText.length() < 5) {
-      feedbackLabel.setText("Username must be atleast 5 characters long");
-    } else if (usernameText.toUpperCase().equals("LOGIN")) {
-      feedbackLabel.setText("This username is restricted");
-    } else if (!usernameText.matches("^[a-zA-Z0-9]+$")) {
-      feedbackLabel.setText("This username is restricted");
+      feedbackLabel.setText("Username must be at least 5 characters long");
     } else if (passwordText.isEmpty()) {
       feedbackLabel.setText("Password is empty");
     } else if (passwordText.length() < 5) {
-      feedbackLabel.setText("Password must be atleast 5 characters long");
+      feedbackLabel.setText("Password must be at least 5 characters long");
     } else if (confirmPasswordText.isEmpty()) {
       feedbackLabel.setText("Confirm password is empty");
     } else if (confirmPasswordText.length() < 5) {
-      feedbackLabel.setText("Confirm Password must be atleast 5 characters long");
+      feedbackLabel.setText("Confirm Password must be at least 5 characters long");
     } else if (!passwordText.equals(confirmPasswordText)) {
       feedbackLabel.setText("Passwords do not match");
     } else if (emailText.isEmpty()) {
@@ -187,6 +183,18 @@ public class CreateAccountController {
       phoneNumText = Globals.formatPhoneNum(phoneNumText);
 
       storeAccountAndLogin(usernameText, passwordText, emailText, phoneNumText);
+
+      //Create a table for the new user to store their schedule
+      try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+          Statement statement = connection.createStatement()) {
+
+        statement.executeUpdate(String.format(
+            "create table %s(DAY VARCHAR(10),ORIGIN VARCHAR(255),DESTINATION VARCHAR(255),"
+                + "TIME VARCHAR(10))", Globals.getCurrentUser().getUserFolder()));
+
+      } catch (SQLException exception) {
+        System.out.println("Unable to create user table");
+      }
     }
   }
 

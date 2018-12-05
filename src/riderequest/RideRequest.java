@@ -199,8 +199,8 @@ public class RideRequest implements Initializable {
     messageColumn.setCellValueFactory(new PropertyValueFactory<Ride, Button>("message"));
     requestColumn.setCellValueFactory(new PropertyValueFactory<Ride, CheckBox>("checkBox"));
 
-    Globals.currentRequest = new Request(destinationComboBox.getValue(), pickupComboBox.getValue(),
-        timeComboBox.getValue());
+    //Globals.currentRequest = new Request(destinationComboBox.getValue(), pickupComboBox.getValue(),
+        //timeComboBox.getValue());
     available = getRides();
     requestDriversTableview.setItems(available);
     System.out.println("functionality missing");

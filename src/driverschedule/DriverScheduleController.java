@@ -8,230 +8,246 @@
 
 package driverschedule;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
-import other.DailyRide;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import other.Globals;
-import other.Ride;
 
 public class DriverScheduleController {
 
-  //values for combo boxes
-  ObservableList<String> availabilityListBox = FXCollections
-      .observableArrayList("Available", "Not Available");
-
-  ObservableList<String> timeBox = FXCollections
-      .observableArrayList("12:00 AM", "12:30 AM", "1:00 AM",
-          "1:30 AM", "2:00 AM", "2:30 AM", "3:00 AM", "3:30 AM", "4:00 AM", "4:30 AM", "5:00 AM",
-          "5:30 AM", "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM",
-          "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
-          "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM",
-          "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM",
-          "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM", "11:30 PM");
-
-  ObservableList<String> destinationBox = FXCollections
-      .observableArrayList("Coastal Village Apartments", "Coconut Point Mall",
-          "Florida Gulf Coast University", "Florida SouthWestern State College",
-          "Gulf Coast Town Center", "Miromar Outlets", "The Reef Apartments",
-          "Walmart Supercenter (Estero)");
-
-  /*//ArrayList for each row (days of the week)
-  ArrayList<String> monday = new ArrayList<String>();
-  ArrayList<String> tuesday = new ArrayList<String>();
-  ArrayList<String> wednesday = new ArrayList<String>();
-  ArrayList<String> thursday = new ArrayList<String>();
-  ArrayList<String> friday = new ArrayList<String>();
-  ArrayList<String> saturday = new ArrayList<String>();
-  ArrayList<String> sunday = new ArrayList<String>();*/
+  @FXML
+  private VBox monday;
 
   @FXML
-  private ComboBox availabilityList0;
+  private VBox tuesday;
 
   @FXML
-  private ComboBox availabilityList1;
+  private VBox wednesday;
 
   @FXML
-  private ComboBox availabilityList2;
+  private VBox thursday;
 
   @FXML
-  private ComboBox availabilityList3;
+  private VBox friday;
 
   @FXML
-  private ComboBox availabilityList4;
+  private VBox saturday;
 
   @FXML
-  private ComboBox availabilityList5;
+  private VBox sunday;
 
   @FXML
-  private ComboBox availabilityList6;
+  private AnchorPane root;
+
+  private ArrayList<Ride> dailyRides = new ArrayList<>();
+
+  private void generateNewRideRow(VBox day, String origin, String destination, String time) {
+    final GridPane gridPane = new GridPane();
+    String dayString;
+
+    //For storing day as a string
+    if (day == monday) {
+      dayString = "Monday";
+    } else if (day == tuesday) {
+      dayString = "Tuesday";
+    } else if (day == wednesday) {
+      dayString = "Wednesday";
+    } else if (day == thursday) {
+      dayString = "Thursday";
+    } else if (day == friday) {
+      dayString = "Friday";
+    } else if (day == saturday) {
+      dayString = "Saturday";
+    } else if (day == sunday) {
+      dayString = "Sunday";
+    } else {
+      dayString = "Not a day";
+    }
+
+    ComboBox<String> originBox = new ComboBox<>(Globals.getLocationList());
+    ComboBox<String> destinationBox = new ComboBox<>(Globals.getLocationList());
+    ComboBox<String> timeBox = new ComboBox<>(Globals.getTimeList());
+
+    Button deleteButton = new Button();
+    deleteButton.setText("Delete");
+    deleteButton.setFont(new Font(12));
+
+    final Ride ride = new Ride(originBox, destinationBox, timeBox, dayString);
+
+    originBox.setEditable(true);
+    destinationBox.setEditable(true);
+
+    originBox.setFocusTraversable(false);
+    destinationBox.setFocusTraversable(false);
+    timeBox.setFocusTraversable(false);
+    deleteButton.setFocusTraversable(false);
+
+    //Give actions to all objects
+    originBox.setOnAction(event -> {
+      if (ride.rowIsFilled()) {
+        generateNewRideRow(day, null, null, null);
+      }
+    });
+
+    destinationBox.setOnAction(event -> {
+      if (ride.rowIsFilled()) {
+        generateNewRideRow(day, null, null, null);
+      }
+    });
+
+    timeBox.setOnAction(event -> {
+      if (ride.rowIsFilled()) {
+        generateNewRideRow(day, null, null, null);
+      }
+    });
+
+    deleteButton.setOnAction(event -> {
+      if (ride.rowIsFilled()) {
+        day.getChildren().remove(gridPane);
+        dailyRides.remove(ride);
+
+        //Delete from database
+        try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+            Statement statement = connection.createStatement()) {
+          statement.executeUpdate(String
+              .format(
+                  "DELETE from %s where (DAY='%s' and ORIGIN='%s' and DESTINATION='%s' and "
+                      + "TIME='%s')", Globals.getCurrentUser().getUserFolder().toUpperCase(),
+                  ride.day, ride.origin.getValue(), ride.destination.getValue(),
+                  ride.time.getValue()));
+        } catch (SQLException exception) {
+          System.out.println("Unable to delete from database");
+        }
+      }
+    });
+
+    //If row has information, display it in the GUI
+    if (origin != null && destination != null && time != null) {
+      originBox.getSelectionModel().select(origin);
+      destinationBox.getSelectionModel().select(destination);
+      timeBox.getSelectionModel().select(time);
+    }
+
+    //Create gridpane
+    gridPane.add(originBox, 0, 0);
+    gridPane.add(destinationBox, 1, 0);
+    gridPane.add(timeBox, 2, 0);
+    gridPane.add(deleteButton, 3, 0);
+
+    dailyRides.add(ride);
+
+    day.getChildren().add(gridPane);
+  }
 
   @FXML
-  private ComboBox time0;
+  void onSavePressed(ActionEvent event) {
+    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+        Statement statement = connection.createStatement()) {
 
-  @FXML
-  private ComboBox time1;
+      //Delete all rows so that there are no conflicting entries
+      statement
+          .executeUpdate(String.format("DELETE FROM %s", Globals.getCurrentUser().getUserFolder()));
 
-  @FXML
-  private ComboBox time2;
+      //Save all rides
+      for (Ride ride : dailyRides) {
+        if (ride.rowIsFilled()) {
+          statement.executeUpdate(String.format("INSERT INTO %s VALUES('%s','%s','%s','%s')",
+              Globals.getCurrentUser().getUserFolder(), ride.day, ride.origin.getValue(),
+              ride.destination.getValue(),
+              ride.time.getValue()));
+        }
+      }
+    } catch (SQLException exception) {
+      exception.printStackTrace();
+    }
 
-  @FXML
-  private ComboBox time3;
-
-  @FXML
-  private ComboBox time4;
-
-  @FXML
-  private ComboBox time5;
-
-  @FXML
-  private ComboBox time6;
-
-  @FXML
-  private ComboBox pickup0;
-
-  @FXML
-  private ComboBox pickup1;
-
-  @FXML
-  private ComboBox pickup2;
-
-  @FXML
-  private ComboBox pickup3;
-
-  @FXML
-  private ComboBox pickup4;
-
-  @FXML
-  private ComboBox pickup5;
-
-  @FXML
-  private ComboBox pickup6;
-
-  @FXML
-  private ComboBox dest0;
-
-  @FXML
-  private ComboBox dest1;
-
-  @FXML
-  private ComboBox dest2;
-
-  @FXML
-  private ComboBox dest3;
-
-  @FXML
-  private ComboBox dest4;
-
-  @FXML
-  private ComboBox dest5;
-
-  @FXML
-  private ComboBox dest6;
-
-  private Control[] availabilityArray;
-
-  private Control[] timeArray;
-
-  private Control[] pickupArray;
-
-  private Control[] destArray;
+    Globals.closeScene(root);
+  }
 
   @FXML
   void initialize() {
-    //To store a combobox array a temporary array must be made and then assign it to class variables
-    //Otherwise values will be null
-    final Control[] temp = {availabilityList0,
-        availabilityList1, availabilityList2, availabilityList3, availabilityList4,
-        availabilityList5, availabilityList6};
+    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(String
+            .format("select * from %s", Globals.getCurrentUser().getUserFolder().toUpperCase()))) {
 
-    final Control[] temp2 = {time0, time1, time2, time3, time4, time5, time6};
+      //Load entries from database
+      while (resultSet.next()) {
+        String day = resultSet.getString("DAY");
+        String origin = resultSet.getString("ORIGIN");
+        String destination = resultSet.getString("DESTINATION");
+        String time = resultSet.getString("TIME");
 
-    final Control[] temp3 = {pickup0, pickup1, pickup2, pickup3, pickup4, pickup5, pickup6};
-
-    final Control[] temp4 = {dest0, dest1, dest2, dest3, dest4, dest5, dest6};
-
-    availabilityArray = temp;
-    timeArray = temp2;
-    pickupArray = temp3;
-    destArray = temp4;
-
-    //Filling values to combo boxes
-    for (int iii = 0; iii < availabilityArray.length; iii++) {
-      ((ComboBox<String>) availabilityArray[iii]).setItems(availabilityListBox);
-      ((ComboBox<String>) timeArray[iii]).setItems(destinationBox);
-      ((ComboBox<String>) pickupArray[iii]).setItems(destinationBox);
-      ((ComboBox<String>) destArray[iii]).setItems(timeBox);
-    }
-
-    ArrayList<DailyRide> dailyRides = Globals.getCurrentUser().getDailyRides();
-    //Todo getting out of array and displaying on the GUI
-    for (int iii = 0; iii < dailyRides.size(); iii++) {
-      if (dailyRides.get(iii).isAvailable()) {
-        ((ComboBox<String>) availabilityArray[iii]).setValue("Available");
-      } else {
-        ((ComboBox<String>) availabilityArray[iii]).setValue("Not Available");
-      }
-
-      ((ComboBox<String>) timeArray[iii]).setValue(dailyRides.get(iii).getTime());
-      ((ComboBox<String>) pickupArray[iii]).setValue(dailyRides.get(iii).getTime());
-      ((ComboBox<String>) destArray[iii]).setValue(dailyRides.get(iii).getTime());
-    }
-  }
-
-  /**
-   * A function to store combobox values into separate arraylists.
-   */
-  @FXML
-  public void saveSchedule(ActionEvent event) throws SQLException {
-    Globals.getCurrentUser().getDailyRides().clear();
-    try {
-      Connection conn150 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
-      Statement stmt150 = conn150.createStatement();
-      stmt150.executeUpdate(String.format("DELETE * FROM RIDE WHERE DRIVER = %s",
-          Globals.getCurrentUser().getUsername()));
-    } catch (SQLException e) {
-    }
-    for (int iii = 0; iii < availabilityArray.length; iii++) {
-      String string = ((ComboBox<String>) availabilityArray[iii]).getValue();
-
-      if (string != null && !((ComboBox<String>) timeArray[iii]).getValue().isEmpty()
-          && !((ComboBox<String>) pickupArray[iii]).getValue().isEmpty()
-          && !((ComboBox<String>) destArray[iii]).getValue().isEmpty()) {
-        Globals.getCurrentUser().getDailyRides().add(new DailyRide(string.equals("Available"),
-            ((ComboBox<String>) timeArray[iii]).getValue(),
-            ((ComboBox<String>) pickupArray[iii]).getValue(),
-            ((ComboBox<String>) destArray[iii]).getValue()));
-        Ride ride = new Ride(Globals.getCurrentUser().getUsername(),
-            ((ComboBox<String>) timeArray[iii]).getValue(),
-            ((ComboBox<String>) pickupArray[iii]).getValue(),
-            ((ComboBox<String>) destArray[iii]).getValue(), 3);
-        try {
-          Connection conn151 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
-          Statement stmt151 = conn151.createStatement();
-          String query3 = String.format("INSERT INTO RIDE VALUES('%s','%s','%s','%d','%s')",
-              Globals.getCurrentUser().getUsername(), ride.getDest(), ride.getStartP(),
-              ride.getSeats(), ride.getOccurrance());
-          stmt151.executeUpdate(query3);
-          stmt151.close();
-        } catch (SQLException e) {
-
+        switch (day) {
+          case "Monday":
+            generateNewRideRow(monday, origin, destination, time);
+            break;
+          case "Tuesday":
+            generateNewRideRow(tuesday, origin, destination, time);
+            break;
+          case "Wednesday":
+            generateNewRideRow(wednesday, origin, destination, time);
+            break;
+          case "Thursday":
+            generateNewRideRow(thursday, origin, destination, time);
+            break;
+          case "Friday":
+            generateNewRideRow(friday, origin, destination, time);
+            break;
+          case "Saturday":
+            generateNewRideRow(saturday, origin, destination, time);
+            break;
+          case "Sunday":
+            generateNewRideRow(sunday, origin, destination, time);
+            break;
+          default:
+            System.out.println("Not a valid day");
         }
       }
+    } catch (SQLException exception) {
+      System.out.println("Unable to load  user data");
+    }
 
+    //Generate empty rows under all filled rows
+    generateNewRideRow(monday, null, null, null);
+    generateNewRideRow(tuesday, null, null, null);
+    generateNewRideRow(wednesday, null, null, null);
+    generateNewRideRow(thursday, null, null, null);
+    generateNewRideRow(friday, null, null, null);
+    generateNewRideRow(saturday, null, null, null);
+    generateNewRideRow(sunday, null, null, null);
+  }
+
+  //Private class ride used for organization of dynamic javafx objects
+  private class Ride {
+
+    private ComboBox<String> origin;
+    private ComboBox<String> destination;
+    private ComboBox<String> time;
+    private String day;
+
+    private Ride(ComboBox<String> origin, ComboBox<String> destination, ComboBox<String> time,
+        String day) {
+      this.origin = origin;
+      this.destination = destination;
+      this.time = time;
+      this.day = day;
+    }
+
+    private boolean rowIsFilled() {
+      return (origin.getValue() != null && destination.getValue() != null
+          && time.getValue() != null);
     }
   }
 }
-
