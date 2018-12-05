@@ -19,20 +19,12 @@ import other.Globals;
 import other.Message;
 
 public class MessagesController {
-  ArrayList<String> usernames = Globals.getAllUsernames();
+
   @FXML
   private TextArea message;
 
   @FXML
-  private static ComboBox<String> recipient;
-
-  public static void setRecipient(String s) {
-
-
-    recipient.getSelectionModel().select(s); ;
-
-
-  }
+  private ComboBox<String> recipient;
 
   @FXML
   private AnchorPane root;
@@ -63,7 +55,7 @@ public class MessagesController {
 
   @FXML
   void initialize() {
-
+    ArrayList<String> usernames = Globals.getAllUsernames();
     usernames
         .remove(
             Globals.getCurrentUser().getUsername());    //So you cannot send a message to yourself

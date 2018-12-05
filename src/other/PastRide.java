@@ -1,8 +1,16 @@
 package other;
 
-import java.sql.SQLException;
+import java.util.Date;
 
 public class PastRide extends Ride {
+
+  public String getRider() {
+    return rider;
+  }
+
+  public void setRider(String rider) {
+    this.rider = rider;
+  }
 
   private String rider;
 
@@ -13,11 +21,10 @@ public class PastRide extends Ride {
    * @param driver The driver
    * @param dest The destination
    * @param startP The starting location
-   * @param time The date of the ride
+   * @param date The date of the ride
    */
-  public PastRide(String rider, String driver, String dest, String startP, String time)
-      throws SQLException {
-    super(driver, dest, startP, time);
+  public PastRide(String rider, String driver, String dest, String startP, Date date) {
+    super(driver, dest, startP, date);
     this.rider = rider;
   }
 
@@ -28,21 +35,12 @@ public class PastRide extends Ride {
    * @param driver The driver
    * @param dest The destination
    * @param startP The starting location
-   * @param time The time of the ride
-   * @param idNum The id of the ride used for simplification
+   * @param date The date of the ride
+   * @param idNum The id of the ride //Todo What is the IDNumber???
    */
-  public PastRide(String rider, String driver, String dest, String startP, String time, int idNum)
-      throws SQLException {
-    super(driver, dest, startP, time);
+  public PastRide(String rider, String driver, String dest, String startP, Date date, int idNum) {
+    super(driver, dest, startP, date);
     this.rider = rider;
-
-  }
-
-  public String getRider() {
-    return rider;
-  }
-
-  public void setRider(String rider) {
-    this.rider = rider;
+    this.setIdnumber(idNum);
   }
 }
