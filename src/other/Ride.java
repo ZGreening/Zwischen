@@ -15,7 +15,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -25,80 +24,12 @@ import messages.MessagesController;
 
 public class Ride {
 
-  public String getDriver() {
-    return driver;
-  }
-
-  public void setDriver(String driver) {
-    this.driver = driver;
-  }
-
-  public void setRider(String rider) { this.rider = rider; }
-
-  public String getDest() {
-    return goingTo;
-  }
-
-  public void setDest(String dest) {
-    this.goingTo = dest;
-  }
-
-  public Date getDate() {
-    return date;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  public String getStartP() {
-    return comingFrom;
-  }
-
-  public void setStartP(String startP) {
-    this.comingFrom = startP;
-  }
-
-  public int getIdnumber() {
-    return idnumber;
-  }
-
-  public void setIdnumber(int idnumber) {
-    this.idnumber = idnumber;
-  }
-
-  public Integer getSeats() {
-    return seats;
-  }
-
-  public void setSeats(Integer seats) {
-    this.seats = seats;
-  }
-
   private static int nextIDNumber = 0;
   private Button message;
-
-  public CheckBox getCheckBox() {
-    return checkBox;
-  }
-
-  public void setCheckBox(CheckBox checkBox) {
-    this.checkBox = checkBox;
-  }
-
-  public Button getMessage() {
-        return message;
-    }
-
-    public void setMessage(Button message) {
-        this.message = message;
-    }
-
   private String driver;
-  private String rider;
-  private String goingTo;
-  private String comingFrom;
-  private Date date;
+  private String dest;
+  private String occurrance;
+  private String startP;
   private Integer seats;
   private CheckBox checkBox;
   private int idnumber;
@@ -107,30 +38,27 @@ public class Ride {
    * Constructor fo the class Ride.
    *
    * @param driver the driver
-   * @param rider the rider
-   * @param goingTo the destination
-   * @param comingFrom the starting location
-   * @param date the date of the ride
+   * @param dest the destination
+   * @param startP the starting location
+   * @param time the time of the ride
    * @param seats the number of seats in the car
    */
-  public Ride(String driver, String rider, String goingTo, String comingFrom, Date date, int seats) {
+  public Ride(String driver, String dest, String startP, String time, int seats)
+      throws SQLException {
     setDriver(driver);
-    setRider(rider);
-    setDest(goingTo);
-    setStartP(comingFrom);
-    setDate(date);
+    setDest(dest);
+    setOccurrance(time);
+    setStartP(startP);
     setSeats(seats);
-    setIdnumber(nextIDNumber++);
+    idnumber();
     this.message = new Button();
 
     this.message.setOnAction((ActionEvent event) -> {
       Globals.changeScene("messages/Messages.fxml");
       try {
-        FXMLLoader loader = new FXMLLoader(
-            getClass().getClassLoader().getResource("messages/Messages.fxml"));
-        MessagesController controller = loader.getController();
-        ComboBox<String> comboBox = controller.getRecipient();
-        comboBox.getSelectionModel().select(changeAndMessage(idnumber));
+
+        MessagesController.setRecipient(changeAndMessage(idnumber()));
+        Globals.changeScene("messages/messages");
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -145,14 +73,15 @@ public class Ride {
    * @param driver the driver
    * @param dest the destination
    * @param startP the starting location
-   * @param date the data of the ride
+   * @param time the time of the ride
    */
-  public Ride(String driver, String dest, String startP, Date date) {
+  public Ride(String driver, String dest, String startP, String time) throws SQLException {
     this.driver = driver;
-    this.goingTo = dest;
-    this.date = date;
-    this.comingFrom = startP;
+    this.dest = dest;
+    this.occurrance = time;
+    this.startP = startP;
     this.message = new Button();
+    idnumber();
 
     this.message.setOnAction((ActionEvent event) -> {
       Globals.changeScene("messages/Messages.fxml");
@@ -171,28 +100,134 @@ public class Ride {
 
   }
 
+  public String getDriver() {
+    return this.driver;
+  }
+
+  public void setDriver(String driver) {
+    this.driver = driver;
+  }
+
+  public String getDest() {
+    return this.dest;
+  }
+
+  public void setDest(String dest) {
+    this.dest = dest;
+  }
+
+  public String getOccurrance() {
+    return this.occurrance;
+  }
+
+  public void setOccurrance(String occurrance) {
+    this.occurrance = occurrance;
+  }
+
+  public String getStartP() {
+    return startP;
+  }
+
+  public void setStartP(String startP) {
+    this.startP = startP;
+  }
+
+  public Integer getSeats() {
+    return seats;
+  }
+
+  public void setSeats(Integer seats) {
+    this.seats = seats;
+  }
+
+  public CheckBox getCheckBox() {
+    return checkBox;
+  }
+
+  public void setCheckBox(CheckBox checkBox) {
+    this.checkBox = checkBox;
+  }
+
+  public int getIdnumber() {
+    return this.idnumber;
+  }
+
+  private int idnumber() {
+
+    try (Connection conn140 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB")) {
+
+      try (Statement stmt140 = conn140.createStatement()) {
+
+        //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+        ResultSet resultSet140 = stmt140
+            .executeQuery("SELECT MAX(IDENTIFIER) FROM IDNUMBER");
+
+        resultSet140.next();
+
+          this.idnumber = (resultSet140.getInt(1));
+          this.idnumber++;
+
+        try (Connection conn141 = DriverManager.getConnection(
+            "jdbc:derby:lib/ZwischenDB");) {
+          try (Statement stmt141 = conn141.createStatement()) {
+            String query2 = String.format("UPDATE IDNUMBER SET IDENTIFIER = %d", this.idnumber);
+            //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+            stmt141.executeUpdate(query2);
+
+
+          }
+        }
+      }catch(SQLException e){
+        e.printStackTrace();
+    }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return this.idnumber;
+  }
+
+  /*
+  This method already exists
+  private void setIdnumber() {
+    this.idnumber = nextIDNumber++;
+  }
+  */
+
+  public Button getMessage() {
+    return message;
+  }
+
+  public void setMessage(Button message) {
+    this.message = message;
+  }
+
   String changeAndMessage(int p) throws SQLException {
     PastRide[] pastRides = new PastRide[p];
-    try (Connection conn126 = DriverManager.getConnection(
-            "jdbc:derby:lib/ZwischenDB");
-            Statement stmt126 = conn126.createStatement();
-            ResultSet resultSet126 = stmt126
-                    .executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
-                 getCurrentUser().getUsername(), getCurrentUser().getUsername()))) {
+    Connection conn126 = DriverManager.getConnection(
+        "jdbc:derby:lib/ZwischenDB");
+    ResultSet resultSet126;
+    try (Statement stmt126 = conn126.createStatement()) {
 
       //String query1 = "SELECT USERNAME FROM LOGIN WHERE UserName='"+ username+"';
+      resultSet126 = stmt126
+          .executeQuery(String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
+              getCurrentUser().getUsername(), getCurrentUser().getUsername()));
       if (resultSet126.next()) {
         while (resultSet126.next()) {
           int i = 0;
           PastRide pastRide = new PastRide(resultSet126.getString("DRIVER"),
               resultSet126.getString("RIDER"),
-              resultSet126.getString("GOINTTO"),
-                  resultSet126.getString("COMINGFROM"),
-              resultSet126.getDate("OCCURRANCE"));
+              resultSet126.getString("GOINTTO"), resultSet126.getString("COMINGFROM"),
+              resultSet126.getString("OCCURRANCE"));
           pastRides[i] = pastRide;
         }
+
       }
+      conn126.close();
+
     }
+    resultSet126.close();
     if (getCurrentUser().getUsername().equals(pastRides[p].getRider())) {
       return pastRides[p].getDriver();
     } else {

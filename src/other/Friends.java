@@ -16,6 +16,18 @@ public class Friends extends User {
   private Button removeFriend;
   private Button messsegeFriend;
 
+  /**
+   * Constructor for the class Friends.
+   *
+   * @param friendName the name of the friend
+   */
+  public Friends(String friendName) {
+
+    this.friendName = friendName;
+    this.removeFriend = new Button();
+    this.messsegeFriend = new Button();
+  }
+
   public String getFriendName() {
     return friendName;
   }
@@ -38,18 +50,6 @@ public class Friends extends User {
 
   public void setMesssegeFriend(Button messsegeFriend) {
     this.messsegeFriend = messsegeFriend;
-  }
-
-  /**
-   * Constructor for the class Friends.
-   *
-   * @param friendName the name of the friend
-   */
-  public Friends(String friendName) {
-
-    this.friendName = friendName;
-    this.removeFriend = new Button();
-    this.messsegeFriend = new Button();
   }
 
 }

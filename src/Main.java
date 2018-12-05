@@ -35,6 +35,7 @@ public class Main extends Application {
     }
 
     Globals.changeScene("login/Login.fxml");
+
     //Todo Known issues:
     //  Correct: FindBugs and CheckStyle errors!!!
     //  Fix: Driver Schedule only use available times, days cannot have the same time for driving
@@ -43,6 +44,6 @@ public class Main extends Application {
     //  Fix: user cannot remove friend currently, user friends arrayList does not update before
     //    saving the serialized file.
     //  Fix: loadMessagesWithSendTo does not work at the moment
-    //
+    //  Fix: ride history window code
   }
 }
