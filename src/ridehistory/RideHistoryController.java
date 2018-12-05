@@ -76,22 +76,19 @@ public class RideHistoryController implements Initializable {
 
     ObservableList<PastRide> rides2 = FXCollections.observableArrayList();
 
+      try (Connection conn12p = DriverManager.getConnection(
+              "jdbc:derby:lib/ZwischenDB");
+              Statement stmt12p = conn12p.createStatement()) {
     for (PastRide ride : past) {
       String query = String.format(String.format(
-          "DELETE FROM PAST_RIDE WHERE IDENTIFIER = '%d' ", ride.getIdnumber()));
+          "DELETE FROM RIDES WHERE IDENTIFIER = '%d' ", ride.getIdnumber()));
 
       rides2.add(ride);
-
-      Connection conn12p = DriverManager.getConnection(
-          "jdbc:derby:lib/ZwischenDB");
-      try (Statement stmt12p = conn12p.createStatement()) {
         stmt12p.executeUpdate(query);
       }
 
-      conn12p.close();
-
       System.out.println(("deleted"));
-      past.remove(ride);
+      past.remove(rides2);
     }
 
 
@@ -104,7 +101,7 @@ public class RideHistoryController implements Initializable {
 
     for (PastRide ride : past) {
       String query = String.format(
-          String.format("DELETE FROM PAST_RIDE WHERE IDENTIFIER = '%d' ", ride.getIdnumber()));
+          String.format("DELETE FROM RIDE WHERE IDENTIFIER = '%d' ", ride.getIdnumber()));
 
       if (ride.getCheckBox().isSelected()) {
 
@@ -134,37 +131,28 @@ public class RideHistoryController implements Initializable {
   private ObservableList<PastRide> getPastRides() {
 
     ObservableList<PastRide> pastRides = FXCollections.observableArrayList();
+      String query = String.format("SELECT * FROM RIDES WHERE DRIVER = '%s'",
+              Globals.getCurrentUser().getUsername());
 
-    try {
-
-      try (
-
-          Connection conn120 = DriverManager.getConnection(
-              "jdbc:derby:lib/ZwischenDB");
-          Statement stmt120 = conn120.createStatement()) {
-
-        String query = String.format("SELECT * FROM PAST_RIDE WHERE DRIVER = '%s' OR RIDER = '%s'",
-            Globals.getCurrentUser().getUsername(), Globals.getCurrentUser().getUsername());
-
-        ResultSet resultSet120 = stmt120.executeQuery(query);
-
+      try (Connection conn120 = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+           Statement stmt120 = conn120.createStatement();
+           ResultSet resultSet120 = stmt120.executeQuery(query)) {
         if (resultSet120.wasNull()) {
 
-          feedbackLabel.setText("No History To show");
+            System.out.println("no history to show");
 
         } else {
           while (resultSet120.next()) {
             PastRide pastRide = new PastRide(resultSet120.getString("DRIVER"),
                 resultSet120.getString("RIDER"),
-                resultSet120.getString("GOINTTO"), resultSet120.getString("COMINGFROM"),
-                resultSet120.getDate("OCCURRANCE"), resultSet120.getInt("IDENTIFIER"));
+                resultSet120.getString("GOINGTO"),
+                    resultSet120.getString("COMINGFROM"),
+                resultSet120.getDate("DATE"),
+                    resultSet120.getInt("IDENTIFIER"));
             pastRides.add(pastRide);
           }
-
         }
-        resultSet120.close();
-      }
-    } catch (SQLException sqlExcept) {
+      } catch (SQLException sqlExcept) {
       sqlExcept.printStackTrace();
       System.out.println("something went wrong");
     }
@@ -181,10 +169,9 @@ public class RideHistoryController implements Initializable {
     messageColumn.setCellValueFactory(new PropertyValueFactory<PastRide, Button>("message"));
     deleteColumn.setCellValueFactory(new PropertyValueFactory<PastRide, CheckBox>("checkBox"));
 
-    for (int p = 0; p < availableDriversTableview.getItems().size(); p++) {
 
       availableDriversTableview.setItems(past);
-    }
+
   }
 }
 

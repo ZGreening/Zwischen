@@ -140,6 +140,7 @@ public class CreateAccountController {
 
     } catch (SQLException exception) {
       System.out.println("Unable to create new user: " + username);
+      exception.printStackTrace();
     }
   }
 
