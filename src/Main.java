@@ -35,6 +35,7 @@ public class Main extends Application {
     }
 
     Globals.changeScene("login/Login.fxml");
+
     //Todo Known issues:
     //  Correct: FindBugs and CheckStyle errors!!!
     //  Fix: Driver Schedule only use available times, days cannot have the same time for driving
