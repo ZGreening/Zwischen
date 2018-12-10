@@ -8,6 +8,8 @@ Not every student at Fgcu has access to a car, and those who do may not have the
 Compiled with FGCU’s focus on environmental care, students have every reason to carpool. Zwischen is a ride sharing app,
 designed to help students at FGCU get around, as well as helping to reduce car emissions and forming friendships.
 
+note: This is the original version of Zwischen. For the updated version, click [here](https://github.com/zgreening/ZwischenV2.0.git).
+
 ## Installation:
 
 Create a new project, clone source files from github, goto product structure and add derby.jar as dependency module.
